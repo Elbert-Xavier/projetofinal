@@ -24,13 +24,14 @@ public class EnderecoEntity implements Serializable {
 	private int id;
 	private String tipoLogradouro;
 	private String logradouro;
-	private String numero;
+	private int numero;
 	private String complemento;
 	private String referencia;
 	private String bairro;
 	private String cidade;
 	private String uf;
-	private int cep;
+	private String cep;
+	
 	public int getId() {
 		return id;
 	}
@@ -49,10 +50,10 @@ public class EnderecoEntity implements Serializable {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {
@@ -85,10 +86,10 @@ public class EnderecoEntity implements Serializable {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	
