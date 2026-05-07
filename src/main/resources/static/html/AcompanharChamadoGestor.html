@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Área do Gestor</title>
+    <link rel="stylesheet" href="../css/AcompanharChamadoGestor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-chart-line logo-icon"></i>
+                <div>
+                    <strong>Gestoretech</strong>
+                    <span>Área do Gestor</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class="active"><a href="#"><i class="fa-regular fa-clipboard"></i> Ordens de Serviço</a></li>
+                    <li><a href="#"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-gear"></i> Técnicos</a></li>
+                    <li><a href="#"><i class="fa-solid fa-box-open"></i> Peças em estoque</a></li>
+                    <li><a href="#"><i class="fa-solid fa-file-contract"></i> Relatórios</a></li>
+                    <li><a href="#"><i class="fa-regular fa-calendar"></i> Calendário</a></li>
+                    <li class="nav-notif">
+                        <a href="#"><i class="fa-regular fa-bell"></i> Notificações</a>
+                        <span class="badge-notif">3</span>
+                    </li>
+                </ul>
+
+                <ul class="nav-links footer-links">
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-illustration">
+                <i class="fa-solid fa-file-signature big-icon"></i>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-header">
+                <div class="header-left">
+                    <a href="#" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                    <h1>Acompanhamento de chamados <span>#1231</span></h1>
+                </div>
+                
+                <div class="header-actions">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <div class="notif-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="user-pill">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=3f51b5&color=fff" alt="User">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <section class="details-grid">
+                
+                <div class="card form-block">
+                    <div class="form-row">
+                        <div class="input-group search-input">
+                            <label>CLIENTE</label>
+                            <input type="text" value="Gôndolas Supermercados">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div class="input-group search-input">
+                            <label>TÉCNICO RESPONSÁVEL PELA MANUTENÇÃO</label>
+                            <input type="text" value="João Silva">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group date-input">
+                        <label>DATA DE LANÇAMENTO</label>
+                        <input type="text" value="01/09/2025">
+                        <i class="fa-regular fa-calendar"></i>
+                    </div>
+
+                    <div class="input-group search-input">
+                        <label>EQUIPAMENTO</label>
+                        <input type="text" value="Freezer Expositor Vertical - Metalfrio VF55">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+
+                <div class="card status-block">
+                    <div class="status-group">
+                        <label>STATUS ATUAL</label>
+                        <span class="status-badge blue"><i class="fa-regular fa-clock"></i> Em andamento</span>
+                    </div>
+                    <div class="priority-group">
+                        <label>PRIORIDADE</label>
+                        <span class="priority-badge media"><i class="fa-solid fa-circle-exclamation"></i> Média</span>
+                    </div>
+                </div>
+
+                <div class="card description-block">
+                    <label class="card-title-icon"><i class="fa-regular fa-clipboard"></i> DESCRIÇÃO DO PROBLEMA</label>
+                    <p>Freezer não está gelando adequadamente. Temperatura interna acima do normal.</p>
+                </div>
+
+                <div class="card photo-block">
+                    <label class="card-title-icon"><i class="fa-regular fa-image"></i> FOTO DO EQUIPAMENTO</label>
+                    <div class="image-gallery">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/29/03/52/shopping-1867175_1280.jpg" alt="Freezer">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/29/03/52/shopping-1867175_1280.jpg" alt="Freezer">
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="history-grid">
+                
+                <div class="card timeline-card">
+                    <label class="card-title-icon"><i class="fa-solid fa-clock-rotate-left"></i> HISTÓRICO DO EQUIPAMENTO</label>
+                    <div class="timeline">
+                        <div class="tl-item">
+                            <div class="tl-date">01/09/2025<br>08:30</div>
+                            <div class="tl-content"><strong>Ordem de serviço criada.</strong><p>Chamado registrado pelo gestor.</p></div>
+                        </div>
+                        <div class="tl-item warning">
+                            <div class="tl-date">01/09/2025<br>09:15</div>
+                            <div class="tl-content"><strong>Ordem encaminhada para o técnico.</strong><p>Técnico João Silva designado.</p></div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-date">01/09/2025<br>10:20</div>
+                            <div class="tl-content"><strong>Técnico iniciou o atendimento.</strong><p>Técnico João Silva iniciou a análise do problema.</p></div>
+                        </div>
+                        <div class="tl-item pending">
+                            <div class="tl-date">01/09/2025<br>11:45</div>
+                            <div class="tl-content"><strong>Aguardando peças.</strong><p>Técnico solicitou reposição de gás R600a.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card chat-card">
+                    <label class="card-title-icon"><i class="fa-regular fa-comments"></i> ACOMPANHAMENTOS / ATUALIZAÇÕES</label>
+                    
+                    <div class="chat-input-row">
+                        <input type="text" placeholder="Adicionar atualização...">
+                        <button class="btn-chat-add">Adicionar</button>
+                    </div>
+
+                    <div class="chat-list">
+                        <div class="chat-item">
+                            <div class="avatar js">JS</div>
+                            <div class="chat-body">
+                                <div class="chat-meta"><strong>João Silva (Técnico)</strong><span>01/09/2025 - 11:45</span></div>
+                                <p>Identificado vazamento no sistema. Solicitado reposição de gás R600a.</p>
+                            </div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="avatar js">JS</div>
+                            <div class="chat-body">
+                                <div class="chat-meta"><strong>João Silva (Técnico)</strong><span>01/09/2025 - 10:20</span></div>
+                                <p>Verificando temperatura e possíveis causas. Condensador com acúmulo de sujeira.</p>
+                            </div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="avatar gestor">GS</div>
+                            <div class="chat-body">
+                                <div class="chat-meta"><strong>Gestor</strong><span>01/09/2025 - 09:15</span></div>
+                                <p>Ordem encaminhada para o técnico João Silva.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <footer class="action-footer">
+                <button class="btn-outline-red">Cancelar Ordem</button>
+                <div class="footer-right">
+                    <button class="btn-outline"><i class="fa-regular fa-pen-to-square"></i> Editar Ordem</button>
+                    <button class="btn-filled"><i class="fa-regular fa-floppy-disk"></i> Salvar Atualizações</button>
+                </div>
+            </footer>
+        </main>
+
+    </div>
+
+</body>
+</html>

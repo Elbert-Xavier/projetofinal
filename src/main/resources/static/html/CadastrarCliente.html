@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Cadastro de Cliente</title>
+    <link rel="stylesheet" href="../css/CadastrarCliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../js/CadastrarCliente.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="sidebar-nav">
+            <button class="btn-new-problem"><i class="fa-solid fa-plus"></i> Novo Problema</button>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fa-regular fa-clipboard"></i> Meus Chamados</a></li>
+                <li><a href="#"><i class="fa-solid fa-laptop"></i> Equipamentos</a></li>
+                <li><a href="#"><i class="fa-solid fa-wrench"></i> Serviços</a></li>
+                <li><a href="#"><i class="fa-solid fa-headset"></i> Suporte</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="navbar">
+            <div class="logo"><span class="logo-g">G</span> Gestoretech</div>
+            <nav class="top-nav">
+                <a href="#"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="#"><i class="fa-solid fa-gears"></i> Serviços</a>
+                <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Histórico</a>
+                <a href="#"><i class="fa-regular fa-circle-user"></i> Perfil</a>
+            </nav>
+        </header>
+
+        <section class="content-wrapper">
+            <div class="card">
+                <div class="card-header">
+                    <div class="header-icon-user">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div>
+                        <h1>Cadastro de Cliente</h1>
+                        <p>Preencha os dados abaixo para cadastrar um novo cliente.</p>
+                    </div>
+                </div>
+
+                <form class="client-form">
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-solid fa-building"></i> <span>CNPJ</span></div>
+                        <input type="text" placeholder="Digite o CNPJ" id="cnpj">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-solid fa-briefcase"></i> <span>Razão Social</span></div>
+                        <input type="text" placeholder="Digite a razão social" id="RazaoSocial">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-regular fa-user"></i> <span>Nome</span></div>
+                        <input type="text" placeholder="Digite o nome do responsável" id="TituloResponsavel">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-solid fa-tag"></i> <span>Nome Fantasia</span></div>
+                        <input type="text" placeholder="Digite o nome fantasia" id="nomeFantasia">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-regular fa-file-lines"></i> <span>Inscrição Estadual</span></div>
+                        <input type="text" placeholder="Digite a inscrição estadual" id="inscricaoEstadual">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-solid fa-landmark"></i> <span>Inscrição Municipal</span></div>
+                        <input type="text" placeholder="Digite a inscrição municipal" id="inscricaoMunicipal">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-regular fa-envelope"></i> <span>E-mail</span></div>
+                        <input type="email" placeholder="Digite o e-mail" id="Email">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="icon-label"><i class="fa-solid fa-phone"></i> <span>Telefone</span></div>
+                        <input type="tel" placeholder="Digite o telefone" id="Telefone">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+                        <button type="button" class="btn-save" onclick="salvarCliente()"><i class="fa-regular fa-floppy-disk"></i> Salvar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

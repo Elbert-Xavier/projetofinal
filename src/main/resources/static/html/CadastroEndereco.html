@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Endereço</title>
+    <link rel="stylesheet" href="../css/CadastroEndereco.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header"><i class="fa-solid fa-bars"></i></div>
+        <nav class="sidebar-nav">
+            <button class="btn-new-problem"><i class="fa-solid fa-plus"></i> Novo Problema</button>
+            <ul class="nav-links">
+                <li><a href="CadastroProblema.html"><i class="fa-regular fa-clipboard"></i> Meus Chamados</a></li>
+                <li><a href="#"><i class="fa-solid fa-laptop"></i> Equipamentos</a></li>
+                <li><a href="#"><i class="fa-solid fa-wrench"></i> Serviços</a></li>
+                <li><a href="#"><i class="fa-solid fa-headset"></i> Suporte</a></li>
+                <li><a href="#" class="active"><i class="fa-solid fa-users"></i> Clientes</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+            </div>
+        </nav>
+        <div class="sidebar-illustration">
+            <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" style="width: 120px; opacity: 0.2; filter: brightness(0) invert(1);" alt="Map icon">
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="navbar">
+            <div class="logo"><span class="logo-g">G</span> Gestoretech</div>
+            <nav class="top-nav">
+                <a href="#"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="#"><i class="fa-solid fa-gears"></i> Serviços</a>
+                <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Histórico</a>
+                <a href="#"><i class="fa-regular fa-circle-user"></i> Perfil</a>
+            </nav>
+        </header>
+
+        <section class="content-wrapper">
+            <div class="card">
+                <div class="card-header">
+                    <div class="header-icon-location">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <h1>Endereço</h1>
+                        <p>Preencha as informações abaixo para cadastrar o endereço.</p>
+                    </div>
+                </div>
+
+                <form class="address-form">
+                    <div class="form-group">
+                        <label>Tipo Logradouro</label>
+                        <select>
+                            <option>Selecione o tipo de logradouro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Logradouro</label>
+                        <input type="text" placeholder="Digite o nome do logradouro">
+                    </div>
+
+                    <div class="form-row-grid">
+                        <div class="form-group">
+                            <label>CEP</label>
+                            <input type="text" placeholder="Digite o CEP">
+                        </div>
+                        <div class="form-group">
+                            <label>Número</label>
+                            <input type="text" placeholder="Digite o número">
+                        </div>
+                    </div>
+
+                    <div class="form-row-grid">
+                        <div class="form-group">
+                            <label>Bairro</label>
+                            <input type="text" placeholder="Digite o bairro">
+                        </div>
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <input type="text" placeholder="Digite a cidade">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Referência</label>
+                        <input type="text" placeholder="Digite um ponto de referência (opcional)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Complemento</label>
+                        <input type="text" placeholder="Digite o complemento (opcional)">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+                        <button type="submit" class="btn-save"><i class="fa-regular fa-floppy-disk"></i> Salvar Endereço</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

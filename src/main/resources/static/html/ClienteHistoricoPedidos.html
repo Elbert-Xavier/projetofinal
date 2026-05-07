@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Histórico de Chamados</title>
+    <link rel="stylesheet" href="../css/ClienteHistoricoPedidos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="user-profile-side">
+                <img src="https://ui-avatars.com/api/?name=Usuario+Y&background=3f51b5&color=fff" alt="Avatar">
+                <div class="user-info">
+                    <strong>Olá, Usuario Y</strong>
+                    <span>Cliente</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fa-regular fa-calendar-check"></i> Meus Chamados</a></li>
+                    <li class="active"><a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Histórico de Chamados</a></li>
+                    <li><a href="#"><i class="fa-regular fa-user"></i> Meu Perfil</a></li>
+                </ul>
+                <ul class="nav-bottom">
+                    <li><a href="#"><i class="fa-solid fa-headset"></i> Suporte</a></li>
+                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="menu-left">
+                    <i class="fa-solid fa-bars"></i>
+                    <h2 class="logo-text">Gestoretech</h2>
+                </div>
+                <div class="top-nav-links">
+                    <a href="#">Dashboard</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Histórico</a>
+                    <a href="#">Perfil</a>
+                    <a href="#" class="exit-link"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-title">
+                    <h1>Histórico de Chamados</h1>
+                    <p>Consulte todos os seus pedidos realizados e finalizados anteriormente.</p>
+                </div>
+
+                <div class="filter-row">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Buscar por protocolo, equipamento ou técnico...">
+                    </div>
+                    <div class="filter-actions">
+                        <select>
+                            <option>Todos os status</option>
+                            <option>Concluído</option>
+                            <option>Cancelado</option>
+                        </select>
+                        <button class="btn-filter"><i class="fa-solid fa-sliders"></i> Filtros</button>
+                    </div>
+                </div>
+
+                <div class="history-list">
+                    
+                    <div class="history-card">
+                        <div class="card-main">
+                            <div class="info-group">
+                                <span class="protocol">#3321</span>
+                                <h3>Prateleira danificada</h3>
+                                <p>Atacadão Express</p>
+                                <span class="location"><i class="fa-solid fa-location-dot"></i> Atacadão Express</span>
+                            </div>
+                            <div class="info-group">
+                                <label><i class="fa-regular fa-calendar"></i> Abertura</label>
+                                <strong>20/08/2025 09:20</strong>
+                            </div>
+                            <div class="info-group">
+                                <label><i class="fa-regular fa-user"></i> Técnico Responsável</label>
+                                <strong>João Silva</strong>
+                            </div>
+                            <div class="status-group">
+                                <div class="status-badge success">
+                                    <i class="fa-solid fa-circle-check"></i> Concluído
+                                </div>
+                                <span class="finish-date">Finalizado em 20/08/2025 11:35</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-detail"></i>
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <div class="card-main">
+                            <div class="info-group">
+                                <span class="protocol">#2985</span>
+                                <h3>Troca de Filtro de Água</h3>
+                                <p>Filtro Industrial XP-500</p>
+                                <span class="location"><i class="fa-solid fa-location-dot"></i> Refeitório Central</span>
+                            </div>
+                            <div class="info-group">
+                                <label><i class="fa-regular fa-calendar"></i> Abertura</label>
+                                <strong>15/08/2025 10:00</strong>
+                            </div>
+                            <div class="info-group">
+                                <label><i class="fa-regular fa-user"></i> Técnico Responsável</label>
+                                <strong>Carlos Andrade</strong>
+                            </div>
+                            <div class="status-group">
+                                <div class="status-badge success">
+                                    <i class="fa-solid fa-circle-check"></i> Concluído
+                                </div>
+                                <span class="finish-date">Finalizado em 15/08/2025 12:00</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-detail"></i>
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <div class="card-main">
+                            <div class="info-group">
+                                <span class="protocol">#2104</span>
+                                <h3>Ajuste de Temperatura</h3>
+                                <p>Câmara Fria Mod. 4</p>
+                                <span class="location"><i class="fa-solid fa-location-dot"></i> Depósito 2</span>
+                            </div>
+                            <div class="info-group">
+                                <label><i class="fa-regular fa-calendar"></i> Abertura</label>
+                                <strong>02/08/2025 16:45</strong>
+                            </div>
+                            <div class="info-group">
+                                <label><i class="fa-regular fa-user"></i> Técnico Responsável</label>
+                                <strong>-</strong>
+                            </div>
+                            <div class="status-group">
+                                <div class="status-badge danger">
+                                    <i class="fa-solid fa-circle-xmark"></i> Cancelado
+                                </div>
+                                <span class="finish-date">Atendimento cancelado</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-detail"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="pagination">
+                    <span>Mostrando 1 a 3 de 24 chamados</span>
+                    <div class="page-btns">
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

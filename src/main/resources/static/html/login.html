@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Gestor&Tech</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../js/login.js"></script>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="left-side">
+            <div class="brand">
+                <div class="logo-box">G</div>
+                <h2>Gestor&Tech</h2>
+            </div>
+            <div class="content">
+                <p>Sistema completo para gestão técnica e administrativa da sua empresa.</p>
+                <div class="illustration-box">
+                    <div class="css-illustration">
+    <div class="chart-bar bar-1"></div>
+    <div class="chart-bar bar-2"></div>
+    <div class="chart-bar bar-3"></div>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="form-wrapper">
+                <h1>Login</h1>
+                <p class="subtitle">Acesse sua conta para continuar</p>
+
+                <form>
+                    <div class="input-container">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" placeholder="Nome" id="nome">
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="E-mail" id="email">
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Senha" id="senha">
+                        <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
+                    </div>
+
+                    <a href="CadastrarCliente.html" class="forgot-link">Cadastrar</a>
+
+                    <button type="submit" class="btn-entrar">ENTRAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
