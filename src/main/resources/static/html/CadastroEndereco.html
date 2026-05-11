@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/CadastroEndereco.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../js/CadastroEndereco.js"></script>
 </head>
 <body>
 
@@ -56,51 +57,50 @@
                 <form class="address-form">
                     <div class="form-group">
                         <label>Tipo Logradouro</label>
-                        <select>
-                            <option>Selecione o tipo de logradouro</option>
-                        </select>
+                        <input type="text" placeholder="Digite o tipo do logradouro" id="tipoLogradouro">
                     </div>
 
                     <div class="form-group">
                         <label>Logradouro</label>
-                        <input type="text" placeholder="Digite o nome do logradouro">
+                        <input type="text" placeholder="Digite o nome do logradouro" id="logradouro">
                     </div>
 
                     <div class="form-row-grid">
                         <div class="form-group">
                             <label>CEP</label>
-                            <input type="text" placeholder="Digite o CEP">
+                            <input type="text" placeholder="Digite o CEP" id="cep" onblur="buscarCep(this)">
                         </div>
                         <div class="form-group">
                             <label>Número</label>
-                            <input type="text" placeholder="Digite o número">
+                            <input type="text" placeholder="Digite o número" id="numero">
                         </div>
                     </div>
 
                     <div class="form-row-grid">
                         <div class="form-group">
                             <label>Bairro</label>
-                            <input type="text" placeholder="Digite o bairro">
+                            <input type="text" placeholder="Digite o bairro" id="bairro">
                         </div>
                         <div class="form-group">
                             <label>Cidade</label>
-                            <input type="text" placeholder="Digite a cidade">
+                            <input type="text" placeholder="Digite a cidade" id="cidade">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Referência</label>
-                        <input type="text" placeholder="Digite um ponto de referência (opcional)">
+                        <input type="text" placeholder="Digite um ponto de referência (opcional)" id="referencia">
                     </div>
 
                     <div class="form-group">
                         <label>Complemento</label>
-                        <input type="text" placeholder="Digite o complemento (opcional)">
+                        <input type="text" placeholder="Digite o complemento (opcional)" id="complemento">
                     </div>
-
+<b id="uf"></b>
                     <div class="form-actions">
                         <button type="button" class="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar</button>
-                        <button type="submit" class="btn-save"><i class="fa-regular fa-floppy-disk"></i> Salvar Endereço</button>
+                        <button type="button" class="btn-save" onclick="salvarEndereco();"><i class="fa-regular fa-floppy-disk"></i> Salvar Endereço</button>
+                        
                     </div>
                 </form>
             </div>

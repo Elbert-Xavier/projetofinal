@@ -5,6 +5,23 @@
     --text-main: #2d3748;
     --text-muted: #718096;
 }
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fcfdfe;
+    outline: none;
+    font-size: 13px;
+}
+.search-input-wrapper, .date-input-wrapper { position: relative; }
+.search-input-wrapper i, .date-input-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
 
 * {
     margin: 0;

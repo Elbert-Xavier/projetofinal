@@ -69,6 +69,7 @@ body { background-color: var(--bg-page); color: var(--text-main); }
 .status-group { text-align: right; min-width: 180px; }
 .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; margin-bottom: 5px; }
 .status-badge.success { background: #f0fff4; color: var(--success); }
+.status-badge.waiting { background: #ffffd7; color: var(--waiting); }
 .status-badge.danger { background: #fff5f5; color: var(--danger); }
 .finish-date { display: block; font-size: 11px; color: var(--text-muted); }
 
