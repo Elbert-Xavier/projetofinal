@@ -1,0 +1,76 @@
+package br.com.TrabalhoFinal.GestoreTech.controllers;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
+import br.com.TrabalhoFinal.GestoreTech.repository.ChamadoRepository;
+
+@RestController
+@RequestMapping("/chamados")
+@CrossOrigin("*")
+public class ChamadoController {
+
+	@Autowired
+	private ChamadoRepository chamadoRepository;
+	
+	@GetMapping("/listartodos")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarTodosChamados(){
+		return chamadoRepository.findAll();
+	}
+	
+	/*@GetMapping("/listarporestabelecimento/{idEstabelecimento)")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarPorEstabelecimento(int idEstabelecimento){
+		return chamadoRepository.findByEquipamentoEstabelecimentoId(idEstabelecimento);
+	}
+	@GetMapping("/listarporcliente/{idCliente}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarPorCliente(int idCliente){
+		return chamadoRepository.findByEquipamentoEstabelecimentoClienteId(idCliente);
+	}
+	@GetMapping("/ordenarprioridade")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> ordenarPorPriodidade(){
+		return chamadoRepository.findAllByOrderByPrioridadeDesc();
+	}
+	@GetMapping("/listarporprioridade")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarPorPrioridade(int prioridade){
+		return chamadoRepository.findByPrioridade(prioridade);
+	}
+	*/
+	@DeleteMapping("/deletar/{id}")
+	public String encerrarChamado(@PathVariable int id) {
+		if(chamadoRepository.existsById(id)) {
+			chamadoRepository.deleteById(id);
+			return "Chamado encerrado";
+		}return "Chamado não encontrado";
+	}
+	@PostMapping("/salvar")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ChamadoEntity salvarChamado(@RequestBody ChamadoEntity chamado) {
+		return chamadoRepository.save(chamado);
+	}
+	@PutMapping("/atualizar")
+	public ChamadoEntity atualizarChamado(@RequestBody ChamadoEntity chamado, @PathVariable int id) {
+		if(chamadoRepository.existsById(id)) {
+			chamado.setId(id);
+			return chamadoRepository.save(chamado);
+		}return null;
+	}
+	
+	
+}
