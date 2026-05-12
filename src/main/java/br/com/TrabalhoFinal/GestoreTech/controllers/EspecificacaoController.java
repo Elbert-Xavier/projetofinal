@@ -14,7 +14,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.EspecificacaoEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.EspecificacaoRepository;
 
 @RestController
-@RequestMapping("/especificacao")
+@RequestMapping("/especificacoes")
 @CrossOrigin("*")
 public class EspecificacaoController {
 

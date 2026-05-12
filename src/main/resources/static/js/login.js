@@ -14,6 +14,3 @@ async function revelar() {
 		revelarValor=1;
 	}
 }
-function mudarpagina() {
-	window.location = "http://localhost:8000/html/CadastrarCliente.html"
-}
