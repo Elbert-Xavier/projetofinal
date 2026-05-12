@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Relatório de Problemas</title>
+    <link rel="stylesheet" href="../css/RelatorioProblema.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-wrench"></i>
+            <div>
+                <strong>Gestor&Tech</strong>
+                <span>Área do Técnico</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav-links">
+                <li class="active"><a href="#"><i class="fa-regular fa-clipboard"></i> Relatório</a></li>
+                <li><a href="#"><i class="fa-solid fa-list-check"></i> Meus atendimentos</a></li>
+                <li><a href="#"><i class="fa-regular fa-calendar"></i> Agenda</a></li>
+                <li><a href="#"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                <li><a href="#"><i class="fa-solid fa-desktop"></i> Equipamentos</a></li>
+            </ul>
+
+            <ul class="nav-links footer-links">
+                <li><a href="#"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+                <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-illustration">
+            <img src="https://cdn-icons-png.flaticon.com/512/4231/4231267.png" alt="Toolbox">
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <h1>Relatório de <span>problemas.</span></h1>
+            <div class="header-actions">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-gear"></i>
+                <div class="user-pill">
+                    <img src="https://ui-avatars.com/api/?name=Tecnico&background=cbd5e0" alt="User">
+                    <div class="user-text">
+                        <strong>Técnico</strong>
+                        <span class="status-online">Online</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-filter-row">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar por problema, endereço ou cliente...">
+            </div>
+            <button class="filter-dropdown">
+                <i class="fa-solid fa-sliders"></i> Filtros <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <div class="problem-list">
+            <div class="problem-card">
+                <div class="circle-icon icon-danger"><i class="fa-solid fa-xmark"></i></div>
+                <div class="problem-info">
+                    <h3>Gôndolas quebradas.</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Avenida José Cândido da Silveira, CEP: 2996 - Ana Lúcia, Sabará - MG</p>
+                    <small><i class="fa-regular fa-calendar"></i> 01 de Setembro de 2025</small>
+                </div>
+                <span class="badge badge-danger">Aberto</span>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+
+            <div class="problem-card">
+                <div class="circle-icon icon-warning"><i class="fa-solid fa-exclamation"></i></div>
+                <div class="problem-info">
+                    <h3>Caixa automático não liga.</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Avenida Severino Ballesteros, 2950 - Cabral, Contagem - MG</p>
+                    <small><i class="fa-regular fa-calendar"></i> 29 de Agosto de 2025</small>
+                </div>
+                <span class="badge badge-warning">Em andamento</span>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+
+            <div class="problem-card">
+                <div class="circle-icon icon-success"><i class="fa-solid fa-check"></i></div>
+                <div class="problem-info">
+                    <h3>Freezer não funciona.</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Av. Fernão Dias, 638 - Jardim Laguna, Contagem - MG</p>
+                    <small><i class="fa-regular fa-calendar"></i> 25 de Agosto de 2025</small>
+                </div>
+                <span class="badge badge-success">Concluído</span>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+        </div>
+
+        <footer class="pagination-area">
+            <span>Mostrando 1 a 4 de 12 problemas</span>
+            <div class="page-buttons">
+                <button><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>

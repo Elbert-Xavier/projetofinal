@@ -1,0 +1,127 @@
+	<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Peças em Estoque</title>
+    <link rel="stylesheet" href="../css/PecasEstoque.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-chart-line logo-icon"></i>
+                <div>
+                    <strong>Gestoretech</strong>
+                    <span>Área do Gestor</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fa-regular fa-clipboard"></i> Ordens de Serviço</a></li>
+                    <li><a href="#"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-gear"></i> Técnicos</a></li>
+                    <li class="active"><a href="#"><i class="fa-solid fa-box-open"></i> Peças em estoque</a></li>
+                    <li><a href="#"><i class="fa-solid fa-file-contract"></i> Relatórios</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-illustration">
+                <img src="https://cdn-icons-png.flaticon.com/512/407/407826.png" alt="Estoque">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-header">
+                <h1>Peças em <span>estoque.</span></h1>
+                <div class="header-actions">
+                    <div class="user-pill">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=3f51b5&color=fff" alt="User">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="controls-row">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar por nome da peça, código ou categoria...">
+                </div>
+                <button class="btn-add-part"><i class="fa-solid fa-plus"></i> Nova Peça</button>
+            </div>
+
+            <div class="parts-grid">
+                
+                <div class="part-card">
+                    <div class="part-img">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div class="part-info">
+                        <h3>Gás Refrigerante R600a</h3>
+                        <span class="category">Refrigeração</span>
+                        <div class="stock-info">
+                            <div class="stock-item">
+                                <label>Qtd. Atual</label>
+                                <strong>15 un</strong>
+                            </div>
+                            <div class="stock-item">
+                                <label>Qtd. Mínima</label>
+                                <strong class="min-alert">5 un</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="part-price">
+                        <span>Preço Unitário</span>
+                        <strong>R$ 45,90</strong>
+                    </div>
+                    <div class="part-actions">
+                        <button class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                </div>
+
+                <div class="part-card">
+                    <div class="part-img">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div class="part-info">
+                        <h3>Termostato Metalfrio</h3>
+                        <span class="category">Elétrica</span>
+                        <div class="stock-info">
+                            <div class="stock-item">
+                                <label>Qtd. Atual</label>
+                                <strong class="low-stock">3 un</strong>
+                            </div>
+                            <div class="stock-item">
+                                <label>Qtd. Mínima</label>
+                                <strong>4 un</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="part-price">
+                        <span>Preço Unitário</span>
+                        <strong>R$ 120,00</strong>
+                    </div>
+                    <div class="part-actions">
+                        <button class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
