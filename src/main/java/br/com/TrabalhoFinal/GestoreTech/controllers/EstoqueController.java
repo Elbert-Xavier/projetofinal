@@ -19,7 +19,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.EstoqueEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.EstoqueRepository;
 
 @RestController
-@RequestMapping("/Estoque")
+@RequestMapping("/estoques")
 @CrossOrigin("*")
 public class EstoqueController {
 

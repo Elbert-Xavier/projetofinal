@@ -19,7 +19,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.MovimentacaoPecaEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.MovimentacaoPecaRepository;
 
 @RestController
-@RequestMapping("/movimentacao") 
+@RequestMapping("/movimentacoes") 
 @CrossOrigin("*")
 
 public class MovimentacaoPecaController {

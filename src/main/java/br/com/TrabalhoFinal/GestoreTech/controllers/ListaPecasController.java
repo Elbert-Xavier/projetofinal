@@ -20,7 +20,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.ListaPecasEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.ListaPecasRepository;
 
 @RestController
-@RequestMapping("/listaPecas")
+@RequestMapping("/listapecas")
 @CrossOrigin("*")
 public class ListaPecasController {
 	

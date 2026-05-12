@@ -19,7 +19,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.PecaEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.PecaRepository;
 
 @RestController
-@RequestMapping("/Pecas")
+@RequestMapping("/pecas")
 @CrossOrigin("*")
 public class PecaController {
 	

@@ -19,7 +19,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.RequisicaoPecaEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.RequisicaoPecaRepository;
 
 @RestController
-@RequestMapping("/requisicao")
+@RequestMapping("/requisicoes")
 @CrossOrigin("*")
 
 

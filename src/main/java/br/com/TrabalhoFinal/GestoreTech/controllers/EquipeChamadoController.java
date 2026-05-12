@@ -19,7 +19,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.EquipeChamadoEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.EquipeChamadoRepository;
 
 @RestController
-@RequestMapping("/equipeChamado")
+@RequestMapping("/chamados")
 @CrossOrigin("*")
 
 public class EquipeChamadoController {

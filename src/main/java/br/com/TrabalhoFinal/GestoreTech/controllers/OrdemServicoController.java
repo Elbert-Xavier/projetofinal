@@ -19,7 +19,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.OrdemServicoEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.OrdemServicoRepository;
 
 @RestController
-@RequestMapping("/Ordem")
+@RequestMapping("/ordens")
 @CrossOrigin("*")
 
 public class OrdemServicoController {
