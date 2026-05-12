@@ -1,4 +1,4 @@
-package br.com.TrabalhoFinal.GestoreTech.autenticacao.config;
+package br.com.TrabalhoFinal.GestoreTech.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
