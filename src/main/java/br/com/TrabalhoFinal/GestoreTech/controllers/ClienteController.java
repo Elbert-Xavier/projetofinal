@@ -22,7 +22,7 @@ import br.com.TrabalhoFinal.GestoreTech.repository.ClienteRepository;
 @RestController
 @RequestMapping("/clientes")
 @CrossOrigin("*")
-public class ClientesController {
+public class ClienteController {
 	
 	
 	@Autowired
