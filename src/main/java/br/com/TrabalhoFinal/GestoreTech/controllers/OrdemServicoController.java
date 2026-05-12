@@ -25,7 +25,6 @@ import br.com.TrabalhoFinal.GestoreTech.repository.OrdemServicoRepository;
 public class OrdemServicoController {
 
 	@Autowired
-	
 	private OrdemServicoRepository ordem;
 	
 	@GetMapping("/listartodos")
@@ -52,11 +51,8 @@ public class OrdemServicoController {
 		
 		if (ordem.existsById(id)) {
 			ordem.deleteById(id);
-			
-		}
-		
-		
-		return "Ordem se servico  Deletado";
+			return "Ordem se servico deletada";
+		}return "Ordem se servico não encontrada";
 		
 	}
 	
@@ -69,7 +65,6 @@ public class OrdemServicoController {
 			ordem.save(servicos);
 			return "Atualizado";
 		}
-		
 		
 		return "não Atualizado";
 		
