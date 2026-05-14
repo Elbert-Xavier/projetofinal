@@ -37,8 +37,9 @@ async function logar(){
 			"usuarioLogado",
 			JSON.stringify(data)
 		);
-		window.location.href = "html/ClienteHistoricoPedidos.html";
+		window.location.href = "html/HistoricoChamados.html";
 	}else{
 		alert("Email ou Senha invalidos!");
 	}
 }
+
