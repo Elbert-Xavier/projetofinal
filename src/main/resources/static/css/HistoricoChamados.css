@@ -1,0 +1,849 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   ========================================================================== */
+:root {
+    --bg-global: #f8f9fd;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --primary-color: #5334ea;
+    --primary-light: #ece9ff;
+    --text-main: #181143;
+    --text-muted: #726e8d;
+    --border-color: #e2e4f0;
+    --danger-color: #e15252;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--bg-global);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   2. ESTRUTURA DO LAYOUT (DASHBOARD)
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+/* Modificador para telas que usam Header Superior (como Meus Chamados) */
+.main-content.flex-column {
+    flex-direction: column;
+    padding: 0 !important; 
+}
+
+/* ==========================================================================
+   3. BARRA LATERAL (SIDEBAR)
+   ========================================================================== */
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    margin-bottom: 40px;
+}
+
+.logo-g {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.nav-item i {
+    font-size: 16px;
+    width: 20px;
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 0 25px 25px 0;
+    margin-right: 16px;
+}
+
+.nav-item:hover:not(.active) {
+    background-color: #f1f3f9;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+}
+
+.nav-item.logout, .nav-item.logout i {
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   4. TOPO DA PÁGINA (HEADER PERFIL)
+   ========================================================================== */
+.top-header {
+    width: 100%;
+    height: 70px;
+    background-color: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.profile-menu i {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   5. COMPONENTES DE FORMULÁRIOS & SELEÇÃO
+   ========================================================================== */
+.select-wrapper, .textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 16px;
+}
+
+select {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    color: var(--text-main);
+    font-size: 14px;
+    appearance: none; 
+    cursor: pointer;
+}
+
+.select-wrapper::after {
+    content: "\f107";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-main);
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   6. TELA: CADASTRAR CHAMADO (FORMULÁRIO)
+   ========================================================================== */
+.form-card {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 850px;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.icon-header-box {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.form-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.required { color: var(--danger-color); }
+.optional { color: var(--text-muted); font-weight: normal; }
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.char-count {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.upload-area {
+    border: 2px dashed #dcdbe7;
+    background-color: #fbfbfe;
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.upload-area:hover {
+    background-color: #f5f4ff;
+    border-color: var(--primary-color);
+}
+
+.upload-icon {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.upload-text {
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.upload-info {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    border-top: 1px solid #f1f3f9;
+    padding-top: 24px;
+}
+
+.btn {
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.btn:hover { opacity: 0.9; }
+.btn-cancel { background-color: transparent; border: 1px solid var(--border-color); color: var(--danger-color); }
+.btn-submit { background-color: var(--primary-color); border: none; color: white; }
+
+/* ==========================================================================
+   7. TELA: MEUS CHAMADOS (LISTAGEM & FILTROS)
+   ========================================================================== */
+.content-wrapper {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.page-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Filtros */
+.filters-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+}
+
+.filters-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.filters-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+.filter-group {
+    flex: 1;
+    max-width: 280px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.filter-group select {
+    padding: 10px 16px 10px 42px;
+    font-size: 13px;
+    background-color: #fbfbfe;
+}
+
+.filter-group .input-icon {
+    font-size: 14px;
+    left: 14px;
+}
+
+/* Lista de Chamados */
+.ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.ticket-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ticket-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.ticket-icon-status {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.ticket-icon-status.info { background-color: #f0edff; color: var(--primary-color); }
+.ticket-icon-status.warning { background-color: #fff4e5; color: #ffa012; }
+
+.ticket-info {
+    flex: 1;
+}
+
+.ticket-id {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.ticket-info h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 4px 0 8px 0;
+    color: var(--text-main);
+}
+
+.ticket-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.ticket-info p:last-child { margin-bottom: 0; }
+.ticket-info p i { width: 14px; }
+
+.ticket-status-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 32px;
+    min-width: 150px;
+}
+
+.badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.badge-open { background-color: #eef2ff; color: #4361ee; }
+.badge-progress { background-color: #fff4e5; color: #ffa012; }
+
+.status-text {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.ticket-arrow {
+    color: var(--primary-color);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Paginação */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 16px;
+}
+
+.counter-text {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.pagination {
+    display: flex;
+    gap: 6px;
+}
+
+.page-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover { 
+	background-color: #f1f3f9; 
+}
+.page-btn.active {
+	background-color: var(--primary-color);
+	 color: white;
+	 border-color: var(--primary-color);
+}
+/* ==========================================================================
+   8. COMPONENTE: MODAL DE DETALHAMENTO
+   ========================================================================== */
+
+/* Camada escura de fundo (Overlay) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(24, 17, 67, 0.4); /* Cor base escura com opacidade */
+    backdrop-filter: blur(4px); /* Efeito borrado suave atrás do modal */
+    display: flex; /* Mude para 'none' se quiser que comece fechado por padrão */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* Caixa branca do Modal */
+.modal-container {
+	margin:auto;
+    background-color: var(--bg-card);
+    width: 100%;
+    height:100%;
+    max-width: 950px;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(24, 11, 67, 0.15);
+    display: flex;
+    flex-direction: column;
+    animation: modalFadeIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabeçalho do Modal */
+.modal-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fbfbfe;
+}
+
+.modal-ticket-id {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-close-btn:hover {
+    background-color: #f1f3f9;
+    color: var(--danger-color);
+}
+
+/* Corpo do Modal (Grid/Flex de duas colunas) */
+.modal-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden; /* Evita que a estrutura quebre */
+}
+
+/* Coluna Esquerda Principal (Scrollable) */
+.modal-col-main {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.modal-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-description-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a4568;
+    background-color: #f8f9fd;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* LINHA DO TEMPO (TIMELINE) */
+.timeline {
+    position: relative;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Linha vertical cinza ao fundo */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+}
+
+/* Bolinha indicadora */
+.timeline-marker {
+    position: absolute;
+    left: -24px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 3px solid var(--border-color);
+    z-index: 2;
+}
+
+.timeline-marker.warning { border-color: #ffa012; background-color: #ffa012; }
+.timeline-marker.info { border-color: var(--primary-color); background-color: var(--primary-color); }
+.timeline-marker.generic { border-color: var(--text-muted); background-color: var(--text-muted); }
+
+.timeline-content {
+    background-color: #fff;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.timeline-header h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.timeline-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.timeline-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Caixa de Interação/Resposta */
+.modal-reply-box textarea {
+    height: 90px;
+    margin-bottom: 12px;
+    background-color: #fbfbfe;
+}
+
+.reply-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-attach {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-attach:hover {
+    color: var(--primary-color);
+}
+
+/* Coluna Direita (Sidebar de Metadados) */
+.modal-col-sidebar {
+    width: 280px;
+    background-color: #fbfbfe;
+    border-left: 1px solid var(--border-color);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-sidebar-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.info-sidebar-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-sidebar-block .badge {
+    align-self: flex-start;
+    margin-bottom: 0;
+}
+
+/* Mini Card de Equipamento na Sidebar */
+.equipment-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.equipment-mini-card i {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.equipment-mini-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.equipment-mini-card p {
+    font-size: 11px;
+    color: var(--text-muted);
+}

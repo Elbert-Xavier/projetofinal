@@ -32,14 +32,13 @@ async function logar(){
 		
 	});
 	if(response.ok) {
-		
 		const data = await response.json();
 		localStorage.setItem(
 			"usuarioLogado",
 			JSON.stringify(data)
 		);
 		window.location.href = "html/ClienteHistoricoPedidos.html";
-	}else {
+	}else{
 		alert("Email ou Senha invalidos!");
 	}
 }

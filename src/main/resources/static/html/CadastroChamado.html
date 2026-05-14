@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Cadastrar Chamado</title>
+    <link rel="stylesheet" href="../css/CadastroChamado.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="logo-area">
+                <span class="logo-g">G</span>
+                <span class="logo-text">Gestoretech</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fa-solid fa-plus"></i> Novo Chamado
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-clipboard-list"></i> Meus Chamados
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-desktop"></i> Meus Equipamentos
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-wrench"></i> Configuraçoes
+                </a>
+                
+                <div class="sidebar-footer">
+                    <a href="#" class="nav-item logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="form-card">
+                
+                <div class="form-header">
+                    <div class="icon-header-box">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                    <div>
+                        <h2>Cadastrar Chamado</h2>
+                        <p>Preencha as informações abaixo para relatar o problema.</p>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="form-group">
+                        <label for="equipamento">Meus Equipamentos <span class="required">*</span></label>
+                        <div class="select-wrapper">
+                            <i class="fa-solid fa-desktop input-icon"></i>
+                            <select id="equipamento" required>
+                                <option value="" disabled selected hidden>Selecione um equipamento</option>
+                                <option value="1">Notebook Dell - Tag 1234</option>
+                                <option value="2">Monitor LG - Tag 5678</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descreva o problema <span class="required">*</span></label>
+                        <div class="textarea-wrapper">
+                            <textarea id="descricao" maxlength="200" placeholder="Descreva detalhadamente o que está acontecendo..." required></textarea>
+                            <span class="char-count">0/200 caracteres</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Adicione foto ou vídeo sobre o problema <span class="optional">(opcional)</span></label>
+                        <div class="upload-area">
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                            <p class="upload-text"><strong>Arraste e solte arquivos aqui</strong> <br> ou clique para selecionar</p>
+                            <p class="upload-info">
+                                <i class="fa-regular fa-question-circle"></i> Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)
+                            </p>
+                            <input type="file" id="file-upload" hidden accept="image/*,video/*">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-cancel">
+                            <i class="fa-solid fa-xmark"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fa-solid fa-floppy-disk"></i> Salvar Chamado
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

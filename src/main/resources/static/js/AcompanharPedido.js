@@ -1,9 +1,12 @@
 
-function StatusPedidoAtual(PedidoStatus) {
-	if(PedidoStatus == ""){
+let teste = 1
+
+function StatusPedidoAtual() {
+	if(teste == 1){
 		let div1 = document.getElementById('EstadoChamado1')
 		div1.className = "step active";
-	}else if(PedidoStatus == ""){
+		teste = 2;
+	}else if(teste == 2){
 		let div1 = document.getElementById('EstadoChamado1')
 		div1.className = "step completed";
 		div1.innerHTML=`
@@ -13,7 +16,8 @@ function StatusPedidoAtual(PedidoStatus) {
 			`
 		let div2 = document.getElementById('EstadoChamado2')
 		div2.className = "step active";
-	}else if(PedidoStatus == ""){
+		teste = 3;
+	}else if(teste == 3){
 		let div1 = document.getElementById('EstadoChamado1')
 		div1.className = "step completed";
 		div1.innerHTML=`
@@ -30,7 +34,8 @@ function StatusPedidoAtual(PedidoStatus) {
 			`
 		let div3 = document.getElementById('EstadoChamado3')
 		div3.className = "step active";
-	}else if(PedidoStatus == ""){
+		teste = 4;
+	}else if(teste == 4){
 		let div1 = document.getElementById('EstadoChamado1')
 		div1.className = "step completed";
 		div1.innerHTML=`
@@ -54,7 +59,8 @@ function StatusPedidoAtual(PedidoStatus) {
 			`
 		let div4 = document.getElementById('EstadoChamado4')
 		div4.className = "step active";
-	}else if(PedidoStatus == ""){
+		teste = 5;
+	}else if(teste == 5){
 		let div1 = document.getElementById('EstadoChamado1')
 		div1.className = "step completed";
 		div1.innerHTML=`
@@ -85,7 +91,8 @@ function StatusPedidoAtual(PedidoStatus) {
 			`
 		let div5 = document.getElementById('EstadoChamado5')
 		div5.className = "step active";
-	}else if(PedidoStatus == "") {
+		teste = 6;
+	}else if(teste == 6) {
 		let div1 = document.getElementById('EstadoChamado1')
 		div1.className = "step completed";
 		div1.innerHTML=`
