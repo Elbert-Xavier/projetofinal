@@ -20,7 +20,7 @@
             </div>
             
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item" >
+                <a href="../html/CadastroChamado.html" class="nav-item" >
                     <i class="fa-solid fa-plus"></i> Novo Chamado
                 </a>
                 <a href="#" class="nav-item active">
@@ -139,8 +139,8 @@
                     </div>
 
                     <div class="ticket-item">
-                        <div class="ticket-icon-status warning">
-                            <i class="fa-solid fa-circle-exclamation"></i>
+                        <div class="ticket-icon-status esperando">
+                           <i style="font-size:24px" class="fa">&#xf254;</i>
                         </div>
                         <div class="ticket-info">
                             <span class="ticket-id">#CH-2025-0009</span>
@@ -149,7 +149,7 @@
                             <p><i class="fa-regular fa-calendar"></i> 28 de Agosto de 2025 às 16:20</p>
                         </div>
                         <div class="ticket-status-wrapper">
-                            <span class="badge badge-progress">Em andamento</span>
+                            <span class="badge badge-esperando">Em Espera</span>
                             <span class="status-text">Aguardando peças</span>
                         </div>
                         <div class="ticket-arrow">
@@ -158,8 +158,8 @@
                     </div>
 
                     <div class="ticket-item">
-                        <div class="ticket-icon-status info">
-                            <i class="fa-solid fa-right-to-bracket"></i>
+                        <div class="ticket-icon-status finalizado">
+                            <i style="font-size:24px" class="fa">&#xf00c;</i>
                         </div>
                         <div class="ticket-info">
                             <span class="ticket-id">#CH-2025-0008</span>
@@ -168,14 +168,14 @@
                             <p><i class="fa-regular fa-calendar"></i> 25 de Agosto de 2025 às 11:30</p>
                         </div>
                         <div class="ticket-status-wrapper">
-                            <span class="badge badge-open">Aberto</span>
-                            <span class="status-text">Aguardando atendimento</span>
+                            <span class="badge badge-finalizado">Finalizado</span>
+                            <span class="status-text">Atendimento Finalizado</span>
                         </div>
                         <div class="ticket-arrow">
                             <i class="fa-solid fa-chevron-right"></i>
                         </div>
                     </div>
-              <div class="modal-overlay" id="modalChamado">
+              <div class="modal-overlay" id="modalChamado" tabindex="-1" aria-hidden="true">
    				 <div class="modal-container"> 
        				 <header class="modal-header">
           				  <div class="modal-title-area">
@@ -187,7 +187,7 @@
             			</button>
        	 			</header>
 
-        		<div class="modal-body">
+      			<div class="modal-body">
             
             <div class="modal-col-main">
                 
@@ -224,6 +224,16 @@
                             </div>
                         </div>
 
+                        <div class="timeline-item">
+                            <div class="timeline-marker generic"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Chamado aberto pelo usuário</h4>
+                                    <span class="timeline-date">30 de Ago às 08:30</span>
+                                </div>
+                                <p>Abertura automática registrada no sistema via painel Gestoretech.</p>
+                            </div>
+                        </div>
                         <div class="timeline-item">
                             <div class="timeline-marker generic"></div>
                             <div class="timeline-content">
