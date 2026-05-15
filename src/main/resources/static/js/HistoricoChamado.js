@@ -26,3 +26,8 @@ function fecharModal() {
 	const modal = bootstrap.Modal.getInstance(modalElement);
 	modal.hide();
 }
+async function ListarChamados() {
+	
+	
+	
+}

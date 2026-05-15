@@ -459,11 +459,13 @@ textarea {
 
 .ticket-icon-status.info { background-color: #f0edff; color: var(--primary-color); }
 .ticket-icon-status.warning { background-color: #fff4e5; color: #ffa012; }
+.ticket-icon-status.atribuido { background-color: #ccace3; color: #4B0082; }
 .ticket-icon-status.esperando { background-color: #ffffab; color: #919121; }
 .ticket-icon-status.finalizado { background-color: #e1ffdb; color: #33e80e; }
 
 .badge-open { background-color: #eef2ff; color: #4361ee; }
 .badge-progress { background-color: #fff4e5; color: #ffa012;}
+.badge-atribuido { background-color: #ccace3; color: #4B0082;}
 .badge-esperando { background-color: #ffffab; color: #919121;}
 .badge-finalizado { background-color: #e1ffdb; color: #33e80e;}
 
