@@ -1,0 +1,574 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   ========================================================================== */
+:root {
+    --bg-global: #f8f9fd;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --primary-color: #5334ea;
+    --primary-light: #ece9ff;
+    --text-main: #181143;
+    --text-muted: #726e8d;
+    --border-color: #e2e4f0;
+    --danger-color: #e15252;
+    --warning-color: #ffa012;
+    --success-color: #10b981;
+    --info-color: #4361ee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-global);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+}
+
+/* ==========================================================================
+   2. ESTRUTURA DO LAYOUT PRINCIPAL
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    margin-bottom: 40px;
+}
+
+.logo-g {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    gap: 12px;
+    transition: all 0.2s;
+}
+
+.nav-item i {
+    font-size: 16px;
+    width: 20px;
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 0 25px 25px 0;
+    margin-right: 16px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.top-header {
+    height: 70px;
+    background-color: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.content-page {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.page-title h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.page-title p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   3. COMPONENTES DE FORMULÁRIO (CADASTRO)
+   ========================================================================== */
+.form-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.01);
+    border: 1px solid var(--border-color);
+}
+
+.form-header-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.form-icon-container {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.required { color: var(--danger-color); }
+.optional { color: var(--text-muted); font-weight: normal; }
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    color: var(--text-main);
+    appearance: none;
+    font-size: 14px;
+}
+
+.select-wrapper::after {
+    content: "\f107";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-muted);
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+}
+
+.char-count {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.upload-area {
+    border: 2px dashed #dcdbe7;
+    background-color: #fbfbfe;
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.upload-text {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.upload-info {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
+}
+
+/* ==========================================================================
+   4. FILTROS E TABELAS / LISTAGENS (CHAMADOS)
+   ========================================================================== */
+.filters-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+}
+
+.filters-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filters-inputs {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.filter-group select, .filter-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fbfbfe;
+    font-size: 13px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ticket-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ticket-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+/* Indicador de Prioridade Lateral Esquerdo */
+.priority-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    border-right: 1px solid var(--border-color);
+    margin-right: 20px;
+    padding-right: 20px;
+    gap: 4px;
+}
+
+.priority-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.priority-text {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Cores de Prioridade */
+.priority-indicator.high { border-left: 4px solid var(--danger-color); }
+.priority-indicator.high .priority-dot { background-color: var(--danger-color); }
+.priority-indicator.high .priority-text { color: var(--danger-color); }
+
+.priority-indicator.medium { border-left: 4px solid var(--warning-color); }
+.priority-indicator.medium .priority-dot { background-color: var(--warning-color); }
+.priority-indicator.medium .priority-text { color: var(--warning-color); }
+
+.priority-indicator.low { border-left: 4px solid var(--success-color); }
+.priority-indicator.low .priority-dot { background-color: var(--success-color); }
+.priority-indicator.low .priority-text { color: var(--success-color); }
+
+.ticket-details-box {
+    flex: 1;
+}
+
+.ticket-id-tag {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.ticket-details-box h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 4px 0 6px 0;
+}
+
+.ticket-meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ticket-meta-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticket-meta-info i {
+    width: 14px;
+    color: var(--text-muted);
+}
+
+.ticket-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 24px;
+    min-width: 140px;
+}
+
+.badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.badge-open { background-color: #eef2ff; color: var(--info-color); }
+.badge-progress { background-color: #fff4e5; color: var(--warning-color); }
+
+.sub-status-text {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.action-arrow {
+    color: var(--primary-color);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Paginação */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.pagination-wrapper {
+    display: flex;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   5. BOTÕES & INTERAÇÕES ELEMENTARES
+   ========================================================================== */
+.btn-base {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+.btn-base:hover { opacity: 0.9; }
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+.btn-danger-text { background: transparent; color: var(--danger-color); }
+
+/* ==========================================================================
+   6. MICRO-COMPONENTES (CAIXA DE RESPOSTA & TÉCNICO)
+   ========================================================================== */
+.interaction-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.interaction-box h4 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.message-textarea {
+    width: 100%;
+    height: 90px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 14px;
+    background-color: #fbfbfe;
+    font-size: 14px;
+    resize: none;
+    margin-bottom: 12px;
+}
+
+.interaction-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.attach-trigger {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tech-responsible-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+}
+
+.tech-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tech-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tech-name-wrapper i {
+    color: var(--text-main);
+}

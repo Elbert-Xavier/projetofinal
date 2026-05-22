@@ -24,7 +24,9 @@ public class EstoqueEntity implements Serializable {
 	private int quantidade;
 	private String local;
 	private int quantidadeMinima;
+	//Tem que fazer o a ligação aqui👇
 	private PecaEntity idPeca;
+	
 	public int getId() {
 		return id;
 	}

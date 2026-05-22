@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Painel do Gestor</title>
+    <link rel="stylesheet" href="../css/GestorDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-g">G</div>
+                <span class="logo-text">Gestoretech</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Visão Geral</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Chamados</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-desktop"></i> Equipamentos</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-box"></i> Estoque de Peças</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-users"></i> Gerenciar Equipe</a>
+                <div class="sidebar-footer">
+                    <a href="#" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="profile-menu"><i class="fa-regular fa-user"></i> Painel do Gestor</div>
+            </header>
+
+            <div class="content-page">
+                <div class="page-title">
+                    <h2>Visão Geral Operacional</h2>
+                    <p>Monitore os principais indicadores de desempenho, SLAs e alertas críticos do sistema.</p>
+                </div>
+
+                <section class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Chamados Ativos</span>
+                            <div class="kpi-icon-box info"><i class="fa-solid fa-headset"></i></div>
+                        </div>
+                        <div class="kpi-value">34</div>
+                        <div class="kpi-subtext">
+                            <span class="trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span> em relação à semana passada
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">SLA Cumprido</span>
+                            <div class="kpi-icon-box success"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                        <div class="kpi-value">94.2%</div>
+                        <div class="kpi-subtext">
+                            <span class="trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +0.8%</span> meta global é 95%
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Alertas de Estoque</span>
+                            <div class="kpi-icon-box warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        </div>
+                        <div class="kpi-value">5</div>
+                        <div class="kpi-subtext">
+                            <span class="trend-down-alert"><i class="fa-solid fa-box-open"></i> Peças</span> abaixo do estoque crítico
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Tempo Médio (TMR)</span>
+                            <div class="kpi-icon-box primary-box"><i class="fa-solid fa-clock"></i></div>
+                        </div>
+                        <div class="kpi-value">2h 15m</div>
+                        <div class="kpi-subtext">
+                            <span class="trend-good"><i class="fa-solid fa-arrow-trend-down"></i> -18m</span> redução no tempo de espera
+                        </div>
+                    </div>
+                </section>
+
+                <div class="manager-layout-grid">
+                    
+                    <div class="manager-column-main">
+                        <div class="info-block-card" style="padding: 24px 0;">
+                            <div style="padding: 0 24px 16px 24px; border-bottom: 1px solid var(--border-color);">
+                                <h4 style="border:none; margin:0; padding:0;">Chamados de Alta Prioridade Pendentes</h4>
+                            </div>
+
+                            <div class="dashboard-list-container">
+                                <div class="dashboard-list-item">
+                                    <div class="item-left-border red-border"></div>
+                                    <div class="item-main-details">
+                                        <div class="item-row-top">
+                                            <span class="item-code">#CH-2026-0490</span>
+                                            <span class="status-badge esgotado">SLA Crítico</span>
+                                        </div>
+                                        <h3>Servidor Local Inoperante - Checkout Paralisado</h3>
+                                        <span class="item-meta-text"><i class="fa-solid fa-store"></i> Supermercado Bom Preço • Loja Centro</span>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right row-chevron"></i>
+                                </div>
+
+                                <div class="dashboard-list-item">
+                                    <div class="item-left-border red-border"></div>
+                                    <div class="item-main-details">
+                                        <div class="item-row-top">
+                                            <span class="item-code">#CH-2026-0485</span>
+                                            <span class="status-badge andamento">Em Andamento</span>
+                                        </div>
+                                        <h3>Falha Total no Sistema de Balanças</h3>
+                                        <span class="item-meta-text"><i class="fa-solid fa-store"></i> Atacadão Alvorada • Filial Norte</span>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right row-chevron"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manager-column-side">
+                        <div class="info-block-card">
+                            <h4>Disponibilidade da Equipe</h4>
+                            
+                            <div class="team-status-row">
+                                <div class="team-avatar-box">
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+                                <div class="team-info-box">
+                                    <div class="team-name">Carlos Silva</div>
+                                    <div class="team-task">Em atendimento (#CH-0485)</div>
+                                </div>
+                                <span class="status-dot-indicator busy"></span>
+                            </div>
+
+                            <div class="team-status-row">
+                                <div class="team-avatar-box">
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+                                <div class="team-info-box">
+                                    <div class="team-name">Marcos Souza</div>
+                                    <div class="team-task">Disponível / Base Centro</div>
+                                </div>
+                                <span class="status-dot-indicator free"></span>
+                            </div>
+
+                            <div class="team-status-row">
+                                <div class="team-avatar-box">
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+                                <div class="team-info-box">
+                                    <div class="team-name">Fernanda Lima</div>
+                                    <div class="team-task">Em deslocamento rota sul</div>
+                                </div>
+                                <span class="status-dot-indicator route"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

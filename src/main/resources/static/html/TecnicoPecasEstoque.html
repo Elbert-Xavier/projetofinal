@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Estoque de Peças</title>
+    <link rel="stylesheet" href="../css/TecnicoPecasEstoque.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-g">G</div>
+                <span class="logo-text">Gestoretech</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="../html/TecnicoChamados.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Chamados</a>
+                <a href="../html/TecnicoPecasEstoque.html" class="nav-item active"><i class="fa-solid fa-box"></i> Estoque de Peças</a>
+                <div class="sidebar-footer">
+                    <a href="#" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="profile-menu"><i class="fa-regular fa-user"></i> Perfil</div>
+            </header>
+
+            <div class="content-page">
+                <div class="page-title">
+                    <h2>Estoque de Peças</h2>
+                    <p>Controle, gerencie e acompanhe a quantidade de peças de reposição disponíveis.</p>
+                </div>
+
+                <section class="filters-card">
+                    <div class="filters-title"><i class="fa-solid fa-filter"></i> Filtros</div>
+                    <div class="filters-row">
+                        <div class="filter-field">
+                            <label>Nome da Peça</label>
+                            <input type="text" placeholder="Digite o nome ou código da peça">
+                        </div>
+                        <div class="filter-field">
+                            <label>Categoria</label>
+                            <select>
+                                <option value="">Todas as categorias</option>
+                                <option value="1">Impressoras</option>
+                                <option value="2">Computadores / Notebooks</option>
+                                <option value="3">Refrigeração</option>
+                                <option value="4">Cabeamento e Conectores</option>
+                            </select>
+                        </div>
+                        <div class="filter-field">
+                            <label>Status do Estoque</label>
+                            <select>
+                                <option value="">Todos os status</option>
+                                <option value="disponivel">Em Estoque</option>
+                                <option value="baixo">Estoque Baixo</option>
+                                <option value="esgotado">Esgotado</option>
+                            </select>
+                        </div>
+                        <div class="filter-buttons">
+                            <button type="button" class="btn-base btn-outline">Limpar</button>
+                            <button type="button" class="btn-base btn-primary">Filtrar</button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tickets-container">
+                    
+                    <div class="ticket-row">
+                        <div class="ticket-status-icon info">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div class="ticket-main-info">
+                            <span class="ticket-code">#PEC-000412</span>
+                            <h3>Cabeça de Impressão Térmica Epson M-T532</h3>
+                            <div class="ticket-sub-details">
+                                <span><i class="fa-solid fa-tags"></i> Categoria: Impressoras</span>
+                                <span><i class="fa-solid fa-layer-group"></i> Qtd. em Estoque: <strong>18 un.</strong></span>
+                            </div>
+                        </div>
+                        <div class="ticket-right-side">
+                            <div class="badge-wrapper">
+                                <span class="status-badge aberto">Em Estoque</span>
+                                <span class="status-caption">Pronto para uso</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right row-chevron"></i>
+                        </div>
+                    </div>
+
+                    <div class="ticket-row">
+                        <div class="ticket-status-icon warning">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="ticket-main-info">
+                            <span class="ticket-code">#PEC-000385</span>
+                            <h3>Fonte de Alimentação Chaveada 24V 2.5A</h3>
+                            <div class="ticket-sub-details">
+                                <span><i class="fa-solid fa-tags"></i> Categoria: Energia</span>
+                                <span><i class="fa-solid fa-layer-group"></i> Qtd. em Estoque: <strong style="color: var(--color-andamento);">3 un.</strong></span>
+                            </div>
+                        </div>
+                        <div class="ticket-right-side">
+                            <div class="badge-wrapper">
+                                <span class="status-badge andamento">Estoque Baixo</span>
+                                <span class="status-caption">Necessita reposição</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right row-chevron"></i>
+                        </div>
+                    </div>
+
+                    <div class="ticket-row">
+                        <div class="ticket-status-icon danger-icon">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <div class="ticket-main-info">
+                            <span class="ticket-code">#PEC-000210</span>
+                            <h3>Cabo de Comunicação Serial RS232 DB9</h3>
+                            <div class="ticket-sub-details">
+                                <span><i class="fa-solid fa-tags"></i> Categoria: Cabeamento</span>
+                                <span><i class="fa-solid fa-layer-group"></i> Qtd. em Estoque: <strong style="color: var(--color-alta);">0 un.</strong></span>
+                            </div>
+                        </div>
+                        <div class="ticket-right-side">
+                            <div class="badge-wrapper">
+                                <span class="status-badge esgotado">Esgotado</span>
+                                <span class="status-caption">Sem previsão imediata</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right row-chevron"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="table-footer">
+                    <span>Mostrando 1 a 3 de 24 peças</span>
+                    <div class="pagination-buttons">
+                        <button class="page-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

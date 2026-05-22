@@ -1,5 +1,6 @@
 package br.com.TrabalhoFinal.GestoreTech.controllers;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,15 +31,20 @@ public class ChamadoController {
 	public List<ChamadoEntity> listarTodosChamados(){
 		return chamadoRepository.findAll();
 	}
+	@GetMapping("/listarPorID/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Optional<ChamadoEntity> listarTodosChamadosPorID(@PathVariable int id){
+		return chamadoRepository.findById(id);
+	}
 	
 	/*@GetMapping("/listarporestabelecimento/{idEstabelecimento)")
 	@ResponseStatus(HttpStatus.OK)
-	public List<ChamadoEntity> listarPorEstabelecimento(int idEstabelecimento){
+	public List<ChamadoEntity> listarPorEstabelecimento(@PathVariable int idEstabelecimento){
 		return chamadoRepository.findByEquipamentoEstabelecimentoId(idEstabelecimento);
 	}
 	@GetMapping("/listarporcliente/{idCliente}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<ChamadoEntity> listarPorCliente(int idCliente){
+	public List<ChamadoEntity> listarPorCliente(@PathVariable int idCliente){
 		return chamadoRepository.findByEquipamentoEstabelecimentoClienteId(idCliente);
 	}
 	@GetMapping("/ordenarprioridade")

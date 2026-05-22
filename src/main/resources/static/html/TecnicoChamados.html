@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Chamados</title>
+    <link rel="stylesheet" href="../css/TecnicoChamados.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-g">G</div>
+                <span class="logo-text">Gestoretech</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="../html/TecnicoChamados.html" class="nav-item active"><i class="fa-solid fa-clipboard-list"></i> Chamados</a>
+                <a href="../html/TecnicoPecasEstoque.html" class="nav-item"><i class="fa-solid fa-box"></i> Estoque de Peças</a>
+                <div class="sidebar-footer">
+                    <a href="#" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="profile-menu"><i class="fa-regular fa-user"></i> Perfil</div>
+            </header>
+
+            <div class="content-page">
+                <div class="page-title">
+                    <h2>Chamados</h2>
+                    <p>Acompanhe e gerencie os chamados.</p>
+                </div>
+
+                <section class="filters-card">
+                    <div class="filters-title"><i class="fa-solid fa-filter"></i> Filtros</div>
+                    <div class="filters-inputs">
+                        <div class="filter-group">
+                            <label>Cliente</label>
+                            <select><option>Selecione um cliente</option></select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Estabelecimento</label>
+                            <select><option>Selecione um estabelecimento</option></select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Data início</label>
+                            <input type="date">
+                        </div>
+                        <div class="filter-group">
+                            <label>Data fim</label>
+                            <input type="date">
+                        </div>
+                        <div class="filter-buttons">
+                            <button class="btn-base btn-outline">Limpar</button>
+                            <button class="btn-base btn-primary">Filtrar</button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="ticket-list">
+                    
+                    <div class="ticket-item">
+                        <div class="priority-indicator high">
+                            <div class="priority-dot"></div>
+                            <span class="priority-text">Alta</span>
+                        </div>
+                        <div class="ticket-details-box">
+                            <span class="ticket-id-tag">#CH-2025-0012</span>
+                            <h3>Impressora não está imprimindo.</h3>
+                            <div class="ticket-meta-info">
+                                <p><i class="fa-regular fa-user"></i> Supermercado Bom Preço</p>
+                                <p><i class="fa-solid fa-store"></i> Loja 01 - Centro</p>
+                                <p><i class="fa-regular fa-calendar"></i> 01 de Setembro de 2025 às 10:30</p>
+                            </div>
+                        </div>
+                        <div class="ticket-status-container">
+                            <span class="badge badge-open">Aberto</span>
+                            <span class="sub-status-text">Aguardando atendimento</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right action-arrow"></i>
+                    </div>
+
+                    <div class="ticket-item">
+                        <div class="priority-indicator medium">
+                            <div class="priority-dot"></div>
+                            <span class="priority-text">Média</span>
+                        </div>
+                        <div class="ticket-details-box">
+                            <span class="ticket-id-tag">#CH-2025-0011</span>
+                            <h3>Notebook lento para abrir programas.</h3>
+                            <div class="ticket-meta-info">
+                                <p><i class="fa-regular fa-user"></i> Supermercado Econômico</p>
+                                <p><i class="fa-solid fa-store"></i> Loja 02 - Bairro Novo</p>
+                                <p><i class="fa-regular fa-calendar"></i> 30 de Agosto de 2025 às 14:15</p>
+                            </div>
+                        </div>
+                        <div class="ticket-status-container">
+                            <span class="badge badge-progress">Em andamento</span>
+                            <span class="sub-status-text">Técnico em deslocamento</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right action-arrow"></i>
+                    </div>
+
+                </div>
+
+                <footer class="table-footer">
+                    <span class="sub-status-text">Mostrando 1 a 5 de 12 chamados</span>
+                    <div class="pagination-wrapper">
+                        <button class="btn-base btn-outline" style="padding: 8px 12px;"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="btn-base btn-primary" style="padding: 8px 12px;">1</button>
+                        <button class="btn-base btn-outline" style="padding: 8px 12px;">2</button>
+                        <button class="btn-base btn-outline" style="padding: 8px 12px;">3</button>
+                        <button class="btn-base btn-outline" style="padding: 8px 12px;"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

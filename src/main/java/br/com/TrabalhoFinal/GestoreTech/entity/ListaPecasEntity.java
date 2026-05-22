@@ -22,6 +22,7 @@ public class ListaPecasEntity implements Serializable{
 	
 	private int id;
 	private int quantidade;
+	//Tem que fazer o a ligação aqui👇
 	private PecaEntity idPeca;
 	public int getId() {
 		return id;

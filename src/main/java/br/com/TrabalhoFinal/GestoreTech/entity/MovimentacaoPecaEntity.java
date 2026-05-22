@@ -25,8 +25,11 @@ public class MovimentacaoPecaEntity implements Serializable {
 	private String tipoMovimentacao;
 	private LocalDate dataMovimentacao;
 	private int quantidade;
+	//Tem que fazer o a ligação aqui👇
 	private UsuarioEntity idUsuario;
+	//Tem que fazer o a ligação aqui👇
 	private EstoqueEntity idEstoque;
+	//Tem que fazer o a ligação aqui👇
 	private OrdemServicoEntity idOrdemServico;
 	public int getId() {
 		return id;

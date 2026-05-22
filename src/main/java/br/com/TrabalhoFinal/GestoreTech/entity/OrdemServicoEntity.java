@@ -26,6 +26,7 @@ public class OrdemServicoEntity implements Serializable {
 	private LocalDate dataPevistaBaixa;
 	private LocalDate dataBaixa;
 	//private ChamadoEntity idChamado;
+	//Tem que fazer o a ligação aqui👇
 	private EquipeChamadoEntity idEquipeChamado;
 	private PecaEntity idPeca;
 	public int getId() {

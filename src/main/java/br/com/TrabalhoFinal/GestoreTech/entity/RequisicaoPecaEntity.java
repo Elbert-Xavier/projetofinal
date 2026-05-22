@@ -27,7 +27,9 @@ public class RequisicaoPecaEntity implements Serializable {
 	private LocalDate dataAprovacao;
 	private String tipoRequisicao;
 	private String observacao;
+	//Tem que fazer o a ligação aqui👇
 	private ListaPecasEntity idListaPecas;
+	//Tem que fazer o a ligação aqui👇
 	private UsuarioEntity idUsuario;
 	//private ChamadoEntity idChamado;
 	public int getId() {
