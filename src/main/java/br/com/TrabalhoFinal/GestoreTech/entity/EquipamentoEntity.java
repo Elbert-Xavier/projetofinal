@@ -30,6 +30,7 @@ public class EquipamentoEntity implements Serializable {
 	private String tipo;
 	private String modelo;
 	private String fabricante;
+	
 	private String numeroSerie;
 	private LocalDate dataAquisicao;
 	private LocalDate dataCadastro;

@@ -40,13 +40,13 @@ public class EquipeChamadoController {
 		return equipe.findById(id);
 	}
 
-	@PostMapping("/gravar")
+	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EquipeChamadoEntity  GravarCategoria (@RequestBody EquipeChamadoEntity equipes ) {
 		return equipe.save(equipes);
 	}
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/deletar/{id}")
 	public String deletarCategoria(@PathVariable int id) {
 		

@@ -1,6 +1,7 @@
 package br.com.TrabalhoFinal.GestoreTech.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,10 +25,10 @@ public class UsuarioEntity implements Serializable{
 	private String titulo;
 	private String telefone;
 	private String nivelHierarquico;
+	private LocalDate dataCadastro;
+
 	private String email;
 	private String senha;
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -75,6 +76,12 @@ public class UsuarioEntity implements Serializable{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 }

@@ -41,6 +41,11 @@ public class EstabelecimentoController {
 	public List<EstabelecimentoEntity> listarNome(@PathVariable String nome){
 		return estabelecimentoRepository.findByNomeUnidadeContaining(nome);
 	}
+	@GetMapping("/listarcliente/{idCliente}")
+	public List<EstabelecimentoEntity> listarPorCliente(@PathVariable int idCliente){
+		return estabelecimentoRepository.findByClienteId(idCliente);
+	}
+	
 	@DeleteMapping("/deletar/{id}")
 	public String deletarEstabelecimento(@PathVariable int id) {
 		if(estabelecimentoRepository.existsById(id)) {

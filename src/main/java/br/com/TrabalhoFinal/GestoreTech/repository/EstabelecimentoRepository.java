@@ -13,4 +13,5 @@ public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento
 	List<EstabelecimentoEntity>findByCnpjUnidadeStartingWith(String cnpj);
 	List<EstabelecimentoEntity>findByRazaoSocialContaining(String razao);
 	List<EstabelecimentoEntity>findByNomeUnidadeContaining(String nome);
+	List<EstabelecimentoEntity>findByClienteId(int idCliente);
 }

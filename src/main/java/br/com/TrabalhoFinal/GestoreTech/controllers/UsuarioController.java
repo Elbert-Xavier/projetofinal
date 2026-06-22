@@ -45,6 +45,13 @@ public class UsuarioController {
 		return usuarioRepository.save(usuario);
 	}
 	
+	@PostMapping("/salvarGestor")
+	@ResponseStatus(HttpStatus.OK)
+	public UsuarioEntity salvarGestorInicial(@RequestBody UsuarioEntity gestor) {
+		gestor.setTipoUsuario("gestor");
+		return usuarioRepository.save(gestor);
+	}
+	
 	@PostMapping("/login")
 	public ResponseEntity<UsuarioEntity> login(
 	        @RequestBody UsuarioEntity usuarioLogin) {
