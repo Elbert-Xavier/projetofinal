@@ -26,6 +26,8 @@ public class UsuarioEntity implements Serializable{
 	private String nivelHierarquico;
 	private String email;
 	private String senha;
+	
+	
 	public int getId() {
 		return id;
 	}

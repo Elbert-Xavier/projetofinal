@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Gestor&Tech</title>
+    <title>Recuperar Senha - Gestor&Tech</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/esqueceuSenha.js"></script>
 </head>
 <body>
 
@@ -31,28 +31,19 @@
 
         <div class="right-side">
             <div class="form-wrapper">
-                <h1>Login</h1>
-                <p class="subtitle">Acesse sua conta para continuar</p>
+                <h1>Recuperar Senha</h1>
+                <p class="subtitle">Insira o seu e-mail cadastrado para receber as instruções de recuperação.</p>
 
-                <form onsubmit="return false;"> <div class="input-container">
-                        <i class="fa-regular fa-envelope"></i>
-                        <input type="email" placeholder="E-mail" id="email">
-                    </div>
-
+                <form onsubmit="return false;"> 
                     <div class="input-container">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Senha" id="senha">
-                        <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="E-mail cadastrado" id="emailRecuperacao">
                     </div>
 
-                    <div class="forgot-password">
-                        <a href="esqueceuSenha.html">Esqueceu a senha?</a>
-                    </div>
-
-                    <button type="submit" class="btn-entrar" onclick="logar();">ENTRAR</button>
+                    <button type="button" class="btn-entrar" onclick="enviarCodigo();" id="buttonRecuperacao">ENVIAR LINK</button>
                     
                     <div class="register-link">
-                        <p>Não tem uma conta? <a href="cadastroUsuario.html">Cadastre-se</a></p>
+                        <p>Lembrou a senha? <a href="http://localhost:8000/login.html"><i class="fa-solid fa-arrow-left" style="font-size: 0.8rem; margin-right: 4px;"></i> Voltar para o Login</a></p>
                     </div>
                 </form>
             </div>

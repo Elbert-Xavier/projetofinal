@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Gestor&Tech</title>
+    <title>Redefinir Senha - Gestor&Tech</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/redefinirSenha.js"></script>
 </head>
 <body>
 
@@ -31,28 +31,27 @@
 
         <div class="right-side">
             <div class="form-wrapper">
-                <h1>Login</h1>
-                <p class="subtitle">Acesse sua conta para continuar</p>
+                <h1>Nova Senha</h1>
+                <p class="subtitle">Escolha uma senha forte de acesso para a sua conta.</p>
 
-                <form onsubmit="return false;"> <div class="input-container">
-                        <i class="fa-regular fa-envelope"></i>
-                        <input type="email" placeholder="E-mail" id="email">
+                <form onsubmit="return false;"> 
+                    
+                    <div class="input-container">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Nova Senha" id="novaSenha" required>
+                        <i class="fa-regular fa-eye-slash eye-toggle" id="toggleNovaSenha" onclick="revelarSenha('novaSenha', 'toggleNovaSenha');"></i>
                     </div>
 
                     <div class="input-container">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Senha" id="senha">
-                        <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <input type="password" placeholder="Confirme a Nova Senha" id="confirmarSenha" required>
+                        <i class="fa-regular fa-eye-slash eye-toggle" id="toggleConfirmarSenha" onclick="revelarSenha('confirmarSenha', 'toggleConfirmarSenha');"></i>
                     </div>
 
-                    <div class="forgot-password">
-                        <a href="esqueceuSenha.html">Esqueceu a senha?</a>
-                    </div>
-
-                    <button type="submit" class="btn-entrar" onclick="logar();">ENTRAR</button>
+                    <button type="button" class="btn-entrar" onclick="novasenha()" style="margin-top: 10px;">SALVAR NOVA SENHA</button>
                     
                     <div class="register-link">
-                        <p>Não tem uma conta? <a href="cadastroUsuario.html">Cadastre-se</a></p>
+                        <p>Lembrou a senha antiga? <a href="login.html">Fazer Login</a></p>
                     </div>
                 </form>
             </div>

@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -62,5 +64,19 @@ public class UsuarioController {
 	    }
 	    // se não encontrou usuário ou senha não bate, retorna 401
 	    return ResponseEntity.status(401).build();
+	}
+	@GetMapping("/BuscarPorEmail/{email}")
+	@ResponseStatus(HttpStatus.OK)
+	public Optional<UsuarioEntity>BuscarEmaildeUsuario(@PathVariable String email){
+		return usuarioRepository.findByEmail(email);
+	}
+	@PutMapping("/novaSenha/{novasenha}/{confirmacao}")
+	public UsuarioEntity NovaSenhaUsuario(@PathVariable String novasenha,@PathVariable String confirmacao,@RequestBody UsuarioEntity Usuario) {
+		if (novasenha.equals(confirmacao)) {
+			Usuario.setSenha(encoder.encode(confirmacao));
+			return usuarioRepository.save(Usuario);
+		}else {
+			return null;
+		}
 	}
 }

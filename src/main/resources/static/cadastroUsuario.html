@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Gestor&Tech</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js/cadastro.js"></script>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Lado Esquerdo (Identidade Visual Mantida) -->
+        <div class="left-side">
+            <div class="brand">
+                <div class="logo-box">G</div>
+                <h2>Gestor&Tech</h2>
+            </div>
+            <div class="content">
+                <p>Sistema completo para gestão técnica e administrativa da sua empresa.</p>
+                <div class="illustration-box">
+                    <div class="css-illustration">
+   						<div class="chart-bar bar-1"></div>
+    					<div class="chart-bar bar-2"></div>
+    					<div class="chart-bar bar-3"></div>
+					</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lado Direito (Formulário de Cadastro) -->
+        <div class="right-side">
+            <div class="form-wrapper">
+                <h1>Cadastre-se</h1>
+                <p class="subtitle">Crie sua conta preenchendo os dados abaixo</p>
+
+                <form onsubmit="return false;">
+                    
+                    <!-- Container de Rolagem para agrupar os 7 campos perfeitamente -->
+                    <div class="form-scroll-container">
+                        
+                        <!-- 1. Tipo de Usuário -->
+                        <div class="input-container">
+                            <i class="fa-solid fa-user-gear"></i>
+                            <select id="tipoUsuario" required>
+                                <option value="" disabled selected>Tipo de Usuário</option>
+                                <option value="ADMIN">Administrador</option>
+                                <option value="TECNICO">Técnico</option>
+                                <option value="CLIENTE">Cliente</option>
+                            </select>
+                        </div>
+
+                        <!-- 2. Nome -->
+                        <div class="input-container">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" placeholder="Nome Completo" id="nome" required>
+                        </div>
+
+                        <!-- 3. Título -->
+                        <div class="input-container">
+                            <i class="fa-solid fa-id-card"></i>
+                            <input type="text" placeholder="Título profissional" id="titulo">
+                        </div>
+
+                        <!-- 4. Telefone -->
+                        <div class="input-container">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" placeholder="Telefone" id="telefone" required>
+                        </div>
+
+                        <!-- 5. Nível Hierárquico -->
+                        <div class="input-container">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <select id="nivelHierarquico" required>
+                                <option value="" disabled selected>Nível Hierárquico</option>
+                                <option value="JUNIOR">Júnior</option>
+                                <option value="PLENO">Pleno</option>
+                                <option value="SENIOR">Sênior</option>
+                                <option value="GESTOR">Gestor</option>
+                            </select>
+                        </div>
+
+                        <!-- 6. E-mail -->
+                        <div class="input-container">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" placeholder="E-mail" id="email" required>
+                        </div>
+
+                        <!-- 7. Senha -->
+                        <div class="input-container">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Senha" id="senha" required>
+                            <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
+                        </div>
+
+                    </div>
+
+                    <!-- Botão de Envio (Mesma classe do seu CSS) -->
+                    <button type="submit" class="btn-entrar" onclick="cadastrar();">CADASTRAR</button>
+                    
+                    <!-- Link para Voltar -->
+                    <div class="register-link">
+                        <p>Já tem uma conta? <a href="login.html">Faça Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
