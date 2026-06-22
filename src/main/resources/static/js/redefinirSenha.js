@@ -14,7 +14,7 @@ function revelarSenha(inputId, iconId) {
         input.type = "password";
         icone.classList.remove("fa-eye");
         icone.classList.add("fa-eye-slash");
-    }
+    }	
 }
 
 async function novasenha() {

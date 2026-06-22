@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="js/cadastro.js"></script>
+    <script type="text/javascript" src="js/cadastroUsuario.js"></script>
 </head>
 <body>
 
@@ -92,13 +92,13 @@
                         <div class="input-container">
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" placeholder="Senha" id="senha" required>
-                            <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
+                            <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();" id="icon"></i>
                         </div>
 
                     </div>
 
                     <!-- Botão de Envio (Mesma classe do seu CSS) -->
-                    <button type="submit" class="btn-entrar" onclick="cadastrar();">CADASTRAR</button>
+                    <button type="button" class="btn-entrar" onclick="Salvar();">CADASTRAR</button>
                     
                     <!-- Link para Voltar -->
                     <div class="register-link">

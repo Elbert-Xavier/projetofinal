@@ -77,7 +77,7 @@ public class EmailController {
                     + "<p style='color: #9ca3af; font-size: 12px; line-height: 1.5; margin: 0; text-align: center;'>\n"
                     + "Se o botão não funcionar, copie e cole o link abaixo no seu navegador:<br>\n"
                     + "<a href='http://localhost:8000/redefinirSenha.html?email=" + destinatario + "' target='_blank' style='color: #4f46e5; text-decoration: underline; word-break: break-all;'>\n"
-                    + "http://localhost:8000/redefinirSenha.html?email=" + destinatario + "\n"
+                    + "Clique AQUI\n"
                     + "</a>\n"
                     + "</p>\n"
                     + "</div>\n"

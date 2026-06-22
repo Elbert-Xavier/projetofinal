@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,7 +55,6 @@ public class UsuarioController {
 	    if (usuario.isPresent()) {
 
 	        UsuarioEntity usuarioEncontrado = usuario.get();
-	        // compara senha enviada com senha armazenada (hash)
 	        if (encoder.matches(
 	                usuarioLogin.getSenha(),
 	                usuarioEncontrado.getSenha())) {
@@ -62,7 +62,6 @@ public class UsuarioController {
 	            return ResponseEntity.ok(usuarioEncontrado);
 	        }
 	    }
-	    // se não encontrou usuário ou senha não bate, retorna 401
 	    return ResponseEntity.status(401).build();
 	}
 	@GetMapping("/BuscarPorEmail/{email}")
@@ -78,5 +77,14 @@ public class UsuarioController {
 		}else {
 			return null;
 		}
+	}
+	@DeleteMapping("/deletar/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public String DeletarUsuario(@PathVariable Integer id) {
+		if (usuarioRepository.existsById(id)) {
+			usuarioRepository.deleteById(id);
+			return"Usuario Deletado";
+		}
+			return"Usuario Nao Encontrado";
 	}
 }
