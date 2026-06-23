@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name = "chamados")
 public class ChamadoEntity implements Serializable {
@@ -68,18 +70,19 @@ public class ChamadoEntity implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getUrlImagem() {
-		return urlImagem;
-	}
-	public void setUrlImagem(String urlImagem) {
-		this.urlImagem = urlImagem;
-	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
+
 	
 	
 	

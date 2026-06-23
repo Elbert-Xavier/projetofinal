@@ -332,3 +332,12 @@ select:focus, textarea:focus {
     border: none;
     color: white;
 }
+.upload-container {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.upload-container:hover {
+    color: #0056b3; /* Ou a cor de destaque do seu sistema */
+}

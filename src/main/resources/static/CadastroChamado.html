@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestoretech - Cadastrar Chamado</title>
-    <link rel="stylesheet" href="../css/CadastroChamado.css">
+    <link rel="stylesheet" href="css/CadastroChamado.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script type="text/javascript" src="../js/CadastroChamado.js"></script>
+    <script type="text/javascript" src="js/CadastroChamado.js"></script>
 </head>
 <body>
 
@@ -66,6 +66,15 @@
                         </div>
                     </div>
 
+<div class="form-group">
+    <label for="titulo">Título do Chamado <span class="required">*</span></label>
+    <div class="input-wrapper" style="position: relative; display: flex; align-items: center; width: 100%;">
+        <i class="fa-solid fa-heading" style="position: absolute; left: 15px; color: #6f42c1; font-size: 16px;"></i>
+        
+        <input type="text" id="titulo" placeholder="Ex: Tela piscando, Notebook não liga..." required 
+               style="width: 100%; padding: 14px 15px 14px 45px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;">
+    </div>
+</div>
                     <div class="form-group">
                         <label for="descricao">Descreva o problema <span class="required">*</span></label>
                         <div class="textarea-wrapper">
@@ -76,13 +85,18 @@
 
                     <div class="form-group">
                         <label>Adicione foto ou vídeo sobre o problema <span class="optional">(Obrigatório)</span></label>
-                        <div class="upload-area">
+                        <div class="upload-area" >
                             <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
                             <p class="upload-text"><strong>Arraste e solte arquivos aqui</strong> <br> ou clique para selecionar</p>
+                            
                             <p class="upload-info">
-                                <i class="fa-regular fa-question-circle"></i> Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)
+                            	<label class="upload-container">
+									<input type="file" id="urlImagem" accept=".jpg,.jpeg,.png,.mp4,.mov" style="display: none;">
+    								<i class="fa-regular fa-question-circle"></i> 
+   									Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)
+								</label>
+                               		
                             </p>
-                            <input type="file" id="file-upload" hidden accept="image/*,video/*">
                         </div>
                     </div>
 
@@ -90,7 +104,7 @@
                         <button type="button" class="btn btn-cancel">
                             <i class="fa-solid fa-xmark"></i> Cancelar
                         </button>
-                        <button type="submit" class="btn btn-submit">
+                        <button type="button" class="btn btn-submit" onclick="salvarChamado()">
                             <i class="fa-solid fa-floppy-disk"></i> Salvar Chamado
                         </button>
                     </div>

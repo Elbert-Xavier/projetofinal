@@ -1,6 +1,12 @@
 package br.com.TrabalhoFinal.GestoreTech.controllers;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.ChamadoRepository;
@@ -67,7 +75,36 @@ public class ChamadoController {
 	}
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ChamadoEntity salvarChamado(@RequestBody ChamadoEntity chamado) {
+	public ChamadoEntity salvarChamado(@RequestParam LocalDate dataAbertura,
+									   @RequestParam String prioridade,
+									   @RequestParam String titulo,
+									   @RequestParam String descricao,
+									   @RequestParam MultipartFile imagem,
+									   @RequestParam String status) throws IOException {
+		
+// Gerar um nome único para o arquivo usando UUID
+		
+        String nomeArquivo = UUID.randomUUID()
+                + "_"
+                + imagem.getOriginalFilename();
+
+        // Definir o caminho onde o arquivo será salvo
+        Path caminho = Paths.get(
+                "C:/Users/Acesso Livre/Documents/uploads" + nomeArquivo
+        );
+        
+        // Salvar o arquivo no caminho definido
+        Files.write(caminho, imagem.getBytes());
+        
+        ChamadoEntity chamado = new ChamadoEntity();
+        chamado.setDataAbertura(LocalDate.now());
+        chamado.setPrioridade("indefinido");
+        chamado.setTitulo(titulo);
+        chamado.setDescricao(descricao);
+        chamado.setUrlImagem(nomeArquivo); // Salvar o nome do arquivo (String) no banco de dados
+        chamado.setStatus("indefinido");
+		
+
 		return chamadoRepository.save(chamado);
 	}
 	@PutMapping("/atualizar")
