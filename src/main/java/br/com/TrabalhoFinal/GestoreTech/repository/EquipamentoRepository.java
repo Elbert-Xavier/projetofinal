@@ -10,7 +10,6 @@ import br.com.TrabalhoFinal.GestoreTech.entity.EquipamentoEntity;
 @Repository
 public interface EquipamentoRepository extends JpaRepository<EquipamentoEntity, Integer> {
 
-	List<EquipamentoEntity>findByEstabelecimentoCnpjUnidade(int cnpjUnidade);
 	List<EquipamentoEntity>findByNomeContainingIgnoreCase(String nome);
 	List<EquipamentoEntity>findByTipoContainingIgnoreCase(String tipo);
 	List<EquipamentoEntity>findByFabricanteContainingIgnoreCase(String marca);

@@ -21,11 +21,7 @@ public class EquipamentoEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idEstabelecimento")
-	private EstabelecimentoEntity estabelecimento;
-	
+	private int id;	
 	private String nome;
 	private String tipo;
 	private String modelo;
@@ -46,14 +42,7 @@ public class EquipamentoEntity implements Serializable {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public EstabelecimentoEntity getEstabelecimento() {
-		return estabelecimento;
-	}
-	public void setEstabelecimento(EstabelecimentoEntity estabelecimento) {
-		this.estabelecimento = estabelecimento;
-	}
-	public String getNome() {
+	}	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {

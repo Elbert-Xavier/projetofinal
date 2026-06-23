@@ -32,11 +32,7 @@ public class EquipamentoController {
 		return equipamentoRepository.findByNomeContainingIgnoreCase(nome);
 	}
 	
-	@GetMapping("/listarestabelecimento/{cnpjUnidade}")
-	@ResponseStatus(HttpStatus.OK)
-	public List<EquipamentoEntity> listarEstabelecimentoCnpj(@PathVariable int cnpjUnidade){
-		return equipamentoRepository.findByEstabelecimentoCnpjUnidade(cnpjUnidade);
-	}
+	
 	@GetMapping("/listartipo/{tipo}")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> listarTipo(@PathVariable String tipo){

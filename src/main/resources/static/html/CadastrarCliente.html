@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/CadastrarCliente.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="../js/CadastrarCliente.js"></script>
+    <script type="text/javascript" src="../js/CadastrarCliente.js" defer></script>
 </head>
 <body>
 
@@ -22,6 +22,7 @@
                 <li><a href="#"><i class="fa-solid fa-laptop"></i> Equipamentos</a></li>
                 <li><a href="#"><i class="fa-solid fa-wrench"></i> Serviços</a></li>
                 <li><a href="#"><i class="fa-solid fa-headset"></i> Suporte</a></li>
+                <li><a href="#" class="active"><i class="fa-solid fa-users"></i> Clientes</a></li>
             </ul>
             <div class="sidebar-footer">
                 <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
@@ -48,54 +49,101 @@
                     </div>
                     <div>
                         <h1>Cadastro de Cliente</h1>
-                        <p>Preencha os dados abaixo para cadastrar um novo cliente.</p>
+                        <p>Preencha os dados abaixo para registrar o cliente e sua localização.</p>
                     </div>
                 </div>
 
-                <form class="client-form">
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-solid fa-building"></i> <span>CNPJ</span></div>
-                        <input type="text" placeholder="Digite o CNPJ" id="cnpj">
+                <form class="client-form" id="formCliente">
+                    
+                    <div class="form-section-title">
+                        <h3><i class="fa-solid fa-building"></i> Dados Empresariais</h3>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-solid fa-briefcase"></i> <span>Razão Social</span></div>
-                        <input type="text" placeholder="Digite a razão social" id="RazaoSocial">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ *</label>
+                            <input type="text" placeholder="00.000.000/0001-00" id="cnpj" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="razaoSocial">Razão Social *</label>
+                            <input type="text" placeholder="Digite a razão social" id="razaoSocial" required>
+                        </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-regular fa-user"></i> <span>Titulo Responsavel</span></div>
-                        <input type="text" placeholder="Digite o nome do responsável" id="TituloResponsavel">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="nomeFantasia">Nome Fantasia *</label>
+                            <input type="text" placeholder="Digite o nome fantasia" id="nomeFantasia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail de Contato *</label>
+                            <input type="email" placeholder="empresa@email.com" id="email" required>
+                        </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-solid fa-tag"></i> <span>Nome Fantasia</span></div>
-                        <input type="text" placeholder="Digite o nome fantasia" id="nomeFantasia">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="telefone">Telefone *</label>
+                            <input type="tel" placeholder="(00) 00000-0000" id="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-grid-2" style="gap: 10px; margin: 0; padding: 0;">
+                                <div>
+                                    <label for="tituloResponsavel">Cargo/Título</label>
+                                    <input type="text" placeholder="Ex: Gerente" id="tituloResponsavel">
+                                </div>
+                                <div>
+                                    <label for="nomeResponsavel">Nome do Resp. *</label>
+                                    <input type="text" placeholder="Nome do contato" id="nomeResponsavel" required>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-regular fa-file-lines"></i> <span>Inscrição Estadual</span></div>
-                        <input type="text" placeholder="Digite a inscrição estadual" id="inscricaoEstadual">
+                    <div class="form-section-title" style="margin-top: 25px;">
+                        <h3><i class="fa-solid fa-location-dot"></i> Endereço do Estabelecimento</h3>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-solid fa-landmark"></i> <span>Nome</span></div>
-                        <input type="text" placeholder="Digite a inscrição municipal" id="nome">
+                    <div class="form-grid-3">
+                        <div class="form-group">
+                            <label for="cep">CEP *</label>
+                            <input type="text" placeholder="00000-000" id="cep" onblur="buscarCep(this.value)" required>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label for="logradouro">Logradouro (Rua/Avenida) *</label>
+                            <input type="text" placeholder="Rua, Av..." id="logradouro" required>
+                        </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-regular fa-envelope"></i> <span>E-mail</span></div>
-                        <input type="email" placeholder="Digite o e-mail" id="Email">
+                    <div class="form-grid-3">
+                        <div class="form-group">
+                            <label for="numero">Número *</label>
+                            <input type="text" placeholder="Nº" id="numero" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bairro">Bairro *</label>
+                            <input type="text" placeholder="Bairro" id="bairro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" placeholder="Sala, Bloco..." id="complemento">
+                        </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="icon-label"><i class="fa-solid fa-phone"></i> <span>Telefone</span></div>
-                        <input type="tel" placeholder="Digite o telefone" id="Telefone">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="cidade">Cidade *</label>
+                            <input type="text" placeholder="Cidade" id="cidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="uf">Estado (UF) *</label>
+                            <input type="text" placeholder="Ex: SP" id="uf" maxlength="2" required>
+                        </div>
                     </div>
 
                     <div class="form-actions">
                         <button type="button" class="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar</button>
-                        <button type="button" class="btn-save" onclick="mudarpagina()"><i class="fa-regular fa-floppy-disk"></i> Salvar Cliente</button>
+                        <button type="submit" class="btn-save"><i class="fa-regular fa-floppy-disk"></i> Salvar Cliente Completo</button>
                     </div>
                 </form>
             </div>

@@ -35,8 +35,8 @@ public class ChamadoEntity implements Serializable {
 	private EquipamentoEntity equipamento;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idEstabelecimento")
-	private ChamadoEntity estabelecimento;
+	@JoinColumn(name = "idCliente")
+	private ClienteEntity cliente;
 	
 	public int getId() {
 		return id;

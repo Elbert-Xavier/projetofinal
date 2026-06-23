@@ -25,7 +25,6 @@ public class OrdemServicoEntity implements Serializable {
 	private String status;
 	private LocalDate dataPevistaBaixa;
 	private LocalDate dataBaixa;
-	private EquipeChamadoEntity idEquipeChamado;
 	private PecaEntity idPeca;
 	public int getId() {
 		return id;
@@ -52,13 +51,6 @@ public class OrdemServicoEntity implements Serializable {
 		this.dataBaixa = dataBaixa;
 	}
 
-	
-	public EquipeChamadoEntity getIdEquipeChamado() {
-		return idEquipeChamado;
-	}
-	public void setIdEquipeChamado(EquipeChamadoEntity idEquipeChamado) {
-		this.idEquipeChamado = idEquipeChamado;
-	}
 	public PecaEntity getIdPeca() {
 		return idPeca;
 	}

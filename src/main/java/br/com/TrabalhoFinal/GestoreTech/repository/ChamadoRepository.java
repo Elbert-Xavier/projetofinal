@@ -10,8 +10,6 @@ import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
 @Repository
 public interface ChamadoRepository extends JpaRepository<ChamadoEntity, Integer>{
 
-	List<ChamadoEntity> findByEquipamentoEstabelecimentoId(int idEstabelecimento);
-	List<ChamadoEntity> findByEquipamentoEstabelecimentoClienteId(int idCliente);
 	List<ChamadoEntity> findAllByOrderByPrioridadeDesc();
 	List<ChamadoEntity> findByPrioridade(int prioridade);
 	
