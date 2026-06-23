@@ -75,26 +75,27 @@ public class ChamadoController {
 	}
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ChamadoEntity salvarChamado(@RequestParam LocalDate dataAbertura,
-									   @RequestParam String prioridade,
-									   @RequestParam String titulo,
+	public ChamadoEntity salvarChamado(@RequestParam String titulo,
 									   @RequestParam String descricao,
-									   @RequestParam MultipartFile imagem,
-									   @RequestParam String status) throws IOException {
+									   @RequestParam MultipartFile urlImagem) throws IOException {
 		
 // Gerar um nome único para o arquivo usando UUID
 		
         String nomeArquivo = UUID.randomUUID()
                 + "_"
-                + imagem.getOriginalFilename();
+                + urlImagem.getOriginalFilename();
 
         // Definir o caminho onde o arquivo será salvo
         Path caminho = Paths.get(
-                "C:/Users/Acesso Livre/Documents/uploads" + nomeArquivo
+                "C:/Users/Acesso Livre/Documents/uploads/" + nomeArquivo
         );
         
+        if (!Files.exists(caminho.getParent())) {
+            Files.createDirectories(caminho.getParent());
+        }
+        
         // Salvar o arquivo no caminho definido
-        Files.write(caminho, imagem.getBytes());
+        Files.write(caminho, urlImagem.getBytes());
         
         ChamadoEntity chamado = new ChamadoEntity();
         chamado.setDataAbertura(LocalDate.now());
@@ -102,7 +103,7 @@ public class ChamadoController {
         chamado.setTitulo(titulo);
         chamado.setDescricao(descricao);
         chamado.setUrlImagem(nomeArquivo); // Salvar o nome do arquivo (String) no banco de dados
-        chamado.setStatus("indefinido");
+        chamado.setStatus("pendente");
 		
 
 		return chamadoRepository.save(chamado);
