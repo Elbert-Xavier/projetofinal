@@ -1,19 +1,30 @@
 /* ==========================================================================
-   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   1. VARIÁVEIS GLOBAIS E IDENTIDADE VISUAL
    ========================================================================== */
 :root {
     --bg-global: #f4f7fe;
     --bg-sidebar: #ffffff;
     --bg-card: #ffffff;
+    
+    /* Paleta de Roxos da Marca */
     --primary-color: #5334ea;
     --primary-light: #ece9ff;
-    --text-main: #2d3748;
-    --text-muted: #718096;
-    --border-color: #e2e8f0;
-    --danger-color: #f56565;
-    --green-status: #48bb78;
+    --primary-hover: #4124cb;
+    
+    /* Tipografia e Bordas */
+    --text-main: #181143;
+    --text-muted: #726e8d;
+    --border-color: #e2e4f0;
+    --input-bg: #fcfdfe;
+    
+    /* Estados de Feedback */
+    --danger-color: #e15252;
+    --danger-bg: #fff5f5;
+    --green-status: #33e80e;
+    --orange-status: #ffa012;
 }
 
+/* Reset Padrão */
 * {
     margin: 0;
     padding: 0;
@@ -27,16 +38,16 @@ body {
     min-height: 100vh;
 }
 
-/* ==========================================================================
-   2. ESTRUTURA DO LAYOUT (DASHBOARD)
-   ========================================================================== */
+/* CONTAINER GERAL (GRID DO SISTEMA) */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
     width: 100%;
 }
 
-/* --- SIDEBAR CORRIGIDA E BLINDADA --- */
+/* ==========================================================================
+   2. ESTRUTURA BLINDADA DA SIDEBAR (PARA TODOS OS ATORES)
+   ========================================================================== */
 .sidebar {
     width: 260px;
     min-width: 260px;
@@ -52,6 +63,7 @@ body {
     z-index: 100;
 }
 
+/* Topo da Barra (Logotipo) */
 .logo-area {
     display: flex;
     align-items: center;
@@ -70,6 +82,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    font-weight: 700;
 }
 
 .logo-title-group {
@@ -90,6 +103,7 @@ body {
     font-weight: 600;
 }
 
+/* Links de Navegação */
 .sidebar-nav {
     display: flex;
     flex-direction: column;
@@ -115,6 +129,7 @@ body {
     color: var(--primary-color);
 }
 
+/* Item Ativo (Estilo Pílula Arredondada) */
 .nav-item.active {
     background-color: var(--primary-light);
     color: var(--primary-color);
@@ -126,6 +141,7 @@ body {
     background-color: #f8f9fd;
 }
 
+/* Rodapé Fixado Embaixo (Configurações e Sair) */
 .sidebar-footer {
     margin-top: auto; 
     border-top: 1px solid var(--border-color);
@@ -136,16 +152,17 @@ body {
     color: var(--text-muted);
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
+/* ==========================================================================
+   3. ÁREA DE CONTEÚDO PRINCIPAL E HEADER SUPERIOR
+   ========================================================================== */
 .main-content {
     flex: 1;
-    margin-left: 260px; /* Compensa a sidebar fixa */
+    margin-left: 260px; /* Alinha o conteúdo após os 260px da sidebar */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* --- TOP HEADER --- */
 .top-header {
     width: 100%;
     height: 75px;
@@ -163,25 +180,10 @@ body {
     gap: 20px;
 }
 
-.btn-back {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.top-header h1 {
-    font-size: 22px;
+.header-left h1 {
+    font-size: 20px;
+    font-weight: 700;
     color: var(--text-main);
-}
-
-.top-header h1 span {
-    color: var(--primary-color);
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
 }
 
 .profile-menu {
@@ -205,7 +207,7 @@ body {
 
 .status-online {
     font-size: 10px;
-    color: var(--green-status);
+    color: #48bb78;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -216,22 +218,117 @@ body {
     content: '';
     width: 6px;
     height: 6px;
-    background: var(--green-status);
+    background: #48bb78;
     border-radius: 50%;
 }
 
-/* --- ÁREA DO CONTEÚDO --- */
+/* Invólucro do Conteúdo Interno */
 .content-wrapper {
     flex: 1;
     padding: 40px;
 }
 
 /* ==========================================================================
-   3. CARDS E COMPONENTES DE FORMULÁRIO (PADRÃO GESTOR)
+   4. ESTILIZAÇÃO PADRÃO DE CARDS E COMPONENTES DE FORMULÁRIO
    ========================================================================== */
 .card {
     background: var(--bg-card);
     border-radius: 12px;
-    padding: 30px;
+    padding: 35px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0,0
+    box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+}
+
+/* Títulos de Seções de Cards */
+.card-title-icon {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* Alinhamento de Linhas e Inputs Flexíveis */
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #4a5568;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    font-size: 13px;
+    color: var(--text-main);
+    font-weight: 500;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(83, 52, 234, 0.05);
+}
+
+/* ==========================================================================
+   5. BOTONARIA PADRONIZADA DO ECOSSISTEMA
+   ========================================================================== */
+.btn {
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-cancel {
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--danger-color);
+}
+
+.btn-cancel:hover {
+    background: var(--danger-bg);
+    border-color: #fee2e2;
+}

@@ -3,41 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestoretech - Painel do Gestor</title>
+    <title>Gestor&Tech - Painel do Gestor</title>
+    <!-- Chamada do CSS Global primeiro -->
+    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <!-- Chamada do CSS específico do Dashboard logo abaixo -->
     <link rel="stylesheet" href="../css/GestorDashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="dashboard-container">
+        
+        <!-- Sidebar padronizada com a base do ecossistema -->
         <aside class="sidebar">
             <div class="logo-area">
-                <div class="logo-g">G</div>
-                <span class="logo-text">Gestoretech</span>
+                <div class="logo-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-subtext">Área do Gestor</span>
+                </div>
             </div>
+            
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Visão Geral</a>
                 <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Chamados</a>
                 <a href="#" class="nav-item"><i class="fa-solid fa-desktop"></i> Equipamentos</a>
                 <a href="#" class="nav-item"><i class="fa-solid fa-box"></i> Estoque de Peças</a>
                 <a href="#" class="nav-item"><i class="fa-solid fa-users"></i> Gerenciar Equipe</a>
+                
                 <div class="sidebar-footer">
+                    <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> Configurações</a>
                     <a href="#" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
                 </div>
             </nav>
         </aside>
 
         <main class="main-content">
+            
+            <!-- Top Header Padronizado -->
             <header class="top-header">
-                <div class="profile-menu"><i class="fa-regular fa-user"></i> Painel do Gestor</div>
+                <div class="header-left">
+                    <h1>Painel do Gestor</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="profile-menu">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=5334ea&color=fff" alt="User" class="user-avatar">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="color: var(--text-muted); font-size: 12px;"></i>
+                    </div>
+                </div>
             </header>
 
-            <div class="content-page">
-                <div class="page-title">
-                    <h2>Visão Geral Operacional</h2>
-                    <p>Monitore os principais indicadores de desempenho, SLAs e alertas críticos do sistema.</p>
+            <!-- Conteúdo da página usando a classe global do wrapper -->
+            <div class="content-wrapper">
+                <div class="page-title" style="margin-bottom: 25px;">
+                    <h2 style="font-size: 24px; font-weight: 700; color: var(--text-main);">Visão Geral Operacional</h2>
+                    <p style="font-size: 14px; color: var(--text-muted);">Monitore os principais indicadores de desempenho, SLAs e alertas críticos do sistema.</p>
                 </div>
 
+                <!-- Grid de KPIs -->
                 <section class="kpi-grid">
                     <div class="kpi-card">
                         <div class="kpi-header">
@@ -57,7 +87,7 @@
                         </div>
                         <div class="kpi-value">94.2%</div>
                         <div class="kpi-subtext">
-                            <span class="trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +0.8%</span> meta global é 95%
+                            <span class="trend-good"><i class="fa-solid fa-arrow-trend-up"></i> +0.8%</span> meta global é 95%
                         </div>
                     </div>
 
@@ -84,12 +114,13 @@
                     </div>
                 </section>
 
+                <!-- Layout em Duas Colunas -->
                 <div class="manager-layout-grid">
                     
                     <div class="manager-column-main">
-                        <div class="info-block-card" style="padding: 24px 0;">
-                            <div style="padding: 0 24px 16px 24px; border-bottom: 1px solid var(--border-color);">
-                                <h4 style="border:none; margin:0; padding:0;">Chamados de Alta Prioridade Pendentes</h4>
+                        <div class="card" style="padding: 0;">
+                            <div style="padding: 24px 24px 16px 24px; border-bottom: 1px solid var(--border-color);">
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Chamados de Alta Prioridade Pendentes</h4>
                             </div>
 
                             <div class="dashboard-list-container">
@@ -123,8 +154,8 @@
                     </div>
 
                     <div class="manager-column-side">
-                        <div class="info-block-card">
-                            <h4>Disponibilidade da Equipe</h4>
+                        <div class="card" style="padding: 24px;">
+                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Disponibilidade da Equipe</h4>
                             
                             <div class="team-status-row">
                                 <div class="team-avatar-box">
