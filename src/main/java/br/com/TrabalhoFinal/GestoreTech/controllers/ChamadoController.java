@@ -87,12 +87,8 @@ public class ChamadoController {
 
         // Definir o caminho onde o arquivo será salvo
         Path caminho = Paths.get(
-                "C:/Users/Acesso Livre/Documents/uploads/" + nomeArquivo
+                "//SC-ALPHA/deploy/gestoretech/img/" + nomeArquivo
         );
-        
-        if (!Files.exists(caminho.getParent())) {
-            Files.createDirectories(caminho.getParent());
-        }
         
         // Salvar o arquivo no caminho definido
         Files.write(caminho, urlImagem.getBytes());

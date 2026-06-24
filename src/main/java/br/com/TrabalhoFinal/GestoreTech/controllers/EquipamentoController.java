@@ -1,6 +1,7 @@
 package br.com.TrabalhoFinal.GestoreTech.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,16 @@ public class EquipamentoController {
 	public List<EquipamentoEntity> listarNome(@PathVariable String nome){
 		return equipamentoRepository.findByNomeContainingIgnoreCase(nome);
 	}
-	
+	@GetMapping("/listarTodos")
+	@ResponseStatus(HttpStatus.OK)
+	public List<EquipamentoEntity> ListarTodos() {
+	    return equipamentoRepository.findAllByOrderByNomeAsc();
+	}
+	@GetMapping("/listaPorID/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Optional<EquipamentoEntity> ListarEquipamentoPorID(@PathVariable Integer id) {
+		return equipamentoRepository.findById(id);
+	}
 	
 	@GetMapping("/listartipo/{tipo}")
 	@ResponseStatus(HttpStatus.OK)

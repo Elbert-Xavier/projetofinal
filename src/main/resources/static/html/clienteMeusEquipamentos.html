@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Meus Equipamentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/clienteMeusEquipamentos.css">
+    <script type="text/javascript" src="../js/clienteMeusEquipamentos.js"></script>
+</head>
+<body>
+
+    <div class="d-flex h-100 vh-100 overflow-hidden">
+        
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+            </div>
+            
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="#" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-user me-3"></i> Perfil</a>
+                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
+                <a href="../html/" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
+                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
+                
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                        <i class="fa-solid fa-desktop fs-5"></i>
+                    </div>
+                    <div>
+                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Meus Equipamentos</h1>
+                        <p class="text-muted small mb-0">Clique em um equipamento para ver os detalhes completos.</p>
+                    </div>
+                </div>
+
+                <div class="list-group d-flex flex-column gap-3 border-0" id="tabelaEquipamento">
+                    
+                    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3" data-bs-toggle="modal" data-bs-target="#equipmentModal">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="item-icon text-center"><i class="fa-solid fa-laptop fs-4"></i></div>
+                            <div>
+                                <h3 class="h6 mb-1 fw-semibold text-dark-blue">Notebook Dell Inspiron 15</h3>
+                                <p class="text-muted small mb-0">Série: BR-789456X</p>
+                                <p style="display: none" id="idEquipamento"></p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
+                    </button>
+
+                    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3" data-bs-toggle="modal" data-bs-target="#equipmentModal">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="item-icon text-center"><i class="fa-solid fa-desktop fs-4"></i></div>
+                            <div>
+                                <h3 class="h6 mb-1 fw-semibold text-dark-blue">Monitor LG 24" UltraWide</h3>
+                                <p class="text-muted small mb-0">Série: LG-112233M</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
+                    </button>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="equipmentModal" tabindex="-1" aria-labelledby="equipmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-dark-blue" id="equipmentModalLabel">Detalhes do Equipamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <div class="img-container bg-light rounded-3 d-flex align-items-center justify-content-center p-3 h-100">
+                                <img id="imagemEquipamento" alt="Equipamento" class="img-fluid rounded-2" src="\\SC-ALPHA\deploy\gestoretech\img\81f7e079-95a4-4856-9941-e2e82cf51566__Fluxograma.png">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row gy-3">
+                                <div class="col-6">
+                                    <label class="text-muted small d-block">Tipo Equipamento</label>
+                                    <span class="fw-semibold text-dark-blue" id="tipoEquipamento">Notebook</span>
+                                </div>
+                                <div class="col-6">
+                                    <label class="text-muted small d-block">Fabricante</label>
+                                    <span class="fw-semibold text-dark-blue"id="fabricante">Dell</span>
+                                </div>
+                                <div class="col-12">
+                                    <label class="text-muted small d-block">Modelo</label>
+                                    <span class="fw-semibold text-dark-blue"id="modelo">Inspiron 15 Series 5000</span>
+                                </div>
+                                <div class="col-6">
+                                    <label class="text-muted small d-block">Número de Série</label>
+                                    <span class="fw-semibold text-dark-blue text-uppercase"id="numeroSerie">BR-789456X</span>
+                                </div>
+                                <div class="col-6">
+                                    <label class="text-muted small d-block">Data de Cadastro</label>
+                                    <span class="fw-semibold text-dark-blue"id="dataCadastro">15/03/2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 pt-3 border-top">
+                                <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">Equipamento Ativo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 px-4 pb-4">
+                    <button type="button" class="btn btn-light-gray rounded-3 fw-semibold" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

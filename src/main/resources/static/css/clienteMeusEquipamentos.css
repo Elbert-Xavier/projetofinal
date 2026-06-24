@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+.text-dark-blue {
+    color: #1e1b4b;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+}
+
+.logo-box {
+    background-color: #6366f1;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.sidebar .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sidebar .nav-link.active {
+    background-color: #e0e7ff !important;
+    color: #6366f1 !important;
+    font-weight: 600;
+}
+
+/* Icons & Colors */
+.header-icon {
+    background-color: #e0e7ff;
+    color: #6366f1;
+    width: 48px;
+    height: 48px;
+}
+
+.item-icon {
+    color: #6366f1;
+    width: 40px;
+}
+
+/* Lista Customizada (Efeito Clicável) */
+.list-group-item-action {
+    border-color: #e2e8f0 !important;
+    transition: all 0.2s ease;
+}
+
+.list-group-item-action:hover {
+    background-color: #fcfdfe;
+    border-color: #6366f1 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
+}
+
+/* Modal Customization */
+.modal-content {
+    background-color: #ffffff;
+}
+
+.img-container {
+    border: 2px dashed #e2e8f0;
+}
+
+.btn-light-gray {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.btn-light-gray:hover {
+    background-color: #e2e8f0;
+}
+
+.bg-success-subtle {
+    background-color: #dcfce7 !important;
+}
+
+.fs-small {
+    font-size: 12px;
+}
+
+label {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
