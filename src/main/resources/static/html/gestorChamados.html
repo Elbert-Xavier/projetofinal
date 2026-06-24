@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor&Tech - Gerenciar Chamados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <link rel="stylesheet" href="../css/gestorChamados.css">
+</head>
+<body>
+
+    <div class="dashboard-container" id="pageContainer">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-subtext">Área do Gestor</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="gestor-chamados.html" class="nav-item active"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="usuarios.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
+                <a href="CadastrarCliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="Tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
+                <div class="sidebar-footer">
+                    <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left"></div>
+                <div class="header-actions">
+                    <div class="profile-menu">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=5334ea&color=fff" alt="User" class="user-avatar">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="card" id="cardChamados">
+                    <div class="card-header">
+                        <div class="header-icon-circle"><i class="fa-solid fa-headset"></i></div>
+                        <div>
+                            <h1>Mesa de Chamados e Triagem</h1>
+                            <p>Visualize as solicitações recebidas, filtre o histórico por período e despache para a equipe.</p>
+                        </div>
+                    </div>
+
+                    <div class="section-title">🕒 Chamados Aguardando Triagem (Aberto)</div>
+                    
+                    <div class="table-container" style="margin-bottom: 40px;">
+                        <table class="chamados-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Cliente / Empresa</th>
+                                    <th>Equipamento</th>
+                                    <th>Problema Relatado</th>
+                                    <th class="text-center">Despachar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-code">#CH-2026-0490</td>
+                                    <td class="font-medium">Oficina do Zé Ltda</td>
+                                    <td>Servidor Dell Optiplex</td>
+                                    <td class="text-truncate">Servidor local parou após queda de energia.</td>
+                                    <td class="text-center">
+                                        <a href="#modalDespacho" class="btn-action-despach" title="Atribuir Técnico">
+                                            <i class="fa-solid fa-share-from-square"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="divider-line">
+
+                    <div class="section-title">📊 Histórico e Monitoramento de Chamados</div>
+                    
+                    <form class="filter-bar">
+                        <div class="filter-group">
+                            <label for="filterCliente">Cliente / Empresa</label>
+                            <select id="filterCliente">
+                                <option value="">Todos os Clientes</option>
+                                <option value="1">Oficina do Zé Ltda</option>
+                                <option value="2">Padaria Pão Quente</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filterStatus">Status</label>
+                            <select id="filterStatus">
+                                <option value="">Todos os Status</option>
+                                <option value="ABERTO">Aberto</option>
+                                <option value="ATRIBUIDO">Atribuído</option>
+                                <option value="FINALIZADO">Finalizado</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filterEquipamento">Equipamento / Tipo</label>
+                            <input type="text" id="filterEquipamento" placeholder="Ex: Servidor, Balança">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filterFabricante">Fabricante</label>
+                            <input type="text" id="filterFabricante" placeholder="Ex: Dell, HP, Toledo">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filterDataInicio">Data Inicial</label>
+                            <input type="date" id="filterDataInicio">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filterDataFim">Data Final</label>
+                            <input type="date" id="filterDataFim">
+                        </div>
+
+                        <div class="filter-actions-btn">
+                            <button type="submit" class="btn-filter-submit" title="Filtrar"><i class="fa-solid fa-filter"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="table-container">
+                        <table class="chamados-table">
+                            <thead>
+                                <tr>
+                                    <th>Abertura</th>
+                                    <th>Código</th>
+                                    <th>Cliente / Empresa</th>
+                                    <th>Técnico Responsável</th>
+                                    <th>Urgência</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-muted">23/06/2026 14:30</td>
+                                    <td class="font-code">#CH-2026-0475</td>
+                                    <td class="font-medium">Padaria Pão Quente</td>
+                                    <td>Fernanda Lima</td>
+                                    <td><span class="badge-urgencia media">MÉDIA</span></td>
+                                    <td><span class="badge-status atribuido">ATRIBUÍDO</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">21/06/2026 09:15</td>
+                                    <td class="font-code">#CH-2026-0471</td>
+                                    <td class="font-medium">Mercado Alvorada</td>
+                                    <td>Carlos Silva</td>
+                                    <td><span class="badge-urgencia alta">ALTA</span></td>
+                                    <td><span class="badge-status atribuido">ATRIBUÍDO</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">18/06/2026 11:00</td>
+                                    <td class="font-code">#CH-2026-0460</td>
+                                    <td class="font-medium">Borracharia São Cristóvão</td>
+                                    <td>Marcos Souza</td>
+                                    <td><span class="badge-urgencia baixa">BAIXA</span></td>
+                                    <td><span class="badge-status finalizado">FINALIZADO</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="modalDespacho" class="modal-overlay">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <div>
+                        <span class="modal-subtitle">Triagem de Chamado</span>
+                        <h2>#CH-2026-0490</h2>
+                    </div>
+                    <a href="#" class="btn-close-modal">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <div class="details-section">
+                        <div class="detail-group">
+                            <label>Título do Problema</label>
+                            <p class="detail-value-text">Servidor Local Inoperante - Checkout Paralisado</p>
+                        </div>
+                        <div class="detail-group">
+                            <label>Descrição Detalhada</label>
+                            <p class="detail-description-box">Após uma forte queda de energia na região, o servidor Dell não liga mais.</p>
+                        </div>
+                    </div>
+                    <form class="modal-form">
+                        <div class="section-title-modal">Ações de Distribuição</div>
+                        <div class="input-group-modal">
+                            <label for="modalPrioridade">Nível de Prioridade *</label>
+                            <select id="modalPrioridade" required>
+                                <option value="" disabled selected>Defina a criticidade</option>
+                                <option value="BAIXA">Baixa</option>
+                                <option value="MEDIA">Média</option>
+                                <option value="ALTA">Alta</option>
+                            </select>
+                        </div>
+                        <div class="input-group-modal">
+                            <label for="modalTecnico">Atribuir Técnico de Campo *</label>
+                            <select id="modalTecnico" required>
+                                <option value="" disabled selected>Selecione um técnico</option>
+                                <option value="1">Carlos Silva — (2 chamados)</option>
+                                <option value="2">Marcos Souza — (0 chamados)</option>
+                            </select>
+                        </div>
+                        <div class="input-group-modal">
+                            <label for="modalObs">Orientações Internas</label>
+                            <textarea id="modalObs" rows="3" placeholder="Orientações de rota..."></textarea>
+                        </div>
+                        <div class="modal-footer-actions">
+                            <a href="#" class="btn-modal-cancel">Cancelar</a>
+                            <button type="submit" class="btn-modal-save">Confirmar e Despachar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -42,25 +42,29 @@ if (fotoInput) {
 }
 
 // ==========================================================================
-// ADICIONAR EQUIPAMENTO À LISTA
+// ADICIONAR EQUIPAMENTO À LISTA (CORRIGIDO COM FABRICANTE E MODELO)
 // ==========================================================================
 window.salvarEquipamentoNaLista = function(e) {
     if (e) e.preventDefault(); 
 
+    // Capturando os novos IDs do seu HTML
     const tipo = document.getElementById('equipTipo').value.trim();
-    const marca = document.getElementById('equipMarca').value.trim();
+    const fabricante = document.getElementById('equipFabricante').value.trim();
+    const modelo = document.getElementById('equipModelo').value.trim();
     const serie = document.getElementById('equipNumSerie').value.trim();
     const obs = document.getElementById('equipObs').value.trim();
 
-    if (!tipo || !marca) {
-        alert("Por favor, preencha pelo menos o Tipo e a Marca/Modelo.");
+    // Validação: agora checa se fabricante e modelo estão preenchidos
+    if (!tipo || !fabricante || !modelo) {
+        alert("Por favor, preencha o Tipo, Fabricante e Modelo.");
         return;
     }
 
     const novoEquip = {
         id: Date.now(),
         tipo: tipo,
-        marca: marca,
+        fabricante: fabricante,
+        modelo: modelo,
         serie: serie || "Não informado",
         obs: obs || "",
         foto: fotoBase64Temporaria || "https://ui-avatars.com/api/?name=EQ&background=f1f3f9&color=64748b"
@@ -71,6 +75,9 @@ window.salvarEquipamentoNaLista = function(e) {
     window.fecharModalEquipamento();
 };
 
+// ==========================================================================
+// ATUALIZAÇÃO DA LISTA VISUAL (EXIBINDO FABRICANTE E MODELO)
+// ==========================================================================
 function atualizarListaEquipamentosVisual() {
     const container = document.getElementById('equipamentosLista');
     if (!container) return;
@@ -89,7 +96,8 @@ function atualizarListaEquipamentosVisual() {
             <div class="equipamento-item-card">
                 <img src="${equip.foto}" class="equip-thumb" alt="Equipamento">
                 <div class="equip-info">
-                    <h5>${equip.tipo} — ${equip.marca}</h5>
+                    <!-- Atualizado para exibir Fabricante e Modelo separados -->
+                    <h5>${equip.tipo} — ${equip.fabricante} (${equip.modelo})</h5>
                     <p><strong>Série:</strong> ${equip.serie} ${equip.obs ? `| <strong>Obs:</strong> ${equip.obs}` : ''}</p>
                 </div>
                 <button type="button" class="btn-remove-equip" onclick="window.removerEquipamento(${equip.id})">
@@ -100,14 +108,13 @@ function atualizarListaEquipamentosVisual() {
     });
 }
 
-window.removerEquipamento = function(id) {
-    equipamentosCliente = equipamentosCliente.filter(e => e.id !== id);
-    atualizarListaEquipamentosVisual();
-};
-
+// ==========================================================================
+// LIMPAR CAMPOS DO MODAL (ADAPTADO PARA OS NOVOS CAMPOS)
+// ==========================================================================
 function limparCamposModal() {
     document.getElementById('equipTipo').value = "";
-    document.getElementById('equipMarca').value = "";
+    document.getElementById('equipFabricante').value = "";
+    document.getElementById('equipModelo').value = "";
     document.getElementById('equipNumSerie').value = "";
     document.getElementById('equipObs').value = "";
     if (fotoInput) fotoInput.value = "";

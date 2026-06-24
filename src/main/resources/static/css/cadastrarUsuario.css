@@ -1,0 +1,260 @@
+/* ==========================================================================
+   REFINAMENTO COESÃO VISUAL (BASEADO NA REFERÊNCIA)
+   ========================================================================== */
+#cardFormUsuario {
+    font-family: 'Poppins', sans-serif;
+    color: #334155;
+}
+
+/* Ajuste do Cabeçalho */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.user-shield-icon {
+    background: #f1f3f9; 
+    color: #6b21a8;     
+    width: 46px;
+    height: 46px;
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.card-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+}
+
+.card-header p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 4px 0 0 0;
+}
+
+/* Títulos das Seções (Caixa Alta da Referência) */
+.section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e293b;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    margin-top: 32px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   ESTRUTURA E ESTILO DOS CAMPOS DE ENTRADA
+   ========================================================================== */
+.form-grid.layout-2-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 20px; 
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 600; 
+    color: #0f172a;
+}
+
+.input-group input,
+.input-group select {
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0; 
+    border-radius: 8px;        
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #334155;
+    background-color: #fff;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-group input::placeholder {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #6b21a8;
+    box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.08);
+}
+
+.grid-logradouro {
+    grid-column: span 2;
+}
+
+/* ==========================================================================
+   BOTÕES DE AÇÃO REFINADOS
+   ========================================================================== */
+.section-submit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn-cancel, .btn-save {
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: #ef4444; 
+    border: 1px solid #fee2e2;
+}
+
+.btn-cancel:hover {
+    background-color: #fef2f2;
+}
+
+.btn-save {
+    background-color: #6b21a8;
+    color: white;
+    border: none;
+}
+
+.btn-save:hover {
+    background-color: #581c87;
+}
+
+.divider-line {
+    border: 0; 
+    border-top: 1px solid #f1f5f9; 
+    margin: 48px 0 32px 0;
+}
+
+/* ==========================================================================
+   TABELA DE CONSULTA REFINADA
+   ========================================================================== */
+.table-container {
+    overflow-x: auto; 
+    margin-top: 20px;
+}
+
+.usuarios-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    text-align: left; 
+    font-size: 13.5px;
+}
+
+.usuarios-table th {
+    padding: 12px 10px;
+    color: #64748b; 
+    font-weight: 600;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.usuarios-table tbody tr {
+    border-bottom: 1px solid #f8fafc;
+    color: #334155;
+}
+
+.usuarios-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.usuarios-table td {
+    padding: 16px 10px;
+}
+
+.usuarios-table .font-medium {
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.usuarios-table .text-muted {
+    color: #cbd5e1;
+}
+
+.usuarios-table .text-center {
+    text-align: center;
+}
+
+/* Badges */
+.badge-perfil {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.3px;
+}
+
+.badge-tecnico {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.badge-cliente {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.btn-table-delete {
+    background: none; 
+    border: none; 
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.btn-table-delete:hover {
+    transform: scale(1.15);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-grid.layout-2-col {
+        grid-template-columns: 1fr;
+    }
+    .grid-logradouro {
+        grid-column: span 1;
+    }
+}
+
+/* ==========================================================================
+   LÓGICA OPERACIONAL DO CAMPO VÍNCULO (PURE CSS CORRIGIDO)
+   ========================================================================== */
+.vinculo-dinamico {
+    display: none;
+}
+
+/* Força o display flex com direção de coluna para respeitar o gap: 8px do label */
+#formUsuario:has(#perfilUsuario option[value="CLIENTE"]:checked) .vinculo-dinamico {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    animation: fadeInUsuarios 0.25s ease-in-out;
+}
+
+@keyframes fadeInUsuarios {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}

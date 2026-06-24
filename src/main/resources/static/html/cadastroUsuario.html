@@ -1,112 +1,163 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Gestor&Tech</title>
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="../js/cadastroUsuario.js"></script>
+    <title>Gestor&Tech - Gerenciar Usuários</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <link rel="stylesheet" href="../css/cadastrarUsuario.css">
 </head>
 <body>
 
-    <div class="main-container">
-        <!-- Lado Esquerdo (Identidade Visual Mantida) -->
-        <div class="left-side">
-            <div class="brand">
-                <div class="logo-box">G</div>
-                <h2>Gestor&Tech</h2>
-            </div>
-            <div class="content">
-                <p>Sistema completo para gestão técnica e administrativa da sua empresa.</p>
-                <div class="illustration-box">
-                    <div class="css-illustration">
-   						<div class="chart-bar bar-1"></div>
-    					<div class="chart-bar bar-2"></div>
-    					<div class="chart-bar bar-3"></div>
-					</div>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-subtext">Área do Gestor</span>
                 </div>
             </div>
-        </div>
+            
+            <nav class="sidebar-nav">
+                <a href="GestorDashboard.html" class="nav-item">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="GerenciarChamados.html" class="nav-item">
+                    <i class="fa-solid fa-headset"></i> Gerenciar Chamados
+                </a>
+                <a href="usuarios.html" class="nav-item active">
+                    <i class="fa-solid fa-user-lock"></i> Usuários
+                </a>
+                <a href="CadastrarCliente.html" class="nav-item">
+                    <i class="fa-solid fa-users"></i> Clientes
+                </a>
+                <a href="Tecnicos.html" class="nav-item">
+                    <i class="fa-solid fa-user-gear"></i> Técnicos
+                </a>
+                <div class="sidebar-footer">
+                    <a href="login.html" class="nav-item logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
 
-        <!-- Lado Direito (Formulário de Cadastro) -->
-        <div class="right-side">
-            <div class="form-wrapper">
-                <h1>Cadastre-se</h1>
-                <p class="subtitle">Crie sua conta preenchendo os dados abaixo</p>
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <span class="logo-g" style="display: none;">G</span> </div>
+                <div class="header-actions">
+                    <div class="profile-menu">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=5334ea&color=fff" alt="User" class="user-avatar">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-                <form onsubmit="return false;">
-                    
-                    <!-- Container de Rolagem para agrupar os 7 campos perfeitamente -->
-                    <div class="form-scroll-container">
+            <div class="content-wrapper">
+                <div class="card" id="cardFormUsuario">
+                    <div class="card-header">
+                        <div class="header-icon-user user-shield-icon">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <h1>Controle de Usuários</h1>
+                            <p>Crie, consulte e gerencie os acessos de Clientes e Técnicos ao portal.</p>
+                        </div>
+                    </div>
+
+                    <form id="formUsuario">
+                        <div class="section-title"><i class="fa-solid fa-user-plus"></i> Novo Usuário</div>
                         
-                        <!-- 1. Tipo de Usuário -->
-                        <div class="input-container">
-                            <i class="fa-solid fa-user-gear"></i>
-                            <select id="tipoUsuario" required>
-                                <option value="" disabled selected>Tipo de Usuário</option>
-                                <option value="ADMIN">Administrador</option>
-                                <option value="TECNICO">Técnico</option>
-                                <option value="CLIENTE">Cliente</option>
-                            </select>
+                       <div class="form-grid layout-2-col">
+    <div class="input-group grid-full-width">
+        <label for="nomeUsuario">Nome Completo *</label>
+        <input type="text" id="nomeUsuario" placeholder="Digite o nome completo do usuário" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="emailUsuario">E-mail (Login) *</label>
+        <input type="email" id="emailUsuario" placeholder="usuario@email.com" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="perfilUsuario">Perfil de Acesso *</label>
+        <select id="perfilUsuario" required>
+            <option value="" disabled selected>Selecione o tipo de perfil</option>
+            <option value="CLIENTE">Cliente (Acesso ao Helpdesk)</option>
+            <option value="TECNICO">Técnico (Acesso à Fila de Chamados)</option>
+        </select>
+    </div>
+    
+    <div class="input-group grid-full-width vinculo-dinamico" id="grupoVinculoCliente">
+        <label for="clienteVinculado">Vincular à Empresa / Cliente *</label>
+        <select id="clienteVinculado">
+            <option value="" disabled selected>Selecione a empresa correspondente</option>
+            <option value="1">Oficina do Zé Ltda</option>
+            <option value="2">Padaria Pão Quente</option>
+        </select>
+    </div>
+</div>
+
+                        <div class="form-actions section-submit-actions">
+                            <button type="button" class="btn-cancel" onclick="window.history.back()">Cancelar</button>
+                            <button type="submit" class="btn-save">Criar Usuário</button>
                         </div>
+                    </form>
 
-                        <!-- 2. Nome -->
-                        <div class="input-container">
-                            <i class="fa-regular fa-user"></i>
-                            <input type="text" placeholder="Nome Completo" id="nome" required>
-                        </div>
+                    <hr class="divider-line">
 
-                        <!-- 3. Título -->
-                        <div class="input-container">
-                            <i class="fa-solid fa-id-card"></i>
-                            <input type="text" placeholder="Título profissional" id="titulo">
-                        </div>
-
-                        <!-- 4. Telefone -->
-                        <div class="input-container">
-                            <i class="fa-solid fa-phone"></i>
-                            <input type="tel" placeholder="Telefone" id="telefone" required>
-                        </div>
-
-                        <!-- 5. Nível Hierárquico -->
-                        <div class="input-container">
-                            <i class="fa-solid fa-layer-group"></i>
-                            <select id="nivelHierarquico" required>
-                                <option value="" disabled selected>Nível Hierárquico</option>
-                                <option value="JUNIOR">Júnior</option>
-                                <option value="PLENO">Pleno</option>
-                                <option value="SENIOR">Sênior</option>
-                                <option value="GESTOR">Gestor</option>
-                            </select>
-                        </div>
-
-                        <!-- 6. E-mail -->
-                        <div class="input-container">
-                            <i class="fa-regular fa-envelope"></i>
-                            <input type="email" placeholder="E-mail" id="email" required>
-                        </div>
-
-                        <!-- 7. Senha -->
-                        <div class="input-container">
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Senha" id="senha" required>
-                            <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();" id="icon"></i>
-                        </div>
-
-                    </div>
-
-                    <!-- Botão de Envio (Mesma classe do seu CSS) -->
-                    <button type="button" class="btn-entrar" onclick="Salvar();">CADASTRAR</button>
+                    <div class="section-title"><i class="fa-solid fa-list-check"></i> Usuários Cadastrados</div>
                     
-                    <!-- Link para Voltar -->
-                    <div class="register-link">
-                        <p>Já tem uma conta? <a href="http://localhost:8000/login.html">Faça Login</a></p>
+                    <div class="table-container">
+                        <table class="usuarios-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail / Login</th>
+                                    <th>Perfil</th>
+                                    <th>Vínculo / Empresa</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaUsuariosCorpo">
+                                <tr>
+                                    <td class="font-medium">Carlos Augusto</td>
+                                    <td>carlos.infra@gmail.com</td>
+                                    <td><span class="badge-perfil badge-tecnico">TÉCNICO</span></td>
+                                    <td class="text-muted">—</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn-table-delete" title="Remover Usuário">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Mariana Souza</td>
+                                    <td>contato@oficinadoze.com</td>
+                                    <td><span class="badge-perfil badge-cliente">CLIENTE</span></td>
+                                    <td>Oficina do Zé Ltda</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn-table-delete" title="Remover Usuário">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </form>
+
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
 </body>

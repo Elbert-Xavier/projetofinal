@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor&Tech - Painel do Gestor</title>
-    <!-- Chamada do CSS Global primeiro -->
     <link rel="stylesheet" href="../css/dashboard-base.css">
-    <!-- Chamada do CSS específico do Dashboard logo abaixo -->
     <link rel="stylesheet" href="../css/GestorDashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +13,6 @@
 
     <div class="dashboard-container">
         
-        <!-- Sidebar padronizada com a base do ecossistema -->
         <aside class="sidebar">
             <div class="logo-area">
                 <div class="logo-box">
@@ -28,22 +25,20 @@
             </div>
             
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Visão Geral</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i> Chamados</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-desktop"></i> Equipamentos</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-box"></i> Estoque de Peças</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-users"></i> Gerenciar Equipe</a>
+                <a href="GestorDashboard.html" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="GerenciarChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="usuarios.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
+                <a href="CadastrarCliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="Tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
                 
                 <div class="sidebar-footer">
-                    <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> Configurações</a>
-                    <a href="#" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                    <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
                 </div>
             </nav>
         </aside>
 
         <main class="main-content">
             
-            <!-- Top Header Padronizado -->
             <header class="top-header">
                 <div class="header-left">
                     <h1>Painel do Gestor</h1>
@@ -55,19 +50,16 @@
                             <strong>Gestor</strong>
                             <span class="status-online">Online</span>
                         </div>
-                        <i class="fa-solid fa-chevron-down" style="color: var(--text-muted); font-size: 12px;"></i>
                     </div>
                 </div>
             </header>
 
-            <!-- Conteúdo da página usando a classe global do wrapper -->
             <div class="content-wrapper">
                 <div class="page-title" style="margin-bottom: 25px;">
                     <h2 style="font-size: 24px; font-weight: 700; color: var(--text-main);">Visão Geral Operacional</h2>
-                    <p style="font-size: 14px; color: var(--text-muted);">Monitore os principais indicadores de desempenho, SLAs e alertas críticos do sistema.</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted);">Monitore o fluxo de chamados entrantes e a distribuição de tarefas para os técnicos.</p>
                 </div>
 
-                <!-- Grid de KPIs -->
                 <section class="kpi-grid">
                     <div class="kpi-card">
                         <div class="kpi-header">
@@ -75,52 +67,43 @@
                             <div class="kpi-icon-box info"><i class="fa-solid fa-headset"></i></div>
                         </div>
                         <div class="kpi-value">34</div>
-                        <div class="kpi-subtext">
-                            <span class="trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span> em relação à semana passada
-                        </div>
+                        <div class="kpi-subtext">Total pendente no sistema</div>
                     </div>
 
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <span class="kpi-label">SLA Cumprido</span>
-                            <div class="kpi-icon-box success"><i class="fa-solid fa-circle-check"></i></div>
-                        </div>
-                        <div class="kpi-value">94.2%</div>
-                        <div class="kpi-subtext">
-                            <span class="trend-good"><i class="fa-solid fa-arrow-trend-up"></i> +0.8%</span> meta global é 95%
-                        </div>
-                    </div>
-
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <span class="kpi-label">Alertas de Estoque</span>
+                            <span class="kpi-label">Aguardando Atribuição</span>
                             <div class="kpi-icon-box warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         </div>
                         <div class="kpi-value">5</div>
-                        <div class="kpi-subtext">
-                            <span class="trend-down-alert"><i class="fa-solid fa-box-open"></i> Peças</span> abaixo do estoque crítico
-                        </div>
+                        <div class="kpi-subtext" style="color: #ef4444; font-weight: 500;">Exigem ação do gestor</div>
                     </div>
 
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <span class="kpi-label">Tempo Médio (TMR)</span>
-                            <div class="kpi-icon-box primary-box"><i class="fa-solid fa-clock"></i></div>
+                            <span class="kpi-label">Em Atendimento Local</span>
+                            <div class="kpi-icon-box primary-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                         </div>
-                        <div class="kpi-value">2h 15m</div>
-                        <div class="kpi-subtext">
-                            <span class="trend-good"><i class="fa-solid fa-arrow-trend-down"></i> -18m</span> redução no tempo de espera
+                        <div class="kpi-value">12</div>
+                        <div class="kpi-subtext">Técnicos executando reparos</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Concluídos (Mês)</span>
+                            <div class="kpi-icon-box success"><i class="fa-solid fa-circle-check"></i></div>
                         </div>
+                        <div class="kpi-value">118</div>
+                        <div class="kpi-subtext" style="color: #10b981;">Chamados encerrados</div>
                     </div>
                 </section>
 
-                <!-- Layout em Duas Colunas -->
                 <div class="manager-layout-grid">
                     
                     <div class="manager-column-main">
                         <div class="card" style="padding: 0;">
                             <div style="padding: 24px 24px 16px 24px; border-bottom: 1px solid var(--border-color);">
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Chamados de Alta Prioridade Pendentes</h4>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Chamados Recentes Aguardando Triagem</h4>
                             </div>
 
                             <div class="dashboard-list-container">
@@ -129,23 +112,23 @@
                                     <div class="item-main-details">
                                         <div class="item-row-top">
                                             <span class="item-code">#CH-2026-0490</span>
-                                            <span class="status-badge esgotado">SLA Crítico</span>
+                                            <span class="status-badge esgotado">Aberto</span>
                                         </div>
                                         <h3>Servidor Local Inoperante - Checkout Paralisado</h3>
-                                        <span class="item-meta-text"><i class="fa-solid fa-store"></i> Supermercado Bom Preço • Loja Centro</span>
+                                        <span class="item-meta-text"><i class="fa-solid fa-building"></i> Oficina do Zé Ltda • Equipamento: Servidor Dell</span>
                                     </div>
                                     <i class="fa-solid fa-chevron-right row-chevron"></i>
                                 </div>
 
                                 <div class="dashboard-list-item">
-                                    <div class="item-left-border red-border"></div>
+                                    <div class="item-left-border orange-border"></div>
                                     <div class="item-main-details">
                                         <div class="item-row-top">
                                             <span class="item-code">#CH-2026-0485</span>
-                                            <span class="status-badge andamento">Em Andamento</span>
+                                            <span class="status-badge andamento">Aberto</span>
                                         </div>
-                                        <h3>Falha Total no Sistema de Balanças</h3>
-                                        <span class="item-meta-text"><i class="fa-solid fa-store"></i> Atacadão Alvorada • Filial Norte</span>
+                                        <h3>Falha Total no Sistema de Impressão de Notas</h3>
+                                        <span class="item-meta-text"><i class="fa-solid fa-building"></i> Padaria Pão Quente • Equipamento: Impressora HP</span>
                                     </div>
                                     <i class="fa-solid fa-chevron-right row-chevron"></i>
                                 </div>
@@ -155,7 +138,7 @@
 
                     <div class="manager-column-side">
                         <div class="card" style="padding: 24px;">
-                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Disponibilidade da Equipe</h4>
+                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Equipe Técnica</h4>
                             
                             <div class="team-status-row">
                                 <div class="team-avatar-box">
@@ -174,20 +157,9 @@
                                 </div>
                                 <div class="team-info-box">
                                     <div class="team-name">Marcos Souza</div>
-                                    <div class="team-task">Disponível / Base Centro</div>
+                                    <div class="team-task">Disponível para atribuição</div>
                                 </div>
                                 <span class="status-dot-indicator free"></span>
-                            </div>
-
-                            <div class="team-status-row">
-                                <div class="team-avatar-box">
-                                    <i class="fa-solid fa-user-gear"></i>
-                                </div>
-                                <div class="team-info-box">
-                                    <div class="team-name">Fernanda Lima</div>
-                                    <div class="team-task">Em deslocamento rota sul</div>
-                                </div>
-                                <span class="status-dot-indicator route"></span>
                             </div>
                         </div>
                     </div>

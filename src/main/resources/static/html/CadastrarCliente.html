@@ -12,25 +12,44 @@
 <body>
 
     <aside class="sidebar">
-        <div class="logo-area">
-            <div class="logo-box"><i class="fa-solid fa-chart-line"></i></div>
-            <div class="logo-title-group">
-                <span class="logo-text">Gestor&Tech</span>
-                <span class="logo-subtext">Área do Gestor</span>
-            </div>
+    <div class="logo-area">
+        <div class="logo-box">
+            <i class="fa-solid fa-chart-line"></i>
         </div>
-        <nav class="sidebar-nav">
-            <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-house"></i> Dashboard</a>
-            <a href="OrdensServico.html" class="nav-item"><i class="fa-regular fa-clipboard"></i> Ordens de Serviço</a>
-            <a href="CadastrarCliente.html" class="nav-item active"><i class="fa-solid fa-users"></i> Clientes</a>
-            <a href="Tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
-            <a href="Relatorios.html" class="nav-item"><i class="fa-solid fa-file-invoice-dollar"></i> Relatórios</a>
-            <div class="sidebar-footer">
-                <a href="Configuracoes.html" class="nav-item"><i class="fa-solid fa-gear"></i> Configurações</a>
-                <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
-            </div>
-        </nav>
-    </aside>
+        <div class="logo-title-group">
+            <span class="logo-text">Gestor&Tech</span>
+            <span class="logo-subtext">Área do Gestor</span>
+        </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+        <a href="GestorDashboard.html" class="nav-item">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </a>
+        
+        <a href="GerenciarChamados.html" class="nav-item">
+            <i class="fa-solid fa-headset"></i> Gerenciar Chamados
+        </a>
+        
+        <a href="Usuarios.html" class="nav-item">
+            <i class="fa-solid fa-user-lock"></i> Usuários
+        </a>
+        
+        <a href="CadastrarCliente.html" class="nav-item active">
+            <i class="fa-solid fa-users"></i> Clientes
+        </a>
+        
+        <a href="Tecnicos.html" class="nav-item">
+            <i class="fa-solid fa-user-gear"></i> Técnicos
+        </a>
+        
+        <div class="sidebar-footer">
+            <a href="login.html" class="nav-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </a>
+        </div>
+    </nav>
+</aside>
 
     <div class="main-content">
         <header class="navbar">
@@ -112,7 +131,8 @@
 
                 <div class="modal-form-fields">
                     <div class="modal-input-group"><label for="equipTipo">Tipo de Equipamento *</label><input type="text" id="equipTipo" placeholder="Ex: Computador"></div>
-                    <div class="modal-input-group"><label for="equipMarca">Marca / Modelo *</label><input type="text" id="equipMarca" placeholder="Ex: Dell Optiplex 3080"></div>
+                    <div class="modal-input-group"><label for="equipFabricante">Fabricante *</label><input type="text" id="equipFabricante" placeholder="Ex: Dell"></div>
+                    <div class="modal-input-group"><label for="equipModelo">Modelo *</label><input type="text" id="equipModelo" placeholder="Ex: Optiplex 3080"></div>
                     <div class="modal-input-group"><label for="equipNumSerie">Nº de Série / Tag</label><input type="text" id="equipNumSerie" placeholder="Ex: BR12345"></div>
                     <div class="modal-input-group"><label for="equipObs">Localização / Observações</label><input type="text" id="equipObs" placeholder="Ex: No balcão"></div>
                 </div>

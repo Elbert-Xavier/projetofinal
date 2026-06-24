@@ -1,0 +1,465 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E ESTRUTURA DO CARD
+   ========================================================================== */
+#cardChamados {
+    font-family: 'Poppins', sans-serif;
+    color: #334155;
+    background: #ffffff;
+}
+
+/* Cabeçalho Premium (Baseado na imagem de referência) */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.header-icon-circle {
+    background: #f1f3f9; 
+    color: #6b21a8;     
+    width: 46px;
+    height: 46px;
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.card-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+}
+
+.card-header p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 4px 0 0 0;
+}
+
+/* Títulos de Seção em Caixa Alta */
+.section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e293b;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+.divider-line {
+    border: 0; 
+    border-top: 1px solid #f1f5f9; 
+    margin: 40px 0;
+}
+
+/* ==========================================================================
+   2. BARRA DE FILTROS INTELIGENTE
+   ========================================================================== */
+.filter-bar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr) auto; /* 6 inputs proporcionais + o botão */
+    gap: 12px;
+    background-color: #f8fafc; 
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-group label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.filter-group input,
+.filter-group select {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #334155;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.15s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #6b21a8;
+}
+
+/* Botão Lupa de Filtro */
+.btn-filter-submit {
+    background-color: #6b21a8;
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-filter-submit:hover {
+    background-color: #581c87;
+}
+
+/* ==========================================================================
+   3. ESTILIZAÇÃO COMPLETA DAS TABELAS
+   ========================================================================== */
+.table-container {
+    overflow-x: auto; 
+    background: #fff;
+}
+
+.chamados-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    text-align: left; 
+    font-size: 13.5px;
+}
+
+.chamados-table th {
+    padding: 14px 12px;
+    color: #64748b; 
+    font-weight: 600;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.chamados-table tbody tr {
+    border-bottom: 1px solid #f8fafc;
+    color: #334155;
+    transition: background-color 0.15s ease;
+}
+
+.chamados-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.chamados-table td {
+    padding: 16px 12px;
+    vertical-align: middle;
+}
+
+/* Elementos e Tipografias das Células */
+.chamados-table .font-code {
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.chamados-table .font-medium {
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.chamados-table .text-muted {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.chamados-table .text-truncate {
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #64748b;
+}
+
+.chamados-table .text-center {
+    text-align: center;
+}
+
+/* Botão de Ação: Ícone de Despacho */
+.btn-action-despach {
+    display: inline-block;
+    color: #6b21a8;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-action-despach:hover {
+    background-color: #f3e8ff;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   4. MODAL DE DESPACHO E DETALHES (CSS-DRIVEN VIA :TARGET)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(15, 23, 42, 0.6); 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+/* Ativação por âncora */
+.modal-overlay:target {
+    display: flex;
+}
+
+.modal-card {
+    background: #fff;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6b21a8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 2px 0 0 0;
+}
+
+.btn-close-modal {
+    font-size: 28px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.btn-close-modal:hover { color: #334155; }
+
+.modal-body {
+    padding: 24px;
+}
+
+/* Box de Detalhes Enviados pelo Cliente */
+.details-section {
+    background-color: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.detail-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.detail-value-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    margin: 4px 0 0 0;
+}
+
+.detail-description-box {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+    margin: 4px 0 0 0;
+}
+
+/* Evidência Fotográfica do Upload */
+.image-preview-container {
+    margin-top: 6px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    max-width: 240px;
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-zoom-hint {
+    display: block;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #64748b;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Formulário de Despacho */
+.section-title-modal {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #6b21a8;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.input-group-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.input-group-modal label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.input-group-modal select,
+.input-group-modal textarea {
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    color: #334155;
+    outline: none;
+    background: #fff;
+}
+
+.input-group-modal select:focus,
+.input-group-modal textarea:focus {
+    border-color: #6b21a8;
+}
+
+/* Botões do Modal */
+.modal-footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-modal-cancel, .btn-modal-save {
+    padding: 10px 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.btn-modal-cancel {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-modal-cancel:hover { background: #f1f5f9; }
+
+.btn-modal-save {
+    background-color: #6b21a8;
+    color: white;
+    border: none;
+}
+
+.btn-modal-save:hover { background-color: #581c87; }
+
+/* ==========================================================================
+   5. BADGES DE URGÊNCIA E STATUS (DESIGN SYSTEM COESO)
+   ========================================================================== */
+.badge-urgencia, .badge-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-block;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+/* Cores das Urgências */
+.badge-urgencia.alta { background-color: #fee2e2; color: #ef4444; }
+.badge-urgencia.media { background-color: #fef3c7; color: #d97706; }
+.badge-urgencia.baixa { background-color: #f1f5f9; color: #64748b; }
+
+/* Cores dos Status */
+.badge-status.atribuido { background-color: #e0f2fe; color: #0369a1; }
+.badge-status.finalizado { background-color: #d1fae5; color: #065f46; }
+
+/* ==========================================================================
+   6. RESPONSIVIDADE (BREAKPOINTS)
+   ========================================================================== */
+@media (max-width: 1300px) {
+    .filter-bar {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .btn-filter-submit {
+        grid-column: span 3;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-bar {
+        grid-template-columns: 1fr;
+    }
+    .btn-filter-submit {
+        grid-column: span 1;
+    }
+    .modal-card {
+        width: 95%;
+        margin: 10px;
+    }
+}

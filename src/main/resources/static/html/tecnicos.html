@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor&Tech - Gerenciar Técnicos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <link rel="stylesheet" href="../css/tecnicos.css">
+</head>
+<body>
+
+    <div class="dashboard-container" id="pageContainer">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-subtext">Área do Gestor</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="gestor-chamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="usuarios.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
+                <a href="CadastrarCliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="Tecnicos.html" class="nav-item active"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
+                <div class="sidebar-footer">
+                    <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left"></div>
+                <div class="header-actions">
+                    <div class="profile-menu">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=5334ea&color=fff" alt="User" class="user-avatar">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="card" id="cardTecnicos">
+                    
+                    <div class="card-header">
+                        <div class="header-icon-circle"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="header-title-container">
+                            <div>
+                                <h1>Equipe Técnica de Campo</h1>
+                                <p>Gerencie os perfis dos técnicos, monitore a carga de trabalho atual e cadastre novos especialistas.</p>
+                            </div>
+                            <a href="#modalNovoTecnico" class="btn-header-action"><i class="fa-solid fa-plus"></i> Novo Técnico</a>
+                        </div>
+                    </div>
+
+                    <div class="indicators-grid">
+                        <div class="indicator-mini-card">
+                            <span class="ind-label">Total de Técnicos</span>
+                            <span class="ind-value">8</span>
+                        </div>
+                        <div class="indicator-mini-card">
+                            <span class="ind-label">Disponíveis Agora</span>
+                            <span class="ind-value text-success">5</span>
+                        </div>
+                        <div class="indicator-mini-card">
+                            <span class="ind-label">Em Atendimento</span>
+                            <span class="ind-value text-warning">3</span>
+                        </div>
+                    </div>
+
+                    <hr class="divider-line">
+
+                    <div class="section-title">🔍 Filtrar Especialistas</div>
+                    <form class="filter-bar">
+                        <div class="filter-group" style="grid-column: span 2;">
+                            <label for="filterNome">Nome do Técnico</label>
+                            <input type="text" id="filterNome" placeholder="Ex: Carlos Silva...">
+                        </div>
+
+                        <div class="filter-group" style="grid-column: span 2;">
+                            <label for="filterEspecialidade">Especialidade / Skill</label>
+                            <select id="filterEspecialidade">
+                                <option value="">Todas as Especialidades</option>
+                                <option value="Redes">Redes & Conectividade</option>
+                                <option value="Hardware">Hardware & Servidores</option>
+                                <option value="Sistemas">Sistemas & Impressoras</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group" style="grid-column: span 2;">
+                            <label for="filterStatusTecnico">Status Atual</label>
+                            <select id="filterStatusTecnico">
+                                <option value="">Todos os Status</option>
+                                <option value="DISPONIVEL">🟢 Disponível</option>
+                                <option value="EM_CAMPO">🟡 Em Atendimento</option>
+                                <option value="INDISPONIVEL">🔴 Indisponível</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-actions-btn">
+                            <button type="submit" class="btn-filter-submit" title="Filtrar"><i class="fa-solid fa-filter"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="section-title">📋 Técnicos Cadastrados</div>
+                    <div class="table-container">
+                        <table class="chamados-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome / Contato</th>
+                                    <th>Especialidade Principal</th>
+                                    <th class="text-center">Chamados Ativos</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-table-profile">
+                                            <img src="https://ui-avatars.com/api/?name=Carlos+Silva&background=0369a1&color=fff" class="avatar-table" alt="Carlos">
+                                            <div>
+                                                <strong class="font-medium">Carlos Silva</strong>
+                                                <span class="subtext-table">carlos.silva@gestortech.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge-specialty">Hardware & Servidores</span></td>
+                                    <td class="text-center font-bold-count">2</td>
+                                    <td><span class="badge-status-work em-campo">EM ATENDIMENTO</span></td>
+                                    <td class="text-center">
+                                        <button class="btn-table-action-edit" title="Editar dados"><i class="fa-solid fa-pen"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-table-profile">
+                                            <img src="https://ui-avatars.com/api/?name=Marcos+Souza&background=16a34a&color=fff" class="avatar-table" alt="Marcos">
+                                            <div>
+                                                <strong class="font-medium">Marcos Souza</strong>
+                                                <span class="subtext-table">marcos.souza@gestortech.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge-specialty">Sistemas & Impressoras</span></td>
+                                    <td class="text-center font-bold-count">0</td>
+                                    <td><span class="badge-status-work disponivel">DISPONÍVEL</span></td>
+                                    <td class="text-center">
+                                        <button class="btn-table-action-edit" title="Editar dados"><i class="fa-solid fa-pen"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <div id="modalNovoTecnico" class="modal-overlay">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <div>
+                        <span class="modal-subtitle">Gestão de Equipe</span>
+                        <h2>Adicionar Novo Técnico</h2>
+                    </div>
+                    <a href="#" class="btn-close-modal">&times;</a>
+                </div>
+
+                <div class="modal-body">
+                    <form class="modal-form">
+                        <div class="input-group-modal">
+                            <label for="nomeTecnico">Nome Completo *</label>
+                            <input type="text" id="nomeTecnico" placeholder="Digite o nome do profissional" required>
+                        </div>
+
+                        <div class="input-group-modal">
+                            <label for="emailTecnico">E-mail Corporativo (Login) *</label>
+                            <input type="email" id="emailTecnico" placeholder="nome.sobrenome@gestortech.com" required>
+                        </div>
+
+                        <div class="form-row-2-col">
+                            <div class="input-group-modal">
+                                <label for="telTecnico">Telefone / WhatsApp *</label>
+                                <input type="tel" id="telTecnico" placeholder="(31) 99999-0000" required>
+                            </div>
+                            <div class="input-group-modal">
+                                <label for="especialidadeTecnico">Especialidade Principal *</label>
+                                <select id="especialidadeTecnico" required>
+                                    <option value="" disabled selected>Selecione a skill</option>
+                                    <option value="Hardware">Hardware & Servidores</option>
+                                    <option value="Redes">Redes & Conectividade</option>
+                                    <option value="Sistemas">Sistemas & Impressoras</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer-actions">
+                            <a href="#" class="btn-modal-cancel">Cancelar</a>
+                            <button type="submit" class="btn-modal-save">Cadastrar Técnico</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
