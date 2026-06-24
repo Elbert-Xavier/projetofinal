@@ -31,6 +31,14 @@ public class EquipamentoEntity implements Serializable {
 	private LocalDate dataAquisicao;
 	private LocalDate dataCadastro;
 	private String descricao;
+	private String imagem;
+	
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 	public String getDescricao() {
 		return descricao;
 	}
