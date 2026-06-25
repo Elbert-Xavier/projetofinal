@@ -3,112 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestoretech - Cadastrar Chamado</title>
-    <link rel="stylesheet" href="../css/CadastroChamado.css">
+    <title>Gestoretech - Novo Chamado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/CadastroChamado.css">
     <script type="text/javascript" src="../js/CadastroChamado.js"></script>
 </head>
 <body>
 
-    <div class="dashboard-container">
+    <div class="d-flex h-100 vh-100 overflow-hidden">
         
-        <aside class="sidebar">
-            <div class="logo-area">
-                <span class="logo-g">G</span>
-                <span class="logo-text">Gestoretech</span>
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
             </div>
             
-            <nav class="sidebar-nav">
-                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-item">
-                    <i class="fa-regular fa-user"></i> Perfil
-                </a>
-                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-item active">
-                    <i class="fa-solid fa-plus"></i> Novo Chamado
-                </a>
-                <a href="http://localhost:8000/html/HistoricoChamados.html" class="nav-item">
-                    <i class="fa-solid fa-clipboard-list"></i> Meus Chamados
-                </a>
-                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-item">
-                    <i class="fa-solid fa-desktop"></i> Meus Equipamentos
-                </a>
-                <a href="http://localhost:8000/login.html" class="nav-item">
-                    <i class="fa-solid fa-right-from-bracket"></i> Sair
-                </a>
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="#" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-user me-3"></i> Perfil</a>
+                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
+                <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
+                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
             </nav>
         </aside>
 
-        <main class="main-content">
-            <div class="form-card">
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <form class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
                 
-                <div class="form-header">
-                    <div class="icon-header-box">
-                        <i class="fa-solid fa-file-signature"></i>
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                        <i class="fa-solid fa-pen-to-square fs-5"></i>
                     </div>
                     <div>
-                        <h2>Cadastrar Chamado</h2>
-                        <p>Preencha as informações abaixo para relatar o problema.</p>
+                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Cadastrar Chamado</h1>
+                        <p class="text-muted small mb-0">Preencha as informações abaixo para relatar o problema.</p>
                     </div>
                 </div>
 
-                <form>
-                    <div class="form-group">
-                        <label for="equipamento">Meus Equipamentos <span class="required">*</span></label>
-                        <div class="select-wrapper">
-                            <i class="fa-solid fa-desktop input-icon"></i>
-                            <select id="equipamento" required>
-                                <option value="" disabled selected hidden>Selecione um equipamento</option>
-                                <option value="1">Notebook Dell - Tag 1234</option>
-                                <option value="2">Monitor LG - Tag 5678</option>
+                <div class="d-flex flex-column gap-4">
+                    
+                    <div>
+                        <label for="selectEquipment" class="form-label fw-bold text-dark-blue small mb-2">Meus Equipamentos <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0 text-purple-icon"><i class="fa-solid fa-desktop"></i></span>
+                            <select class="form-select border-start-0 ps-1 py-2.5" id="selectEquipment" required>
+                                <option value="" selected disabled>Selecione um equipamento</option>
+                                <option value="1">Notebook Dell Inspiron 15 (Série: BR-789456X)</option>
+                                <option value="2">Monitor LG 24" UltraWide (Série: LG-112233M)</option>
+                                <option value="3">Teclado Mecânico Logitech K835 (Série: LT-445566K)</option>
                             </select>
                         </div>
                     </div>
 
-<div class="form-group">
-    <label for="titulo">Título do Chamado <span class="required">*</span></label>
-    <div class="input-wrapper" style="position: relative; display: flex; align-items: center; width: 100%;">
-        <i class="fa-solid fa-heading" style="position: absolute; left: 15px; color: #6f42c1; font-size: 16px;"></i>
-        
-        <input type="text" id="titulo" placeholder="Ex: Tela piscando, Notebook não liga..." required 
-               style="width: 100%; padding: 14px 15px 14px 45px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;">
-    </div>
-</div>
-                    <div class="form-group">
-                        <label for="descricao">Descreva o problema <span class="required">*</span></label>
-                        <div class="textarea-wrapper">
-                            <textarea id="descricao" maxlength="200" placeholder="Descreva detalhadamente o que está acontecendo..." required></textarea>
-                            <span class="char-count">0/200 caracteres</span>
+                    <div>
+                        <label for="ticketTitle" class="form-label fw-bold text-dark-blue small mb-2">Título do Chamado <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0 text-purple-icon"><i class="fa-solid fa-heading"></i></span>
+                            <input type="text" class="form-select border-start-0 ps-1 py-2.5 tag-input-fix" id="ticketTitle" placeholder="Ex: Tela piscando, Notebook não liga..." required>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Adicione foto ou vídeo sobre o problema <span class="optional">(Obrigatório)</span></label>
-                        <div class="upload-area" >
-                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
-                            <p class="upload-text"><strong>Arraste e solte arquivos aqui</strong> <br> ou clique para selecionar</p>
-                            
-                            <p class="upload-info">
-                            	<label class="upload-container">
-									<input type="file" id="urlImagem" accept=".jpg,.jpeg,.png,.mp4,.mov" style="display: none;">
-    								<i class="fa-regular fa-question-circle"></i> 
-   									Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)
-   									<img alt="" src="">
-								</label>
-                               		
-                            </p>
+                    <div>
+                        <label for="ticketDescription" class="form-label fw-bold text-dark-blue small mb-2">Descreva o problema <span class="text-danger">*</span></label>
+                        <textarea class="form-control py-3" id="ticketDescription" rows="4" placeholder="Descreva detalhadamente o que está acontecendo..." maxlength="200" required></textarea>
+                        <div class="text-end text-muted small mt-1">0/200 caracteres</div>
+                    </div>
+
+                    <div>
+                        <label class="form-label fw-bold text-dark-blue small mb-2">Adicione foto ou vídeo sobre o problema <span class="text-muted fw-normal">(Obrigatório)</span></label>
+                        <div class="upload-container d-flex flex-column align-items-center justify-content-center p-4 text-center rounded-3 position-relative">
+                            <input type="file" class="file-input-overlay" id="fileUpload" accept="image/*,video/*" required>
+                            <div class="upload-icon-circle mb-3">
+                                <i class="fa-solid fa-cloud-arrow-up fs-4 text-white"></i>
+                            </div>
+                            <p class="mb-1 fw-bold text-dark-blue">Arraste e solte arquivos aqui</p>
+                            <p class="text-muted small mb-2">ou clique para selecionar</p>
+                            <span class="text-muted text-uppercase font-xs fw-medium">Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)</span>
                         </div>
                     </div>
 
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-cancel">
-                            <i class="fa-solid fa-xmark"></i> Cancelar
-                        </button>
-                        <button type="button" class="btn btn-submit" onclick="salvarChamado()">
-                            <i class="fa-solid fa-floppy-disk"></i> Salvar Chamado
-                        </button>
-                    </div>
-                </form>
+                </div>
 
-            </div>
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-4 border-top">
+                    <button type="button" class="btn btn-cancel px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </button>
+                    <button type="button" class="btn btn-purple px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2" onclick="salvarChamado()">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar Chamado
+                    </button>
+                </div>
+
+            </form>
         </main>
     </div>
 

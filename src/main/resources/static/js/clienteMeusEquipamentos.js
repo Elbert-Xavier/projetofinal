@@ -16,7 +16,7 @@ async function listarEquipamentos() {
 
 	        listaEquipamentos.forEach(equipamento => {
 	            corpoTabela.innerHTML += `	
-	            <button type="button"  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3 mb-2" data-bs-toggle="modal" data-bs-target="#equipmentModal">
+	            <button type="button" onclick="exibirModelProduto(this)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3 mb-2" data-bs-toggle="modal" data-bs-target="#equipmentModal">
 	                <div class="d-flex align-items-center gap-3">
 	                    <div class="item-icon text-center"><i class="fa-solid fa-laptop fs-4"></i></div>
 	                    <div>
@@ -28,27 +28,32 @@ async function listarEquipamentos() {
 	                <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
 	            </button>`;
 	        });
+			console.log(corpoTabela)
 }
 document.addEventListener("DOMContentLoaded",() =>{
 	listarEquipamentos();
 })
-async function exibirModelProduto() {
+async function exibirModelProduto(button) {
 	
-	let idEquipamento = document.getElementById('idEquipamento').innerText;
+	const pIdEquipamento = button.querySelector('#idEquipamento');
+	    
+	    // Pega o texto (o ID do equipamento) de dentro do <p>
+	    const EquipamentoID = pIdEquipamento.textContent;
 	
-	const response = await fetch(`${API_BUSCAR_ID}/${idEquipamento}`)
+	console.log(EquipamentoID)
+	
+	const response = await fetch(`${API_BUSCAR_ID}/${EquipamentoID}`)
 	const tabela = await response.json();
 	
-	const caminhoImg = '//SC-ALPHA/deploy/gestoretech/img/'
-	
 	console.log(tabela);
+	console.log(tabela.imagem);
 	
 	document.getElementById('tipoEquipamento').innerText = tabela.tipo;
 	document.getElementById('fabricante').innerText = tabela.fabricante;
 	document.getElementById('modelo').innerText = tabela.modelo;
 	document.getElementById('numeroSerie').innerText = tabela.numeroSerie;
 	document.getElementById('dataCadastro').innerText = tabela.dataCadastro;
-	document.getElementById('dataCadastro').src = caminhoImg + tabela.imagem;
+	document.getElementById('imagemEquipamento').src = `/img/${tabela.imagem}`;
 
 }
 
