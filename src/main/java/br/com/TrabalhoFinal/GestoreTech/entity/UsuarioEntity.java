@@ -21,12 +21,11 @@ public class UsuarioEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String tipoUsuario;
-	private String nome;
-	private String titulo;
+	private String nome;	
+	private String cargo;
 	private String telefone;
 	private String nivelHierarquico;
 	private LocalDate dataCadastro;
-
 	private String email;
 	private String senha;
 	public int getId() {
@@ -48,10 +47,10 @@ public class UsuarioEntity implements Serializable{
 		this.nome = nome;
 	}
 	public String getTitulo() {
-		return titulo;
+		return cargo;
 	}
 	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+		this.cargo = titulo;
 	}
 	public String getTelefone() {
 		return telefone;
