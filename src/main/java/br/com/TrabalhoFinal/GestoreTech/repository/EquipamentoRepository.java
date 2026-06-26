@@ -14,5 +14,6 @@ public interface EquipamentoRepository extends JpaRepository<EquipamentoEntity, 
 	List<EquipamentoEntity>findByTipoContainingIgnoreCase(String tipo);
 	List<EquipamentoEntity>findByFabricanteContainingIgnoreCase(String marca);
 	List<EquipamentoEntity>findByModeloContainingIgnoreCase(String modelo);
+	List<EquipamentoEntity>findByNumeroSerieContainingIgnoreCase(String numeroSerie);
 	List<EquipamentoEntity> findAllByOrderByNomeAsc();
 }

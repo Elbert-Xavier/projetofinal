@@ -37,7 +37,7 @@ async function logar(){
 			"usuarioLogado",
 			JSON.stringify(data)
 		);
-		localStorage
+		localStorage.setItem("usuario","logado")
 		window.location.href = "html/HistoricoChamados.html";
 	}else{
 		alert("Email ou Senha invalidos!");

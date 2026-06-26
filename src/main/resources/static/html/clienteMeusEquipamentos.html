@@ -42,9 +42,29 @@
                     </div>
                 </div>
 
+                <div class="row g-2 mb-4">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-filter"></i></span>
+                            <select class="form-select border-start-0 ps-1 py-2" id="filtroCriterio">
+                                <option value="todos" selected>Filtrar por: Todos</option>
+                                <option value="serie">Número de Série</option>
+                                <option value="fabricante">Fabricante</option>
+                                <option value="modelo">Modelo</option>
+                                <option value="tipo">Tipo do Equipamento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control border-start-0 ps-1 py-2" id="filtroBusca" placeholder="Digite aqui para buscar..." onblur="filtro(this)">
+                        </div>
+                    </div>
+                </div>
                 <div class="list-group d-flex flex-column gap-3 border-0" id="tabelaEquipamento">
                     
-                    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3" data-bs-toggle="modal" data-bs-target="#equipmentModal">
+                    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3" data-bs-toggle="modal" data-bs-target="#equipmentModal" data-tipo="notebook" data-fabricante="dell" data-modelo="inspiron 15 series 5000" data-serie="br-789456x">
                         <div class="d-flex align-items-center gap-3">
                             <div class="item-icon text-center"><i class="fa-solid fa-laptop fs-4"></i></div>
                             <div>
@@ -55,7 +75,7 @@
                         <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
                     </button>
 
-                    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3" data-bs-toggle="modal" data-bs-target="#equipmentModal">
+                    <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3" data-bs-toggle="modal" data-bs-target="#equipmentModal" data-tipo="monitor" data-fabricante="lg" data-modelo="24 ultrawide" data-serie="lg-112233m">
                         <div class="d-flex align-items-center gap-3">
                             <div class="item-icon text-center"><i class="fa-solid fa-desktop fs-4"></i></div>
                             <div>
@@ -93,19 +113,19 @@
                                 </div>
                                 <div class="col-6">
                                     <label class="text-muted small d-block">Fabricante</label>
-                                    <span class="fw-semibold text-dark-blue"id="fabricante">Dell</span>
+                                    <span class="fw-semibold text-dark-blue" id="fabricante">Dell</span>
                                 </div>
                                 <div class="col-12">
                                     <label class="text-muted small d-block">Modelo</label>
-                                    <span class="fw-semibold text-dark-blue"id="modelo">Inspiron 15 Series 5000</span>
+                                    <span class="fw-semibold text-dark-blue" id="modelo">Inspiron 15 Series 5000</span>
                                 </div>
                                 <div class="col-6">
                                     <label class="text-muted small d-block">Número de Série</label>
-                                    <span class="fw-semibold text-dark-blue text-uppercase"id="numeroSerie">BR-789456X</span>
+                                    <span class="fw-semibold text-dark-blue text-uppercase" id="numeroSerie">BR-789456X</span>
                                 </div>
                                 <div class="col-6">
                                     <label class="text-muted small d-block">Data de Cadastro</label>
-                                    <span class="fw-semibold text-dark-blue"id="dataCadastro">15/03/2023</span>
+                                    <span class="fw-semibold text-dark-blue" id="dataCadastro">15/03/2023</span>
                                 </div>
                             </div>
                         </div>

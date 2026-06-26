@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Meus Chamados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/clienteMeusChamados.css">
+    <script type="text/javascript" src="../js/clienteMeusChamados.js"></script>
+</head>
+<body>
+
+    <div class="d-flex h-100 vh-100 overflow-hidden">
+        
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+            </div>
+            
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="#" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-user me-3"></i> Perfil</a>
+                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
+                <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
+                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
+                
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                        <i class="fa-regular fa-file-lines fs-5"></i>
+                    </div>
+                    <div>
+                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Meus Chamados</h1>
+                        <p class="text-muted small mb-0">Acompanhe o andamento dos seus chamados e o suporte dos técnicos.</p>
+                    </div>
+                </div>
+
+                <div class="card bg-white border p-3 rounded-3 mb-4">
+                    <form id="filterForm" class="row g-3">
+                        <div class="col-md-4">
+                            <label for="filterStatus" class="form-label small fw-semibold text-secondary">Status</label>
+                            <select id="filterStatus" class="form-select form-select-sm rounded-3">
+                                <option value="">Todos</option>
+                                <option value="Em Atendimento">Em Atendimento</option>
+                                <option value="Resolvido">Resolvido</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterEquipamento" class="form-label small fw-semibold text-secondary">Tipo de Equipamento</label>
+                            <select id="filterEquipamento" class="form-select form-select-sm rounded-3">
+                                <option value="">Todos</option>
+                                <option value="Notebook">Notebook</option>
+                                <option value="Monitor">Monitor</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterFabricante" class="form-label small fw-semibold text-secondary">Fabricante</label>
+                            <input type="text" id="filterFabricante" class="form-control form-control-sm rounded-3" placeholder="Ex: Dell, LG">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterModelo" class="form-label small fw-semibold text-secondary">Modelo</label>
+                            <input type="text" id="filterModelo" class="form-control form-control-sm rounded-3" placeholder="Ex: Inspiron 15">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterDataInicial" class="form-label small fw-semibold text-secondary">Data Inicial</label>
+                            <input type="date" id="filterDataInicial" class="form-control form-control-sm rounded-3">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterDataFinal" class="form-label small fw-semibold text-secondary">Data Final</label>
+                            <input type="date" id="filterDataFinal" class="form-control form-control-sm rounded-3">
+                        </div>
+                    </form>
+                </div>
+                <div class="list-group d-flex flex-column gap-3 border-0">
+                    
+                    <button type="button" class="list-group-item list-group-item-action border rounded-3 p-3 text-start ticket-item" 
+                            data-bs-toggle="modal" data-bs-target="#ticketModal1"
+                            data-status="Em Atendimento" data-equipamento="Notebook" data-fabricante="Dell" data-modelo="Inspiron 15" data-data="25/06/2026">
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                            <div>
+                                <span class="badge text-bg-light border text-secondary mb-1">#CH-8842</span>
+                                <h3 class="h6 mb-1 fw-semibold text-dark-blue">Notebook não liga após atualização</h3>
+                            </div>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">Em Atendimento</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center text-muted small mt-2 pt-2 border-top-dashed">
+                            <span>Dell Inspiron 15</span>
+                            <span>Técnico: <strong>Carlos Silva</strong></span>
+                            <span>Atua. em: 25/06/2026</span>
+                        </div>
+                    </button>
+
+                    <button type="button" class="list-group-item list-group-item-action border rounded-3 p-3 text-start ticket-item" 
+                            data-bs-toggle="modal" data-bs-target="#ticketModal1"
+                            data-status="Resolvido" data-equipamento="Monitor" data-fabricante="LG" data-modelo="24" data-data="20/06/2026">
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                            <div>
+                                <span class="badge text-bg-light border text-secondary mb-1">#CH-8711</span>
+                                <h3 class="h6 mb-1 fw-semibold text-dark-blue">Tela piscando intermitente</h3>
+                            </div>
+                            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">Resolvido</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center text-muted small mt-2 pt-2 border-top-dashed">
+                            <span>Monitor LG 24"</span>
+                            <span>Técnico: <strong>Ana Souza</strong></span>
+                            <span>Atua. em: 20/06/2026</span>
+                        </div>
+                    </button>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

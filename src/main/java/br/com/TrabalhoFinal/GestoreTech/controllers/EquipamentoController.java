@@ -53,10 +53,15 @@ public class EquipamentoController {
 	public List<EquipamentoEntity> listarMarca(@PathVariable String marca){
 		return equipamentoRepository.findByFabricanteContainingIgnoreCase(marca);
 	}
-	@GetMapping("/listarnome/{modelo}")
+	@GetMapping("/listarmodelo/{modelo}")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> listarModelo(@PathVariable String modelo){
 		return equipamentoRepository.findByModeloContainingIgnoreCase(modelo);
+	}
+	@GetMapping("/listarserie/{serie}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<EquipamentoEntity> listarSerie(@PathVariable String serie){
+		return equipamentoRepository.findByNumeroSerieContainingIgnoreCase(serie);
 	}
 	@DeleteMapping("/deletar/{id}")
 	public String deletarEquipamento(@PathVariable int id) {

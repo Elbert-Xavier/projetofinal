@@ -1,5 +1,9 @@
 const API_BUSCAR_TODOS = 'http://localhost:8000/equipamentos/listarTodos';
 const API_BUSCAR_ID = 'http://localhost:8000/equipamentos/listaPorID';
+const API_BUSCAR_POR_MODELO = 'http://localhost:8000/equipamentos/listarmodelo';
+const API_BUSCAR_POR_FABRICANTE = 'http://localhost:8000/equipamentos/listarmarca';
+const API_BUSCAR_POR_SERIE = 'http://localhost:8000/equipamentos/listarserie';
+const API_BUSCAR_POR_TIPO = 'http://localhost:8000/equipamentos/listartipo';
 
 async function listarEquipamentos() {
 	const response = await fetch(API_BUSCAR_TODOS);
@@ -55,6 +59,39 @@ async function exibirModelProduto(button) {
 	document.getElementById('dataCadastro').innerText = tabela.dataCadastro;
 	document.getElementById('imagemEquipamento').src = `/img/${tabela.imagem}`;
 
+}
+
+async function filtro(input) {
+	
+	let statusFiltro = document.getElementById('filtroCriterio').value;
+	
+	if(statusFiltro == "serie"){
+
+		const response = await fetch(`${API_BUSCAR_POR_SERIE}/${input.value}`)
+		const dados = await response.json();
+		console.log(dados)
+		
+	}else if(statusFiltro == "fabricante"){
+
+		const response = await fetch(`${API_BUSCAR_POR_FABRICANTE}/${input.value}`)
+		const dados = await response.json();
+		console.log(dados)
+		
+	}else if(statusFiltro == "modelo"){
+
+		const response = await fetch(`${API_BUSCAR_POR_MODELO}/${input.value}`)
+		const dados = await response.json();
+		console.log(dados)
+		
+	}else if(statusFiltro == "tipo"){
+
+		const response = await fetch(`${API_BUSCAR_POR_TIPO}/${input.value}`)
+		const dados = await response.json();
+		console.log(dados)
+		
+	}
+
+	
 }
 
 

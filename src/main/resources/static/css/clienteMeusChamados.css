@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+.text-dark-blue {
+    color: #1e1b4b;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+}
+
+.logo-box {
+    background-color: #6366f1;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.sidebar .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sidebar .nav-link.active {
+    background-color: #e0e7ff !important;
+    color: #6366f1 !important;
+    font-weight: 600;
+}
+
+/* Icons & Header */
+.header-icon {
+    background-color: #e0e7ff;
+    color: #6366f1;
+    width: 48px;
+    height: 48px;
+}
+
+/* Lista Customizada de Chamados */
+.list-group-item-action {
+    border-color: #e2e8f0 !important;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+
+.list-group-item-action:hover {
+    border-color: #6366f1 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
+}
+
+.border-top-dashed {
+    border-top: 1px dashed #e2e8f0;
+}
+
+/* Badges Customizados */
+.bg-primary-subtle {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+}
+
+.bg-success-subtle {
+    background-color: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+/* Estilos de Conversa Interna do Chamado */
+.bg-indigo-light {
+    background-color: #f5f3ff;
+    border: 1px solid #e0e7ff;
+}
+
+.border-start-purple {
+    border-left: 3px solid #6366f1 !important;
+}
+
+.text-secondary-dark {
+    color: #334155;
+}
+
+.btn-light-gray {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.btn-light-gray:hover {
+    background-color: #e2e8f0;
+}
+
+label {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+/* Container e Ajustes para a Imagem de Evidência dentro do Modal */
+.ticket-image-container {
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: border-color 0.2s ease;
+}
+
+.ticket-image-container:hover {
+    border-color: #6366f1;
+}
+
+.ticket-preview-img {
+    max-height: 200px; /* Impede que imagens muito verticais quebrem o modal */
+    width: 100%;
+    object-fit: cover; /* Faz o corte proporcional elegante */
+    cursor: pointer;
+}
+
+.font-xs {
+    font-size: 11px;
+}
