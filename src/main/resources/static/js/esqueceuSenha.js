@@ -1,4 +1,4 @@
-const API_ENVIAR_GMAIL ='http://localhost:8000/email';
+const API_ENVIAR_GMAIL ='http://localhost:8000/emailRecuperar';
 const API_BUSCAR_GMAIL ='http://localhost:8000/usuarios/BuscarPorEmail';
 
 

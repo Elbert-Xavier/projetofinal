@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+.text-dark-blue {
+    color: #1e1b4b;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+}
+
+.logo-box {
+    background-color: #6366f1;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.sidebar .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sidebar .nav-link.active {
+    background-color: #e0e7ff !important;
+    color: #6366f1 !important;
+    font-weight: 600;
+}
+
+/* Icons & Header */
+.header-icon {
+    background-color: #e0e7ff;
+    color: #6366f1;
+    width: 48px;
+    height: 48px;
+}
+
+/* Customização dos Inputs */
+.form-control, .form-select, .input-group-text {
+    border-color: #cbd5e1;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-control[readonly] {
+    cursor: not-allowed;
+}
+
+/* Botões */
+.btn-purple {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    font-size: 14px;
+}
+
+.btn-purple:hover {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.btn-outline-secondary {
+    font-size: 14px;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #334155;
+}

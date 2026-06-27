@@ -15,7 +15,7 @@ public class EmailController {
     @Autowired
     private JavaMailSender mailSender;
 
-    @GetMapping("/email/{destinatario}")
+    @GetMapping("/emailRecuperar/{destinatario}")
     public String enviarEmailHtml(@PathVariable String destinatario) {
 
         try {
