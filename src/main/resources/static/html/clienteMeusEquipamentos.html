@@ -47,7 +47,8 @@
                         <div class="input-group">
                             <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-filter"></i></span>
                             <select class="form-select border-start-0 ps-1 py-2" id="filtroCriterio">
-                                <option value="todos" selected>Filtrar por: Todos</option>
+                                <option disabled selected hidden = true>Filtro</option>
+                                <option value="nome" >Nome</option>
                                 <option value="serie">Número de Série</option>
                                 <option value="fabricante">Fabricante</option>
                                 <option value="modelo">Modelo</option>
@@ -58,7 +59,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control border-start-0 ps-1 py-2" id="filtroBusca" placeholder="Digite aqui para buscar..." onblur="filtro(this)">
+                            <input type="text" class="form-control border-start-0 ps-1 py-2" id="filtroBusca" placeholder="Digite aqui para buscar..." onblur="filtro(this.value)">
                         </div>
                     </div>
                 </div>

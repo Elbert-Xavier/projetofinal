@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "chamados")
@@ -31,15 +28,26 @@ public class ChamadoEntity implements Serializable {
 	private String descricao;
 	private String urlImagem;
 	private String status;
-	
 	@ManyToOne
 	@JoinColumn(name = "idEquipamento")
 	private EquipamentoEntity equipamento;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private UsuarioEntity usuario;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idCliente")
-	private ClienteEntity cliente;
-	
+
+	public EquipamentoEntity getEquipamento() {
+		return equipamento;
+	}
+	public void setEquipamento(EquipamentoEntity equipamento) {
+		this.equipamento = equipamento;
+	}
+	public UsuarioEntity getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioEntity usuario) {
+		this.usuario = usuario;
+	}
 	public int getId() {
 		return id;
 	}
