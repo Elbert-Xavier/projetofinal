@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor&Tech - Gerenciar Clientes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <link rel="stylesheet" href="../css/gestorChamados.css">
+</head>
+<body>
+
+    <div class="dashboard-container" id="pageContainer">
+        
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-subtext">Área do Gestor</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="gestor-chamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="usuarios.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
+                <a href="clientes.html" class="nav-item active"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="Tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
+                <div class="sidebar-footer">
+                    <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left"></div>
+                <div class="header-actions">
+                    <div class="profile-menu">
+                        <img src="https://ui-avatars.com/api/?name=Gestor&background=5334ea&color=fff" alt="User" class="user-avatar">
+                        <div class="user-text">
+                            <strong>Gestor</strong>
+                            <span class="status-online">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="card">
+                    
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="display: flex; gap: 16px; align-items: center;">
+                            <div class="header-icon-circle"><i class="fa-solid fa-users"></i></div>
+                            <div>
+                                <h1>Controle de Clientes e Contratos</h1>
+                                <p>Gerencie os dados cadastrais, parque de equipamentos instalados e histórico de suporte por empresa.</p>
+                            </div>
+                        </div>
+                        <a href="CadastrarCliente.html" class="btn-action-view" style="background-color: #5334ea; color: white;">
+                            <i class="fa-solid fa-plus"></i> Novo Cliente
+                        </a>
+                    </div>
+
+                    <form class="filter-bar" style="margin-top: 20px;">
+                        <div class="filter-group" style="flex: 2;">
+                            <label for="searchCliente">Buscar por Nome, CNPJ ou Cidade</label>
+                            <input type="text" id="searchCliente" placeholder="Ex: Oficina do Zé, 00.000... ou São Paulo">
+                        </div>
+                        <div class="filter-group">
+                            <label for="statusCliente">Status Contratual</label>
+                            <select id="statusCliente">
+                                <option value="">Todos</option>
+                                <option value="ATIVO">Ativos</option>
+                                <option value="INATIVO">Inativos</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions-btn">
+                            <button type="submit" class="btn-filter-submit" title="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="table-container" style="margin-top: 20px;">
+                        <table class="chamados-table">
+                            <thead>
+                                <tr>
+                                    <th>Razão Social / Fantasia</th>
+                                    <th>CNPJ</th>
+                                    <th>Contato / Telefone</th>
+                                    <th class="text-center">Equipamentos</th>
+                                    <th class="text-center">Chamados Abertos</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Gerenciar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-medium">Oficina do Zé Ltda</td>
+                                    <td class="text-muted font-code">12.345.678/0001-99</td>
+                                    <td>(11) 99888-7766</td>
+                                    <td class="text-center"><strong>4</strong></td>
+                                    <td class="text-center"><span class="badge-urgencia alta" style="padding: 2px 8px;">1 ativo</span></td>
+                                    <td><span class="badge-status finalizado" style="background-color: #dcfce7; color: #16a34a;">ATIVO</span></td>
+                                    <td class="text-center">
+                                        <a href="#modalDossieCliente" class="btn-action-history-view" title="Ver Equipamentos e Histórico" style="color: #5334ea;">
+                                            <i class="fa-solid fa-folder-open"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <div id="modalDossieCliente" class="modal-overlay">
+            <div class="modal-card modal-card-large" style="max-width: 1050px; width: 95%;">
+                <div class="modal-header">
+                    <div>
+                        <span class="modal-subtitle">Dossiê 360° do Cliente</span>
+                        <h2>Oficina do Zé Ltda</h2>
+                    </div>
+                    <a href="#" class="btn-close-modal">&times;</a>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="details-section-grid" style="margin-bottom: 24px; background-color: #f8fafc; padding: 12px; border-radius: 8px;">
+                        <div>
+                            <label>Endereço Operacional</label>
+                            <p class="detail-value-text" style="font-size: 13px;">Rua das Oficinas, 150 - Centro - Contagem/MG</p>
+                        </div>
+                        <div>
+                            <label>Contato Principal</label>
+                            <p class="detail-value-text" style="font-size: 13px;">José Souza (Gerente)</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <div class="section-title-modal" style="margin: 0; border: none; color: #0f172a;"><i class="fa-solid fa-server" style="color: #5334ea;"></i> 1. Equipamentos Vinculados</div>
+                        <a href="#modalVincularEquipamento" class="btn-action-view" style="padding: 4px 10px; font-size: 11px; background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; text-decoration: none; display: inline-block;">
+                            <i class="fa-solid fa-plus"></i> Vincular Equipamento
+                        </a>
+                    </div>
+
+                    <form class="filter-bar" style="background-color: #f8fafc; padding: 10px; margin-bottom: 12px; gap: 10px;">
+                        <div class="filter-group" style="flex: 1.5;">
+                            <label style="font-size: 11px;">Nº de Série / Tag</label>
+                            <input type="text" placeholder="Buscar Série..." style="padding: 6px; font-size: 12px;">
+                        </div>
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Nome / Modelo</label>
+                            <input type="text" placeholder="Ex: Servidor, Caixa..." style="padding: 6px; font-size: 12px;">
+                        </div>
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Fabricante</label>
+                            <input type="text" placeholder="Ex: Dell, HP..." style="padding: 6px; font-size: 12px;">
+                        </div>
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Localização / Setor</label>
+                            <input type="text" placeholder="Ex: CPD, Balcão..." style="padding: 6px; font-size: 12px;">
+                        </div>
+                        <div class="filter-actions-btn" style="align-self: flex-end;">
+                            <button type="submit" class="btn-filter-submit" style="padding: 7px 12px;" title="Filtrar Equipamentos"><i class="fa-solid fa-magnifying-glass" style="font-size: 12px;"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="table-container" style="margin-bottom: 35px; box-shadow: none; border: 1px solid #e2e8f0;">
+                        <table class="chamados-table" style="font-size: 12px;">
+                            <thead style="background-color: #f1f5f9;">
+                                <tr>
+                                    <th>Nº de Série / Tag</th>
+                                    <th>Equipamento / Modelo</th>
+                                    <th>Fabricante</th>
+                                    <th>Setor / Localização</th>
+                                    <th>Data de Cadastro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-code">DELL-OPT-990</td>
+                                    <td class="font-medium">Servidor Dell Optiplex</td>
+                                    <td>Dell Enterprise</td>
+                                    <td>TI / Sala de CPD</td>
+                                    <td class="text-muted">12/03/2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-code">BAL-TOL-04</td>
+                                    <td class="font-medium">Balança Checkout 30kg</td>
+                                    <td>Toledo</td>
+                                    <td>Frente de Caixa 01</td>
+                                    <td class="text-muted">18/07/2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="section-title-modal" style="color: #0f172a; border-bottom: 2px solid #e2e8f0; margin-bottom: 12px; padding-bottom: 6px;">
+                        <i class="fa-solid fa-clock-history" style="color: #64748b;"></i> 2. Histórico de Chamados do Cliente
+                    </div>
+
+                    <form class="filter-bar" style="background-color: #f8fafc; padding: 10px; margin-bottom: 12px; gap: 10px;">
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Equipamento</label>
+                            <input type="text" placeholder="Ex: Servidor..." style="padding: 6px; font-size: 12px;">
+                        </div>
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Fabricante</label>
+                            <input type="text" placeholder="Ex: Schulz, Toledo..." style="padding: 6px; font-size: 12px;">
+                        </div>
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Data Inicial</label>
+                            <input type="date" style="padding: 5px; font-size: 12px;">
+                        </div>
+                        <div class="filter-group">
+                            <label style="font-size: 11px;">Data Final</label>
+                            <input type="date" style="padding: 5px; font-size: 12px;">
+                        </div>
+                        <div class="filter-actions-btn" style="align-self: flex-end;">
+                            <button type="submit" class="btn-filter-submit" style="padding: 7px 12px;" title="Filtrar Chamados"><i class="fa-solid fa-filter" style="font-size: 12px;"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="table-container" style="box-shadow: none; border: 1px solid #e2e8f0;">
+                        <table class="chamados-table" style="font-size: 12px;">
+                            <thead style="background-color: #f1f5f9;">
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Data Abertura</th>
+                                    <th>Equipamento</th>
+                                    <th>Fabricante</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-code">#CH-2026-0490</td>
+                                    <td>25/06/2026</td>
+                                    <td>Servidor Dell Optiplex</td>
+                                    <td>Dell Enterprise</td>
+                                    <td><span class="badge-status aberto" style="font-size: 9px; padding: 2px 6px;">ABERTO</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-code">#CH-2026-0312</td>
+                                    <td>10/04/2026</td>
+                                    <td>Balança Checkout 30kg</td>
+                                    <td>Toledo</td>
+                                    <td><span class="badge-status finalizado" style="font-size: 9px; padding: 2px 6px;">FINALIZADO</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="modal-footer-actions" style="margin-top: 24px;">
+                        <a href="#" class="btn-modal-cancel" style="width: 100%;">Fechar Dossiê</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalVincularEquipamento" class="custom-modal-overlay">
+            <div class="custom-modal-card">
+                <div class="modal-header">
+                    <h3><i class="fa-solid fa-cube" style="color: #5334ea;"></i> Vincular Novo Equipamento</h3>
+                    <a href="#modalDossieCliente" class="btn-close-modal" style="text-decoration: none;">&times;</a>
+                </div>
+                
+                <form class="modal-form">
+                    <div class="modal-body">
+                        
+                        <div class="photo-upload-container">
+                            <label class="photo-upload-label" for="equipFotoInput">
+                                <div class="photo-preview-placeholder" id="photoPreview">
+                                    <i class="fa-solid fa-camera"></i>
+                                    <span>Adicionar Foto</span>
+                                </div>
+                            </label>
+                            <input type="file" id="equipFotoInput" accept="image/*" style="display: none;">
+                        </div>
+
+                        <div class="modal-form-fields">
+                            <div class="modal-input-group">
+                                <label for="equipTipo">Tipo de Equipamento *</label>
+                                <input type="text" id="equipTipo" placeholder="Ex: Computador" required>
+                            </div>
+                            <div class="modal-input-group">
+                                <label for="equipFabricante">Fabricante *</label>
+                                <input type="text" id="equipFabricante" placeholder="Ex: Dell" required>
+                            </div>
+                            <div class="modal-input-group">
+                                <label for="equipModelo">Modelo *</label>
+                                <input type="text" id="equipModelo" placeholder="Ex: Optiplex 3080" required>
+                            </div>
+                            <div class="modal-input-group">
+                                <label for="equipNumSerie">Nº de Série / Tag</label>
+                                <input type="text" id="equipNumSerie" placeholder="Ex: BR12345">
+                            </div>
+                            <div class="modal-input-group">
+                                <label for="equipObs">Localização / Observações</label>
+                                <input type="text" id="equipObs" placeholder="Ex: No balcão">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#modalDossieCliente" class="btn-modal-cancel" style="text-decoration: none; line-height: 2rem;">Cancelar</a>
+                        <button type="submit" class="btn-modal-save">Salvar Equipamento</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
     background: #ffffff;
 }
 
-/* Cabeçalho Premium (Baseado na imagem de referência) */
+/* Cabeçalho Premium */
 .card-header {
     display: flex;
     align-items: center;
@@ -193,7 +193,9 @@
     text-align: center;
 }
 
-/* Botão de Ação: Ícone de Despacho */
+/* ==========================================================================
+   4. BOTÕES DE AÇÃO E ELEMENTOS INTERATIVOS
+   ========================================================================== */
 .btn-action-despach {
     display: inline-block;
     color: #6b21a8;
@@ -209,8 +211,45 @@
     transform: translateY(-1px);
 }
 
+.btn-action-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #5334ea; 
+    color: #ffffff;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-action-view:hover {
+    background-color: #4325c9;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.btn-action-history-view {
+    display: inline-block;
+    color: #64748b;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-action-history-view:hover {
+    background-color: #f1f5f9;
+    color: #6b21a8;
+    transform: translateX(2px);
+}
+
 /* ==========================================================================
-   4. MODAL DE DESPACHO E DETALHES (CSS-DRIVEN VIA :TARGET)
+   5. MODAL DE DESPACHO PADRÃO (SISTEMA DE ANCHORING VIA :TARGET)
    ========================================================================== */
 .modal-overlay {
     position: fixed;
@@ -223,7 +262,6 @@
     backdrop-filter: blur(4px);
 }
 
-/* Ativação por âncora */
 .modal-overlay:target {
     display: flex;
 }
@@ -280,7 +318,7 @@
     padding: 24px;
 }
 
-/* Box de Detalhes Enviados pelo Cliente */
+/* Box de Detalhes do Cliente */
 .details-section {
     background-color: #f8fafc;
     padding: 16px;
@@ -312,7 +350,7 @@
     margin: 4px 0 0 0;
 }
 
-/* Evidência Fotográfica do Upload */
+/* Upload de Evidências */
 .image-preview-container {
     margin-top: 6px;
     border: 1px solid #e2e8f0;
@@ -338,7 +376,7 @@
     border-top: 1px solid #e2e8f0;
 }
 
-/* Formulário de Despacho */
+/* Formulário Interno do Modal */
 .section-title-modal {
     font-size: 12px;
     font-weight: 700;
@@ -380,7 +418,6 @@
     border-color: #6b21a8;
 }
 
-/* Botões do Modal */
 .modal-footer-actions {
     display: flex;
     justify-content: flex-end;
@@ -417,7 +454,98 @@
 .btn-modal-save:hover { background-color: #581c87; }
 
 /* ==========================================================================
-   5. BADGES DE URGÊNCIA E STATUS (DESIGN SYSTEM COESO)
+   6. SEÇÃO COMPLEMENTAR: MODAL EXPANDIDO (LARGE) & INFRAESTRUTURA DE TÉCNICOS
+   ========================================================================== */
+.modal-card-large {
+    max-width: 750px;
+}
+
+.details-section-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    background-color: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.modal-gallery-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.list-tech-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.tech-assignment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.tech-row-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #fff;
+    transition: background-color 0.15s ease;
+}
+
+.tech-row-card:hover {
+    background-color: #f8fafc;
+}
+
+.tech-row-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.tech-row-workload {
+    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+.tech-row-workload.status-alert { color: #b45309; } 
+.tech-row-workload.status-free { color: #15803d; }  
+
+.btn-assign-direct {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #e9d5ff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-assign-direct:hover {
+    background-color: #6b21a8;
+    color: #fff;
+    border-color: #6b21a8;
+}
+
+/* ==========================================================================
+   7. BADGES DE DESIGN SYSTEM (URGÊNCIAS E STATUS)
    ========================================================================== */
 .badge-urgencia, .badge-status {
     padding: 4px 10px;
@@ -429,17 +557,151 @@
     text-align: center;
 }
 
-/* Cores das Urgências */
 .badge-urgencia.alta { background-color: #fee2e2; color: #ef4444; }
 .badge-urgencia.media { background-color: #fef3c7; color: #d97706; }
 .badge-urgencia.baixa { background-color: #f1f5f9; color: #64748b; }
 
-/* Cores dos Status */
 .badge-status.atribuido { background-color: #e0f2fe; color: #0369a1; }
 .badge-status.finalizado { background-color: #d1fae5; color: #065f46; }
 
 /* ==========================================================================
-   6. RESPONSIVIDADE (BREAKPOINTS)
+   8. COMPONENTE ADAPTADO: MODAL DE VINCULAR NOVO EQUIPAMENTO (MVP)
+   ========================================================================== */
+
+/* Container de fundo (Overlay) */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 12, 44, 0.4);
+    backdrop-filter: blur(4px);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.custom-modal-overlay:target {
+    display: flex;
+}
+
+/* Card Interno */
+.custom-modal-card {
+    background-color: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Grid Interna (Foto lado esquerdo) */
+.custom-modal-card .modal-body {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    border: none;
+    background: white;
+}
+
+/* Upload da Miniatura */
+.custom-modal-card .photo-upload-container {
+    width: 140px;
+    height: 140px;
+}
+
+.custom-modal-card .photo-upload-label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.custom-modal-card .photo-preview-placeholder {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #64748b;
+    background-color: #f8fafc;
+    background-size: cover;
+    background-position: center;
+    transition: border-color 0.2s;
+}
+
+.custom-modal-card .photo-preview-placeholder:hover {
+    border-color: #5334ea;
+}
+
+.custom-modal-card .photo-preview-placeholder i { 
+    font-size: 24px; 
+}
+
+.custom-modal-card .photo-preview-placeholder span { 
+    font-size: 11px; 
+    font-weight: 600; 
+}
+
+/* Campos do Form */
+.custom-modal-card .modal-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.custom-modal-card .modal-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.custom-modal-card .modal-input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
+    text-align: left;
+}
+
+.custom-modal-card .modal-input-group input {
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    outline: none;
+    font-size: 13px;
+    color: #334155;
+    transition: all 0.2s;
+}
+
+.custom-modal-card .modal-input-group input:focus {
+    border-color: #5334ea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(83, 52, 234, 0.1);
+}
+
+/* 🌟 CORREÇÃO: RODAPÉ PREMIUM AFASTADO DA BORDA COM ARREDONDAMENTO COMPATÍVEL */
+.custom-modal-card .modal-footer {
+    padding: 16px 24px; 
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    background-color: #f8fafc;
+    border-bottom-left-radius: 12px;  
+    border-bottom-right-radius: 12px; 
+}
+
+/* ==========================================================================
+   9. BREAKPOINTS & RESPONSIVIDADE GLOBAL
    ========================================================================== */
 @media (max-width: 1300px) {
     .filter-bar {
@@ -461,5 +723,29 @@
     .modal-card {
         width: 95%;
         margin: 10px;
+    }
+    .custom-modal-card .modal-body {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 24px;
+    }
+    .custom-modal-card .modal-form-fields {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .details-section-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .tech-row-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .btn-assign-direct {
+        width: 100%;
+        justify-content: center;
     }
 }

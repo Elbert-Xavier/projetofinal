@@ -12,6 +12,7 @@
 <body>
 
     <div class="dashboard-container">
+        
         <aside class="sidebar">
             <div class="logo-area">
                 <div class="logo-box">
@@ -24,25 +25,14 @@
             </div>
             
             <nav class="sidebar-nav">
-                <a href="GestorDashboard.html" class="nav-item">
-                    <i class="fa-solid fa-chart-pie"></i> Dashboard
-                </a>
-                <a href="GerenciarChamados.html" class="nav-item">
-                    <i class="fa-solid fa-headset"></i> Gerenciar Chamados
-                </a>
-                <a href="usuarios.html" class="nav-item active">
-                    <i class="fa-solid fa-user-lock"></i> Usuários
-                </a>
-                <a href="CadastrarCliente.html" class="nav-item">
-                    <i class="fa-solid fa-users"></i> Clientes
-                </a>
-                <a href="Tecnicos.html" class="nav-item">
-                    <i class="fa-solid fa-user-gear"></i> Técnicos
-                </a>
+                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="gestorChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="cadastroUsuario.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
+                <a href="clientes.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
+                
                 <div class="sidebar-footer">
-                    <a href="login.html" class="nav-item logout">
-                        <i class="fa-solid fa-right-from-bracket"></i> Sair
-                    </a>
+                    <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
                 </div>
             </nav>
         </aside>
@@ -50,7 +40,8 @@
         <main class="main-content">
             <header class="top-header">
                 <div class="header-left">
-                    <span class="logo-g" style="display: none;">G</span> </div>
+                    <span class="logo-g" style="display: none;">G</span>
+                </div>
                 <div class="header-actions">
                     <div class="profile-menu">
                         <img src="https://ui-avatars.com/api/?name=Gestor&background=5334ea&color=fff" alt="User" class="user-avatar">
@@ -64,48 +55,64 @@
 
             <div class="content-wrapper">
                 <div class="card" id="cardFormUsuario">
+                    
                     <div class="card-header">
                         <div class="header-icon-user user-shield-icon">
                             <i class="fa-solid fa-user-shield"></i>
                         </div>
                         <div>
                             <h1>Controle de Usuários</h1>
-                            <p>Crie, consulte e gerencie os acessos de Clientes e Técnicos ao portal.</p>
+                            <p>Crie e gerencie as credenciais de acesso de Clientes e Técnicos de forma unificada.</p>
                         </div>
                     </div>
 
                     <form id="formUsuario">
                         <div class="section-title"><i class="fa-solid fa-user-plus"></i> Novo Usuário</div>
                         
-                       <div class="form-grid layout-2-col">
-    <div class="input-group grid-full-width">
-        <label for="nomeUsuario">Nome Completo *</label>
-        <input type="text" id="nomeUsuario" placeholder="Digite o nome completo do usuário" required>
-    </div>
-    
-    <div class="input-group">
-        <label for="emailUsuario">E-mail (Login) *</label>
-        <input type="email" id="emailUsuario" placeholder="usuario@email.com" required>
-    </div>
-    
-    <div class="input-group">
-        <label for="perfilUsuario">Perfil de Acesso *</label>
-        <select id="perfilUsuario" required>
-            <option value="" disabled selected>Selecione o tipo de perfil</option>
-            <option value="CLIENTE">Cliente (Acesso ao Helpdesk)</option>
-            <option value="TECNICO">Técnico (Acesso à Fila de Chamados)</option>
-        </select>
-    </div>
-    
-    <div class="input-group grid-full-width vinculo-dinamico" id="grupoVinculoCliente">
-        <label for="clienteVinculado">Vincular à Empresa / Cliente *</label>
-        <select id="clienteVinculado">
-            <option value="" disabled selected>Selecione a empresa correspondente</option>
-            <option value="1">Oficina do Zé Ltda</option>
-            <option value="2">Padaria Pão Quente</option>
-        </select>
-    </div>
-</div>
+                        <div class="form-grid layout-2-col">
+                            <div class="input-group grid-full-width">
+                                <label for="nomeUsuario">Nome Completo *</label>
+                                <input type="text" id="nomeUsuario" placeholder="Digite o nome completo do usuário" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="emailUsuario">E-mail (Login) *</label>
+                                <input type="email" id="emailUsuario" placeholder="usuario@gestortech.com" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="perfilUsuario">Perfil de Acesso *</label>
+                                <select id="perfilUsuario" required onchange="ajustarCamposOperacionais(this.value)">
+                                    <option value="" disabled selected>Selecione o tipo de perfil</option>
+                                    <option value="CLIENTE">Cliente (Acesso ao Helpdesk)</option>
+                                    <option value="TECNICO">Técnico (Acesso à Fila de Campo)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group grid-full-width vinculo-dinamico" id="grupoVinculoCliente" style="display: none;">
+                                <label for="clienteVinculado">Vincular à Empresa / Cliente Correspondente *</label>
+                                <select id="clienteVinculado">
+                                    <option value="" disabled selected>Selecione a empresa cadastrada</option>
+                                    <option value="1">Oficina do Zé Ltda</option>
+                                    <option value="2">Padaria Pão Quente</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group vinculo-dinamico" id="grupoTecnicoTelefone" style="display: none;">
+                                <label for="tecnicoTelefone">Telefone / WhatsApp de Campo *</label>
+                                <input type="text" id="tecnicoTelefone" placeholder="(31) 99999-0000">
+                            </div>
+
+                            <div class="input-group vinculo-dinamico" id="grupoTecnicoSkill" style="display: none;">
+                                <label for="tecnicoEspecialidade">Especialidade Principal *</label>
+                                <select id="tecnicoEspecialidade">
+                                    <option value="" disabled selected>Selecione a habilidade master</option>
+                                    <option value="REDES">Infraestrutura e Redes</option>
+                                    <option value="HARDWARE">Hardware & Servidores</option>
+                                    <option value="AUTOMACAO">Automação Comercial / Balanças</option>
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-actions section-submit-actions">
                             <button type="button" class="btn-cancel" onclick="window.history.back()">Cancelar</button>
@@ -124,7 +131,7 @@
                                     <th>Nome</th>
                                     <th>E-mail / Login</th>
                                     <th>Perfil</th>
-                                    <th>Vínculo / Empresa</th>
+                                    <th>Vínculo / Atributo Especial</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
@@ -132,10 +139,10 @@
                                 <tr>
                                     <td class="font-medium">Carlos Augusto</td>
                                     <td>carlos.infra@gmail.com</td>
-                                    <td><span class="badge-perfil badge-tecnico">TÉCNICO</span></td>
-                                    <td class="text-muted">—</td>
+                                    <td><span class="badge-perfil badge-tecnico" style="background-color: #f3e8ff; color: #6b21a8; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;">TÉCNICO</span></td>
+                                    <td class="text-muted"><i class="fa-solid fa-microchip"></i> Hardware & Servidores</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn-table-delete" title="Remover Usuário">
+                                        <button type="button" class="btn-table-delete" title="Remover Usuário" style="background: none; border: none; color: #ef4444; cursor: pointer;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                     </td>
@@ -143,10 +150,10 @@
                                 <tr>
                                     <td class="font-medium">Mariana Souza</td>
                                     <td>contato@oficinadoze.com</td>
-                                    <td><span class="badge-perfil badge-cliente">CLIENTE</span></td>
+                                    <td><span class="badge-perfil badge-cliente" style="background-color: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;">CLIENTE</span></td>
                                     <td>Oficina do Zé Ltda</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn-table-delete" title="Remover Usuário">
+                                        <button type="button" class="btn-table-delete" title="Remover Usuário" style="background: none; border: none; color: #ef4444; cursor: pointer;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                     </td>
@@ -160,5 +167,42 @@
         </main>
     </div>
 
+    <script>
+        function ajustarCamposOperacionais(perfil) {
+            const divCliente = document.getElementById('grupoVinculoCliente');
+            const divTecFone = document.getElementById('grupoTecnicoTelefone');
+            const divTecSkill = document.getElementById('grupoTecnicoSkill');
+            
+            // Elementos select/input para manipulação de obrigatoriedade nativa (required)
+            const selectCliente = document.getElementById('clienteVinculado');
+            const inputTecFone = document.getElementById('tecnicoTelefone');
+            const selectTecSkill = document.getElementById('tecnicoEspecialidade');
+
+            if (perfil === 'CLIENTE') {
+                divCliente.style.display = 'block';
+                selectCliente.required = true;
+                
+                // Oculta e limpa os inputs de técnico
+                divTecFone.style.display = 'none';
+                divTecSkill.style.display = 'none';
+                inputTecFone.required = false;
+                selectTecSkill.required = false;
+            } else if (perfil === 'TECNICO') {
+                divTecFone.style.display = 'block';
+                divTecSkill.style.display = 'block';
+                inputTecFone.required = true;
+                selectTecSkill.required = true;
+                
+                // Oculta e limpa o seletor de cliente
+                divCliente.style.display = 'none';
+                selectCliente.required = false;
+            } else {
+                // Estado neutro inicial
+                divCliente.style.display = 'none';
+                divTecFone.style.display = 'none';
+                divTecSkill.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
