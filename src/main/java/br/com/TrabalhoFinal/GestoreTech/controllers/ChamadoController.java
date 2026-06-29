@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
+import br.com.TrabalhoFinal.GestoreTech.entity.EquipamentoEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.ChamadoRepository;
 
 @RestController
@@ -77,20 +78,17 @@ public class ChamadoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ChamadoEntity salvarChamado(@RequestParam String titulo,
 									   @RequestParam String descricao,
+									   @RequestParam EquipamentoEntity equipamento,
 									   @RequestParam MultipartFile urlImagem) throws IOException {
-		
-// Gerar um nome único para o arquivo usando UUID
 		
         String nomeArquivo = UUID.randomUUID()
                 + "_"
                 + urlImagem.getOriginalFilename();
 
-        // Definir o caminho onde o arquivo será salvo
         Path caminho = Paths.get(
                 "//SC-ALPHA/deploy/gestoretech/img/" + nomeArquivo
         );
         
-        // Salvar o arquivo no caminho definido
         Files.write(caminho, urlImagem.getBytes());
         
         ChamadoEntity chamado = new ChamadoEntity();
@@ -98,13 +96,16 @@ public class ChamadoController {
         chamado.setPrioridade("indefinido");
         chamado.setTitulo(titulo);
         chamado.setDescricao(descricao);
-        chamado.setUrlImagem(nomeArquivo); // Salvar o nome do arquivo (String) no banco de dados
+        chamado.setUrlImagem(nomeArquivo);
         chamado.setStatus("pendente");
+        chamado.setEquipamento(equipamento);
 		
 
 		return chamadoRepository.save(chamado);
 	}
+	
 	@PutMapping("/atualizar")
+	@ResponseStatus(HttpStatus.OK)
 	public ChamadoEntity atualizarChamado(@RequestBody ChamadoEntity chamado, @PathVariable int id) {
 		if(chamadoRepository.existsById(id)) {
 			chamado.setId(id);

@@ -1,4 +1,7 @@
 
+const API_BUSCAR_GMAIL = 'http://localhost:8000/usuarios/BuscarPorEmail';
+
+
 let revelarValor = 1
 
 async function revelar() {
@@ -19,9 +22,12 @@ async function logar(){
 	const email = document.getElementById('email').value
 	const senha = document.getElementById('senha').value
 	
+	const responsta = await fetch(`${API_BUSCAR_GMAIL}/${email}`);
+	const dadosUsuario = await responsta.json();
+	
 	const Usuario = {
 			email: email,
-			senha: senha
+			senha: senha,
 	};
 	const response = await fetch("http://localhost:8000/usuarios/login", {
 		method: "POST",
@@ -38,7 +44,15 @@ async function logar(){
 			JSON.stringify(data)
 		);
 		localStorage.setItem("usuario","logado")
-		window.location.href = "html/HistoricoChamados.html";
+		if(dadosUsuario.tipoUsuario == "gestor"){
+			window.location.href = "http://localhost:8000/html/GestorDashboard.html";
+		}else if(dadosUsuario.tipoUsuario == "tecnico"){
+			window.location.href = "http://localhost:8000/";
+		}else if(dadosUsuario.tipoUsuario == "cliente"){
+			window.location.href = "http://localhost:8000/html/clienteMeusChamados.html";
+		}else{
+			alert("algum Erro foi encontrado tente novamente mais tarde")
+		}
 	}else{
 		alert("Email ou Senha invalidos!");
 	}
