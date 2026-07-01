@@ -49,7 +49,7 @@ public class UsuarioEntity implements Serializable{
 	@NotNull
 	private LocalDate dataCadastro;
 	@NotBlank
-	@Size(min = 6, max = 100)
+	@Size(min = 6)
 	private String senha;
 	@NotNull
 	private boolean isAdmin;
