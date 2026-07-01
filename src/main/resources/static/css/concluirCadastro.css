@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+.text-dark-blue {
+    color: #1e1b4b;
+}
+
+/* Centralização do Logo no topo */
+.logo-box {
+    background-color: #6366f1;
+    color: white;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Estilização padrão de formulários combinando com o sistema */
+.form-control, .input-group-text {
+    border-color: #cbd5e1;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-control[readonly] {
+    cursor: not-allowed;
+    background-color: #f1f5f9 !important;
+}
+
+/* Botão Principal */
+.btn-purple {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-purple:hover {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.font-xs {
+    font-size: 12px;
+}

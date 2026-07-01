@@ -106,7 +106,7 @@ public class EmailController {
         }
     }
     @GetMapping("/emailConta/{destinatario}/{senhaCpf}")
-    public String enviarEmailConta(@PathVariable String destinatario, @PathVariable String senhaCpf) {
+    public String enviarEmailConta(@PathVariable String destinatario, @PathVariable String senhaTemporaria) {
 
         try {
 
@@ -151,7 +151,7 @@ public class EmailController {
                     + "  <p style='margin: 0 0 16px 0; font-size: 15px; font-family: monospace; color: #111827; background-color: #ffffff; padding: 8px; border-radius: 6px; border: 1px solid #e5e7eb;'>" + destinatario + "</p>\n"
                     + "  \n"
                     + "  <p style='margin: 0 0 4px 0; font-size: 13px; color: #6b7280;'><strong>Senha provisória:</strong></p>\n"
-                    + "  <p style='margin: 0; font-size: 15px; font-family: monospace; color: #111827; background-color: #ffffff; padding: 8px; border-radius: 6px; border: 1px solid #e5e7eb;'>" + senhaCpf + "</p>\n"
+                    + "  <p style='margin: 0; font-size: 15px; font-family: monospace; color: #111827; background-color: #ffffff; padding: 8px; border-radius: 6px; border: 1px solid #e5e7eb;'>" + senhaTemporaria + "</p>\n"
                     + "</div>\n"
                     + "\n"
                     + "<div style='text-align: center; margin-bottom: 24px;'>\n"
@@ -171,7 +171,7 @@ public class EmailController {
                     + "<p style='color: #9ca3af; font-size: 12px; line-height: 1.5; margin: 0; text-align: center;'>\n"
                     + "Se o botão não funcionar, acesse diretamente pelo link:<br>\n"
                     + "<a href='http://localhost:8000/login.html' target='_blank' style='color: #4f46e5; text-decoration: underline; word-break: break-all;'>\n" // Obs: corrigi a URL do link para bater com o texto abaixo
-                    + "http://localhost:8000/login.html\n"
+                    + "CLIQUE AQUI"
                     + "</a>\n"
                     + "</p>\n"
                     + "</div>\n"

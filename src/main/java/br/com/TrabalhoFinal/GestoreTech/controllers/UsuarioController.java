@@ -37,6 +37,11 @@ public class UsuarioController {
 	public List<UsuarioEntity> ListarTodosUsuario() {
 		return usuarioRepository.findAll();
 	}
+	@GetMapping("/listarPorID/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Optional<UsuarioEntity> ListarTodosUsuario(@PathVariable Integer id) {
+		return usuarioRepository.findById(id);
+	}
 	
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.OK)

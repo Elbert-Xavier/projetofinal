@@ -29,36 +29,28 @@ public class UsuarioEntity implements Serializable{
 	private int id;
 	@NotBlank
 	private String tipoUsuario;
-	
 	@NotBlank
 	@Size(min = 5, max = 150)
 	private String nome;
-	
 	@CPF
 	@NotBlank
 	@Column(nullable = false, unique = true)
 	private String cpf;
-	
 	@NotBlank
 	private String cargo;
-	
 	@NotBlank
 	@Size(min = 10, max = 15)
 	private String telefone;
-	
 	@NotBlank
 	@Email
 	@Size(min = 7, max = 100)
 	@Column(nullable = false, unique = true)
 	private String email;
-	
 	@NotNull
 	private LocalDate dataCadastro;
-	
 	@NotBlank
 	@Size(min = 6, max = 20)
 	private String senha;
-	
 	@NotNull
 	private boolean isAdmin;
 	
