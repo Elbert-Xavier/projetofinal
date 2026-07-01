@@ -27,15 +27,15 @@ public class EquipamentoController {
 	@Autowired
 	private EquipamentoRepository equipamentoRepository;
 	
-	@GetMapping("/listarnome/{nome}")
+	/*@GetMapping("/listarnome/{nome}")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> listarNome(@PathVariable String nome){
 		return equipamentoRepository.findByNomeContainingIgnoreCase(nome);
-	}
-	@GetMapping("/listarTodos")
+	}*/
+	@GetMapping("/listartodos")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> ListarTodos() {
-	    return equipamentoRepository.findAllByOrderByNomeAsc();
+	    return equipamentoRepository.findAllByOrderByModeloAsc();
 	}
 	@GetMapping("/listaPorID/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -43,12 +43,13 @@ public class EquipamentoController {
 		return equipamentoRepository.findById(id);
 	}
 	
-	@GetMapping("/listartipo/{tipo}")
+	/*@GetMapping("/listartipo/{tipo}")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> listarTipo(@PathVariable String tipo){
 		return equipamentoRepository.findByTipoContainingIgnoreCase(tipo);
-	}
-	@GetMapping("/listarmarca/{marca}")
+	}*/
+	
+	/*@GetMapping("/listarmarca/{marca}")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> listarMarca(@PathVariable String marca){
 		return equipamentoRepository.findByFabricanteContainingIgnoreCase(marca);
@@ -62,7 +63,7 @@ public class EquipamentoController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> listarSerie(@PathVariable String serie){
 		return equipamentoRepository.findByNumeroSerieContainingIgnoreCase(serie);
-	}
+	}*/
 	@DeleteMapping("/deletar/{id}")
 	public String deletarEquipamento(@PathVariable int id) {
 		if(equipamentoRepository.existsById(id)) {

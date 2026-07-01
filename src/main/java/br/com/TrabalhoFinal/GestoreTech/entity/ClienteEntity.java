@@ -66,7 +66,7 @@ public class ClienteEntity implements Serializable {
     @Size (min = 1, max = 15)
     private String numero;
     
-    @Size (min = 1, max = 40)
+    @Size (max = 40)
     private String complemento;
     
     @NotBlank

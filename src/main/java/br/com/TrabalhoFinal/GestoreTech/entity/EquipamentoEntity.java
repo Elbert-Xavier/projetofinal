@@ -28,7 +28,6 @@ public class EquipamentoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;	
 	
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "idCliente")
 	private ClienteEntity cliente;
@@ -59,6 +58,12 @@ public class EquipamentoEntity implements Serializable {
 	private String imagem;
 	
 	
+	public ClienteEntity getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteEntity cliente) {
+		this.cliente = cliente;
+	}
 	public int getId() {
 		return id;
 	}
