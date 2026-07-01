@@ -2,11 +2,19 @@ package br.com.TrabalhoFinal.GestoreTech.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "equipamento")
@@ -19,39 +27,43 @@ public class EquipamentoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;	
-	private String nome;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private ClienteEntity cliente;
+	
+	@NotBlank
+	@Size(min = 2, max = 20)
 	private String tipo;
+	
+	@NotBlank
+	@Size(min = 2, max = 50)
 	private String modelo;
+	
+	@NotBlank
+	@Size(min = 2, max = 50)
 	private String fabricante;
 	
+	@NotBlank
+	@Size(min = 2, max = 40)
+	@Column(nullable = false, unique = true)
 	private String numeroSerie;
-	private LocalDate dataAquisicao;
-	private LocalDate dataCadastro;
-	private String descricao;
+	
+	private LocalDate dataCadastro = LocalDate.now();
+
+	@Size(max = 700)
+	private String observacoes;
+	
+	@Size(max = 255)
 	private String imagem;
 	
-	public String getImagem() {
-		return imagem;
-	}
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getTipo() {
 		return tipo;
@@ -77,20 +89,24 @@ public class EquipamentoEntity implements Serializable {
 	public void setNumeroSerie(String numeroSerie) {
 		this.numeroSerie = numeroSerie;
 	}
-	public LocalDate getDataAquisicao() {
-		return dataAquisicao;
-	}
-	public void setDataAquisicao(LocalDate dataAquisicao) {
-		this.dataAquisicao = dataAquisicao;
-	}
 	public LocalDate getDataCadastro() {
 		return dataCadastro;
 	}
 	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
-	
+	public String getObservacoes() {
+		return observacoes;
+	}
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 	
 	
 }

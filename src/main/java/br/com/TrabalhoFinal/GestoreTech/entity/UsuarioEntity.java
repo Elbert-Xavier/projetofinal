@@ -3,11 +3,18 @@ package br.com.TrabalhoFinal.GestoreTech.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "usuario")
@@ -20,14 +27,41 @@ public class UsuarioEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@NotBlank
 	private String tipoUsuario;
-	private String nome;	
+	
+	@NotBlank
+	@Size(min = 5, max = 150)
+	private String nome;
+	
+	@CPF
+	@NotBlank
+	@Column(nullable = false, unique = true)
+	private String cpf;
+	
+	@NotBlank
 	private String cargo;
+	
+	@NotBlank
+	@Size(min = 10, max = 15)
 	private String telefone;
-	private String nivelHierarquico;
-	private LocalDate dataCadastro;
+	
+	@NotBlank
+	@Email
+	@Size(min = 7, max = 100)
+	@Column(nullable = false, unique = true)
 	private String email;
+	
+	@NotNull
+	private LocalDate dataCadastro;
+	
+	@NotBlank
+	@Size(min = 6, max = 20)
 	private String senha;
+	
+	@NotNull
+	private boolean isAdmin;
+	
 	public int getId() {
 		return id;
 	}
@@ -46,24 +80,13 @@ public class UsuarioEntity implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTitulo() {
-		return cargo;
-	}
-	public void setTitulo(String titulo) {
-		this.cargo = titulo;
-	}
 	public String getTelefone() {
 		return telefone;
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String getNivelHierarquico() {
-		return nivelHierarquico;
-	}
-	public void setNivelHierarquico(String nivelHierarquico) {
-		this.nivelHierarquico = nivelHierarquico;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -81,6 +104,24 @@ public class UsuarioEntity implements Serializable{
 	}
 	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }
