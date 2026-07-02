@@ -749,3 +749,142 @@
         justify-content: center;
     }
 }
+/* Correções de compatibilidade para a nova barra de filtros do Gestor */
+.bg-white.p-3.rounded-3.border {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    font-size: 14px;
+    border-color: #cbd5e1;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.btn-outline-secondary {
+    border-color: #cbd5e1;
+    color: #475569;
+    background-color: #f8fafc;
+    border-radius: 8px;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+/* ==========================================================================
+   RESET E ALINHAMENTO DA NOVA BARRA DE FILTROS (GESTOR&TECH)
+   ========================================================================== */
+
+.gt-filter-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 1.25rem !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Wrapper do input de busca para fixar o ícone de lupa */
+.gt-search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.gt-search-wrapper .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Inputs e Selects customizados para ignorar o visual bruto do Bootstrap */
+.gt-form-input, .gt-form-select {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px 0 40px; /* Espaço para a lupa */
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    color: #334155;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Ajuste para os campos menores que ficam dentro da gaveta avançada */
+.collapse .gt-form-input, .collapse .gt-form-select {
+    height: 38px;
+    padding: 0 12px; /* Sem lupa dentro da gaveta */
+}
+
+.gt-form-input:focus, .gt-form-select:focus {
+    border-color: #5334ea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(83, 52, 234, 0.12);
+}
+
+.gt-form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+/* Botões Estilizados com a paleta do projeto */
+.gt-btn-outline {
+    height: 42px;
+    padding: 0 16px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #475569;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.gt-btn-outline:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-color: #94a3b8;
+}
+
+.gt-btn-primary {
+    height: 38px;
+    padding: 0 16px;
+    background: #5334ea;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.gt-btn-primary:hover {
+    background: #4024cd;
+}

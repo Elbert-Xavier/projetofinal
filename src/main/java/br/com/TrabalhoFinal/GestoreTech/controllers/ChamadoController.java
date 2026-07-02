@@ -35,7 +35,7 @@ public class ChamadoController {
 	@Autowired
 	private ChamadoRepository chamadoRepository;
 	
-	@GetMapping("/listartodos")
+	@GetMapping("/listarTodos")
 	@ResponseStatus(HttpStatus.OK)
 	public List<ChamadoEntity> listarTodosChamados(){
 		return chamadoRepository.findAll();

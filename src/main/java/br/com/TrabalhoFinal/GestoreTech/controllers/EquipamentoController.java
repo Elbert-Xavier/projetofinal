@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +28,23 @@ public class EquipamentoController {
 	@Autowired
 	private EquipamentoRepository equipamentoRepository;
 	
+	@GetMapping("/pesquisar")
+	@ResponseStatus(HttpStatus.OK)
+	public List<EquipamentoEntity> pesquisarEquipamentos(
+			@RequestParam(value = "numeroSerie", required = false) String numeroSerie,
+			@RequestParam(value = "modelo", required = false) String modelo,
+			@RequestParam(value = "fabricante", required = false) String fabricante,
+			@RequestParam(value = "localizacao", required = false) String localizacao) {
+		
+		return equipamentoRepository.findByFiltros(numeroSerie, modelo, fabricante, localizacao);
+	}
+
 	@GetMapping("/listartodos")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> ListarTodos() {
 	    return equipamentoRepository.findAllByOrderByModeloAsc();
 	}
+	
 	@GetMapping("/listaPorID/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<EquipamentoEntity> ListarEquipamentoPorID(@PathVariable Integer id) {
@@ -67,20 +80,23 @@ public class EquipamentoController {
 		if(equipamentoRepository.existsById(id)) {
 			equipamentoRepository.deleteById(id);
 			return "Equipamento excluído com sucesso";
-		}return "Equipamento não encontrado";
+		}
+		return "Equipamento não encontrado";
 	}
+	
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EquipamentoEntity salvarEstabelecimento(@RequestBody EquipamentoEntity equipamento) {
 		return equipamentoRepository.save(equipamento);
 	}
-	@PutMapping("/atualizar")
+	
+	@PutMapping("/atualizar/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public EquipamentoEntity atualizarEstabelecimento(@RequestBody EquipamentoEntity equipamento, @PathVariable int id) {
 		if(equipamentoRepository.existsById(id)) {
 			equipamento.setId(id);
 			return equipamentoRepository.save(equipamento);
-			
-		}return null;
+		}
+		return null;
 	}
 }

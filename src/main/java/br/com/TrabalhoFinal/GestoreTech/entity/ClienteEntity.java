@@ -80,8 +80,7 @@ public class ClienteEntity implements Serializable {
     @NotBlank
     @Size (min = 2, max = 2)
     private String uf;
-    private boolean isAtivo;
-    
+        
    
 	public int getId() {
 		return id;
@@ -173,14 +172,7 @@ public class ClienteEntity implements Serializable {
 	}
 	public void setUf(String uf) {
 		this.uf = uf;
-	}
-	public boolean isAtivo() {
-		return isAtivo;
-	}
-	public void setAtivo(boolean isAtivo) {
-		this.isAtivo = isAtivo;
-	}
-    
+	}   
     
 
 }
