@@ -22,12 +22,12 @@ public interface EquipamentoRepository extends JpaRepository<EquipamentoEntity, 
 	       "(:numeroSerie IS NULL OR :numeroSerie = '' OR LOWER(e.numeroSerie) LIKE LOWER(CONCAT('%', :numeroSerie, '%'))) " +
 	       "AND (:modelo IS NULL OR :modelo = '' OR LOWER(e.modelo) LIKE LOWER(CONCAT('%', :modelo, '%'))) " +
 	       "AND (:fabricante IS NULL OR :fabricante = '' OR LOWER(e.fabricante) LIKE LOWER(CONCAT('%', :fabricante, '%'))) " +
-	       "AND (:localizacao IS NULL OR :localizacao = '' OR LOWER(e.localizacao) LIKE LOWER(CONCAT('%', :localizacao, '%'))) " +
+	       "AND (:observacoes IS NULL OR :observacoes = '' OR LOWER(e.observacoes) LIKE LOWER(CONCAT('%', :observacoes, '%'))) " +
 	       "ORDER BY e.modelo ASC")
 	List<EquipamentoEntity> findByFiltros(
 	    @Param("numeroSerie") String numeroSerie, 
 	    @Param("modelo") String modelo, 
 	    @Param("fabricante") String fabricante,
-	    @Param("localizacao") String localizacao
+	    @Param("observacoes") String observacoes
 	);
 }

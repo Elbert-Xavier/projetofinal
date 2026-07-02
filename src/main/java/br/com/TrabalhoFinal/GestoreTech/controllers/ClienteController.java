@@ -28,7 +28,6 @@ public class ClienteController {
 	@Autowired
 	private ClienteRepository cliente;
 	
-	// Nova rota de busca com filtros integrados para o frontend
 	@GetMapping("/pesquisar")
 	@ResponseStatus(HttpStatus.OK)
 	public List<ClienteEntity> pesquisarClientes(

@@ -75,3 +75,55 @@ function validarCelular(celular) {
 
     return regexCelular.test(numeroValidar); // Retorna estritamente true ou false
 }
+function validarCPF(cpf) {
+    // Remove caracteres não numéricos (pontos e traços)
+    cpf = cpf.replace(/[^\d]+/g, '');
+
+    // CPF precisa ter 11 dígitos e não pode ser uma sequência repetida (ex: 111.111.111-11)
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+        return false;
+    }
+
+    // Validação do primeiro dígito verificador
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
+    if (resto !== parseInt(cpf.charAt(9))) return false;
+
+    // Validação do segundo dígito verificador
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
+    if (resto !== parseInt(cpf.charAt(10))) return false;
+
+    return true;
+}
+function mascaraCPF(input) {
+    let valor = input.value.replace(/\D/g, ''); // Remove tudo que não é número
+    
+    if (valor.length > 11) valor = valor.slice(0, 11); // Limita a 11 dígitos
+    
+    // Aplica a máscara dinamicamente
+    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    
+    input.value = valor; // Devolve o valor formatado para o campo
+}
+function mascaraCelular(input) {
+    let valor = input.value.replace(/\D/g, ''); // Remove tudo que não é número
+    
+    if (valor.length > 11) valor = valor.slice(0, 11); // Limita a 11 dígitos (DDD + 9 dígitos)
+
+    // Aplica a máscara dinamicamente passo a passo
+    valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2'); // Coloca os parênteses no DDD e o espaço
+    valor = valor.replace(/(\d{5})(\d)/, '$1-$2');     // Coloca o hífen no bloco de 5 dígitos
+    
+    input.value = valor; // Devolve o valor formatado para o campo
+}

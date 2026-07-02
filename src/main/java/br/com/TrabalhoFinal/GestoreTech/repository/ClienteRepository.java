@@ -15,11 +15,11 @@ public interface ClienteRepository extends JpaRepository<ClienteEntity, Integer>
            "OR LOWER(c.nomeFantasia) LIKE LOWER(CONCAT('%', :search, '%')) " +
            "OR c.cnpj LIKE CONCAT('%', :search, '%')) " +
            "AND (:cidade IS NULL OR :cidade = '' OR LOWER(c.cidade) LIKE LOWER(CONCAT('%', :cidade, '%'))) " +
-           "AND (:estado IS NULL OR :estado = '' OR c.estado = :estado) " +
+           "AND (:uf IS NULL OR :uf = '' OR c.uf = :uf) " +
            "ORDER BY c.razaoSocial ASC")
     List<ClienteEntity> findByFiltros(
         @Param("search") String search, 
         @Param("cidade") String cidade, 
-        @Param("estado") String estado
+        @Param("uf") String uf
     );
 }
