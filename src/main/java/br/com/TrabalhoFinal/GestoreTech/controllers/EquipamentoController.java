@@ -2,23 +2,12 @@ package br.com.TrabalhoFinal.GestoreTech.controllers;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import br.com.TrabalhoFinal.GestoreTech.entity.EquipamentoEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.EquipamentoRepository;
+import br.com.TrabalhoFinal.GestoreTech.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/equipamentos")
@@ -28,15 +17,31 @@ public class EquipamentoController {
 	@Autowired
 	private EquipamentoRepository equipamentoRepository;
 	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
 	@GetMapping("/pesquisar")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> pesquisarEquipamentos(
+			@RequestParam(value = "clienteId") Integer clienteId,
 			@RequestParam(value = "numeroSerie", required = false) String numeroSerie,
 			@RequestParam(value = "modelo", required = false) String modelo,
 			@RequestParam(value = "fabricante", required = false) String fabricante,
 			@RequestParam(value = "localizacao", required = false) String localizacao) {
 		
-		return equipamentoRepository.findByFiltros(numeroSerie, modelo, fabricante, localizacao);
+		return equipamentoRepository.findByFiltros(clienteId, numeroSerie, modelo, fabricante, localizacao);
+	}
+
+	@PostMapping("/salvar")
+	@ResponseStatus(HttpStatus.CREATED)
+	public EquipamentoEntity salvarEstabelecimento(
+			@RequestParam(value = "clienteId") Integer clienteId, 
+			@RequestBody EquipamentoEntity equipamento) {
+		
+		return clienteRepository.findById(clienteId).map(cliente -> {
+			equipamento.setCliente(cliente);
+			return equipamentoRepository.save(equipamento);
+		}).orElse(null);
 	}
 
 	@GetMapping("/listartodos")
@@ -82,12 +87,6 @@ public class EquipamentoController {
 			return "Equipamento excluído com sucesso";
 		}
 		return "Equipamento não encontrado";
-	}
-	
-	@PostMapping("/salvar")
-	@ResponseStatus(HttpStatus.CREATED)
-	public EquipamentoEntity salvarEstabelecimento(@RequestBody EquipamentoEntity equipamento) {
-		return equipamentoRepository.save(equipamento);
 	}
 	
 	@PutMapping("/atualizar/{id}")

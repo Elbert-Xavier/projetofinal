@@ -1,169 +1,191 @@
-const API_SALVA = 'http://localhost:8000/clientes/gravar';
+const API_SALVAR_CLIENTE = 'http://localhost:8000/clientes/salvar';
+const API_SALVAR_EQUIPAMENTO = 'http://localhost:8000/equipamentos/salvar';
+const API_BUSCAR_CEP = 'https://viacep.com.br/ws';
 
-let equipamentosCliente = [];
-let fotoBase64Temporaria = ""; 
+let listaEquipamentos = [];
+let fotoTemporaria = "";
 
-const modal = document.getElementById('modalEquipamento');
-const fotoInput = document.getElementById('equipFotoInput');
-const photoPreview = document.getElementById('photoPreview');
+document.getElementById('cep').addEventListener('blur', async function() {
+    let cep = this.value.replace(/\D/g, ''); 
 
-// ==========================================================================
-// FUNÇÕES GLOBAIS DE CONTROLE DO MODAL
-// ==========================================================================
+    if (cep.length === 8) {
+        document.getElementById('logradouro').value = "Buscando...";
+        document.getElementById('bairro').value = "Buscando...";
+        document.getElementById('cidade').value = "Buscando...";
+        document.getElementById('uf').value = "...";
+
+        const response = await fetch(`${API_BUSCAR_CEP}/${cep}/json/`);
+        const dados = await response.json();
+
+        if (dados && !dados.erro) {
+            document.getElementById('logradouro').value = dados.logradouro;
+            document.getElementById('bairro').value = dados.bairro;
+            document.getElementById('cidade').value = dados.localidade;
+            document.getElementById('uf').value = dados.uf;
+            document.getElementById('numero').focus(); 
+        } else {
+            alert("CEP não encontrado! Digite o endereço manualmente.");
+            limparCamposEndereco();
+        }
+    }
+});
+
+function limparCamposEndereco() {
+    document.getElementById('logradouro').value = "";
+    document.getElementById('bairro').value = "";
+    document.getElementById('cidade').value = "";
+    document.getElementById('uf').value = "";
+}
+
 window.abrirModalEquipamento = function(e) {
-    if (e) e.preventDefault();
-    limparCamposModal();
-    const modalElement = document.getElementById('modalEquipamento');
-    if (modalElement) modalElement.style.display = 'flex';
+    e.preventDefault();
+    document.getElementById('modalEquipamento').style.display = 'flex';
 };
 
 window.fecharModalEquipamento = function(e) {
     if (e) e.preventDefault();
-    const modalElement = document.getElementById('modalEquipamento');
-    if (modalElement) modalElement.style.display = 'none';
-};
-
-// Conversão da Imagem para Base64
-if (fotoInput) {
-    fotoInput.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                fotoBase64Temporaria = e.target.result;
-                if (photoPreview) {
-                    photoPreview.style.backgroundImage = `url('${fotoBase64Temporaria}')`;
-                    photoPreview.innerHTML = ""; 
-                }
-            }
-            reader.readAsDataURL(file);
-        }
-    });
-}
-
-// ==========================================================================
-// ADICIONAR EQUIPAMENTO À LISTA (CORRIGIDO COM FABRICANTE E MODELO)
-// ==========================================================================
-window.salvarEquipamentoNaLista = function(e) {
-    if (e) e.preventDefault(); 
-
-    // Capturando os novos IDs do seu HTML
-    const tipo = document.getElementById('equipTipo').value.trim();
-    const fabricante = document.getElementById('equipFabricante').value.trim();
-    const modelo = document.getElementById('equipModelo').value.trim();
-    const serie = document.getElementById('equipNumSerie').value.trim();
-    const obs = document.getElementById('equipObs').value.trim();
-
-    // Validação: agora checa se fabricante e modelo estão preenchidos
-    if (!tipo || !fabricante || !modelo) {
-        alert("Por favor, preencha o Tipo, Fabricante e Modelo.");
-        return;
-    }
-
-    const novoEquip = {
-        id: Date.now(),
-        tipo: tipo,
-        fabricante: fabricante,
-        modelo: modelo,
-        serie: serie || "Não informado",
-        obs: obs || "",
-        foto: fotoBase64Temporaria || "https://ui-avatars.com/api/?name=EQ&background=f1f3f9&color=64748b"
-    };
-
-    equipamentosCliente.push(novoEquip);
-    atualizarListaEquipamentosVisual();
-    window.fecharModalEquipamento();
-};
-
-// ==========================================================================
-// ATUALIZAÇÃO DA LISTA VISUAL (EXIBINDO FABRICANTE E MODELO)
-// ==========================================================================
-function atualizarListaEquipamentosVisual() {
-    const container = document.getElementById('equipamentosLista');
-    if (!container) return;
+    document.getElementById('modalEquipamento').style.display = 'none';
     
-    if (equipamentosCliente.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state-equip">
-                <i class="fa-regular fa-image"></i> Nenhum equipamento adicionado ainda.
-            </div>`;
+    document.getElementById('equipTipo').value = '';
+    document.getElementById('equipFabricante').value = '';
+    document.getElementById('equipModelo').value = '';
+    document.getElementById('equipNumSerie').value = '';
+    document.getElementById('equipObs').value = '';
+    
+    fotoTemporaria = "";
+    document.getElementById('photoPreview').innerHTML = '<i class="fa-solid fa-camera"></i><span>Adicionar Foto</span>';
+    document.getElementById('equipFotoInput').value = '';
+};
+
+document.getElementById('equipFotoInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            fotoTemporaria = event.target.result;
+            document.getElementById('photoPreview').innerHTML = `<img src="${fotoTemporaria}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">`;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+window.salvarEquipamentoNaLista = function(e) {
+    e.preventDefault();
+
+    const tipo = document.getElementById('equipTipo').value;
+    const fabricante = document.getElementById('equipFabricante').value;
+    const modelo = document.getElementById('equipModelo').value;
+    const numeroSerie = document.getElementById('equipNumSerie').value;
+    const observacao = document.getElementById('equipObs').value;
+
+    if (!tipo || !fabricante || !modelo) {
+        alert("Preencha Tipo, Fabricante e Modelo do equipamento!");
         return;
     }
 
-    container.innerHTML = '';
-    equipamentosCliente.forEach(equip => {
-        container.innerHTML += `
-            <div class="equipamento-item-card">
-                <img src="${equip.foto}" class="equip-thumb" alt="Equipamento">
-                <div class="equip-info">
-                    <!-- Atualizado para exibir Fabricante e Modelo separados -->
-                    <h5>${equip.tipo} — ${equip.fabricante} (${equip.modelo})</h5>
-                    <p><strong>Série:</strong> ${equip.serie} ${equip.obs ? `| <strong>Obs:</strong> ${equip.obs}` : ''}</p>
+    const novoEquipamento = { tipo, fabricante, modelo, numeroSerie, observacao, fotoBase64: fotoTemporaria };
+
+    listaEquipamentos.push(novoEquipamento);
+    atualizarListaNaTela();
+    fecharModalEquipamento();
+};
+
+function atualizarListaNaTela() {
+    const divLista = document.getElementById('equipamentosLista');
+    
+    if (listaEquipamentos.length === 0) {
+        divLista.innerHTML = '<div class="empty-state-equip"><i class="fa-regular fa-image"></i> Nenhum equipamento adicionado ainda.</div>';
+        return;
+    }
+
+    divLista.innerHTML = ''; 
+
+    listaEquipamentos.forEach((equip, index) => {
+        divLista.innerHTML += `
+            <div style="background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <strong>${equip.tipo} ${equip.fabricante} ${equip.modelo}</strong><br>
+                    <small>Série: ${equip.numeroSerie || 'N/A'} - Local: ${equip.observacao || 'N/A'}</small>
                 </div>
-                <button type="button" class="btn-remove-equip" onclick="window.removerEquipamento(${equip.id})">
-                    <i class="fa-solid fa-trash-can"></i>
+                <button type="button" onclick="removerEquipamento(${index})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                    <i class="fa-solid fa-trash"></i>
                 </button>
             </div>
         `;
     });
 }
 
-// ==========================================================================
-// LIMPAR CAMPOS DO MODAL (ADAPTADO PARA OS NOVOS CAMPOS)
-// ==========================================================================
-function limparCamposModal() {
-    document.getElementById('equipTipo').value = "";
-    document.getElementById('equipFabricante').value = "";
-    document.getElementById('equipModelo').value = "";
-    document.getElementById('equipNumSerie').value = "";
-    document.getElementById('equipObs').value = "";
-    if (fotoInput) fotoInput.value = "";
-    fotoBase64Temporaria = "";
-    if (photoPreview) {
-        photoPreview.style.backgroundImage = "none";
-        photoPreview.innerHTML = `<i class="fa-solid fa-camera"></i><span>Adicionar Foto</span>`;
-    }
-}
+window.removerEquipamento = function(index) {
+    listaEquipamentos.splice(index, 1);
+    atualizarListaNaTela();
+};
 
-// ==========================================================================
-// SUBMIT FINAL DO FORMULÁRIO
-// ==========================================================================
-const formCliente = document.getElementById('formCliente');
-if (formCliente) {
-    formCliente.addEventListener('submit', async (e) => {
-        e.preventDefault();
+document.getElementById('formCliente').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-        const clienteCompleto = {
-            cnpj: document.getElementById('cnpj').value,
-            razaoSocial: document.getElementById('razaoSocial').value,
-            nomeFantasia: document.getElementById('nomeFantasia').value,
-            email: document.getElementById('email').value,
-            telefone: document.getElementById('telefone').value,
-            nomeResponsavel: document.getElementById('nomeResponsavel').value,
-            cep: document.getElementById('cep').value,
-            logradouro: document.getElementById('logradouro').value,
-            numero: document.getElementById('numero').value,
-            bairro: document.getElementById('bairro').value,
-            complemento: document.getElementById('complemento').value,
-            equipamentos: equipamentosCliente
-        };
+    const clientePayload = {
+        cnpj: document.getElementById('cnpj').value,
+        razaoSocial: document.getElementById('razaoSocial').value,
+        nomeFantasia: document.getElementById('nomeFantasia').value,
+        emailResponsavel: document.getElementById('email').value,
+        telefoneResponsavel: document.getElementById('telefone').value,
+        nomeResponsavel: document.getElementById('nomeResponsavel').value,
+        cep: document.getElementById('cep').value,
+        logradouro: document.getElementById('logradouro').value,
+        numero: document.getElementById('numero').value,
+        complemento: document.getElementById('complemento').value,
+        bairro: document.getElementById('bairro').value,
+        cidade: document.getElementById('cidade').value, 
+        uf: document.getElementById('uf').value 
+    };
 
-        try {
-            const response = await fetch(API_SALVA, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(clienteCompleto)
-            });
-
-            if (response.ok) {
-                alert("Cliente e equipamentos salvos com sucesso!");
-                window.location.href = "GestorDashboard.html";
-            } else {
-                alert("Erro ao salvar o cliente. Verifique os dados.");
-            }
-        } catch (error) {
-            console.error("Erro na requisição:", error);
-            alert("Não foi possível conectar ao servidor.");
-        }
+    const response = await fetch(API_SALVAR_CLIENTE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(clientePayload)
     });
+
+    if (response.ok) {
+        const clienteSalvo = await response.json();
+
+        if (listaEquipamentos.length > 0) {
+            if (clienteSalvo && clienteSalvo.id) {
+                await salvarEquipamentos(clienteSalvo.id);
+            } else {
+                alert("Cliente salvo! O back-end não retornou o ID, então os equipamentos não puderam ser vinculados.");
+                window.location.href = "cliente.html";
+            }
+        } else {
+            alert("Cliente salvo com sucesso!");
+            window.location.href = "cliente.html"; 
+        }
+    } else {
+        alert("Erro ao salvar o cliente. Verifique se o CNPJ/E-mail já existem.");
+    }
+});
+
+async function salvarEquipamentos(idCliente) {
+    let erros = 0;
+
+    for (let equip of listaEquipamentos) {
+        equip.cliente = { id: idCliente };
+
+        const response = await fetch(API_SALVAR_EQUIPAMENTO, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(equip)
+        });
+
+        if (!response.ok) {
+            erros++;
+        }
+    }
+
+    if (erros === 0) {
+        alert("Cliente e Equipamentos salvos com sucesso!");
+    } else {
+        alert(`Cliente salvo, mas houve erro ao salvar ${erros} equipamento(s).`);
+    }
+    
+    window.location.href = "cliente.html";
 }

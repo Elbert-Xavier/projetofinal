@@ -56,40 +56,14 @@
 
                     <div class="gt-filter-card mb-4">
                         <div class="row g-2 align-items-center">
-                            <div class="col-md-9">
-                                <div class="gt-search-wrapper">
-                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                                    <input type="text" class="gt-form-input" id="searchCliente" placeholder="Buscar por Razão Social, Fantasia ou CNPJ do cliente...">
-                                </div>
+                            <div class="col-md-10">
+                                <input type="text" class="gt-form-input w-100" id="searchCliente" placeholder="Buscar por Razão Social, Fantasia ou CNPJ do cliente...">
                             </div>
 
-                            <div class="col-md-3">
-                                <button class="gt-btn-outline w-100" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosClientesAvancados" aria-expanded="false">
-                                    <i class="fa-solid fa-sliders"></i> Avançado
+                            <div class="col-md-2">
+                                <button class="btn text-white w-100 fw-medium" type="button" id="btnBuscarCliente" style="background-color: #5334ea; border-radius: 8px; padding: 10px 12px; height: 46px; font-size: 14px;">
+                                    <i class="fa-solid fa-magnifying-glass me-1"></i> Filtrar
                                 </button>
-                            </div>
-                        </div>
-
-                        <div class="collapse" id="filtrosClientesAvancados">
-                            <div class="row g-3 mt-2 pt-3 border-top" style="border-top-color: #e2e8f0 !important;">
-                                <div class="col-sm-6 col-md-5">
-                                    <label class="gt-form-label">Cidade</label>
-                                    <input type="text" class="gt-form-input" id="filterCidade" placeholder="Ex: Contagem, São Paulo">
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="gt-form-label">Estado (UF)</label>
-                                    <select class="gt-form-select" id="filterEstado">
-                                        <option value="">Todos os Estados</option>
-                                        <option value="MG">Minas Gerais (MG)</option>
-                                        <option value="SP">São Paulo (SP)</option>
-                                        <option value="RJ">Rio de Janeiro (RJ)</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-12 col-md-3 d-flex align-items-end">
-                                    <button class="gt-btn-primary w-100" type="button">
-                                        <i class="fa-solid fa-filter"></i> Filtrar Região
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,25 +77,11 @@
                                     <th>Contato / Telefone</th>
                                     <th class="text-center">Equipamentos</th>
                                     <th class="text-center">Chamados Abertos</th>
-                                    <th>Status</th>
                                     <th class="text-center">Gerenciar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="font-medium">Oficina do Zé Ltda</td>
-                                    <td class="text-muted font-code">12.345.678/0001-99</td>
-                                    <td>(11) 99888-7766</td>
-                                    <td class="text-center"><strong>4</strong></td>
-                                    <td class="text-center"><span class="badge-urgencia alta" style="padding: 2px 8px;">1 ativo</span></td>
-                                    <td><span class="badge-status finalizado" style="background-color: #dcfce7; color: #16a34a;">ATIVO</span></td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn border-0 p-0 shadow-none" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" title="Ver Equipamentos e Histórico" style="color: #5334ea; background: none;">
-                                            <i class="fa-solid fa-folder-open fs-5"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
 
@@ -130,12 +90,14 @@
         </main>
 
         <div id="modalDossieCliente" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+            <input type="hidden" id="dossieClienteId">
+            
             <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
                 <div class="modal-content border-0 rounded-4 p-2" style="background-color: #ffffff;">
                     <div class="modal-header border-bottom-0 pb-0 d-flex justify-content-between align-items-start">
                         <div>
                             <span class="text-muted small text-transform-uppercase tracking-wider d-block mb-1">Dossiê do Cliente</span>
-                            <h2 class="h4 fw-bold text-dark m-0">Oficina do Zé Ltda</h2>
+                            <h2 class="h4 fw-bold text-dark m-0" id="dossieNomeCliente">Carregando...</h2>
                         </div>
                         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -144,11 +106,11 @@
                         <div class="row g-3 mb-4 bg-light p-3 rounded-3 mx-0">
                             <div class="col-md-7">
                                 <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Endereço Operacional</label>
-                                <p class="m-0 text-secondary" style="font-size: 13.5px;"><i class="fa-solid fa-location-dot me-2 text-muted"></i>Rua das Oficinas, 150 - Centro - Contagem/MG</p>
+                                <p class="m-0 text-secondary" style="font-size: 13.5px;" id="dossieEnderecoCliente"><i class="fa-solid fa-location-dot me-2 text-muted"></i>-</p>
                             </div>
                             <div class="col-md-5">
                                 <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Contato Principal</label>
-                                <p class="m-0 text-secondary" style="font-size: 13.5px;"><i class="fa-solid fa-user me-2 text-muted"></i>José Souza (Gerente)</p>
+                                <p class="m-0 text-secondary" style="font-size: 13.5px;" id="dossieContatoCliente"><i class="fa-solid fa-user me-2 text-muted"></i>-</p>
                             </div>
                         </div>
 
@@ -162,25 +124,25 @@
                         <div class="bg-light p-2 rounded-3 mb-3 border d-flex gap-2 flex-wrap align-items-end">
                             <div style="flex: 1.5; min-width: 140px;">
                                 <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Nº de Série / Tag</label>
-                                <input type="text" class="form-control form-control-sm bg-white" placeholder="Buscar Série..." style="border-radius: 6px;">
+                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipSerie" placeholder="Buscar Série..." style="border-radius: 6px;">
                             </div>
                             <div style="flex: 1; min-width: 120px;">
                                 <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Nome / Modelo</label>
-                                <input type="text" class="form-control form-control-sm bg-white" placeholder="Ex: Servidor..." style="border-radius: 6px;">
+                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipModelo" placeholder="Ex: Servidor..." style="border-radius: 6px;">
                             </div>
                             <div style="flex: 1; min-width: 120px;">
                                 <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Fabricante</label>
-                                <input type="text" class="form-control form-control-sm bg-white" placeholder="Ex: Dell..." style="border-radius: 6px;">
+                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipFabricante" placeholder="Ex: Dell..." style="border-radius: 6px;">
                             </div>
                             <div style="flex: 1; min-width: 120px;">
                                 <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Localização</label>
-                                <input type="text" class="form-control form-control-sm bg-white" placeholder="Ex: CPD..." style="border-radius: 6px;">
+                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipLocalizacao" placeholder="Ex: CPD..." style="border-radius: 6px;">
                             </div>
-                            <button type="button" class="btn btn-sm btn-secondary px-3" style="height: 31px; border-radius: 6px;" title="Filtrar Equipamentos"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="button" class="btn btn-sm btn-secondary px-3" style="height: 31px; border-radius: 6px;" id="btnFiltrarEquipamentos" title="Filtrar Equipamentos"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
 
                         <div class="table-responsive rounded-3 border" style="box-shadow: none;">
-                            <table class="table table-sm table-hover m-0 align-middle" style="font-size: 12.5px;">
+                            <table class="table table-sm table-hover m-0 align-middle" style="font-size: 12.5px;" id="tabelaEquipamentos">
                                 <thead class="table-light text-secondary" style="background-color: #f1f5f9;">
                                     <tr>
                                         <th class="ps-3 py-2">Nº de Série / Tag</th>
@@ -191,21 +153,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="font-code ps-3 py-2">DELL-OPT-990</td>
-                                        <td class="fw-medium text-dark">Servidor Dell Optiplex</td>
-                                        <td>Dell Enterprise</td>
-                                        <td>TI / Sala de CPD</td>
-                                        <td class="text-muted pe-3">12/03/2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-code ps-3 py-2">BAL-TOL-04</td>
-                                        <td class="fw-medium text-dark">Balança Checkout 30kg</td>
-                                        <td>Toledo</td>
-                                        <td>Frente de Caixa 01</td>
-                                        <td class="text-muted pe-3">18/07/2025</td>
-                                    </tr>
-                                </tbody>
+                                    </tbody>
                             </table>
                         </div>
 
@@ -213,6 +161,61 @@
                     <div class="modal-footer border-top-0 pt-0">
                         <button type="button" class="btn btn-secondary w-100 py-2 rounded-3" data-bs-dismiss="modal" style="font-size: 14px;">Fechar Dossiê</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalVincularEquipamento" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 rounded-4 shadow">
+                    <div class="modal-header border-bottom-0 pb-0 d-flex justify-content-between align-items-center">
+                        <h3 class="h5 fw-bold text-dark m-0"><i class="fa-solid fa-cube text-primary me-2"></i> Vincular Novo Equipamento</h3>
+                        <button type="button" class="btn-close shadow-none" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" aria-label="Close"></button>
+                    </div>
+                    
+                    <form class="modal-form m-0" id="formVincularEquipamento">
+                        <div class="modal-body pt-3">
+                            
+                            <div class="photo-upload-container mb-3 d-flex justify-content-center">
+                                <label class="photo-upload-label" for="equipFotoInput" style="cursor: pointer;">
+                                    <div class="photo-preview-placeholder d-flex flex-column align-items-center justify-content-center border border-dashed rounded-3 p-4 bg-light text-muted" style="width: 140px; height: 140px; border-color: #cbd5e1 !important;">
+                                        <i class="fa-solid fa-camera mb-1 fs-4"></i>
+                                        <span style="font-size: 11px;">Adicionar Foto</span>
+                                    </div>
+                                </label>
+                                <input type="file" id="equipFotoInput" accept="image/*" style="display: none;">
+                            </div>
+
+                            <div class="d-flex flex-column gap-2">
+                                <div class="d-flex flex-column">
+                                    <label for="equipTipo" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Tipo de Equipamento *</label>
+                                    <input type="text" class="form-control form-control-sm" id="equipTipo" placeholder="Ex: Computador" style="border-radius: 6px;" required>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <label for="equipFabricante" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Fabricante *</label>
+                                    <input type="text" class="form-control form-control-sm" id="equipFabricante" placeholder="Ex: Dell" style="border-radius: 6px;" required>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <label for="equipModelo" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Modelo *</label>
+                                    <input type="text" class="form-control form-control-sm" id="equipModelo" placeholder="Ex: Optiplex 3080" style="border-radius: 6px;" required>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <label for="equipNumSerie" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Nº de Série / Tag *</label>
+                                    <input type="text" class="form-control form-control-sm" id="equipNumSerie" placeholder="Ex: BR12345" style="border-radius: 6px;" required>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <label for="equipObs" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Localização / Observações</label>
+                                    <input type="text" class="form-control form-control-sm" id="equipObs" placeholder="Ex: No balcão" style="border-radius: 6px;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer border-top-0 pt-0 d-flex gap-2">
+                            <button type="button" class="btn btn-sm btn-light border flex-grow-1 py-2" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" style="border-radius: 6px; font-size: 13px;">Cancelar</button>
+                            <button type="submit" class="btn btn-sm text-white flex-grow-1 py-2 fw-medium" style="background-color: #5334ea; border-radius: 6px; font-size: 13px;">Salvar Equipamento</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -275,5 +278,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/listarCliente.js"></script>
 </body>
 </html>

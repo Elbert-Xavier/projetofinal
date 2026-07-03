@@ -14,6 +14,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
@@ -80,8 +81,27 @@ public class ClienteEntity implements Serializable {
     @NotBlank
     @Size (min = 2, max = 2)
     private String uf;
+    
+    @Formula("(SELECT COUNT(*) FROM equipamento e WHERE e.idCliente = id)")
+    private Integer totalEquipamentos;
+
+  //  @Formula("(SELECT COUNT(*) FROM chamado c WHERE c.idCliente = id AND LOWER(c.status) = 'aberto')")
+   // private Integer totalChamadosAbertos;
+    private Integer totalChamadosAbertos = 0;
         
    
+	public Integer getTotalEquipamentos() {
+		return totalEquipamentos;
+	}
+	public void setTotalEquipamentos(Integer totalEquipamentos) {
+		this.totalEquipamentos = totalEquipamentos;
+	}
+	public Integer getTotalChamadosAbertos() {
+		return totalChamadosAbertos;
+	}
+	public void setTotalChamadosAbertos(Integer totalChamadosAbertos) {
+		this.totalChamadosAbertos = totalChamadosAbertos;
+	}
 	public int getId() {
 		return id;
 	}

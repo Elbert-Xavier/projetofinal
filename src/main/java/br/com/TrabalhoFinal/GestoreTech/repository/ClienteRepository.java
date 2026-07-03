@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import br.com.TrabalhoFinal.GestoreTech.entity.ClienteEntity;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<ClienteEntity, Integer> { // Ajustado para Integer
+public interface ClienteRepository extends JpaRepository<ClienteEntity, Integer> {
 
     @Query("SELECT c FROM ClienteEntity c WHERE " +
            "(:search IS NULL OR :search = '' OR LOWER(c.razaoSocial) LIKE LOWER(CONCAT('%', :search, '%')) " +
            "OR LOWER(c.nomeFantasia) LIKE LOWER(CONCAT('%', :search, '%')) " +
-           "OR c.cnpj LIKE CONCAT('%', :search, '%')) " +
+           "OR REPLACE(REPLACE(REPLACE(c.cnpj, '.', ''), '-', ''), '/', '') LIKE CONCAT('%', :search, '%')) " +
            "AND (:cidade IS NULL OR :cidade = '' OR LOWER(c.cidade) LIKE LOWER(CONCAT('%', :cidade, '%'))) " +
            "AND (:uf IS NULL OR :uf = '' OR c.uf = :uf) " +
            "ORDER BY c.razaoSocial ASC")

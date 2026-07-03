@@ -383,3 +383,11 @@
         justify-items: center;
     }
 }
+/* Ajuste de largura para os novos campos de Cidade e UF */
+.grid-cidade {
+    grid-column: span 4; /* Dá um espaço maior, parecido com o Bairro */
+}
+
+.grid-uf {
+    grid-column: span 2; /* Dá um espaço menor, ideal para as 2 letras da sigla */
+}

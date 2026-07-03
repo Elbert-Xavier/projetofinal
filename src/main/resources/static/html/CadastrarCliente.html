@@ -12,32 +12,30 @@
 <body>
 
     <aside class="sidebar">
-            <div class="logo-area">
-                <div class="logo-box">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
-                <div class="logo-title-group">
-                    <span class="logo-text">Gestor&Tech</span>
-                    <span class="logo-subtext">Área do Gestor</span>
-                </div>
+        <div class="logo-area">
+            <div class="logo-box">
+                <i class="fa-solid fa-chart-line"></i>
             </div>
+            <div class="logo-title-group">
+                <span class="logo-text">Gestor&Tech</span>
+                <span class="logo-subtext">Área do Gestor</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="gestorChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+            <a href="cadastroUsuario.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
+            <a href="cliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+            <a href="tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
             
-            <nav class="sidebar-nav">
-                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
-                <a href="gestorChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
-                <a href="cadastroUsuario.html" class="nav-item"><i class="fa-solid fa-user-lock"></i> Usuários</a>
-                <a href="cliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
-                <a href="tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
-                
-                <div class="sidebar-footer">
-                    <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
-                </div>
-            </nav>
-        </aside>
+            <div class="sidebar-footer">
+                <a href="login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+            </div>
+        </nav>
+    </aside>
 
     <div class="main-content">
-        
-
         <main class="content-wrapper">
             <div class="card">
                 <div class="card-header">
@@ -51,21 +49,62 @@
                 <form id="formCliente">
                     <div class="section-title"><i class="fa-solid fa-building"></i> Dados Empresariais</div>
                     <div class="form-grid layout-2-col">
-                        <div class="input-group"><label for="cnpj">CNPJ *</label><input type="text" id="cnpj" placeholder="00.000.000/0001-00" required></div>
-                        <div class="input-group"><label for="razaoSocial">Razão Social *</label><input type="text" id="razaoSocial" placeholder="Digite a razão social" required></div>
-                        <div class="input-group"><label for="nomeFantasia">Nome Fantasia *</label><input type="text" id="nomeFantasia" placeholder="Digite o nome fantasia" required></div>
-                        <div class="input-group"><label for="email">E-mail de Contato *</label><input type="email" id="email" placeholder="empresa@email.com" required></div>
-                        <div class="input-group"><label for="telefone">Telefone *</label><input type="tel" id="telefone" placeholder="(00) 00000-0000" required></div>
-                        <div class="input-group"><label for="nomeResponsavel">Nome do Responsável *</label><input type="text" id="nomeResponsavel" placeholder="Nome do contato principal" required></div>
+                        <div class="input-group">
+                            <label for="cnpj">CNPJ *</label>
+                            <input type="text" id="cnpj" placeholder="00.000.000/0001-00" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="razaoSocial">Razão Social *</label>
+                            <input type="text" id="razaoSocial" placeholder="Digite a razão social" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="nomeFantasia">Nome Fantasia *</label>
+                            <input type="text" id="nomeFantasia" placeholder="Digite o nome fantasia" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">E-mail de Contato *</label>
+                            <input type="email" id="email" placeholder="empresa@email.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="telefone">Telefone *</label>
+                            <input type="tel" id="telefone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="nomeResponsavel">Nome do Responsável *</label>
+                            <input type="text" id="nomeResponsavel" placeholder="Nome do contato principal" required>
+                        </div>
                     </div>
 
                     <div class="section-title"><i class="fa-solid fa-map-location-dot"></i> Endereço do Estabelecimento</div>
                     <div class="form-grid layout-mixed">
-                        <div class="input-group grid-cep"><label for="cep">CEP *</label><input type="text" id="cep" placeholder="00000-000" required></div>
-                        <div class="input-group grid-logradouro"><label for="logradouro">Logradouro *</label><input type="text" id="logradouro" placeholder="Rua, Av..." required></div>
-                        <div class="input-group grid-numero"><label for="numero">Número *</label><input type="text" id="numero" placeholder="Nº" required></div>
-                        <div class="input-group grid-bairro"><label for="bairro">Bairro *</label><input type="text" id="bairro" placeholder="Bairro" required></div>
-                        <div class="input-group grid-complemento"><label for="complemento">Complemento</label><input type="text" id="complemento" placeholder="Sala, Bloco, etc."></div>
+                        <div class="input-group grid-cep">
+                            <label for="cep">CEP *</label>
+                            <input type="text" id="cep" placeholder="00000-000" required>
+                        </div>
+                        <div class="input-group grid-logradouro">
+                            <label for="logradouro">Logradouro *</label>
+                            <input type="text" id="logradouro" placeholder="Rua, Av..." required>
+                        </div>
+                        <div class="input-group grid-numero">
+                            <label for="numero">Número *</label>
+                            <input type="text" id="numero" placeholder="Nº" required>
+                        </div>
+                        <div class="input-group grid-bairro">
+                            <label for="bairro">Bairro *</label>
+                            <input type="text" id="bairro" placeholder="Bairro" required>
+                        </div>
+                        <div class="input-group grid-cidade">
+                            <label for="cidade">Cidade *</label>
+                            <input type="text" id="cidade" placeholder="Ex: Contagem" required>
+                        </div>
+                        <div class="input-group grid-uf">
+                            <label for="uf">Estado (UF) *</label>
+                            <input type="text" id="uf" placeholder="MG" maxlength="2" style="text-transform: uppercase;" required>
+                        </div>
+                        <div class="input-group grid-complemento">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" placeholder="Sala, Bloco, etc.">
+                        </div>
                     </div>
 
                     <div class="section-title"><i class="fa-solid fa-desktop"></i> Equipamentos Vinculados</div>
@@ -108,11 +147,26 @@
                 </div>
 
                 <div class="modal-form-fields">
-                    <div class="modal-input-group"><label for="equipTipo">Tipo de Equipamento *</label><input type="text" id="equipTipo" placeholder="Ex: Computador"></div>
-                    <div class="modal-input-group"><label for="equipFabricante">Fabricante *</label><input type="text" id="equipFabricante" placeholder="Ex: Dell"></div>
-                    <div class="modal-input-group"><label for="equipModelo">Modelo *</label><input type="text" id="equipModelo" placeholder="Ex: Optiplex 3080"></div>
-                    <div class="modal-input-group"><label for="equipNumSerie">Nº de Série / Tag</label><input type="text" id="equipNumSerie" placeholder="Ex: BR12345"></div>
-                    <div class="modal-input-group"><label for="equipObs">Localização / Observações</label><input type="text" id="equipObs" placeholder="Ex: No balcão"></div>
+                    <div class="modal-input-group">
+                        <label for="equipTipo">Tipo de Equipamento *</label>
+                        <input type="text" id="equipTipo" placeholder="Ex: Computador">
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="equipFabricante">Fabricante *</label>
+                        <input type="text" id="equipFabricante" placeholder="Ex: Dell">
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="equipModelo">Modelo *</label>
+                        <input type="text" id="equipModelo" placeholder="Ex: Optiplex 3080">
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="equipNumSerie">Nº de Série / Tag</label>
+                        <input type="text" id="equipNumSerie" placeholder="Ex: BR12345">
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="equipObs">Localização / Observações</label>
+                        <input type="text" id="equipObs" placeholder="Ex: No balcão">
+                    </div>
                 </div>
             </div>
 
