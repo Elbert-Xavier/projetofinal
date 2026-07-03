@@ -46,7 +46,7 @@ async function logar(){
 		localStorage.setItem("usuario","logado")
 		
 		if(dadosUsuario.primeiroLogin == true){
-			window.location.href = "http://localhost:8000/html/concluirCadastro.html";
+			window.location.href = "http://localhost:8000/html/concluirCadastro.html?id="+dadosUsuario.id;
 		}else if(dadosUsuario.tipoUsuario == "gestor"){
 			window.location.href = "http://localhost:8000/html/GestorDashboard.html";
 		}else if(dadosUsuario.tipoUsuario == "tecnico"){
@@ -60,4 +60,7 @@ async function logar(){
 		alert("Email ou Senha invalidos!");
 	}
 }
+document.addEventListener("DOMContentLoaded",() =>{
+	localStorage.clear();
+})
 

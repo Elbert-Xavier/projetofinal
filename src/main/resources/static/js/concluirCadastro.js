@@ -1,11 +1,12 @@
 const API_BUSCAR_POR_ID ='http://localhost:8000/usuarios/listarPorID';
+const API_ATUALIZAR = 'http://localhost:8000/usuarios/atualizarPrimeiroLogin';
+let Conta = null;
 
 async function concluirCadastro() {
 	
 	let celular = document.getElementById('telefone').value;
 	let senha = document.getElementById('senha').value;
 	let confirmarSenha = document.getElementById('confirmarSenha').value;
-	let tipoUsuario = null;
 	if(senha == confirmarSenha) {
 		
 		if(validarCelular(celular) == true){
@@ -13,47 +14,48 @@ async function concluirCadastro() {
 			const gmailUsuario = new URLSearchParams(window.location.search);
 			const id = gmailUsuario.get('id');
 			
-			const responseConta = await fetch(`${API_BUSCAR_POR_ID}/${id}`)
-			const dadosConta = await responseConta.json();
-			
-			if(dados.tipoUsuario == "gestorPrimeiroLogin"){
-				tipoUsuario = "gestor"
-			}else if(dados.tipoUsuario == "tecnicoPrimeiroLogin"){
-				tipoUsuario	= "tecnico"
-			}else if(dados.tipoUsuario == "clientePrimeiroLogin"){
-				tipoUsuario = "cliente"
-			}
-			
 			const UsuarioAtualizado = {
-				id: id,
-				tipoUsuario: tipoUsuario,
+				tipoUsuario: Conta.tipoUsuario,
 				nome: document.getElementById('nome').value,
-				cargo: document.getElementById('cargo').value,
+			    cpf: document.getElementById('cpf').value,
+			    cargo: document.getElementById('cargo').value,
+				email:Conta.email,
 				telefone: celular,
-				email: dadosConta.email,
-				senha: confirmarSenha
-				
-			}
+			    senha: confirmarSenha
+				}
 			
-			await fetch(`${API_ATUALIZAR}/${id}`,{
+			const response = await fetch(`${API_ATUALIZAR}/${id}`,{
 				method : 'POST',
 				headers : {
 					'Content-Type' : 'application/json'
 				},
 				body : JSON.stringify(UsuarioAtualizado)
 			})
-			
-			
-			
-			
-			
-			
+			alert("salvo Com Sucesso")
+			window.location.href = 'http://localhost:8000/login.html'
+
 		}else{
 			alert("numero de celular nao valido")
 		}
 	}else{
 		alert("as senhas nao conferem")
 	}
+	
+	
+}
+document.addEventListener("DOMContentLoaded",() =>{
+	AtualizarHora()
+})
+async function AtualizarHora() {
+	const gmailUsuario = new URLSearchParams(window.location.search);
+	const id = gmailUsuario.get('id');
+
+	const responseConta = await fetch(`${API_BUSCAR_POR_ID}/${id}`)
+	const dadosConta = await responseConta.json();
+	
+	Conta = dadosConta;
+	
+	document.getElementById('dataCadastro').value = dadosConta.dataCadastro;
 	
 	
 }

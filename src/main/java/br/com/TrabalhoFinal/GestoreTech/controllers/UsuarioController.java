@@ -77,11 +77,24 @@ public class UsuarioController {
 		senha = senha.substring(0, 7);
 		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
 		usuario.setTipoUsuario("tecnico");
+		usuario.setCpf("955.386.120-23");
+		usuario.setCargo("indefinido");
 		usuario.setPrimeiroLogin(true);
 		usuario.setAdmin(false);
 		usuario.setDataCadastro(LocalDate.now());
 		usuario.setSenha(encoder.encode(senha));
 		return usuarioRepository.save(usuario);
+	}
+	@PostMapping("/atualizarPrimeiroLogin/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public UsuarioEntity AtualizarTecnicoPrimeiroLogin(@RequestBody UsuarioEntity usuario,@PathVariable Integer id) {	
+		if (usuarioRepository.existsById(id)) {
+			usuario.setId(id);
+			usuario.setPrimeiroLogin(false);
+			usuario.setDataCadastro(LocalDate.now());
+			usuario.setSenha(encoder.encode(usuario.getSenha()));
+			return usuarioRepository.save(usuario);
+		}return null;
 	}
 	@GetMapping("/testarSenhaAleatoria")
 	@ResponseStatus(HttpStatus.OK)

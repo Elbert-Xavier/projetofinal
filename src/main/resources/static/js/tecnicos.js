@@ -1,5 +1,6 @@
 const API_LISTAR_TECNICO = 'http://localhost:8000/usuarios/listarTecnicos';
 const API_LISTAR_TECNICO_POR_NOME = 'http://localhost:8000/usuarios/listarTecnicosNome';
+const API_SALVAR_TECNICO = 'http://localhost:8000/usuarios/salvarTecnico';
 
 async function listarTecnico() {
 	const response = await fetch(API_LISTAR_TECNICO);
@@ -79,34 +80,24 @@ async function CadastrarTecnico() {
 	
 	if(validarCelular(telefone) == true,nome,email){
 		
+		const tecnico = {
+			nome: nome,
+			telefone: telefone,
+			email: email
+		}
 		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		await fetch(API_SALVAR,{
+		const response = await fetch(API_SALVAR_TECNICO,{
 			method : 'POST',
 			headers : {
 				'Content-Type' : 'application/json'
 			},
-			body : JSON.stringify(Tecnico)
+			body : JSON.stringify(tecnico)
 		})
 		
+		alert("salvo Com Sucesso")
 		
-		
-		
-		
-		
-		
+		listarTecnico();
+		fecharModal();
 	}else{
 		alert("Preencha os campos de forma correta")
 	}
