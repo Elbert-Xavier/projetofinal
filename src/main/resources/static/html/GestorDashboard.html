@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/GestorDashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../js/GestorDasboard.js"></script>
 </head>
 <body>
 
@@ -52,7 +53,7 @@
                             <span class="kpi-label">Chamados Ativos</span>
                             <div class="kpi-icon-box info"><i class="fa-solid fa-headset"></i></div>
                         </div>
-                        <div class="kpi-value">34</div>
+                        <div class="kpi-value" id="ChamadosAtivos">0</div>
                         <div class="kpi-subtext">Total pendente no sistema</div>
                     </div>
 
@@ -61,7 +62,7 @@
                             <span class="kpi-label">Aguardando Atribuição</span>
                             <div class="kpi-icon-box warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         </div>
-                        <div class="kpi-value">5</div>
+                        <div class="kpi-value">0</div>
                         <div class="kpi-subtext" style="color: #ef4444; font-weight: 500;">Exigem ação do gestor</div>
                     </div>
 
@@ -70,7 +71,7 @@
                             <span class="kpi-label">Em Atendimento Local</span>
                             <div class="kpi-icon-box primary-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                         </div>
-                        <div class="kpi-value">12</div>
+                        <div class="kpi-value">0</div>
                         <div class="kpi-subtext">Técnicos executando reparos</div>
                     </div>
 
@@ -79,7 +80,7 @@
                             <span class="kpi-label">Concluídos (Mês)</span>
                             <div class="kpi-icon-box success"><i class="fa-solid fa-circle-check"></i></div>
                         </div>
-                        <div class="kpi-value">118</div>
+                        <div class="kpi-value" id="ChamadosFinalizados">0</div>
                         <div class="kpi-subtext" style="color: #10b981;">Chamados encerrados</div>
                     </div>
                 </section>

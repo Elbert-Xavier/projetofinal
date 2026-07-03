@@ -33,4 +33,9 @@ public interface ChamadoRepository extends JpaRepository<ChamadoEntity, Integer>
 	        @Param("dataInicio") LocalDate dataInicio,
 	        @Param("dataFim") LocalDate dataFim
 	); 
+	@Query(value = "SELECT COUNT(*) FROM chamados", nativeQuery = true)
+	long contarChamados();
+	@Query(value = "SELECT YEAR(dataAbertura) AS Ano, MONTH(dataAbertura) AS Mes, COUNT(*) AS TotalFinalizados FROM chamados WHERE status = 'finalizado'GROUP BY YEAR(dataAbertura), MONTH(dataAbertura)ORDER BY Ano DESC, Mes DESC;", nativeQuery = true)
+	long contarChamadosFinalizados();
+	
 }

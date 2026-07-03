@@ -40,6 +40,16 @@ public class ChamadoController {
 	public List<ChamadoEntity> listarTodosChamados(){
 		return chamadoRepository.findAll();
 	}
+	@GetMapping("/contarChamados")
+	@ResponseStatus(HttpStatus.OK)
+	public long contarChamados() {
+	    return chamadoRepository.contarChamados();
+	}
+	@GetMapping("/contarChamadosFinalizados")
+	@ResponseStatus(HttpStatus.OK)
+	public long contarChamadosFinalizados() {
+	    return chamadoRepository.contarChamadosFinalizados();
+	}
 	@GetMapping("/listarPorID/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<ChamadoEntity> listarTodosChamadosPorID(@PathVariable int id){
