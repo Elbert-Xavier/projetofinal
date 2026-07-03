@@ -21,7 +21,8 @@ async function concluirCadastro() {
 			    cargo: document.getElementById('cargo').value,
 				email:Conta.email,
 				telefone: celular,
-			    senha: confirmarSenha
+			    senha: confirmarSenha,
+				isAdmin: Conta.isAdmin
 				}
 			
 			const response = await fetch(`${API_ATUALIZAR}/${id}`,{
