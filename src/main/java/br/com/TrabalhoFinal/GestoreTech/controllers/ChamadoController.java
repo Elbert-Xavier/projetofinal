@@ -93,14 +93,19 @@ public class ChamadoController {
         
         ChamadoEntity chamado = new ChamadoEntity();
         chamado.setDataAbertura(LocalDate.now());
-        chamado.setPrioridade("indefinido");
+        chamado.setPrioridade("em analise");
         chamado.setTitulo(titulo);
         chamado.setDescricao(descricao);
         chamado.setUrlImagem(nomeArquivo);
-        chamado.setStatus("pendente");
+        chamado.setStatus("em analise");
         chamado.setEquipamento(equipamento);
 		
 
+		return chamadoRepository.save(chamado);
+	}
+	@PostMapping("/salvarNormal")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ChamadoEntity SalvarNormal(@RequestBody ChamadoEntity chamado) {
 		return chamadoRepository.save(chamado);
 	}
 	

@@ -44,7 +44,10 @@ async function logar(){
 			JSON.stringify(data)
 		);
 		localStorage.setItem("usuario","logado")
-		if(dadosUsuario.tipoUsuario == "gestor"){
+		
+		if(dadosUsuario.primeiroLogin == true){
+			window.location.href = "http://localhost:8000/html/concluirCadastro.html";
+		}else if(dadosUsuario.tipoUsuario == "gestor"){
 			window.location.href = "http://localhost:8000/html/GestorDashboard.html";
 		}else if(dadosUsuario.tipoUsuario == "tecnico"){
 			window.location.href = "http://localhost:8000/";

@@ -53,6 +53,8 @@ public class UsuarioEntity implements Serializable{
 	private String senha;
 	@NotNull
 	private boolean isAdmin;
+	@NotNull
+	private boolean primeiroLogin;
 	
 	public int getId() {
 		return id;
@@ -114,6 +116,12 @@ public class UsuarioEntity implements Serializable{
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public boolean isPrimeiroLogin() {
+		return primeiroLogin;
+	}
+	public void setPrimeiroLogin(boolean primeiroLogin) {
+		this.primeiroLogin = primeiroLogin;
 	}
 
 }

@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor&Tech - Gerenciar Técnicos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="../css/dashboard-base.css">
     <link rel="stylesheet" href="../css/tecnicos.css">
+    <script type="text/javascript" src="../js/tecnicos.js"></script>
 </head>
 <body>
 
     <div class="dashboard-container" id="pageContainer">
-       <aside class="sidebar">
+        <aside class="sidebar">
             <div class="logo-area">
                 <div class="logo-box">
                     <i class="fa-solid fa-chart-line"></i>
@@ -36,129 +39,149 @@
         </aside>
 
         <main class="main-content">
-           
-            <div class="content-wrapper">
-                <div class="card" id="cardTecnicos">
+            <div class="content-wrapper container-fluid p-4">
+                
+                <div class="card border-0 shadow-sm p-4" id="cardTecnicos">
                     
-                    <div class="card-header">
-                        <div class="header-icon-circle"><i class="fa-solid fa-user-gear"></i></div>
-                        <div class="header-title-container">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="header-icon-circle bg-light rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 46px; height: 46px; color: #6b21a8;">
+                            <i class="fa-solid fa-user-gear fs-5"></i>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center w-100 flex-wrap gap-3">
                             <div>
-                                <h1>Equipe Técnica de Campo</h1>
-                                <p>Gerencie os perfis dos técnicos, monitore a carga de trabalho atual e cadastre novos especialistas.</p>
+                                <h1 class="h4 fw-bold mb-1 text-dark">Equipe Técnica de Campo</h1>
+                                <p class="text-muted small mb-0">Gerencie os perfis dos técnicos, monitore a carga de trabalho atual e cadastre novos especialistas.</p>
                             </div>
-                            <a href="#modalNovoTecnico" class="btn-header-action"><i class="fa-solid fa-plus"></i> Novo Técnico</a>
+                            <button type="button" class="btn text-white fw-medium px-3 py-2" style="background-color: #6b21a8;" data-bs-toggle="modal" data-bs-target="#modalNovoTecnico">
+                                <i class="fa-solid fa-plus me-2"></i>Novo Técnico
+                            </button>
                         </div>
                     </div>
 
-                    <div class="indicators-grid">
-                        <div class="indicator-mini-card">
-                            <span class="ind-label">Total de Técnicos</span>
-                            <span class="ind-value">8</span>
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-sm-4">
+                            <div class="card p-3 bg-light border border-secondary-subtle rounded-3">
+                                <span class="text-muted text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Total de Técnicos</span>
+                                <span class="h4 fw-bold text-dark mb-0 mt-1">8</span>
+                            </div>
                         </div>
-                        <div class="indicator-mini-card">
-                            <span class="ind-label">Disponíveis Agora</span>
-                            <span class="ind-value text-success">5</span>
+                        <div class="col-12 col-sm-4">
+                            <div class="card p-3 bg-light border border-secondary-subtle rounded-3">
+                                <span class="text-muted text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Disponíveis Agora</span>
+                                <span class="h4 fw-bold text-success mb-0 mt-1">5</span>
+                            </div>
                         </div>
-                        <div class="indicator-mini-card">
-                            <span class="ind-label">Em Atendimento</span>
-                            <span class="ind-value text-warning">3</span>
+                        <div class="col-12 col-sm-4">
+                            <div class="card p-3 bg-light border border-secondary-subtle rounded-3">
+                                <span class="text-muted text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Em Atendimento</span>
+                                <span class="h4 fw-bold text-warning mb-0 mt-1">3</span>
+                            </div>
                         </div>
                     </div>
 
-                    <hr class="divider-line">
+                    <hr class="my-4 opacity-25">
 
-                    <div class="section-title">🔍 Buscar Especialistas</div>
-                    <form class="filter-bar" style="grid-template-columns: 1fr auto;">
-                        <div class="filter-group">
-                            <label for="filterNome">Nome do Técnico</label>
-                            <input type="text" id="filterNome" placeholder="Digite o nome do técnico para buscar...">
-                        </div>
+                    <div class="mb-4">
+                        <div class="text-uppercase fw-bold text-dark mb-3" style="font-size: 12px; letter-spacing: 0.5px;">🔍 Buscar Especialistas</div>
+                        <form class="row g-2 align-items-end p-3 bg-light rounded-3 border border-secondary-subtle">
+                            <div class="col">
+                                <label for="filterNome" class="form-label text-muted fw-semibold text-uppercase" style="font-size: 11px;">Nome do Técnico</label>
+                                <input type="text" class="form-control" id="filterNome" placeholder="Digite o nome do técnico para buscar...">
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn text-white" style="background-color: #6b21a8; height: 38px;" title="Filtrar" onclick="buscarTecnico()">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
 
-                        <div class="filter-actions-btn" style="margin-top: auto;">
-                            <button type="submit" class="btn-filter-submit" title="Filtrar" style="height: 45px; width: 50px;"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                    </form>
-
-                    <div class="section-title">📋 Técnicos Cadastrados</div>
-                    <div class="table-container">
-                        <table class="chamados-table" style="width: 100%; table-layout: fixed;">
-                            <thead>
-                                <tr>
-                                    <th style="width: 75%;">Nome / Contato</th>
-                                    <th class="text-center" style="width: 25%;">Chamados Ativos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="user-table-profile">
-                                            <img src="https://ui-avatars.com/api/?name=Carlos+Silva&background=0369a1&color=fff" class="avatar-table" alt="Carlos">
-                                            <div>
-                                                <strong class="font-medium">Carlos Silva</strong>
-                                                <span class="subtext-table">carlos.silva@gestortech.com</span>
+                    <div>
+                        <div class="text-uppercase fw-bold text-dark mb-3" style="font-size: 12px; letter-spacing: 0.5px;">📋 Técnicos Cadastrados</div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" style="font-size: 13.5px;">
+                                <thead class="table-light text-muted">
+                                    <tr>
+                                        <th style="width: 75%;">Nome / Contato</th>
+                                        <th class="text-center" style="width: 25%;">Chamados Ativos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-3">
+                                                <img src="https://ui-avatars.com/api/?name=Carlos+Silva&background=0369a1&color=fff" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;" alt="Carlos">
+                                                <div>
+                                                    <div class="fw-medium text-dark">Carlos Silva</div>
+                                                    <div class="text-muted small">carlos.silva@gestortech.com</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center font-bold-count" style="font-size: 16px;">2</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="user-table-profile">
-                                            <img src="https://ui-avatars.com/api/?name=Marcos+Souza&background=16a34a&color=fff" class="avatar-table" alt="Marcos">
-                                            <div>
-                                                <strong class="font-medium">Marcos Souza</strong>
-                                                <span class="subtext-table">marcos.souza@gestortech.com</span>
+                                        </td>
+                                        <td class="text-center fw-bold text-dark" style="font-size: 15px;">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-3">
+                                                <img src="https://ui-avatars.com/api/?name=Marcos+Souza&background=16a34a&color=fff" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;" alt="Marcos">
+                                                <div>
+                                                    <div class="fw-medium text-dark">Marcos Souza</div>
+                                                    <div class="text-muted small">marcos.souza@gestortech.com</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center font-bold-count" style="font-size: 16px;">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td class="text-center fw-bold text-dark" style="font-size: 15px;">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </main>
 
-        <div id="modalNovoTecnico" class="modal-overlay">
-            <div class="modal-card">
-                <div class="modal-header">
-                    <div>
-                        <span class="modal-subtitle">Gestão de Equipe</span>
-                        <h2>Adicionar Novo Técnico</h2>
+        <div class="modal fade" id="modalNovoTecnico" tabindex="-1" aria-labelledby="modalNovoTecnicoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+                <div class="modal-content border-0 shadow rounded-3">
+                    
+                    <div class="modal-header px-4 py-3 border-bottom border-light">
+                        <div>
+                            <span class="text-uppercase fw-bold text-primary mb-1 d-block" style="font-size: 11px; color: #6b21a8 !important; letter-spacing: 0.5px;">Gestão de Equipe</span>
+                            <h5 class="modal-title fw-bold text-dark h5 mb-0" id="modalNovoTecnicoLabel">Adicionar Novo Técnico</h5>
+                        </div>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <a href="#" class="btn-close-modal">&times;</a>
-                </div>
 
-                <div class="modal-body">
-                    <form class="modal-form">
-                        <div class="input-group-modal">
-                            <label for="nomeTecnico">Nome Completo *</label>
-                            <input type="text" id="nomeTecnico" placeholder="Digite o nome do profissional" required>
-                        </div>
+                    <div class="modal-body p-4">
+                        <form id="formNovoTecnico">
+                            <div class="mb-3">
+                                <label for="nomeTecnico" class="form-label fw-semibold text-dark mb-1" style="font-size: 13.5px;">Nome Completo *</label>
+                                <input type="text" class="form-control" id="nomeTecnico" placeholder="Digite o nome do profissional" required>
+                            </div>
 
-                        <div class="input-group-modal">
-                            <label for="emailTecnico">E-mail Corporativo (Login) *</label>
-                            <input type="email" id="emailTecnico" placeholder="nome.sobrenome@gestortech.com" required>
-                        </div>
+                            <div class="mb-3">
+                                <label for="emailTecnico" class="form-label fw-semibold text-dark mb-1" style="font-size: 13.5px;">E-mail Corporativo (Login) *</label>
+                                <input type="email" class="form-control" id="emailTecnico" placeholder="nome.sobrenome@gestortech.com" required>
+                            </div>
 
-                        <div class="input-group-modal">
-                            <label for="telTecnico">Telefone / WhatsApp *</label>
-                            <input type="tel" id="telTecnico" placeholder="(31) 99999-0000" required>
-                        </div>
+                            <div class="mb-4">
+                                <label for="telTecnico" class="form-label fw-semibold text-dark mb-1" style="font-size: 13.5px;">Telefone / WhatsApp *</label>
+                                <input type="tel" class="form-control" id="telTecnico" placeholder="(31) 99999-0000" required oninput="mascaraCelular(this)">
+                            </div>
 
-                        <div class="modal-footer-actions">
-                            <a href="#" class="btn-modal-cancel">Cancelar</a>
-                            <button type="submit" class="btn-modal-save">Cadastrar Técnico</button>
-                        </div>
-                    </form>
+                            <div class="d-flex justify-content-end gap-2 pt-2 border-top border-light">
+                                <button type="button" class="btn btn-outline-secondary px-3 py-2 fw-medium" style="font-size: 13px;" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn text-white px-3 py-2 fw-medium" style="background-color: #6b21a8; font-size: 13px;" onclick="CadastrarTecnico()">Cadastrar Técnico</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

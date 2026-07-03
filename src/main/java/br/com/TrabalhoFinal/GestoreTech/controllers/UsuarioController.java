@@ -1,9 +1,13 @@
 package br.com.TrabalhoFinal.GestoreTech.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +35,8 @@ public class UsuarioController {
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	@Autowired
+	private EmailController emailService;
 	
 	@GetMapping("/listarTodos")
 	@ResponseStatus(HttpStatus.OK)
@@ -42,12 +48,48 @@ public class UsuarioController {
 	public Optional<UsuarioEntity> ListarTodosUsuario(@PathVariable Integer id) {
 		return usuarioRepository.findById(id);
 	}
+	@GetMapping("/listarPorNome/{nome}")
+	@ResponseStatus(HttpStatus.OK)
+	public Optional<UsuarioEntity> ListarTodosUsuario(@PathVariable String nome) {
+		return usuarioRepository.findByNome(nome);
+	}
+	@GetMapping("/listarTecnicos")
+	@ResponseStatus(HttpStatus.OK)
+	public List<UsuarioEntity> ListarTodosTecnicos() {
+		return usuarioRepository.findAllTecnicos();
+	}
+	@GetMapping("/listarTecnicosNome/{nome}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<UsuarioEntity> ListarTodosTecnicos(@PathVariable String nome) {
+		return usuarioRepository.findTecnicobyNome(nome);
+	}
 	
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.OK)
 	public UsuarioEntity salvar(@RequestBody UsuarioEntity usuario) {
 		usuario.setSenha(encoder.encode(usuario.getSenha()));
 		return usuarioRepository.save(usuario);
+	}
+	@PostMapping("/salvarTecnico")
+	@ResponseStatus(HttpStatus.OK)
+	public UsuarioEntity salvarTecnicoPrimeiroLogin(@RequestBody UsuarioEntity usuario) {	
+		String senha = UUID.randomUUID().toString();
+		senha = senha.substring(0, 7);
+		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
+		usuario.setTipoUsuario("tecnico");
+		usuario.setPrimeiroLogin(true);
+		usuario.setAdmin(false);
+		usuario.setDataCadastro(LocalDate.now());
+		usuario.setSenha(encoder.encode(senha));
+		return usuarioRepository.save(usuario);
+	}
+	@GetMapping("/testarSenhaAleatoria")
+	@ResponseStatus(HttpStatus.OK)
+	public UsuarioEntity testEntitySenhaAleatoria() {	
+		String email = "0001152799@senaimgaluno.com.br";
+		String senha = UUID.randomUUID().toString();
+		emailService.enviarEmailConta(email, senha.substring(0, 7));
+		return null;
 	}
 	
 	@PostMapping("/salvarGestor")
