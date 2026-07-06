@@ -18,6 +18,10 @@ async function listarChamados() {
 		        corpoTabela.innerHTML = ''; 
 
 		        listaChamados.forEach(Chamados => {
+		
+					
+					
+					
 		            corpoTabela.innerHTML += `	
 					<button type="button" onclick="exibirModelChamado(this)" class="list-group-item list-group-item-action border rounded-3 p-3 text-start" data-bs-toggle="modal" data-bs-target="#ticketModal1" 
 					data-status="atendimento" data-tipo="notebook" data-fabricante="dell" data-modelo="inspiron 15" data-data="2026-06-25">
@@ -30,7 +34,7 @@ async function listarChamados() {
 					                        </div>
 					                        <div class="d-flex justify-content-between align-items-center text-muted small mt-2 pt-2 border-top-dashed">
 					                            <span>${Chamados.equipamento.nome}</span>
-					                            <span>Técnico: <strong>${Chamados.usuario.nome}</strong></span>
+					                            <span>Técnico: <strong>${Chamados.tecnico.nome}</strong></span>
 					                            <span>Atua. em: ${Chamados.dataAbertura}</span>
 												<p style="display: none" id="idChamado">${Chamados.id}</p>
 					                        </div>
