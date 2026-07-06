@@ -1,4 +1,4 @@
-const API_BUSCAR_TODOS = 'http://localhost:8000/equipamentos/listarTodos';
+const API_BUSCAR_TODOS = 'http://localhost:8000/equipamentos/listartodos';
 const API_BUSCAR_ID = 'http://localhost:8000/equipamentos/listaPorID';
 const API_BUSCAR_POR_MODELO = 'http://localhost:8000/equipamentos/listarmodelo';
 const API_BUSCAR_POR_FABRICANTE = 'http://localhost:8000/equipamentos/listarmarca';
@@ -25,7 +25,7 @@ async function listarEquipamentos() {
 	                <div class="d-flex align-items-center gap-3">
 	                    <div class="item-icon text-center"><i class="fa-solid fa-laptop fs-4"></i></div>
 	                    <div>
-	                        <h3 class="h6 mb-1 fw-semibold text-dark-blue">${equipamento.nome}</h3>
+	                        <h3 class="h6 mb-1 fw-semibold text-dark-blue">${equipamento.modelo}</h3>
 	                        <p class="text-muted small mb-0">Série: ${equipamento.numeroSerie}</p>
 							<p style="display: none" id="idEquipamento">${equipamento.id}</p>
 	                    </div>

@@ -1,17 +1,19 @@
 const API_SALVAR ='http://localhost:8000/chamados/salvar';
-const API_BUSCAR_TODOS_EQUIPAMENTO = 'http://localhost:8000/equipamentos/listarTodos';
+const API_BUSCAR_TODOS_EQUIPAMENTO = 'http://localhost:8000/equipamentos/listartodos';
 
 async function selectEquipamento() {
 		
 		const response = await fetch(API_BUSCAR_TODOS_EQUIPAMENTO);
 		const dados = await response.json();
 		
+		console.log(dados)
+		
 		let select = document.getElementById("selectEquipment");
 			
 			dados.forEach(dado =>{
 				let option = document.createElement("option")
 				option.value = dado.id;
-				option.text = dado.nome+"(Série:"+dado.numeroSerie+")";
+				option.text = dado.modelo+"(Série:"+dado.numeroSerie+")";
 				
 				select.appendChild(option)
 			})
