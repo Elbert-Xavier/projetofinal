@@ -85,6 +85,21 @@ public class UsuarioController {
 		usuario.setSenha(encoder.encode(senha));
 		return usuarioRepository.save(usuario);
 	}
+	@PostMapping("/salvarCliente")
+	@ResponseStatus(HttpStatus.OK)
+	public UsuarioEntity salvarClientePrimeiroLogin(@RequestBody UsuarioEntity usuario) {	
+		String senha = UUID.randomUUID().toString();
+		senha = senha.substring(0, 7);
+		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
+		usuario.setTipoUsuario("cliente");
+		usuario.setCpf("null");
+		usuario.setCargo("indefinido");
+		usuario.setPrimeiroLogin(true);
+		usuario.setAdmin(true);
+		usuario.setDataCadastro(LocalDate.now());
+		usuario.setSenha(encoder.encode(senha));
+		return usuarioRepository.save(usuario);
+	}
 	@PostMapping("/atualizarPrimeiroLogin/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public UsuarioEntity AtualizarTecnicoPrimeiroLogin(@RequestBody UsuarioEntity usuario,@PathVariable Integer id) {	
@@ -95,14 +110,6 @@ public class UsuarioController {
 			usuario.setSenha(encoder.encode(usuario.getSenha()));
 			return usuarioRepository.save(usuario);
 		}return null;
-	}
-	@GetMapping("/testarSenhaAleatoria")
-	@ResponseStatus(HttpStatus.OK)
-	public UsuarioEntity testEntitySenhaAleatoria() {	
-		String email = "0001152799@senaimgaluno.com.br";
-		String senha = UUID.randomUUID().toString();
-		emailService.enviarEmailConta(email, senha.substring(0, 7));
-		return null;
 	}
 	
 	@PostMapping("/salvarGestor")

@@ -113,30 +113,6 @@ async function filtro(input) {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function abrirModal() {
 	const modal = new bootstrap.Modal(document.getElementById('equipmentModal'));
 	modal.show();
