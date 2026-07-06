@@ -26,13 +26,10 @@ public class EmailController {
             MimeMessageHelper helper =
                     new MimeMessageHelper(message, true, "UTF-8");
 
-            // destinatário
             helper.setTo(destinatario);
 
-            // assunto
             helper.setSubject("Redefinir Senha");
 
-            // conteúdo html
             String html = ""
                     + "<div style='background-color: #e0e7ff; padding: 40px 20px; font-family: Segoe UI, Arial, sans-serif; min-height: 400px;'>\n"
                     + "\n"
@@ -93,7 +90,6 @@ public class EmailController {
 
             helper.setText(html, true);
 
-            // envia email
             mailSender.send(message);
 
             return "Email enviado com sucesso!";
@@ -116,13 +112,10 @@ public class EmailController {
             MimeMessageHelper helper =
                     new MimeMessageHelper(message, true, "UTF-8");
 
-            // destinatário
             helper.setTo(destinatario);
 
-            // assunto
             helper.setSubject("Redefinir Senha");
 
-            // conteúdo html
             String html = ""
             	    + "<div style='background-color: #e0e7ff; padding: 40px 20px; font-family: Segoe UI, Arial, sans-serif; min-height: 400px;'>\n"
             	    + "\n"
@@ -147,14 +140,13 @@ public class EmailController {
             	    + "\n"
             	    + "\n"
             	    + "<div style='background-color: #f9fafb; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; margin-bottom: 24px;'>\n"
-            	    
-            	    // Campo de Email limpo e fácil de selecionar
+
             	    + "  <p style='margin: 0 0 4px 0; font-size: 13px; color: #6b7280;'><strong>E-mail de acesso:</strong></p>\n"
             	    + "  <div style='margin-bottom: 16px; font-size: 15px; font-family: monospace; color: #111827; background-color: #ffffff; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; word-break: break-all; -webkit-user-select: all; user-select: all;'>\n"
             	    + "    " + destinatario + "\n"
             	    + "  </div>\n"
             	    + "  \n"
-            	    // Campo de Senha limpo e fácil de selecionar
+
             	    + "  <p style='margin: 0 0 4px 0; font-size: 13px; color: #6b7280;'><strong>Senha provisória:</strong></p>\n"
             	    + "  <div style='font-size: 15px; font-family: monospace; color: #111827; background-color: #ffffff; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; word-break: break-all; -webkit-user-select: all; user-select: all;'>\n"
             	    + "    " + senhaTemporaria + "\n"
@@ -194,7 +186,6 @@ public class EmailController {
 
             helper.setText(html, true);
 
-            // envia email
             mailSender.send(message);
 
             return "Email enviado com sucesso!";

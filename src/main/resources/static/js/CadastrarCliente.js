@@ -24,7 +24,7 @@ document.getElementById('cep').addEventListener('blur', async function() {
             document.getElementById('uf').value = dados.uf;
             document.getElementById('numero').focus(); 
         } else {
-            alert("CEP não encontrado! Digite o endereço manualmente.");
+            alert("CEP não encontrado. Digite o endereço manualmente.");
             limparCamposEndereco();
         }
     }
