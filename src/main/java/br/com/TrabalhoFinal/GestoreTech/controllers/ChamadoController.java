@@ -128,5 +128,27 @@ public class ChamadoController {
 		}return null;
 	}
 	
-	
+	@PutMapping("/atribuir/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ChamadoEntity atribuirTecnicoEPrioridade(
+			@PathVariable int id,
+			@RequestParam String prioridade,
+			@RequestParam int idTecnico,
+			@RequestParam(required = false) String orientacoes) {
+		
+		return chamadoRepository.findById(id).map(chamado -> {
+			chamado.setPrioridade(prioridade);
+			chamado.setStatus("ATRIBUIDO");
+			
+			if (orientacoes != null && !orientacoes.trim().isEmpty()) {
+				chamado.setDescricao(chamado.getDescricao() + " [Orientação Gestor: " + orientacoes + "]");
+			}
+			
+			br.com.TrabalhoFinal.GestoreTech.entity.UsuarioEntity tecnico = new br.com.TrabalhoFinal.GestoreTech.entity.UsuarioEntity();
+			tecnico.setId(idTecnico);
+			chamado.setTecnico(tecnico);
+			
+			return chamadoRepository.save(chamado);
+		}).orElse(null);
+	}
 }

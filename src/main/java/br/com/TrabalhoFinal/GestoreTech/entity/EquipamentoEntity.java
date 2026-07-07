@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "equipamento")
@@ -29,6 +31,7 @@ public class EquipamentoEntity implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "idCliente")
+	@JsonIgnoreProperties("equipamentos")
 	private ClienteEntity cliente;
 	
 	@NotBlank

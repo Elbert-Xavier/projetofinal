@@ -44,7 +44,7 @@ public class EquipamentoController {
 		}).orElse(null);
 	}
 
-	@GetMapping("/listartodos")
+	@GetMapping("/listarTodos")
 	@ResponseStatus(HttpStatus.OK)
 	public List<EquipamentoEntity> ListarTodos() {
 	    return equipamentoRepository.findAllByOrderByModeloAsc();

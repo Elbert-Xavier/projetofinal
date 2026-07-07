@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -32,6 +34,17 @@ public class UsuarioEntity implements Serializable{
 	@NotBlank
 	@Size(min = 5, max = 150)
 	private String nome;
+	
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private ClienteEntity cliente;
+	
+	public ClienteEntity getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteEntity cliente) {
+		this.cliente = cliente;
+	}
 	@CPF
 	@NotBlank
 	@Column(nullable = false, unique = true)

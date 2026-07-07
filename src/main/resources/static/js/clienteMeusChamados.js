@@ -1,115 +1,86 @@
-const API_BUSCAR_CHAMADO = 'http://localhost:8000/chamados/listartodos';
+const API_BUSCAR_CHAMADO = 'http://localhost:8000/chamados/listarTodos';
 const API_BUSCAR_CHAMADO_ID = 'http://localhost:8000/chamados/listarPorID';
 
-document.addEventListener("DOMContentLoaded",() =>{
-	listarChamados();
-})
+document.addEventListener("DOMContentLoaded", () => {
+    listarChamados();
+});
+
 async function listarChamados() {
-	const response = await fetch(API_BUSCAR_CHAMADO);
-	const listaChamados = await response.json();
+    const response = await fetch(API_BUSCAR_CHAMADO);
+    const listaChamados = await response.json();
 
-	console.log('RESPOSTA')
-	console.log(response);
-	console.log('JSON')
-	console.log(listaChamados);
+    console.log('RESPOSTA', response);
+    console.log('JSON', listaChamados);
 
-	const corpoTabela = document.getElementById('listaChamadosContainer');
-		        
-		        corpoTabela.innerHTML = ''; 
+    const corpoTabela = document.getElementById('listaChamadosContainer');
+    corpoTabela.innerHTML = ''; 
 
-		        listaChamados.forEach(Chamados => {
-		
-					
-					
-					
-		            corpoTabela.innerHTML += `	
-					<button type="button" onclick="exibirModelChamado(this)" class="list-group-item list-group-item-action border rounded-3 p-3 text-start" data-bs-toggle="modal" data-bs-target="#ticketModal1" 
-					data-status="atendimento" data-tipo="notebook" data-fabricante="dell" data-modelo="inspiron 15" data-data="2026-06-25">
-					                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
-					                            <div>
-					                                <span class="badge text-bg-light border text-secondary mb-1">#${Chamados.id}</span>
-					                                <h3 class="h6 mb-1 fw-semibold text-dark-blue chamado-titulo">${Chamados.titulo}</h3>
-					                            </div>
-					                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">${Chamados.status}</span>
-					                        </div>
-					                        <div class="d-flex justify-content-between align-items-center text-muted small mt-2 pt-2 border-top-dashed">
-					                            <span>${Chamados.equipamento.nome}</span>
-					                            <span>Técnico: <strong>${Chamados.tecnico.nome}</strong></span>
-					                            <span>Atua. em: ${Chamados.dataAbertura}</span>
-												<p style="display: none" id="idChamado">${Chamados.id}</p>
-					                        </div>
-					                    </button>`
-		        });
-				console.log(corpoTabela)
+    listaChamados.forEach(Chamados => {
+
+        const dataFmt = Chamados.dataAbertura ? Chamados.dataAbertura.split('-').reverse().join('/') : '-';
+        const tecnicoNome = Chamados.tecnico ? Chamados.tecnico.nome : 'Aguardando Atribuição';
+        const equipamentoTexto = Chamados.equipamento ? `${Chamados.equipamento.fabricante} ${Chamados.equipamento.modelo}` : 'N/A';
+        const statusTexto = Chamados.status ? Chamados.status.toUpperCase() : 'EM ANÁLISE';
+        corpoTabela.innerHTML += `	
+            <button type="button" onclick="exibirModelChamado(this)" class="list-group-item list-group-item-action border rounded-3 p-3 text-start mb-2" 
+                    data-id="${Chamados.id}">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <div>
+                        <span class="badge text-bg-light border text-secondary mb-1">#CH-${Chamados.id}</span>
+                        <h3 class="h6 mb-1 fw-semibold text-dark-blue chamado-titulo">${Chamados.titulo}</h3>
+                    </div>
+                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">${statusTexto}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center text-muted small mt-2 pt-2 border-top border-light">
+                    <span><i class="fa-solid fa-desktop me-1"></i> ${equipamentoTexto}</span>
+                    <span>Técnico: <strong>${tecnicoNome}</strong></span>
+                    <span>Atua. em: ${dataFmt}</span>
+                </div>
+            </button>`;
+    });
+    console.log(corpoTabela);
 }
 
 async function exibirModelChamado(button) {
-	
-	const IDchamado = button.querySelector('#idChamado');
-	    
-	    const id = IDchamado.textContent;
-	
-	console.log(id)
-	
-	const response = await fetch(`${API_BUSCAR_CHAMADO_ID}/${id}`)
-	const tabela = await response.json();
-	
-	console.log(tabela);
-	console.log(tabela.imagem);
-	
-	document.getElementById('descricao').innerText = tabela.descricao;
-	document.getElementById('equipamento').innerText = tabela.equipamento.nome;
-	document.getElementById('Tecnico').innerText = tabela.usuario.nome;
-	document.getElementById('Status').innerText = tabela.status;
-	document.getElementById('data').innerText = tabela.dataAbertura;
-	document.getElementById('Imagem').src = `/img/${tabela.urlImagem}`
+    const id = button.getAttribute('data-id');
+    console.log(id);
+    
+    const response = await fetch(`${API_BUSCAR_CHAMADO_ID}/${id}`);
+    const tabela = await response.json();
+    
+    console.log(tabela);
+    
+    const dataFmt = tabela.dataAbertura ? tabela.dataAbertura.split('-').reverse().join('/') : '-';
+
+    document.getElementById('descricao').innerText = tabela.descricao;
+    
+    document.getElementById('equipamento').innerText = tabela.equipamento ? 
+        `${tabela.equipamento.tipo} ${tabela.equipamento.fabricante} ${tabela.equipamento.modelo}` : 'N/A';
+
+    document.getElementById('Tecnico').innerText = tabela.tecnico ? tabela.tecnico.nome : 'Aguardando Atribuição';
+    
+    document.getElementById('Status').innerText = tabela.status ? tabela.status.toUpperCase() : 'EM ANÁLISE';
+    document.getElementById('data').innerText = dataFmt;
+
+    const imgElement = document.getElementById('Imagem');
+    if (tabela.urlImagem) {
+        imgElement.src = `http://localhost:8000/img/${tabela.urlImagem}`;
+        imgElement.style.display = 'block';
+    } else {
+        imgElement.style.display = 'none';
+    }
+
+    abrirModal();
 }
-
-async function filtro(input) {
-	
-	
-	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function abrirModal() {
-	const modal = new bootstrap.Modal(document.getElementById('ticketModal1'));
-	modal.show();
+    const modalElement = document.getElementById('ticketModal1');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
 }
+
 function fecharModal() {
-	const modalElement = document.getElementById("ticketModal1");
-	const modal = bootstrap.Modal.getInstance(modalElement);
-	modal.hide();
+    const modalElement = document.getElementById("ticketModal1");
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) modal.hide();
 }

@@ -2,20 +2,16 @@ package br.com.TrabalhoFinal.GestoreTech.repository;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
 
 @Repository
 public interface ChamadoRepository extends JpaRepository<ChamadoEntity, Integer> {
 
-
 	List<ChamadoEntity> findAllByOrderByDataAberturaDesc();
-	
 
 	@Query("SELECT c FROM ChamadoEntity c WHERE " +
 	       "(:clienteId IS NULL OR c.equipamento.cliente.id = :clienteId) AND " +
@@ -31,11 +27,13 @@ public interface ChamadoRepository extends JpaRepository<ChamadoEntity, Integer>
 	        @Param("equipamento") String equipamento,
 	        @Param("fabricante") String fabricante,
 	        @Param("dataInicio") LocalDate dataInicio,
-	        @Param("dataFim") LocalDate dataFim
-	); 
+	        @Param("dataFim") LocalDate dataFim 
+	);
+
 	@Query(value = "SELECT COUNT(*) FROM chamados", nativeQuery = true)
 	long contarChamados();
-	@Query(value = "SELECT YEAR(dataAbertura) AS Ano, MONTH(dataAbertura) AS Mes, COUNT(*) AS TotalFinalizados FROM chamados WHERE status = 'finalizado'GROUP BY YEAR(dataAbertura), MONTH(dataAbertura)ORDER BY Ano DESC, Mes DESC;", nativeQuery = true)
-	long contarChamadosFinalizados();
 	
+	
+	@Query(value = "SELECT YEAR(dataAbertura) AS Ano, MONTH(dataAbertura) AS Mes, COUNT(*) AS TotalFinalizados FROM chamados WHERE status = 'finalizado' GROUP BY YEAR(dataAbertura), MONTH(dataAbertura) ORDER BY Ano DESC, Mes DESC;", nativeQuery = true)
+	long contarChamadosFinalizados();
 }
