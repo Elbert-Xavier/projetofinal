@@ -38,13 +38,6 @@ public class UsuarioEntity implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "idCliente")
 	private ClienteEntity cliente;
-	
-	public ClienteEntity getCliente() {
-		return cliente;
-	}
-	public void setCliente(ClienteEntity cliente) {
-		this.cliente = cliente;
-	}
 	@CPF
 	@NotBlank
 	@Column(nullable = false, unique = true)
@@ -69,6 +62,13 @@ public class UsuarioEntity implements Serializable{
 	@NotNull
 	private boolean primeiroLogin;
 	
+	
+	public ClienteEntity getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteEntity cliente) {
+		this.cliente = cliente;
+	}
 	public int getId() {
 		return id;
 	}

@@ -43,6 +43,11 @@ public class EquipamentoController {
 			return equipamentoRepository.save(equipamento);
 		}).orElse(null);
 	}
+	@PostMapping("/salvarNormal")
+	@ResponseStatus(HttpStatus.CREATED)
+	public EquipamentoEntity salvar(@RequestBody EquipamentoEntity equipamento) {
+		return equipamentoRepository.save(equipamento);
+	}
 
 	@GetMapping("/listarTodos")
 	@ResponseStatus(HttpStatus.OK)

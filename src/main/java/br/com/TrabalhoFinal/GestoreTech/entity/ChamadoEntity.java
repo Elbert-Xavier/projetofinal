@@ -42,11 +42,17 @@ public class ChamadoEntity implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String descricao;
 	
+	@NotBlank
+	@Size(min = 4, max = 1500)
+	@Column(columnDefinition = "TEXT")
+	private String orientacao;
+	
 	private String urlImagem;
 	
 	@NotBlank
 	private String status;
-	
+
+
 	@ManyToOne
 	@JoinColumn(name = "idEquipamento")
 	private EquipamentoEntity equipamento;
@@ -59,6 +65,15 @@ public class ChamadoEntity implements Serializable {
 	@JoinColumn(name = "idUsuarioTecnico")
 	private UsuarioEntity tecnico;
 
+	
+	
+	public String getOrientacao() {
+		return orientacao;
+	}
+
+	public void setOrientacao(String orientacao) {
+		this.orientacao = orientacao;
+	}
 	public int getId() {
 		return id;
 	}

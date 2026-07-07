@@ -560,6 +560,7 @@
 .badge-urgencia.alta { background-color: #fee2e2; color: #ef4444; }
 .badge-urgencia.media { background-color: #fef3c7; color: #d97706; }
 .badge-urgencia.baixa { background-color: #f1f5f9; color: #64748b; }
+.badge-urgencia.indefinido { background-color: #e0f2fe; color: #0369a1; }
 
 .badge-status.atribuido { background-color: #e0f2fe; color: #0369a1; }
 .badge-status.finalizado { background-color: #d1fae5; color: #065f46; }

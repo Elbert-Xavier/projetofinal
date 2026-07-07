@@ -47,11 +47,11 @@ async function logar(){
 		
 		if(dadosUsuario.primeiroLogin == true){
 			window.location.href = "http://localhost:8000/html/concluirCadastro.html?id="+dadosUsuario.id;
-		}else if(dadosUsuario.tipoUsuario == "gestor"){
+		}else if(dadosUsuario.tipoUsuario == "GESTOR"){
 			window.location.href = "http://localhost:8000/html/GestorDashboard.html";
-		}else if(dadosUsuario.tipoUsuario == "tecnico"){
+		}else if(dadosUsuario.tipoUsuario == "TECNICO"){
 			window.location.href = "http://localhost:8000/";
-		}else if(dadosUsuario.tipoUsuario == "cliente"){
+		}else if(dadosUsuario.tipoUsuario == "CLIENTE"){
 			window.location.href = "http://localhost:8000/html/clienteMeusChamados.html";
 		}else{
 			alert("algum Erro foi encontrado tente novamente mais tarde")

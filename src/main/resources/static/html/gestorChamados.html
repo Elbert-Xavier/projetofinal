@@ -39,6 +39,7 @@
 
         <main class="main-content">
            
+
             <div class="content-wrapper">
                 <div class="card" id="cardChamados">
                     
@@ -63,9 +64,17 @@
                                     <th class="text-center">Ação Operacional</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbodyTriagem">
+                            <tbody id="tabelaChamadosAbertos">
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted">Carregando triagem...</td>
+                                    <td class="font-code">#CH-2026-0490</td>
+                                    <td class="font-medium">Oficina do Zé Ltda</td>
+                                    <td>Servidor Dell Optiplex</td>
+                                    <td class="text-truncate">Servidor local parou após queda de energia.</td>
+                                    <td class="text-center">
+                                        <a href="#modalDetalhesChamado" class="btn-action-view" title="Analisar Detalhes e Atribuir Técnico">
+                                            <i class="fa-solid fa-clipboard-check"></i> Triar e Atribuir
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -80,6 +89,8 @@
                             <label for="filterCliente">Cliente / Empresa</label>
                             <select id="filterCliente">
                                 <option value="">Todos os Clientes</option>
+                                <option value="1">Oficina do Zé Ltda</option>
+                                <option value="2">Padaria Pão Quente</option>
                             </select>
                         </div>
 
@@ -87,7 +98,7 @@
                             <label for="filterStatus">Status</label>
                             <select id="filterStatus">
                                 <option value="">Todos os Status</option>
-                                <option value="EM ANALISE">Em Análise</option>
+                                <option value="ABERTO">Aberto</option>
                                 <option value="ATRIBUIDO">Atribuído</option>
                                 <option value="FINALIZADO">Finalizado</option>
                             </select>
@@ -131,9 +142,32 @@
                                     <th class="text-center">Detalhes</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbodyHistorico">
+                            <tbody id="corpoTabela">
                                 <tr>
-                                    <td colspan="7" class="text-center text-muted">Carregando histórico...</td>
+                                    <td class="text-muted">23/06/2026 14:30</td>
+                                    <td class="font-code">#CH-2026-0475</td>
+                                    <td class="font-medium">Padaria Pão Quente</td>
+                                    <td>Fernanda Lima</td>
+                                    <td><span class="badge-urgencia media">MÉDIA</span></td>
+                                    <td><span class="badge-status atribuido">ATRIBUÍDO</span></td>
+                                    <td class="text-center">
+                                        <a href="#modalHistoricoAtribuido" class="btn-action-history-view" title="Revisar Chamado Atribuído">
+                                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">18/06/2026 11:00</td>
+                                    <td class="font-code">#CH-2026-0460</td>
+                                    <td class="font-medium">Borracharia São Cristóvão</td>
+                                    <td>Marcos Souza</td>
+                                    <td><span class="badge-urgencia baixa">BAIXA</span></td>
+                                    <td><span class="badge-status finalizado">FINALIZADO</span></td>
+                                    <td class="text-center">
+                                        <a href="#modalHistoricoFinalizado" class="btn-action-history-view" title="Auditar Chamado Finalizado">
+                                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -147,7 +181,7 @@
                 <div class="modal-header">
                     <div>
                         <span class="modal-subtitle">Dossiê e Triagem Coesa</span>
-                        <h2>Chamado #CH-0000</h2>
+                        <h2 id="chamadoID">Chamado #CH-2026-0490</h2>
                     </div>
                     <a href="#" class="btn-close-modal">&times;</a>
                 </div>
@@ -157,34 +191,34 @@
                         <div class="form-row-2-col">
                             <div class="detail-group">
                                 <label>Cliente / Empresa</label>
-                                <p class="detail-value-text"></p>
+                                <p class="detail-value-text" id="nomeCliente">Oficina do Zé Ltda</p>
                             </div>
                             <div class="detail-group">
                                 <label>Horário de Abertura</label>
-                                <p class="detail-value-text"><i class="fa-regular fa-clock"></i></p>
+                                <p class="detail-value-text" id="dataChamado"><i class="fa-regular fa-clock"></i> 25/06/2026 às 19:10</p>
                             </div>
                         </div>
                         
                         <div class="detail-group">
                             <label>Equipamento / Modelo</label>
-                            <p class="detail-value-text"></p>
+                            <p class="detail-value-text" id="equipamento">Servidor Dell Optiplex</p>
                         </div>
 
                         <div class="detail-group">
                             <label>Título do Problema</label>
-                            <p class="detail-value-text" style="color: #0f172a;"></p>
+                            <p class="detail-value-text" style="color: #0f172a;" id="observacao">Servidor Local Inoperante - Checkout Paralisado</p>
                         </div>
 
                         <div class="detail-group">
                             <label>Descrição Detalhada</label>
-                            <p class="detail-description-box"></p>
+                            <p class="detail-description-box" id="DescricaoProblema">Após uma forte queda de energia na região, o servidor Dell deu um estalo e não liga mais. Estamos com a oficina parada sem conseguir emitir ordens de serviço.</p>
                         </div>
 
                         <div class="detail-group">
                             <label>Evidências Anexadas</label>
                             <div class="modal-gallery-row">
                                 <div class="image-preview-container">
-                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&auto=format&fit=crop&q=60" alt="Evidência do Problema">
+                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&auto=format&fit=crop&q=60" alt="Evidência do Problema" id="imagem">
                                     <span class="image-zoom-hint">Painel_Traseiro.jpg</span>
                                 </div>
                             </div>
@@ -207,7 +241,6 @@
                         <div class="input-group-modal">
                             <label for="modalDetalheTecnico">Técnicos de Campo *</label>
                             <select id="modalDetalheTecnico" required>
-                                <option value="" disabled selected>Selecione o profissional para a rota</option>
                             </select>
                         </div>
 
@@ -230,7 +263,7 @@
                 <div class="modal-header">
                     <div>
                         <span class="modal-subtitle">Acompanhamento de OS</span>
-                        <h2>Chamado #CH-0000</h2>
+                        <h2>Chamado #CH-2026-0475</h2>
                     </div>
                     <a href="#" class="btn-close-modal">&times;</a>
                 </div>
@@ -239,26 +272,26 @@
                         <div class="form-row-2-col">
                             <div class="detail-group">
                                 <label>Cliente / Empresa</label>
-                                <p class="detail-value-text"></p>
+                                <p class="detail-value-text">Padaria Pão Quente</p>
                             </div>
                             <div class="detail-group">
                                 <label>Prioridade Definida</label>
-                                <p class="detail-value-text"><span class="badge-urgencia media"></span></p>
+                                <p class="detail-value-text"><span class="badge-urgencia media">MÉDIA</span></p>
                             </div>
                         </div>
                         <div class="form-row-2-col">
                             <div class="detail-group">
                                 <label>Técnico em Rota</label>
-                                <p class="detail-value-text"></p>
+                                <p class="detail-value-text">Fernanda Lima</p>
                             </div>
                             <div class="detail-group">
                                 <label>Data/Hora Despacho</label>
-                                <p class="detail-value-text"></p>
+                                <p class="detail-value-text">23/06/2026 às 14:45</p>
                             </div>
                         </div>
                         <div class="detail-group">
                             <label>Problema Relatado</label>
-                            <p class="detail-description-box"></p>
+                            <p class="detail-description-box">Balança de checkout modelo Toledo não está transmitindo o peso para o sistema de caixa PDV.</p>
                         </div>
 
                         <div class="detail-group" style="margin-bottom: 15px;">
@@ -269,6 +302,13 @@
                                     <span class="image-zoom-hint">visor_balanca_erro.jpg</span>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="detail-group">
+                            <label>Orientações de Rota Enviadas</label>
+                            <p class="detail-description-box" style="background-color: #fff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px; font-style: italic;">
+                                "Fernanda, levar cabo serial reserva. Falar com o gerente Alberto no setor de panificação."
+                            </p>
                         </div>
                     </div>
                     <div class="modal-footer-actions">
@@ -283,7 +323,7 @@
                 <div class="modal-header">
                     <div>
                         <span class="modal-subtitle">Auditoria de Encerramento e Histórico</span>
-                        <h2>Chamado #CH-0000</h2>
+                        <h2>Chamado #CH-2026-0460</h2>
                     </div>
                     <a href="#" class="btn-close-modal">&times;</a>
                 </div>
@@ -292,26 +332,78 @@
                     <div class="details-section-grid" style="margin-bottom: 20px;">
                         <div class="detail-group">
                             <label>Cliente / Empresa</label>
-                            <p class="detail-value-text"></p>
+                            <p class="detail-value-text">Borracharia São Cristóvão</p>
                         </div>
                         <div class="detail-group">
                             <label>Técnico Executor</label>
-                            <p class="detail-value-text"></p>
+                            <p class="detail-value-text">Marcos Souza</p>
                         </div>
                         <div class="detail-group">
                             <label>Data de Fechamento</label>
-                            <p class="detail-value-text"><i class="fa-regular fa-calendar-check"></i></p>
+                            <p class="detail-value-text"><i class="fa-regular fa-calendar-check"></i> 18/06/2026 às 13:10</p>
                         </div>
                     </div>
 
                     <div class="form-row-2-col" style="margin-bottom: 20px; gap: 20px;">
+                        
                         <div class="detail-group">
                             <label style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> 1. Diagnóstico de Abertura (Cliente)</label>
                             <div style="background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 12px; border-radius: 0 6px 6px 0; margin-top: 6px; height: 100%; box-sizing: border-box;">
-                                <strong class="font-medium" style="font-size: 13.5px; display: block; margin-bottom: 4px; color: #991b1b;"></strong>
-                                <p class="detail-description-box" style="color: #991b1b; margin: 0; background: none; border: none; padding: 0;"></p>
+                                <strong class="font-medium" style="font-size: 13.5px; display: block; margin-bottom: 4px; color: #991b1b;">
+                                    Equipamento: Compressor de Ar Trifásico (Schulz)
+                                </strong>
+                                <p class="detail-description-box" style="color: #991b1b; margin: 0; background: none; border: none; padding: 0;">
+                                    "O compressor parou de funcionar de repente no meio do expediente. Quando tentamos ligar na chave, ele faz um barulho estranho e derruba o disjuntor geral da borracharia. Estamos com duas rampas paradas."
+                                </p>
                             </div>
                         </div>
+
+                        <div class="detail-group">
+                            <label style="color: #0284c7;"><i class="fa-solid fa-circle-check"></i> 2. Parecer Técnico de Conclusão (Equipe)</label>
+                            <div style="background-color: #f0f9ff; border-left: 4px solid #0284c7; padding: 12px; border-radius: 0 6px 6px 0; margin-top: 6px; height: 100%; box-sizing: border-box;">
+                                <strong class="font-medium" style="font-size: 13.5px; display: block; margin-bottom: 4px; color: #0369a1;">
+                                    Resolução: Manutenção Elétrica Corretiva
+                                </strong>
+                                <p class="detail-description-box" style="color: #0369a1; margin: 0; background: none; border: none; padding: 0;">
+                                    "Identificado mau contato nos fios de alimentação da chave magnética que causava sobrecarga e desarmava o disjuntor. Feita a substituição dos terminais danificados e reaperto geral. Equipamento testado e operando em 120 PSI normalmente."
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row-2-col" style="margin-bottom: 24px;">
+                        <div class="detail-group">
+                            <label>📸 Evidência de Abertura (Antes)</label>
+                            <div class="image-preview-container" style="max-width: 100%;">
+                                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=60" alt="Fiação Danificada do Cliente">
+                                <span class="image-zoom-hint">fios_queimados_cliente.jpg</span>
+                            </div>
+                        </div>
+                        <div class="detail-group">
+                            <label>📸 Evidência de Reparo (Depois)</label>
+                            <div class="image-preview-container" style="max-width: 100%;">
+                                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&auto=format&fit=crop&q=60" alt="Terminal Consertado pelo Técnico">
+                                <span class="image-zoom-hint">terminais_novos_tecnico.jpg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title-modal" style="border-bottom-color: #16a34a; color: #16a34a; margin-bottom: 12px;">🔐 Assinatura e Validação do Cliente</div>
+                    <div class="details-section" style="background-color: #f0fdf4; border: 1px solid #bbf7d0;">
+                        <div class="form-row-2-col">
+                            <div class="detail-group">
+                                <label>Responsável pelo Aceite</label>
+                                <p class="detail-value-text" style="color: #14532d;">Manoel São Cristóvão Filho</p>
+                            </div>
+                            <div class="detail-group">
+                                <label>Documento de Identificação (CPF/Matrícula)</label>
+                                <p class="detail-value-text" style="color: #14532d; font-family: monospace;">024.***.***-99</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 11px; color: #16a34a; margin: 8px 0 0 0; font-weight: 500;">
+                            <i class="fa-solid fa-circle-check"></i> Termo assinado digitalmente via dispositivo móvel do técnico no local da prestação de serviço.
+                        </p>
                     </div>
 
                     <div class="modal-footer-actions">

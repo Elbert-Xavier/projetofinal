@@ -76,7 +76,7 @@ public class UsuarioController {
 		String senha = UUID.randomUUID().toString();
 		senha = senha.substring(0, 7);
 		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
-		usuario.setTipoUsuario("tecnico");
+		usuario.setTipoUsuario("TECNICO");
 		usuario.setCpf("955.386.120-23");
 		usuario.setCargo("indefinido");
 		usuario.setPrimeiroLogin(true);
@@ -91,7 +91,7 @@ public class UsuarioController {
 		String senha = UUID.randomUUID().toString();
 		senha = senha.substring(0, 7);
 		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
-		usuario.setTipoUsuario("cliente");
+		usuario.setTipoUsuario("CLIENTE");
 		usuario.setCpf("null");
 		usuario.setCargo("indefinido");
 		usuario.setPrimeiroLogin(true);
@@ -122,8 +122,10 @@ public class UsuarioController {
 	@PostMapping("/login")
 	public ResponseEntity<UsuarioEntity> login(
 	        @RequestBody UsuarioEntity usuarioLogin) {
+	    // busca usuário por email
 	    Optional<UsuarioEntity> usuario =
 	    		usuarioRepository.findByEmail(usuarioLogin.getEmail());
+	    // se encontrou usuário, verifica senha
 	    if (usuario.isPresent()) {
 
 	        UsuarioEntity usuarioEncontrado = usuario.get();
