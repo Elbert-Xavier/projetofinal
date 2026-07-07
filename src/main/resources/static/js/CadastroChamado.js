@@ -1,11 +1,10 @@
-const API_EQUIPAMENTOS_LISTAR = 'http://localhost:8000/equipamentos/listarTodos'; // Certifique-se de manter a rota de listagem que funciona
+const API_EQUIPAMENTOS_LISTAR = 'http://localhost:8000/equipamentos/listarTodos';
 const API_CHAMADOS_SALVAR = 'http://localhost:8000/chamados/salvar';
 
 document.addEventListener('DOMContentLoaded', function() {
     carregarEquipamentosCliente();
     configurarContadorCaracteres();
 
-    // Ouvinte do botão Cancelar
     const btnCancel = document.querySelector('.btn-cancel');
     if (btnCancel) {
         btnCancel.addEventListener('click', function() {
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Ouvinte do botão Salvar
     const btnSave = document.querySelector('.btn-save');
     if (btnSave) {
         btnSave.addEventListener('click', salvarChamado);
@@ -36,7 +34,7 @@ function carregarEquipamentosCliente() {
                 select.innerHTML = '<option disabled selected hidden>Selecione um equipamento</option>';
                 equipamentos.forEach(e => {
                     const option = document.createElement('option');
-                    option.value = e.id; // Envia o ID numérico que o conversor do Spring Boot precisa para buscar o Equipamento
+                    option.value = e.id;
                     option.textContent = `${e.tipo} - ${e.fabricante} ${e.modelo} (S/N: ${e.numeroSerie})`;
                     select.appendChild(option);
                 });
@@ -67,7 +65,6 @@ function salvarChamado() {
     const textareaDescription = document.getElementById('ticketDescription');
     const fileInput = document.getElementById('fileUpload'); // Campo de arquivo do seu HTML
 
-    // Validações básicas de segurança
     if (!selectEquipment.value || selectEquipment.selectedIndex === 0) {
         alert("Por favor, selecione um equipamento da lista.");
         selectEquipment.focus();
@@ -91,16 +88,13 @@ function salvarChamado() {
         return;
     }
 
-    // Criamos o objeto FormData (Necessário para enviar MultipartFile)
-    // ATENÇÃO: Os nomes no append devem ser EXATAMENTE iguais às variáveis com @RequestParam do Java
     const formData = new FormData();
     formData.append('titulo', inputTitle.value.trim());
     formData.append('descricao', textareaDescription.value.trim());
-    formData.append('equipamento', selectEquipment.value); // O Spring Boot converte o ID enviado em string para a Entidade automaticamente
-    formData.append('urlImagem', fileInput.files[0]); // Envia o arquivo binário selecionado
+    formData.append('equipamento', selectEquipment.value); 
+    formData.append('urlImagem', fileInput.files[0]);
 
-    // IMPORTANTE: Ao enviar FormData, NÃO se deve definir o 'Content-Type' no header. 
-    // O próprio navegador cuida de gerar o boundary do multipart/form-data automaticamente.
+
     fetch(API_CHAMADOS_SALVAR, {
         method: 'POST',
         body: formData

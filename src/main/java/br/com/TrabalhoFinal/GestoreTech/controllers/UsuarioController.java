@@ -122,10 +122,8 @@ public class UsuarioController {
 	@PostMapping("/login")
 	public ResponseEntity<UsuarioEntity> login(
 	        @RequestBody UsuarioEntity usuarioLogin) {
-	    // busca usuário por email
 	    Optional<UsuarioEntity> usuario =
 	    		usuarioRepository.findByEmail(usuarioLogin.getEmail());
-	    // se encontrou usuário, verifica senha
 	    if (usuario.isPresent()) {
 
 	        UsuarioEntity usuarioEncontrado = usuario.get();

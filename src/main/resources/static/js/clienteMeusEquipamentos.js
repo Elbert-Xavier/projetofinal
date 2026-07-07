@@ -1,4 +1,4 @@
-const API_BUSCAR_TODOS = 'http://localhost:8000/equipamentos/listartodos';
+const API_BUSCAR_TODOS = 'http://localhost:8000/equipamentos/listarTodos'; 
 const API_BUSCAR_ID = 'http://localhost:8000/equipamentos/listaPorID';
 const API_BUSCAR_POR_MODELO = 'http://localhost:8000/equipamentos/listarmodelo';
 const API_BUSCAR_POR_FABRICANTE = 'http://localhost:8000/equipamentos/listarmarca';
@@ -6,119 +6,131 @@ const API_BUSCAR_POR_SERIE = 'http://localhost:8000/equipamentos/listarserie';
 const API_BUSCAR_POR_TIPO = 'http://localhost:8000/equipamentos/listartipo';
 const API_BUSCAR_NOME = 'http://localhost:8000/equipamentos/listarnome';
 
-async function listarEquipamentos() {
-	const response = await fetch(API_BUSCAR_TODOS);
-	const listaEquipamentos = await response.json();
+document.addEventListener("DOMContentLoaded", () => {
+    listarEquipamentos();
+   
+    document.getElementById('filtroBusca').addEventListener('input', (e) => {
+        filtro(e.target.value);
+    });
+});
 
-	console.log('RESPOSTA')
-	console.log(response);
-	console.log('JSON')
-	console.log(listaEquipamentos);
-
-	const corpoTabela = document.getElementById('tabelaEquipamento');
-	        
-	        corpoTabela.innerHTML = ''; 
-
-	        listaEquipamentos.forEach(equipamento => {
-	            corpoTabela.innerHTML += `	
-	            <button type="button" onclick="exibirModelProduto(this)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3 mb-2" data-bs-toggle="modal" data-bs-target="#equipmentModal">
-	                <div class="d-flex align-items-center gap-3">
-	                    <div class="item-icon text-center"><i class="fa-solid fa-laptop fs-4"></i></div>
-	                    <div>
-	                        <h3 class="h6 mb-1 fw-semibold text-dark-blue">${equipamento.modelo}</h3>
-	                        <p class="text-muted small mb-0">Série: ${equipamento.numeroSerie}</p>
-							<p style="display: none" id="idEquipamento">${equipamento.id}</p>
-	                    </div>
-	                </div>
-	                <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
-	            </button>`;
-	        });
-			console.log(corpoTabela)
+function obterIconeEquipamento(tipo) {
+    const t = (tipo || '').toLowerCase();
+    if (t.includes('monitor') || t.includes('tela')) return 'fa-desktop';
+    if (t.includes('impressora') || t.includes('copiadora')) return 'fa-print';
+    if (t.includes('celular') || t.includes('smartphone')) return 'fa-mobile-screen-button';
+    return 'fa-laptop'; 
 }
-document.addEventListener("DOMContentLoaded",() =>{
-	listarEquipamentos();
-})
-async function exibirModelProduto(button) {
-	
-	const EquipamentoID = button.querySelector('#idEquipamento');
-	    
-	    // Pega o texto (o ID do equipamento) de dentro do <p>
-	    const id = EquipamentoID.textContent;
-	
-	console.log(EquipamentoID)
-	
-	const response = await fetch(`${API_BUSCAR_ID}/${id}`)
-	const tabela = await response.json();
-	
-	console.log(tabela);
-	console.log(tabela.imagem);
-	
-	document.getElementById('tipoEquipamento').innerText = tabela.tipo;
-	document.getElementById('fabricante').innerText = tabela.fabricante;
-	document.getElementById('modelo').innerText = tabela.modelo;
-	document.getElementById('numeroSerie').innerText = tabela.numeroSerie;
-	document.getElementById('dataCadastro').innerText = tabela.dataCadastro;
-	document.getElementById('imagemEquipamento').src = `/img/${tabela.imagem}`;
 
+async function listarEquipamentos() {
+    const response = await fetch(API_BUSCAR_TODOS);
+    
+    if (!response.ok) {
+        console.error("Erro ao buscar equipamentos:", response.status);
+        document.getElementById('tabelaEquipamento').innerHTML = `<div class="text-center text-danger p-4">Erro ${response.status}: Rota de equipamentos não localizada.</div>`;
+        return;
+    }
+
+    const listaEquipamentos = await response.json();
+    renderizarEquipamentos(listaEquipamentos);
+}
+
+function renderizarEquipamentos(equipamentos) {
+    const corpoTabela = document.getElementById('tabelaEquipamento');
+    corpoTabela.innerHTML = ''; 
+
+    if (!equipamentos || equipamentos.length === 0) {
+        corpoTabela.innerHTML = '<div class="text-center text-muted p-4">Nenhum equipamento localizado.</div>';
+        return;
+    }
+
+    equipamentos.forEach(equipamento => {
+        const icone = obterIconeEquipamento(equipamento.tipo);
+        const tituloEquipamento = `${equipamento.fabricante} ${equipamento.modelo}`;
+
+        corpoTabela.innerHTML += `	
+            <button type="button" onclick="exibirModelProduto(this)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3 mb-2" 
+                    data-id="${equipamento.id}">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="item-icon text-center"><i class="fa-solid ${icone} fs-4"></i></div>
+                    <div>
+                        <h3 class="h6 mb-1 fw-semibold text-dark-blue">${tituloEquipamento}</h3>
+                        <p class="text-muted small mb-0">Série: ${equipamento.numeroSerie}</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
+            </button>`;
+    });
+}
+
+async function exibirModelProduto(button) {
+    const id = button.getAttribute('data-id');
+    console.log("Buscando Produto ID:", id);
+    
+    const response = await fetch(`${API_BUSCAR_ID}/${id}`);
+    const tabela = await response.json();
+    
+    const dataFmt = tabela.dataCadastro ? tabela.dataCadastro.split('-').reverse().join('/') : 'Não Informada';
+    
+    document.getElementById('tipoEquipamento').innerText = tabela.tipo || 'N/A';
+    document.getElementById('fabricante').innerText = tabela.fabricante || 'N/A';
+    document.getElementById('modelo').innerText = tabela.modelo || 'N/A';
+    document.getElementById('numeroSerie').innerText = tabela.numeroSerie || 'N/A';
+    document.getElementById('dataCadastro').innerText = dataFmt;
+    
+    const imgElement = document.getElementById('imagemEquipamento');
+    if (tabela.imagem) {
+        imgElement.src = `http://localhost:8000/img/${tabela.imagem}`;
+        imgElement.style.display = 'block';
+    } else {
+        imgElement.src = 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=300';
+    }
+
+    abrirModal();
 }
 
 async function filtro(input) {
-	console.log(input)
-	let statusFiltro = document.getElementById('filtroCriterio').value;
-	let dadosEquipamento = null;
-	
-	if(input !== undefined && input !== null && input !== "") {
-		if(statusFiltro == "nome"){
-			const response = await fetch(`${API_BUSCAR_NOME}/${input}`)
-			const dados = await response.json();
-			dadosEquipamento = dados;		
-		}
-		if(statusFiltro == "serie"){
-			const response = await fetch(`${API_BUSCAR_POR_SERIE}/${input}`)
-			const dados = await response.json();
-			dadosEquipamento = dados;
-		}else if(statusFiltro == "fabricante"){
-			const response = await fetch(`${API_BUSCAR_POR_FABRICANTE}/${input}`)
-			const dados = await response.json();
-			dadosEquipamento = dados;
-		}else if(statusFiltro == "modelo"){
-			const response = await fetch(`${API_BUSCAR_POR_MODELO}/${input}`)
-			const dados = await response.json();
-			dadosEquipamento = dados;
-		}else if(statusFiltro == "tipo"){
-			const response = await fetch(`${API_BUSCAR_POR_TIPO}/${input}`)
-			const dados = await response.json();
-			dadosEquipamento = dados;
-		}
-		const corpoTabela = document.getElementById('tabelaEquipamento');
-		
-	        corpoTabela.innerHTML = ''; 
+    console.log("Texto digitado para busca:", input);
+    const statusFiltro = document.getElementById('filtroCriterio').value;
+    
+    if (!input || input.trim() === "") {
+        listarEquipamentos();
+        return;
+    }
 
-	        dadosEquipamento.forEach(equipamento => {
-	            corpoTabela.innerHTML += `	
-	            <button type="button" onclick="exibirModelProduto(this)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-3 p-3 mb-2" data-bs-toggle="modal" data-bs-target="#equipmentModal">
-	                <div class="d-flex align-items-center gap-3">
-	                    <div class="item-icon text-center"><i class="fa-solid fa-laptop fs-4"></i></div>
-	                    <div>
-	                        <h3 class="h6 mb-1 fw-semibold text-dark-blue">${equipamento.nome}</h3>
-	                        <p class="text-muted small mb-0">Série: ${equipamento.numeroSerie}</p>
-							<p style="display: none" id="idEquipamento">${equipamento.id}</p>
-	                    </div>
-	                </div>
-	                <i class="fa-solid fa-chevron-right text-muted fs-small"></i>
-	            </button>`;
-	        });
-	
-	}else{
-	}
+    let dadosEquipamento = [];
+    let urlFiltro = '';
+
+    if (statusFiltro === "nome") {
+        urlFiltro = `${API_BUSCAR_NOME}/${input}`;
+    } else if (statusFiltro === "serie") {
+        urlFiltro = `${API_BUSCAR_POR_SERIE}/${input}`;
+    } else if (statusFiltro === "fabricante") {
+        urlFiltro = `${API_BUSCAR_POR_FABRICANTE}/${input}`;
+    } else if (statusFiltro === "modelo") {
+        urlFiltro = `${API_BUSCAR_POR_MODELO}/${input}`;
+    } else if (statusFiltro === "tipo") {
+        urlFiltro = `${API_BUSCAR_POR_TIPO}/${input}`;
+    } else {
+        urlFiltro = `${API_BUSCAR_POR_MODELO}/${input}`;
+    }
+
+    const response = await fetch(urlFiltro);
+    if (response.ok) {
+        dadosEquipamento = await response.json();
+    }
+
+    renderizarEquipamentos(dadosEquipamento);
 }
 
 function abrirModal() {
-	const modal = new bootstrap.Modal(document.getElementById('equipmentModal'));
-	modal.show();
+    const modalElement = document.getElementById('equipmentModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
 }
+
 function fecharModal() {
-	const modalElement = document.getElementById("equipmentModal");
-	const modal = bootstrap.Modal.getInstance(modalElement);
-	modal.hide();
+    const modalElement = document.getElementById("equipmentModal");
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) modal.hide();
 }

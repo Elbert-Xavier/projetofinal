@@ -77,12 +77,9 @@ function renderizarTabela(listaClientes) {
             const cnpj = cliente.cnpj || 'N/A';
             const contato = cliente.nomeResponsavel || 'Sem contato';
             const telefone = cliente.telefoneResponsavel || 'N/A';
-            
-            // Captura os valores vindos do backend ou define 0 se nulos
             const totalEquip = cliente.totalEquipamentos !== undefined && cliente.totalEquipamentos !== null ? cliente.totalEquipamentos : 0;
             const totalChamados = cliente.totalChamadosAbertos !== undefined && cliente.totalChamadosAbertos !== null ? cliente.totalChamadosAbertos : 0;
 
-            // Define a estilização dinâmica para a coluna de chamados abertos
             let badgeChamadosHtml = '';
             if (totalChamados > 0) {
                 badgeChamadosHtml = `<span class="badge-urgencia alta" style="padding: 4px 10px; background-color: #fee2e2; color: #ef4444; border-radius: 6px; font-weight: 600;">${totalChamados} ativo${totalChamados > 1 ? 's' : ''}</span>`;

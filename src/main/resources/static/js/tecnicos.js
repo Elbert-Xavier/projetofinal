@@ -103,18 +103,15 @@ async function CadastrarTecnico() {
 	}
 }
 function validarCelular(celular) {
-    // Se não for enviado nada, ou não for uma string/número, já retorna false
+
     if (!celular) return false;
 
-    // Remove tudo o que não for número e transforma em String
     const numerosApenas = String(celular).replace(/[^\d]+/g, '');
 
-    // Se tiver o DDI do Brasil (55) na frente, remove para validar apenas o DDD + Número
     const numeroValidar = (numerosApenas.length === 13 && numerosApenas.startsWith('55')) 
         ? numerosApenas.substring(2) 
         : numerosApenas;
 
-    // Regex: Verifica se tem 11 dígitos, se o DDD é válido e se começa com 9
     const regexCelular = /^[1-9][1-9]9\d{8}$/;
 
     return regexCelular.test(numeroValidar); // Retorna estritamente true ou false
@@ -122,36 +119,15 @@ function validarCelular(celular) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function mascaraCelular(input) {
-    let valor = input.value.replace(/\D/g, ''); // Remove tudo que não é número
+    let valor = input.value.replace(/\D/g, ''); 
     
-    if (valor.length > 11) valor = valor.slice(0, 11); // Limita a 11 dígitos (DDD + 9 dígitos)
+    if (valor.length > 11) valor = valor.slice(0, 11); 
 
-    // Aplica a máscara dinamicamente passo a passo
-    valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2'); // Coloca os parênteses no DDD e o espaço
-    valor = valor.replace(/(\d{5})(\d)/, '$1-$2');     // Coloca o hífen no bloco de 5 dígitos
+    valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2'); 
+    valor = valor.replace(/(\d{5})(\d)/, '$1-$2');     
     
-    input.value = valor; // Devolve o valor formatado para o campo
+    input.value = valor; 
 }
 function abrirModal() {
 	const modal = new bootstrap.Modal(document.getElementById('modalNovoTecnico'));

@@ -19,7 +19,6 @@ async function buscarCep(cep) {
 
 async function salvarEndereco() {
 		
-		//RECUPERANDO OS VALORES DOS IMPUTS
 		const Endereco = {
 			tipoLogradouro: document.getElementById('tipoLogradouro').value,
 			logradouro: document.getElementById('logradouro').value,
@@ -33,18 +32,14 @@ async function salvarEndereco() {
 		}
 		
 		console.log(Endereco)
-		//METODO
-		//CABEÇALHO
-		//MEU OBJETO
-
-			//inserindo
+	
 		
 		await fetch(API_SALVA,{
-			method : 'POST', //METODO DA MINHA API
-			headers : { //CABEÇALHO INDICANDO O FORMATO QUE IREI PASSAR OS DADOS
-				'Content-Type' : 'application/json' //SERÁ UM PADRÃO NOSSO
+			method : 'POST', 
+			headers : { 
+				'Content-Type' : 'application/json' 
 			},
-			body : JSON.stringify(Endereco)//CONVERTE EM FORMATO JSON
+			body : JSON.stringify(Endereco)
 		})
 
 }
