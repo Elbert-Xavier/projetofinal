@@ -1,35 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* ==========================================================================
-   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS (ÂNCORA DE PADRONIZAÇÃO)
    ========================================================================== */
 :root {
-    --bg-global: #f8f9fd;
-    --bg-sidebar: #ffffff;
-    --bg-card: #ffffff;
-    --primary-color: #5334ea;
-    --primary-light: #ece9ff;
-    --text-main: #181143;
-    --text-muted: #726e8d;
-    --border-color: #e2e4f0;
-    --danger-color: #e15252;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
+    --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
+    /* Estados e Alertas */
+    --danger-color: #ef4444;
+    --danger-bg: #fef2f2;
+    --success-text: #10b981;
+    --success-bg: #e6f7f0;
+    --warning-text: #ffa012;
+    --warning-bg: #fff4e5;
+    --info-bg: #f0edff;
+    
+    /* Cores Específicas Herdadas */
+    --atribuido-text: #4b0082;
+    --atribuido-bg: #ccace3;
+    --esperando-text: #919121;
+    --esperando-bg: #ffffab;
+    --finalizado-text: #33e80e;
+    --finalizado-bg: #e1ffdb;
+    
+    --input-border: #cbd5e1;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-family);
+    font-family: var(--font-main);
 }
 
 body {
-    background-color: var(--bg-global);
-    color: var(--text-main);
+    background-color: var(--bg-main);
+    color: var(--text-muted);
     height: 100vh;
     overflow: hidden;
 }
 
 /* ==========================================================================
-   2. ESTRUTURA DO LAYOUT (DASHBOARD)
+   2. ESTRUTURA DO LAYOUT PRINCIPAL (DASHBOARD)
    ========================================================================== */
 .dashboard-container {
     display: flex;
@@ -45,7 +71,6 @@ body {
     overflow-y: auto;
 }
 
-/* Modificador para telas que usam Header Superior (como Meus Chamados) */
 .main-content.flex-column {
     flex-direction: column;
     padding: 0 !important; 
@@ -57,7 +82,7 @@ body {
 .sidebar {
     width: 260px;
     min-width: 260px;
-    background-color: var(--bg-sidebar);
+    background-color: #ffffff;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -73,8 +98,8 @@ body {
 
 .logo-g {
     background-color: var(--primary-color);
-    color: white;
-    font-weight: bold;
+    color: #ffffff;
+    font-weight: 700;
     font-size: 20px;
     width: 36px;
     height: 36px;
@@ -88,7 +113,7 @@ body {
 .logo-text {
     font-size: 18px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .sidebar-nav {
@@ -101,7 +126,7 @@ body {
     display: flex;
     align-items: center;
     padding: 14px 24px;
-    color: var(--text-main);
+    color: var(--dark-blue);
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
@@ -116,14 +141,14 @@ body {
 }
 
 .nav-item.active {
-    background-color: var(--primary-light);
+    background-color: var(--primary-subtle);
     color: var(--primary-color);
     border-radius: 0 25px 25px 0;
     margin-right: 16px;
 }
 
 .nav-item:hover:not(.active) {
-    background-color: #f1f3f9;
+    background-color: var(--btn-gray);
 }
 
 .sidebar-footer {
@@ -142,7 +167,7 @@ body {
 .top-header {
     width: 100%;
     height: 70px;
-    background-color: var(--bg-sidebar);
+    background-color: #ffffff;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: flex-end;
@@ -154,7 +179,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--text-main);
+    color: var(--dark-blue);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -185,13 +210,15 @@ body {
 select {
     width: 100%;
     padding: 14px 16px 14px 48px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--input-border);
     border-radius: 8px;
-    background-color: #fff;
-    color: var(--text-main);
+    background-color: #ffffff;
+    color: var(--dark-blue);
     font-size: 14px;
     appearance: none; 
     cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s ease;
 }
 
 .select-wrapper::after {
@@ -203,11 +230,10 @@ select {
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 select:focus, textarea:focus {
-    outline: none;
     border-color: var(--primary-color);
 }
 
@@ -215,7 +241,7 @@ select:focus, textarea:focus {
    6. TELA: CADASTRAR CHAMADO (FORMULÁRIO)
    ========================================================================== */
 .form-card {
-    background-color: var(--bg-card);
+    background-color: #ffffff;
     width: 100%;
     max-width: 850px;
     border-radius: 16px;
@@ -231,7 +257,7 @@ select:focus, textarea:focus {
 }
 
 .icon-header-box {
-    background-color: var(--primary-light);
+    background-color: var(--primary-subtle);
     color: var(--primary-color);
     width: 48px;
     height: 48px;
@@ -245,6 +271,7 @@ select:focus, textarea:focus {
 .form-header h2 {
     font-size: 22px;
     font-weight: 700;
+    color: var(--dark-blue);
     margin-bottom: 4px;
 }
 
@@ -260,6 +287,7 @@ select:focus, textarea:focus {
 .form-group label {
     display: block;
     font-weight: 700;
+    color: var(--dark-blue);
     font-size: 13px;
     margin-bottom: 8px;
 }
@@ -271,11 +299,13 @@ textarea {
     width: 100%;
     height: 120px;
     padding: 16px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--input-border);
     border-radius: 8px;
     resize: none;
     font-size: 14px;
-    color: var(--text-main);
+    color: var(--dark-blue);
+    outline: none;
+    transition: border-color 0.15s ease;
 }
 
 .char-count {
@@ -287,17 +317,17 @@ textarea {
 }
 
 .upload-area {
-    border: 2px dashed #dcdbe7;
-    background-color: #fbfbfe;
+    border: 2px dashed var(--border-color);
+    background-color: var(--bg-card-hover);
     border-radius: 8px;
     padding: 32px;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .upload-area:hover {
-    background-color: #f5f4ff;
+    background-color: var(--primary-subtle);
     border-color: var(--primary-color);
 }
 
@@ -309,7 +339,7 @@ textarea {
 
 .upload-text {
     font-size: 14px;
-    color: var(--text-main);
+    color: var(--dark-blue);
     line-height: 1.4;
     margin-bottom: 12px;
 }
@@ -327,7 +357,7 @@ textarea {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
-    border-top: 1px solid #f1f3f9;
+    border-top: 1px solid var(--border-color);
     padding-top: 24px;
 }
 
@@ -345,10 +375,10 @@ textarea {
 
 .btn:hover { opacity: 0.9; }
 .btn-cancel { background-color: transparent; border: 1px solid var(--border-color); color: var(--danger-color); }
-.btn-submit { background-color: var(--primary-color); border: none; color: white; }
+.btn-submit { background-color: var(--primary-color); border: none; color: #ffffff; }
 
 /* ==========================================================================
-   7. TELA: MEUS CHAMADOS (LISTAGEM & FILTROS)
+   7. TELA: MEUS CHAMADOS (LISTAGEM & FILTROS DO CLIENTE)
    ========================================================================== */
 .content-wrapper {
     flex: 1;
@@ -366,7 +396,7 @@ textarea {
 .page-header h2 {
     font-size: 24px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
     margin-bottom: 4px;
 }
 
@@ -375,9 +405,8 @@ textarea {
     font-size: 14px;
 }
 
-/* Filtros */
 .filters-card {
-    background-color: var(--bg-card);
+    background-color: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 20px 24px;
@@ -387,7 +416,7 @@ textarea {
 .filters-title {
     font-size: 14px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -399,31 +428,6 @@ textarea {
     gap: 20px;
 }
 
-.filter-group {
-    flex: 1;
-    max-width: 280px;
-}
-
-.filter-group label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 6px;
-}
-
-.filter-group select {
-    padding: 10px 16px 10px 42px;
-    font-size: 13px;
-    background-color: #fbfbfe;
-}
-
-.filter-group .input-icon {
-    font-size: 14px;
-    left: 14px;
-}
-
-/* Lista de Chamados */
 .ticket-list {
     display: flex;
     flex-direction: column;
@@ -432,17 +436,18 @@ textarea {
 }
 
 .ticket-item {
-    background-color: var(--bg-card);
+    background-color: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 20px 24px;
     display: flex;
     align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .ticket-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(30, 27, 75, 0.02);
+    background-color: var(--bg-card-hover);
 }
 
 .ticket-icon-status {
@@ -457,33 +462,28 @@ textarea {
     flex-shrink: 0;
 }
 
-.ticket-icon-status.info { background-color: #f0edff; color: var(--primary-color); }
-.ticket-icon-status.warning { background-color: #fff4e5; color: #ffa012; }
-.ticket-icon-status.atribuido { background-color: #ccace3; color: #4B0082; }
-.ticket-icon-status.esperando { background-color: #ffffab; color: #919121; }
-.ticket-icon-status.finalizado { background-color: #e1ffdb; color: #33e80e; }
+/* Modificadores de Cores dos Ícones */
+.ticket-icon-status.info { background-color: var(--info-bg); color: var(--primary-color); }
+.ticket-icon-status.warning { background-color: var(--warning-bg); color: var(--warning-text); }
+.ticket-icon-status.atribuido { background-color: var(--atribuido-bg); color: var(--atribuido-text); }
+.ticket-icon-status.esperando { background-color: var(--esperando-bg); color: var(--esperando-text); }
+.ticket-icon-status.finalizado { background-color: var(--finalizado-bg); color: var(--finalizado-text); }
 
-.badge-open { background-color: #eef2ff; color: #4361ee; }
-.badge-progress { background-color: #fff4e5; color: #ffa012;}
-.badge-atribuido { background-color: #ccace3; color: #4B0082;}
-.badge-esperando { background-color: #ffffab; color: #919121;}
-.badge-finalizado { background-color: #e1ffdb; color: #33e80e;}
+/* Modificadores de Cores das Badges */
+.badge-open { background-color: var(--info-bg); color: var(--primary-color); }
+.badge-progress { background-color: var(--warning-bg); color: var(--warning-text); }
+.badge-atribuido { background-color: var(--atribuido-bg); color: var(--atribuido-text); }
+.badge-esperando { background-color: var(--esperando-bg); color: var(--esperando-text); }
+.badge-finalizado { background-color: var(--finalizado-bg); color: var(--finalizado-text); }
 
-.ticket-info {
-    flex: 1;
-}
-
-.ticket-id {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-main);
-}
+.ticket-info { flex: 1; }
+.ticket-id { font-size: 13px; font-weight: 700; color: var(--dark-blue); }
 
 .ticket-info h3 {
     font-size: 15px;
     font-weight: 700;
     margin: 4px 0 8px 0;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .ticket-info p {
@@ -515,18 +515,8 @@ textarea {
     text-align: center;
 }
 
-
-
-.status-text {
-    font-size: 11px;
-    color: var(--text-muted);
-}
-
-.ticket-arrow {
-    color: var(--primary-color);
-    font-size: 14px;
-    cursor: pointer;
-}
+.status-text { font-size: 11px; color: var(--text-muted); }
+.ticket-arrow { color: var(--primary-color); font-size: 14px; cursor: pointer; }
 
 /* Paginação */
 .table-footer {
@@ -537,23 +527,16 @@ textarea {
     padding-top: 16px;
 }
 
-.counter-text {
-    font-size: 13px;
-    color: var(--text-muted);
-}
-
-.pagination {
-    display: flex;
-    gap: 6px;
-}
+.counter-text { font-size: 13px; color: var(--text-muted); }
+.pagination { display: flex; gap: 6px; }
 
 .page-btn {
     width: 32px;
     height: 32px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    background-color: var(--bg-card);
-    color: var(--text-main);
+    background-color: #ffffff;
+    color: var(--dark-blue);
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -563,45 +546,39 @@ textarea {
     transition: all 0.2s ease;
 }
 
-.page-btn:hover { 
-	background-color: #f1f3f9; 
-}
+.page-btn:hover { background-color: var(--btn-gray); }
 .page-btn.active {
-	background-color: var(--primary-color);
-	 color: white;
-	 border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
 }
-/* ==========================================================================
-   8. COMPONENTE: MODAL DE DETALHAMENTO
-   ========================================================================== */
 
-/* Camada escura de fundo (Overlay) */
+/* ==========================================================================
+   8. COMPONENTE: MODAL DE DETALHAMENTO (ANIMAÇÕES E SEÇÕES)
+   ========================================================================== */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(24, 17, 67, 0.4); /* Cor base escura com opacidade */
-    backdrop-filter: blur(4px); /* Efeito borrado suave atrás do modal */
-    display: none; /* Mude para 'none' se quiser que comece fechado por padrão */
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(30, 27, 75, 0.4);
+    backdrop-filter: blur(4px);
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     padding: 20px;
 }
-/* Caixa branca do Modal */
+
 .modal-container {
-	margin:auto;
-    background-color: var(--bg-card);
+    margin: auto;
+    background-color: #ffffff;
     width: 100%;
     max-width: 950px;
     max-height: 90vh;
     border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(24, 11, 67, 0.15);
+    box-shadow: 0 12px 40px rgba(30, 27, 75, 0.15);
     display: flex;
     flex-direction: column;
-    animation: modalFadeIn 0.3s ease-out;
+    animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
 }
 
@@ -610,14 +587,13 @@ textarea {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Cabeçalho do Modal */
 .modal-header {
     padding: 24px 32px;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fbfbfe;
+    background-color: var(--bg-card-hover);
 }
 
 .modal-ticket-id {
@@ -628,11 +604,7 @@ textarea {
     margin-bottom: 4px;
 }
 
-.modal-header h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-main);
-}
+.modal-header h2 { font-size: 20px; font-weight: 700; color: var(--dark-blue); }
 
 .modal-close-btn {
     background: transparent;
@@ -640,7 +612,7 @@ textarea {
     font-size: 20px;
     color: var(--text-muted);
     cursor: pointer;
-    transition: color 0.2s;
+    transition: all 0.2s;
     width: 32px;
     height: 32px;
     display: flex;
@@ -650,31 +622,17 @@ textarea {
 }
 
 .modal-close-btn:hover {
-    background-color: #f1f3f9;
+    background-color: var(--btn-gray);
     color: var(--danger-color);
 }
 
-/* Corpo do Modal (Grid/Flex de duas colunas) */
-.modal-body {
-    display: flex;
-    flex: 1;
-    overflow: hidden; /* Evita que a estrutura quebre */
-}
-
-/* Coluna Esquerda Principal (Scrollable) */
-.modal-col-main {
-    flex: 1;
-    padding: 32px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-}
+.modal-body { display: flex; flex: 1; overflow: hidden; }
+.modal-col-main { flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 32px; }
 
 .modal-section h3 {
     font-size: 14px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
     margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -683,94 +641,45 @@ textarea {
 .modal-description-text {
     font-size: 14px;
     line-height: 1.6;
-    color: #4a4568;
-    background-color: #f8f9fd;
+    color: var(--text-muted);
+    background-color: var(--bg-main);
     padding: 16px;
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
 }
 
 /* LINHA DO TEMPO (TIMELINE) */
-.timeline {
-    position: relative;
-    padding-left: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
+.timeline { position: relative; padding-left: 24px; display: flex; flex-direction: column; gap: 24px; }
 
-/* Linha vertical cinza ao fundo */
 .timeline::before {
     content: '';
     position: absolute;
-    left: 6px;
-    top: 5px;
-    bottom: 5px;
-    width: 2px;
+    left: 6px; top: 5px; bottom: 5px; width: 2px;
     background-color: var(--border-color);
 }
 
-.timeline-item {
-    position: relative;
-}
+.timeline-item { position: relative; }
 
-/* Bolinha indicadora */
 .timeline-marker {
     position: absolute;
-    left: -24px;
-    top: 4px;
-    width: 14px;
-    height: 14px;
+    left: -24px; top: 4px; width: 14px; height: 14px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #ffffff;
     border: 3px solid var(--border-color);
     z-index: 2;
 }
 
-.timeline-marker.warning { border-color: #ffa012; background-color: #ffa012; }
+.timeline-marker.warning { border-color: var(--warning-text); background-color: var(--warning-text); }
 .timeline-marker.info { border-color: var(--primary-color); background-color: var(--primary-color); }
 .timeline-marker.generic { border-color: var(--text-muted); background-color: var(--text-muted); }
 
-.timeline-content {
-    background-color: #fff;
-}
+.timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.timeline-header h4 { font-size: 14px; font-weight: 700; color: var(--dark-blue); }
+.timeline-date { font-size: 12px; color: var(--text-muted); }
+.timeline-content p { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
 
-.timeline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-}
-
-.timeline-header h4 {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.timeline-date {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.timeline-content p {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.4;
-}
-
-/* Caixa de Interação/Resposta */
-.modal-reply-box textarea {
-    height: 90px;
-    margin-bottom: 12px;
-    background-color: #fbfbfe;
-}
-
-.reply-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.modal-reply-box textarea { height: 90px; margin-bottom: 12px; background-color: var(--bg-card-hover); }
+.reply-actions { display: flex; justify-content: space-between; align-items: center; }
 
 .btn-attach {
     background: transparent;
@@ -784,14 +693,12 @@ textarea {
     gap: 6px;
 }
 
-.btn-attach:hover {
-    color: var(--primary-color);
-}
+.btn-attach:hover { color: var(--primary-color); }
 
-/* Coluna Direita (Sidebar de Metadados) */
+/* Coluna de Metadados Lateral */
 .modal-col-sidebar {
     width: 280px;
-    background-color: #fbfbfe;
+    background-color: var(--bg-card-hover);
     border-left: 1px solid var(--border-color);
     padding: 32px 24px;
     display: flex;
@@ -799,57 +706,21 @@ textarea {
     gap: 24px;
 }
 
-.info-sidebar-block {
-    display: flex;
-    flex-direction: column;
-}
+.info-sidebar-block { display: flex; flex-direction: column; }
+.info-sidebar-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+.info-sidebar-value { font-size: 13px; font-weight: 600; color: var(--dark-blue); display: flex; align-items: center; gap: 8px; }
+.info-sidebar-block .badge { align-self: flex-start; margin-bottom: 0; }
 
-.info-sidebar-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-}
-
-.info-sidebar-value {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.info-sidebar-block .badge {
-    align-self: flex-start;
-    margin-bottom: 0;
-}
-
-/* Mini Card de Equipamento na Sidebar */
 .equipment-mini-card {
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: #fff;
+    background-color: #ffffff;
     border: 1px solid var(--border-color);
     padding: 12px;
     border-radius: 8px;
 }
 
-.equipment-mini-card i {
-    font-size: 20px;
-    color: var(--primary-color);
-}
-
-.equipment-mini-card h4 {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.equipment-mini-card p {
-    font-size: 11px;
-    color: var(--text-muted);
-}
+.equipment-mini-card i { font-size: 20px; color: var(--primary-color); }
+.equipment-mini-card h4 { font-size: 13px; font-weight: 700; color: var(--dark-blue); }
+.equipment-mini-card p { font-size: 11px; color: var(--text-muted); }

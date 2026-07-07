@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Consultar Chamados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/clienteMeusEquipamentos.css">
+</head>
+<body>
+
+    <div class="d-flex h-100 vh-100 overflow-hidden">
+        
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+            </div>
+            
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="http://localhost:8000/html/tecnicoDashboard.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-chart-pie me-3"></i> Dashboard</a>
+                <a href="http://localhost:8000/html/tecnicoMeusChamados.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Consultar Chamados</a>
+                <a href="http://localhost:8000/html/tecnicoHistoricoEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-wrench me-3"></i> Histórico Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
+                
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                        <i class="fa-regular fa-file-lines fs-5"></i>
+                    </div>
+                    <div>
+                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Consultar Chamados</h1>
+                        <p class="text-muted small mb-0">Gerencie e atualize os chamados técnicos sob sua responsabilidade.</p>
+                    </div>
+                </div>
+
+                <div class="row g-2 mb-4">
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-filter"></i></span>
+                            <select class="form-select border-start-0 ps-1 py-2" id="filtroCriterio">
+                                <option value="todos" selected>Todos os meus</option>
+                                <option value="aberto">Abertos / Em Andamento</option>
+                                <option value="finalizado">Finalizados por mim</option>
+                                <option value="alta">Alta Prioridade</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control border-start-0 ps-1 py-2" id="filtroBusca" placeholder="Buscar por título, cliente ou número do chamado...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group d-flex flex-column gap-3 border-0" id="listaChamadosContainer">
+                    <div class="text-center text-muted p-4">
+                        <i class="fa-solid fa-circle-notch fa-spin me-2"></i> Carregando chamados...
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="chamadoModal" tabindex="-1" aria-labelledby="chamadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-dark-blue" id="chamadoModalLabel">Detalhes do Chamado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <div class="row gy-3">
+                                <div class="col-md-4">
+                                    <label class="text-muted small d-block">Número do Chamado</label>
+                                    <span class="fw-semibold text-dark-blue" id="modalIdChamado">---</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-muted small d-block">Prioridade</label>
+                                    <span class="badge text-uppercase" id="modalPrioridade">---</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="text-muted small d-block">Status Atual</label>
+                                    <span class="badge text-uppercase" id="modalStatus">---</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="text-muted small d-block">Cliente</label>
+                                    <span class="fw-semibold text-dark-blue" id="modalCliente">---</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="text-muted small d-block">Equipamento</label>
+                                    <span class="fw-semibold text-dark-blue" id="modalEquipamento">---</span>
+                                </div>
+                                <div class="col-12">
+                                    <label class="text-muted small d-block">Título</label>
+                                    <span class="fw-semibold text-dark-blue fs-6" id="modalTitulo">---</span>
+                                </div>
+                                <div class="col-12">
+                                    <label class="text-muted small d-block">Descrição do Problema</label>
+                                    <div class="bg-light p-3 rounded-3 text-secondary border font-sm" id="modalDescricao">---</div>
+                                </div>
+                                <div class="col-12 border-top pt-3">
+                                    <label class="form-label text-muted small fw-semibold">Ações do Técnico</label>
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
+                                            <select class="form-select" id="atualizarStatus">
+                                                <option value="EM_ANDAMENTO">Em Andamento</option>
+                                                <option value="FINALIZADO">Finalizar Chamado</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-primary w-100 rounded-3 fw-semibold" id="btnSalvarAlteracoes">Atualizar Chamado</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 px-4 pb-4">
+                    <button type="button" class="btn btn-light-gray rounded-3 fw-semibold" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/tecnicoMeusChamados.js"></script>
+</body>
+</html>

@@ -1,15 +1,22 @@
-/* ==========================================================================
-   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-    --bg-global: #f4f7fe;
-    --bg-sidebar: #ffffff;
-    --bg-card: #ffffff;
-    --primary-color: #5334ea;
-    --primary-light: #ece9ff;
-    --text-main: #2d3748;
-    --text-muted: #718096;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
     --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
     --danger-color: #f56565;
     --green-status: #48bb78;
 }
@@ -18,29 +25,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-main);
 }
 
 body {
-    background-color: var(--bg-global);
-    color: var(--text-main);
+    background-color: var(--bg-main);
+    color: var(--dark-blue);
     min-height: 100vh;
 }
 
-/* ==========================================================================
-   2. ESTRUTURA DO LAYOUT (DASHBOARD)
-   ========================================================================== */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
     width: 100%;
 }
 
-/* --- SIDEBAR CORRIGIDA E BLINDADA --- */
 .sidebar {
     width: 260px;
     min-width: 260px;
-    background-color: var(--bg-sidebar);
+    background-color: #ffffff;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -80,7 +83,7 @@ body {
 .logo-text {
     font-size: 18px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
     line-height: 1.2;
 }
 
@@ -100,7 +103,7 @@ body {
     display: flex;
     align-items: center;
     padding: 12px 25px;
-    color: var(--text-main);
+    color: var(--dark-blue);
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
@@ -116,14 +119,14 @@ body {
 }
 
 .nav-item.active {
-    background-color: var(--primary-light);
+    background-color: var(--primary-subtle);
     color: var(--primary-color);
     border-radius: 0 25px 25px 0;
     margin-right: 15px;
 }
 
 .nav-item:hover:not(.active) {
-    background-color: #f8f9fd;
+    background-color: var(--bg-card-hover);
 }
 
 .sidebar-footer {
@@ -136,20 +139,18 @@ body {
     color: var(--text-muted);
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
 .main-content {
     flex: 1;
-    margin-left: 260px; /* Compensa a sidebar fixa */
+    margin-left: 260px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* --- TOP HEADER --- */
 .top-header {
     width: 100%;
     height: 75px;
-    background-color: var(--bg-sidebar);
+    background-color: #ffffff;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -172,7 +173,7 @@ body {
 
 .top-header h1 {
     font-size: 22px;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .top-header h1 span {
@@ -200,7 +201,7 @@ body {
 .user-text strong {
     display: block;
     font-size: 13px;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .status-online {
@@ -220,19 +221,15 @@ body {
     border-radius: 50%;
 }
 
-/* --- ÁREA DO CONTEÚDO --- */
 .content-wrapper {
     flex: 1;
     padding: 40px;
 }
 
-/* ==========================================================================
-   3. CARDS E COMPONENTES DE FORMULÁRIO (PADRÃO GESTOR)
-   ========================================================================== */
 .card {
-    background: var(--bg-card);
+    background: #ffffff;
     border-radius: 12px;
     padding: 30px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0,0);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }

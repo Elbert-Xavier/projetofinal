@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Histórico de Equipamentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/clienteMeusEquipamentos.css">
+</head>
+<body>
+
+    <div class="d-flex h-100 vh-100 overflow-hidden">
+        
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+            </div>
+            
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="http://localhost:8000/html/tecnicoDashboard.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-chart-pie me-3"></i> Dashboard</a>
+                <a href="http://localhost:8000/html/tecnicoMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Consultar Chamados</a>
+                <a href="http://localhost:8000/html/tecnicoHistoricoEquipamentos.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-wrench me-3"></i> Histórico Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
+                
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                        <i class="fa-solid fa-wrench fs-5"></i>
+                    </div>
+                    <div>
+                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Histórico de Equipamentos</h1>
+                        <p class="text-muted small mb-0">Pesquise dados e manutenções anteriores por cliente, tipo, modelo ou série.</p>
+                    </div>
+                </div>
+
+                <div class="row g-2 mb-4">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control border-start-0 ps-1 py-2" id="filtroBuscaGeral" placeholder="Digite o cliente, tipo do equipamento, modelo ou número de série para pesquisar...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group d-flex flex-column gap-3 border-0" id="listaEquipamentosContainer">
+                    <div class="text-center text-muted p-4">
+                        <i class="fa-solid fa-circle-notch fa-spin me-2"></i> Carregando lista de equipamentos...
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="historicoModal" tabindex="-1" aria-labelledby="historicoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-dark-blue" id="historicoModalLabel">Ficha Técnica e Histórico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <label class="text-muted small d-block">Tipo</label>
+                            <span class="fw-semibold text-dark-blue" id="modalTipo">---</span>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-muted small d-block">Fabricante</label>
+                            <span class="fw-semibold text-dark-blue" id="modalFabricante">---</span>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-muted small d-block">Modelo</label>
+                            <span class="fw-semibold text-dark-blue" id="modalModelo">---</span>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-muted small d-block">Nº de Série</label>
+                            <span class="fw-semibold text-dark-blue text-uppercase" id="modalSerie">---</span>
+                        </div>
+                        <div class="col-12 border-top pt-2">
+                            <label class="text-muted small d-block">Proprietário (Cliente)</label>
+                            <span class="fw-semibold text-dark-blue fs-6" id="modalClienteDono">---</span>
+                        </div>
+                    </div>
+
+                    <div class="border-top pt-3">
+                        <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-solid fa-clock-rotate-left me-2"></i>Ordens de Manutenção Finalizadas</h6>
+                        <div class="table-responsive">
+                            <table class="table table-hover border align-middle font-sm mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width: 15%">Chamado</th>
+                                        <th style="width: 50%">Título / Descrição</th>
+                                        <th style="width: 35%">Técnico Responsável</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaChamadosFinalizados">
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted py-3">Nenhum histórico registrado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 px-4 pb-4">
+                    <button type="button" class="btn btn-light-gray rounded-3 fw-semibold" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/tecnicoHistoricoEquipamentos.js"></script>
+</body>
+</html>

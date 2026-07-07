@@ -1,4 +1,26 @@
-/* --- LAYOUT DO CARD --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
+    --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
+    --input-bg: #f8fafc;
+    --danger-color: #e53e3e;
+}
+
 .content-wrapper {
     padding: 40px;
     display: flex;
@@ -6,12 +28,13 @@
 }
 
 .card {
-    background: white;
+    background: #ffffff;
     width: 100%;
     max-width: 1000px;
     border-radius: 12px;
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
 }
 
 .card-header {
@@ -22,7 +45,7 @@
 }
 
 .header-icon-user {
-    background: #f0f3ff;
+    background: var(--primary-subtle);
     color: var(--primary-color);
     width: 50px;
     height: 50px;
@@ -35,7 +58,7 @@
 
 .card-header h1 { 
     font-size: 24px; 
-    color: var(--text-main); 
+    color: var(--dark-blue); 
     font-weight: 700;
 }
 
@@ -44,13 +67,12 @@
     color: var(--text-muted); 
 }
 
-/* --- TÍTULOS DAS SEÇÕES --- */
 .section-title {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
     margin: 30px 0 20px 0;
     display: flex;
     align-items: center;
@@ -68,18 +90,15 @@
     margin-top: -10px;
 }
 
-/* --- GRIDS COMPATÍVEIS COM O ORIGINAL --- */
 .form-grid {
     display: grid;
     gap: 20px 24px;
 }
 
-/* Grid de duas colunas (Dados empresariais) */
 .layout-2-col {
     grid-template-columns: repeat(2, 1fr);
 }
 
-/* Grid mista do endereço */
 .layout-mixed {
     grid-template-columns: repeat(12, 1fr);
 }
@@ -89,8 +108,9 @@
 .grid-numero { grid-column: span 3; }
 .grid-bairro { grid-column: span 5; }
 .grid-complemento { grid-column: span 4; }
+.grid-cidade { grid-column: span 4; }
+.grid-uf { grid-column: span 2; }
 
-/* Estrutura dos inputs */
 .input-group {
     display: flex;
     flex-direction: column;
@@ -100,7 +120,7 @@
 .input-group label {
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .input-group input {
@@ -111,16 +131,15 @@
     background: var(--input-bg);
     outline: none;
     font-size: 14px;
-    color: #4a5568;
+    color: var(--dark-blue);
     transition: 0.2s;
 }
 
 .input-group input:focus {
     border-color: var(--primary-color);
-    background: white;
+    background: #ffffff;
 }
 
-/* --- SEÇÃO DE EQUIPAMENTOS --- */
 .empty-state-equip {
     text-align: center;
     padding: 30px;
@@ -143,7 +162,7 @@
 }
 
 .btn-add-equip {
-    background: white;
+    background: #ffffff;
     border: 1px dashed var(--primary-color);
     color: var(--primary-color);
     padding: 10px 18px;
@@ -158,7 +177,7 @@
 }
 
 .btn-add-equip:hover {
-    background: #f0f3ff;
+    background: var(--primary-subtle);
 }
 
 .equipamento-item-card {
@@ -187,7 +206,7 @@
 .equip-info h5 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .equip-info p {
@@ -195,7 +214,6 @@
     color: var(--text-muted);
 }
 
-/* --- BOTÕES DO FORMULÁRIO PRINCIPAL --- */
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -206,9 +224,9 @@
 }
 
 .btn-cancel {
-    background: white;
-    border: 1px solid #cbd5e0;
-    color: #e53e3e;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--danger-color);
     padding: 10px 24px;
     border-radius: 6px;
     cursor: pointer;
@@ -218,16 +236,20 @@
 
 .btn-save {
     background: var(--primary-color);
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 10px 32px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
+    transition: background 0.2s;
 }
 
-/* --- MODAL --- */
+.btn-save:hover {
+    background: var(--primary-hover);
+}
+
 .custom-modal-overlay {
     position: fixed;
     top: 0;
@@ -243,12 +265,13 @@
 }
 
 .custom-modal-card {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 12px;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
 .modal-header {
@@ -262,7 +285,7 @@
 .modal-header h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--dark-blue);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -329,7 +352,7 @@
 .modal-input-group label {
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .modal-input-group input {
@@ -339,6 +362,7 @@
     background: var(--input-bg);
     outline: none;
     font-size: 13px;
+    color: var(--dark-blue);
 }
 
 .modal-footer {
@@ -361,33 +385,29 @@
 
 .btn-modal-save {
     background: var(--primary-color);
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 13px;
+    transition: background 0.2s;
 }
 
-/* --- RESPONSIVIDADE EM TELAS MENORES --- */
+.btn-modal-save:hover {
+    background: var(--primary-hover);
+}
+
 @media (max-width: 768px) {
     .layout-2-col, .layout-mixed {
         grid-template-columns: 1fr;
     }
-    .grid-cep, .grid-logradouro, .grid-numero, .grid-bairro, .grid-complemento {
+    .grid-cep, .grid-logradouro, .grid-numero, .grid-bairro, .grid-complemento, .grid-cidade, .grid-uf {
         grid-column: span 1fr;
     }
     .modal-body {
         grid-template-columns: 1fr;
         justify-items: center;
     }
-}
-/* Ajuste de largura para os novos campos de Cidade e UF */
-.grid-cidade {
-    grid-column: span 4; /* Dá um espaço maior, parecido com o Bairro */
-}
-
-.grid-uf {
-    grid-column: span 2; /* Dá um espaço menor, ideal para as 2 letras da sigla */
 }

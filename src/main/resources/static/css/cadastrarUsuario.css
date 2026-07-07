@@ -1,12 +1,35 @@
-/* ==========================================================================
-   REFINAMENTO COESÃO VISUAL (BASEADO NA REFERÊNCIA)
-   ========================================================================== */
-#cardFormUsuario {
-    font-family: 'Poppins', sans-serif;
-    color: #334155;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
+    --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
+    --danger-color: #ef4444;
+    --danger-subtle: #fee2e2;
+    --danger-hover: #fef2f2;
+    
+    --tech-bg: #e0f2fe;
+    --tech-text: #0369a1;
 }
 
-/* Ajuste do Cabeçalho */
+#cardFormUsuario {
+    font-family: var(--font-main);
+    color: var(--text-muted);
+}
+
 .card-header {
     display: flex;
     align-items: center;
@@ -15,8 +38,8 @@
 }
 
 .user-shield-icon {
-    background: #f1f3f9; 
-    color: #6b21a8;     
+    background: var(--btn-gray); 
+    color: var(--primary-color);     
     width: 46px;
     height: 46px;
     border-radius: 50%; 
@@ -29,21 +52,20 @@
 .card-header h1 {
     font-size: 24px;
     font-weight: 600;
-    color: #0f172a;
+    color: var(--dark-blue);
     margin: 0;
 }
 
 .card-header p {
     font-size: 13.5px;
-    color: #64748b;
+    color: var(--text-muted);
     margin: 4px 0 0 0;
 }
 
-/* Títulos das Seções (Caixa Alta da Referência) */
 .section-title {
     font-size: 12px;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--dark-blue);
     text-transform: uppercase; 
     letter-spacing: 0.5px;
     margin-top: 32px;
@@ -53,9 +75,6 @@
     gap: 8px;
 }
 
-/* ==========================================================================
-   ESTRUTURA E ESTILO DOS CAMPOS DE ENTRADA
-   ========================================================================== */
 .form-grid.layout-2-col {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -71,18 +90,18 @@
 .input-group label {
     font-size: 13px;
     font-weight: 600; 
-    color: #0f172a;
+    color: var(--dark-blue);
 }
 
 .input-group input,
 .input-group select {
     padding: 12px 16px;
-    border: 1px solid #e2e8f0; 
+    border: 1px solid var(--border-color); 
     border-radius: 8px;        
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-main);
     font-size: 14px;
-    color: #334155;
-    background-color: #fff;
+    color: var(--dark-blue);
+    background-color: #ffffff;
     outline: none;
     transition: all 0.2s ease-in-out;
 }
@@ -94,17 +113,14 @@
 
 .input-group input:focus,
 .input-group select:focus {
-    border-color: #6b21a8;
-    box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.08);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
 }
 
 .grid-logradouro {
     grid-column: span 2;
 }
 
-/* ==========================================================================
-   BOTÕES DE AÇÃO REFINADOS
-   ========================================================================== */
 .section-submit-actions {
     display: flex;
     justify-content: flex-end;
@@ -114,7 +130,7 @@
 
 .btn-cancel, .btn-save {
     padding: 10px 20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-main);
     font-size: 13.5px;
     font-weight: 500;
     border-radius: 6px;
@@ -124,33 +140,30 @@
 
 .btn-cancel {
     background-color: transparent;
-    color: #ef4444; 
-    border: 1px solid #fee2e2;
+    color: var(--danger-color); 
+    border: 1px solid var(--danger-subtle);
 }
 
 .btn-cancel:hover {
-    background-color: #fef2f2;
+    background-color: var(--danger-hover);
 }
 
 .btn-save {
-    background-color: #6b21a8;
-    color: white;
+    background-color: var(--primary-color);
+    color: #ffffff;
     border: none;
 }
 
 .btn-save:hover {
-    background-color: #581c87;
+    background-color: var(--primary-hover);
 }
 
 .divider-line {
     border: 0; 
-    border-top: 1px solid #f1f5f9; 
+    border-top: 1px solid var(--border-color); 
     margin: 48px 0 32px 0;
 }
 
-/* ==========================================================================
-   TABELA DE CONSULTA REFINADA
-   ========================================================================== */
 .table-container {
     overflow-x: auto; 
     margin-top: 20px;
@@ -165,18 +178,18 @@
 
 .usuarios-table th {
     padding: 12px 10px;
-    color: #64748b; 
+    color: var(--text-muted); 
     font-weight: 600;
-    border-bottom: 2px solid #f1f5f9;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .usuarios-table tbody tr {
-    border-bottom: 1px solid #f8fafc;
-    color: #334155;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--dark-blue);
 }
 
 .usuarios-table tbody tr:hover {
-    background-color: #f8fafc;
+    background-color: var(--bg-main);
 }
 
 .usuarios-table td {
@@ -185,7 +198,7 @@
 
 .usuarios-table .font-medium {
     font-weight: 500;
-    color: #1e293b;
+    color: var(--dark-blue);
 }
 
 .usuarios-table .text-muted {
@@ -196,7 +209,6 @@
     text-align: center;
 }
 
-/* Badges */
 .badge-perfil {
     padding: 4px 10px;
     border-radius: 12px;
@@ -207,19 +219,19 @@
 }
 
 .badge-tecnico {
-    background-color: #e0f2fe;
-    color: #0369a1;
+    background-color: var(--tech-bg);
+    color: var(--tech-text);
 }
 
 .badge-cliente {
-    background-color: #f3e8ff;
-    color: #6b21a8;
+    background-color: var(--primary-subtle);
+    color: var(--primary-color);
 }
 
 .btn-table-delete {
     background: none; 
     border: none; 
-    color: #ef4444;
+    color: var(--danger-color);
     cursor: pointer;
     font-size: 14px;
     transition: transform 0.2s ease;
@@ -229,7 +241,6 @@
     transform: scale(1.15);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .form-grid.layout-2-col {
         grid-template-columns: 1fr;
@@ -239,14 +250,10 @@
     }
 }
 
-/* ==========================================================================
-   LÓGICA OPERACIONAL DO CAMPO VÍNCULO (PURE CSS CORRIGIDO)
-   ========================================================================== */
 .vinculo-dinamico {
     display: none;
 }
 
-/* Força o display flex com direção de coluna para respeitar o gap: 8px do label */
 #formUsuario:has(#perfilUsuario option[value="CLIENTE"]:checked) .vinculo-dinamico {
     display: flex !important;
     flex-direction: column;

@@ -1,4 +1,4 @@
-const API_SALVAR_CLIENTE = 'http://localhost:8000/clientes/salvar';
+const API_SALVAR_CLIENTE = 'http://localhost:8000/clientes/salvarCliente';
 const API_SALVAR_EQUIPAMENTO = 'http://localhost:8000/equipamentos/salvar';
 const API_BUSCAR_CEP = 'https://viacep.com.br/ws';
 

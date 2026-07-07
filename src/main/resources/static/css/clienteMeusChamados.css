@@ -1,22 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+:root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
+    --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
+    --success-bg: #dcfce7;
+    --success-text: #15803d;
+    --indigo-chat: #f5f3ff;
+    --chat-dark: #334155;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
 }
 
 .text-dark-blue {
-    color: #1e1b4b;
+    color: var(--dark-blue);
 }
 
-/* Sidebar */
 .sidebar {
     width: 260px;
 }
 
 .logo-box {
-    background-color: #6366f1;
-    color: white;
+    background-color: var(--primary-color);
+    color: #ffffff;
     width: 36px;
     height: 36px;
     display: flex;
@@ -31,71 +53,67 @@ body {
 }
 
 .sidebar .nav-link.active {
-    background-color: #e0e7ff !important;
-    color: #6366f1 !important;
+    background-color: var(--primary-subtle) !important;
+    color: var(--primary-color) !important;
     font-weight: 600;
 }
 
-/* Icons & Header */
 .header-icon {
-    background-color: #e0e7ff;
-    color: #6366f1;
+    background-color: var(--primary-subtle);
+    color: var(--primary-color);
     width: 48px;
     height: 48px;
 }
 
-/* Lista Customizada de Chamados */
 .list-group-item-action {
-    border-color: #e2e8f0 !important;
+    border-color: var(--border-color) !important;
     transition: all 0.2s ease;
     background-color: #ffffff;
 }
 
 .list-group-item-action:hover {
-    border-color: #6366f1 !important;
+    border-color: var(--primary-color) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
 }
 
 .border-top-dashed {
-    border-top: 1px dashed #e2e8f0;
+    border-top: 1px dashed var(--border-color);
 }
 
-/* Badges Customizados */
 .bg-primary-subtle {
     background-color: #eff6ff !important;
     color: #1d4ed8 !important;
 }
 
 .bg-success-subtle {
-    background-color: #dcfce7 !important;
-    color: #15803d !important;
+    background-color: var(--success-bg) !important;
+    color: var(--success-text) !important;
 }
 
-/* Estilos de Conversa Interna do Chamado */
 .bg-indigo-light {
-    background-color: #f5f3ff;
-    border: 1px solid #e0e7ff;
+    background-color: var(--indigo-chat);
+    border: 1px solid var(--primary-subtle);
 }
 
 .border-start-purple {
-    border-left: 3px solid #6366f1 !important;
+    border-left: 3px solid var(--primary-color) !important;
 }
 
 .text-secondary-dark {
-    color: #334155;
+    color: var(--chat-dark);
 }
 
 .btn-light-gray {
-    background-color: #f1f5f9;
-    color: #475569;
+    background-color: var(--btn-gray);
+    color: var(--text-muted);
     border: none;
     padding: 8px 20px;
     font-size: 14px;
 }
 
 .btn-light-gray:hover {
-    background-color: #e2e8f0;
+    background-color: var(--btn-gray-hover);
 }
 
 label {
@@ -104,21 +122,21 @@ label {
     letter-spacing: 0.5px;
     margin-bottom: 2px;
 }
-/* Container e Ajustes para a Imagem de Evidência dentro do Modal */
+
 .ticket-image-container {
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     transition: border-color 0.2s ease;
 }
 
 .ticket-image-container:hover {
-    border-color: #6366f1;
+    border-color: var(--primary-color);
 }
 
 .ticket-preview-img {
-    max-height: 200px; /* Impede que imagens muito verticais quebrem o modal */
+    max-height: 200px;
     width: 100%;
-    object-fit: cover; /* Faz o corte proporcional elegante */
+    object-fit: cover;
     cursor: pointer;
 }
 

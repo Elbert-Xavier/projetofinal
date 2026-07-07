@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestoretech - Painel do Técnico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/clienteMeusEquipamentos.css"> 
+</head>
+<body>
+
+    <div class="d-flex h-100 vh-100 overflow-hidden">
+        
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+            </div>
+            
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="http://localhost:8000/html/tecnicoDashboard.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-chart-pie me-3"></i> Dashboard</a>
+                <a href="http://localhost:8000/html/tecnicoMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Consultar Chamados</a>
+                <a href="http://localhost:8000/html/tecnicoHistoricoEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-wrench me-3"></i> Histórico Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <div class="container-fluid" style="max-width: 1000px;">
+                
+                <div class="d-flex align-items-center gap-3 mb-5">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3 bg-white shadow-sm p-3">
+                        <i class="fa-solid fa-chart-pie fs-4 text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="h4 mb-1 fw-bold text-dark-blue">Painel de Controle</h1>
+                        <p class="text-muted small mb-0">Bem-vindo de volta! Aqui está o resumo das suas atividades de manutenção.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    
+                    <div class="col-md-4">
+                        <a href="http://localhost:8000/html/tecnicoMeusChamados.html?status=aberto" class="text-decoration-none">
+                            <div class="card h-100 border-0 p-4 rounded-4 shadow-sm bg-white card-hover-effect" style="transition: transform 0.2s;">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted small fw-semibold text-uppercase">Chamados Atribuídos</span>
+                                    <div class="rounded-3 p-2 bg-primary-subtle text-primary">
+                                        <i class="fa-solid fa-folder-open fs-5"></i>
+                                    </div>
+                                </div>
+                                <h2 class="display-5 fw-bold text-dark mb-1" id="qtdChamadosAbertos">--</h2>
+                                <p class="text-muted small mb-0 d-flex align-items-center gap-1">
+                                    Em andamento sob sua responsabilidade <i class="fa-solid fa-arrow-right fs-xs"></i>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 p-4 rounded-4 shadow-sm bg-white">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted small fw-semibold text-uppercase">Finalizados no Mês</span>
+                                <div class="rounded-3 p-2 bg-success-subtle text-success">
+                                    <i class="fa-solid fa-circle-check fs-5"></i>
+                                </div>
+                            </div>
+                            <h2 class="display-5 fw-bold text-dark mb-1" id="qtdChamadosFinalizados">--</h2>
+                            <p class="text-success small mb-0 fw-medium">
+                                <i class="fa-solid fa-circle text-success me-1" style="font-size: 8px;"></i> Metas de SLA atualizadas
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="http://localhost:8000/html/tecnicoMeusChamados.html?prioridade=alta" class="text-decoration-none">
+                            <div class="card h-100 border-0 p-4 rounded-4 shadow-sm bg-white card-hover-effect" style="transition: transform 0.2s;">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted small fw-semibold text-uppercase">Alta Prioridade</span>
+                                    <div class="rounded-3 p-2 bg-danger-subtle text-danger">
+                                        <i class="fa-solid fa-triangle-exclamation fs-5"></i>
+                                    </div>
+                                </div>
+                                <h2 class="display-5 fw-bold text-danger mb-1" id="qtdAltaPrioridade">--</h2>
+                                <p class="text-muted small mb-0 d-flex align-items-center gap-1">
+                                    Requerem atenção imediata <i class="fa-solid fa-arrow-right fs-xs"></i>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .card-hover-effect:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.08)!important;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script temporário apenas para simular a inserção dos dados na tela hoje
+        document.addEventListener("DOMContentLoaded", () => {
+            // Em breve você substituirá estes valores fixos por um fetch para o seu /usuarios/dashboardIndicadores
+            document.getElementById('qtdChamadosAbertos').innerText = "5";
+            document.getElementById('qtdChamadosFinalizados').innerText = "14";
+            document.getElementById('qtdAltaPrioridade').innerText = "2";
+        });
+    </script>
+</body>
+</html>

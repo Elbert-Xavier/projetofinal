@@ -1,14 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
     --primary-color: #6366f1;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
     --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
     --input-bg: #f8fafc;
+    --danger-color: #e53e3e;
 }
-
-/* =================== GERAL =================== */
 
 * {
     box-sizing: border-box;
@@ -18,18 +29,18 @@ body {
     margin: 0;
     display: flex;
     min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8fafc;
-    color: var(--text-main);
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--dark-blue);
 }
 
 .main-content {
     flex: 1;
-    background: #f8fafc;
+    background: var(--bg-main);
 }
 
 .text-dark-blue {
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .font-xs {
@@ -37,14 +48,12 @@ body {
     color: var(--text-muted);
 }
 
-/* =================== SIDEBAR =================== */
-
 .sidebar {
     width: 260px;
     min-height: 100vh;
-    background: #fff;
+    background: #ffffff;
     padding: 24px;
-    border-right: 1px solid #f1f5f9;
+    border-right: 1px solid var(--border-color);
 }
 
 .logo-area {
@@ -59,12 +68,10 @@ body {
     height: 46px;
     border-radius: 12px;
     background: var(--primary-color);
-    color: #fff;
-
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 20px;
 }
 
@@ -76,7 +83,7 @@ body {
 .logo-text {
     font-size: 18px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .logo-subtext {
@@ -94,15 +101,12 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-
     padding: 12px 16px;
     margin-bottom: 8px;
-
     text-decoration: none;
-    color: var(--text-main);
+    color: var(--dark-blue);
     font-size: 14px;
     font-weight: 500;
-
     border-radius: 10px;
     transition: 0.2s;
 }
@@ -115,7 +119,7 @@ body {
 
 .nav-item:hover,
 .nav-item.active {
-    background: #eef2ff;
+    background: var(--primary-subtle);
     color: var(--primary-color);
 }
 
@@ -124,14 +128,12 @@ body {
 }
 
 .logout {
-    color: #ef4444;
+    color: var(--danger-color);
 }
 
 .logout i {
-    color: #ef4444;
+    color: var(--danger-color);
 }
-
-/* =================== CARD =================== */
 
 .content-wrapper {
     padding: 40px;
@@ -140,15 +142,14 @@ body {
 }
 
 .card {
-    background: #fff;
+    background: #ffffff;
     width: 100%;
     max-width: 1000px;
     border-radius: 12px;
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
 }
-
-/* =================== HEADER =================== */
 
 .card-header {
     display: flex;
@@ -158,23 +159,21 @@ body {
 }
 
 .header-icon-user {
-    background: #f0f3ff;
+    background: var(--primary-subtle);
     color: var(--primary-color);
     width: 50px;
     height: 50px;
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 20px;
 }
 
 .card-header h1 {
     margin: 0;
     font-size: 24px;
-    color: var(--text-main);
+    color: var(--dark-blue);
     font-weight: 700;
 }
 
@@ -184,16 +183,13 @@ body {
     color: var(--text-muted);
 }
 
-/* =================== TÍTULOS =================== */
-
 .section-title {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
     margin: 30px 0 20px 0;
-
     display: flex;
     align-items: center;
     gap: 8px;
@@ -202,8 +198,6 @@ body {
 .section-title i {
     color: var(--text-muted);
 }
-
-/* =================== INPUTS =================== */
 
 .input-group {
     display: flex;
@@ -215,7 +209,7 @@ body {
 .input-group label {
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .form-control,
@@ -228,16 +222,16 @@ textarea {
     background: var(--input-bg);
     outline: none;
     font-size: 14px;
-    color: #4a5568;
+    color: var(--dark-blue);
     transition: 0.2s;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-main);
 }
 
 .form-control:focus,
 .form-select:focus,
 textarea:focus {
     border-color: var(--primary-color);
-    background: #fff;
+    background: #ffffff;
 }
 
 textarea {
@@ -251,31 +245,24 @@ textarea {
     margin-top: 5px;
 }
 
-/* =================== UPLOAD =================== */
-
 .upload-container {
     position: relative;
-
     min-height: 200px;
-
     border: 2px dashed var(--border-color);
     border-radius: 12px;
     background: var(--input-bg);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     text-align: center;
     gap: 8px;
-
     transition: 0.2s;
 }
 
 .upload-container:hover {
     border-color: var(--primary-color);
-    background: #f0f3ff;
+    background: var(--primary-subtle);
 }
 
 .file-input-overlay {
@@ -290,21 +277,20 @@ textarea {
     height: 48px;
     background: var(--primary-color);
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .upload-icon-circle i {
-    color: #fff;
+    color: #ffffff;
     font-size: 20px;
 }
 
 .upload-title {
     margin: 0;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--dark-blue);
 }
 
 .upload-subtitle {
@@ -320,22 +306,19 @@ textarea {
     text-transform: uppercase;
 }
 
-/* =================== BOTÕES =================== */
-
 .form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-
     margin-top: 40px;
     border-top: 1px solid var(--border-color);
     padding-top: 25px;
 }
 
 .btn-cancel {
-    background: #fff;
-    border: 1px solid #cbd5e0;
-    color: #e53e3e;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--danger-color);
     padding: 10px 24px;
     border-radius: 6px;
     cursor: pointer;
@@ -345,20 +328,19 @@ textarea {
 
 .btn-save {
     background: var(--primary-color);
-    color: #fff;
+    color: #ffffff;
     border: none;
     padding: 10px 32px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
+    transition: background 0.2s;
 }
 
 .btn-save:hover {
-    background: #4f46e5;
+    background: var(--primary-hover);
 }
-
-/* =================== RESPONSIVIDADE =================== */
 
 @media (max-width: 768px) {
     body {

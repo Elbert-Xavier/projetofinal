@@ -1,39 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   1. VARIÁVEIS GLOBAIS (ÂNCORA DE PADRONIZAÇÃO)
+   ========================================================================== */
+:root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-subtle: #e0e7ff;
+    
+    --dark-blue: #1e1b4b;
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    
+    --border-color: #e2e8f0;
+    
+    --btn-gray: #f1f5f9;
+    --btn-gray-hover: #e2e8f0;
+    --text-muted: #475569;
+    
+    --font-main: 'Inter', sans-serif;
+    
+    /* Estados e Inputs */
+    --input-bg: #f9fafb;
+    --input-border: #cbd5e1;
+}
+
+/* ==========================================================================
+   2. CONFIGURAÇÕES GERAIS
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-main);
 }
 
 body {
-    background-color: #e0e7ff;
+    background-color: var(--primary-subtle);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* CONTAINER CENTRAL */
 .main-container {
     display: flex;
     width: 900px;
     height: 550px;
-    background: white;
+    background: #ffffff;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(30, 27, 75, 0.1);
 }
 
-/* Lado Azul */
+/* ==========================================================================
+   3. PAINEL ILUSTRATIVO (LADO ESQUERDO)
+   ========================================================================== */
 .left-side {
     flex: 1.2;
-    background: linear-gradient(135deg, #7c83fd, #5d67ff);
+    background: linear-gradient(135deg, #818cf8, var(--primary-hover));
     padding: 40px;
-    color: white;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    /* Criando a curva branca no final da div */
     border-top-right-radius: 80px 50%;
     border-bottom-right-radius: 80px 50%;
     z-index: 1;
@@ -46,11 +78,11 @@ body {
 }
 
 .logo-box {
-    background: white;
-    color: #5d67ff;
+    background: #ffffff;
+    color: var(--primary-hover);
     padding: 5px 12px;
     border-radius: 8px;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 24px;
 }
 
@@ -64,10 +96,36 @@ body {
 .illustration-box img {
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(30, 27, 75, 0.2);
 }
 
-/* Lado Branco */
+/* GRÁFICO EM CSS VETORIAL */
+.css-illustration {
+    width: 100%;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.chart-bar {
+    width: 20%;
+    background: #ffffff;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease;
+}
+
+.bar-1 { height: 40%; }
+.bar-2 { height: 80%; }
+.bar-3 { height: 60%; }
+
+/* ==========================================================================
+   4. PAINEL DE FORMULÁRIO (LADO DIREITO)
+   ========================================================================== */
 .right-side {
     flex: 1;
     display: flex;
@@ -82,17 +140,36 @@ body {
 }
 
 h1 {
-    color: #4338ca;
+    color: var(--dark-blue);
     font-size: 32px;
     margin-bottom: 5px;
+    font-weight: 700;
 }
 
 .subtitle {
-    color: #6b7280;
+    color: var(--text-muted);
     font-size: 13px;
     margin-bottom: 30px;
 }
 
+/* CONTAINER DE ROLAGEM INTERNA */
+.form-scroll-container {
+    max-height: 340px;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-bottom: 15px;
+}
+
+.form-scroll-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.form-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* CONTROLES DE INPUT, SELECT E ÍCONES */
 .input-container {
     position: relative;
     margin-bottom: 15px;
@@ -103,17 +180,33 @@ h1 {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #818cf8;
+    color: var(--primary-color);
 }
 
-.input-container input {
+.input-container input,
+.input-container select {
     width: 100%;
     padding: 12px 15px 12px 45px;
-    border: 1px solid #f3f4f6;
-    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
     border-radius: 10px;
     outline: none;
     font-size: 14px;
+    color: var(--dark-blue);
+    transition: all 0.2s ease;
+}
+
+.input-container select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.input-container input:focus,
+.input-container select:focus {
+    border-color: var(--primary-color);
+    background-color: #ffffff;
 }
 
 .eye-toggle {
@@ -121,79 +214,70 @@ h1 {
     right: 15px;
     cursor: pointer;
 }
-.css-illustration {
-    width: 100%;
-    height: 120px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    padding: 20px;
-    backdrop-filter: blur(5px);
+
+/* SETA CUSTOMIZADA PARA SELECTS VIA PSEUDO-ELEMENTO */
+.input-container::after {
+    content: '\f107';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    pointer-events: none;
 }
 
-.chart-bar {
-    width: 20%;
-    background: white;
-    border-radius: 5px 5px 0 0;
-    transition: height 0.5s;
+.input-container:not(:has(select))::after {
+    display: none;
 }
 
-.bar-1 { height: 40%; }
-.bar-2 { height: 80%; }
-.bar-3 { height: 60%; }
-
-.forgot-link {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    color: #4f46e5;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 20px 0;
-}
-
-.btn-entrar {
-    width: 100%;
-    padding: 14px;
-    background: #4f46e5;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
-}
-/* Alinha o "Esqueceu a senha" à direita e define o estilo */
+/* ==========================================================================
+   5. LINKS INTERATIVOS E AÇÕES (BOTONARIA)
+   ========================================================================== */
 .forgot-password {
     text-align: right;
-    margin-top: -10px; /* Ajuste para aproximar do campo de senha */
+    margin-top: -10px;
     margin-bottom: 20px;
 }
 
 .forgot-password a {
-    color: #007bff; /* Ou a cor padrão do seu sistema */
-    font-size: 14px;
+    color: var(--primary-color);
+    font-size: 13px;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
 .forgot-password a:hover {
     text-decoration: underline;
 }
 
-/* Centraliza o link de cadastro na parte inferior */
+.btn-entrar {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.btn-entrar:hover {
+    background: var(--primary-hover);
+}
+
 .register-link {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .register-link a {
-    color: #007bff;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
 }
@@ -201,48 +285,3 @@ h1 {
 .register-link a:hover {
     text-decoration: underline;
 }
-        .input-container select {
-            width: 100%;
-            padding: 12px 15px 12px 45px;
-            border: 1px solid #f3f4f6;
-            background-color: #f9fafb;
-            border-radius: 10px;
-            outline: none;
-            font-size: 14px;
-            color: #6b7280;
-            appearance: none; /* Remove a seta padrão do navegador */
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            cursor: pointer;
-        }
-        /* Adiciona uma seta customizada sutil no lado direito do select */
-        .input-container::after {
-            content: '\f107';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #818cf8;
-            pointer-events: none;
-        }
-        /* Remove a seta customizada dos inputs que não são select */
-        .input-container:not(:has(select))::after {
-            display: none;
-        }
-        /* Torna o formulário rolável internamente para caber nos 550px de altura do container */
-        .form-scroll-container {
-            max-height: 340px;
-            overflow-y: auto;
-            padding-right: 8px;
-            margin-bottom: 15px;
-        }
-        /* Customização sutil da barra de rolagem */
-        .form-scroll-container::-webkit-scrollbar {
-            width: 4px;
-        }
-        .form-scroll-container::-webkit-scrollbar-thumb {
-            background: #818cf8;
-            border-radius: 4px;
-        }
