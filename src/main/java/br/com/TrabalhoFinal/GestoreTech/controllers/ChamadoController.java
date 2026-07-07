@@ -50,6 +50,11 @@ public class ChamadoController {
 	public long contarChamadosFinalizados() {
 	    return chamadoRepository.contarChamadosFinalizados();
 	}
+	@GetMapping("/ListarChamadoStatus")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarChamadosAbertos() {
+	    return chamadoRepository.findByStatus("ABERTO");
+	}
 	@GetMapping("/listarPorID/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<ChamadoEntity> listarTodosChamadosPorID(@PathVariable int id){
@@ -119,9 +124,17 @@ public class ChamadoController {
 		return chamadoRepository.save(chamado);
 	}
 	
-	@PutMapping("/atualizar")
+	@PutMapping("/atualizar/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ChamadoEntity atualizarChamado(@RequestBody ChamadoEntity chamado, @PathVariable int id) {
+		if(chamadoRepository.existsById(id)) {
+			chamado.setId(id);
+			return chamadoRepository.save(chamado);
+		}return null;
+	}
+	@PutMapping("/atualizarnormal/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ChamadoEntity atualizarChamadonormal(@RequestBody ChamadoEntity chamado, @PathVariable int id) {
 		if(chamadoRepository.existsById(id)) {
 			chamado.setId(id);
 			return chamadoRepository.save(chamado);
