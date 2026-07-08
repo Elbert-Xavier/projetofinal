@@ -204,7 +204,7 @@ async function historicoChamados(button) {
 		document.getElementById('tecnicoHistorico').innerText = Tecnico;
 		document.getElementById('dataHistorico').innerText = dados.dataAbertura
 		document.getElementById('DescricaoHistorico').innerText = dados.descricao
-		document.getElementById('imagemHistorico').innerText = "/img/"+imagem;
+		document.getElementById('imagemHistorico').src = "/img/"+imagem;
 }
 async function AtualizarChamado(){
 	

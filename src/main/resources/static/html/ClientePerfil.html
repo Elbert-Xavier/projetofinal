@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestoretech - Meu Perfil</title>
+    <title>Gestoretech - Gerenciar Usuários</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/ClientePerfil.css">
@@ -20,7 +20,7 @@
             </div>
             
             <nav class="nav flex-column gap-2 h-100">
-                <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-regular fa-user me-3"></i> Perfil</a>
+                <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-link active rounded-3 px-3 py-2.5" id="CadastrarUsuario"><i class="fa-regular fa-user me-3"></i> Usuários</a>
                 <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
                 <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
                 <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
@@ -30,100 +30,134 @@
 
         <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
             
-            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
+            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 1000px;">
                 
-                <div class="d-flex align-items-center gap-3 mb-4">
-                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
-                        <i class="fa-regular fa-user fs-5"></i>
+                <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                            <i class="fa-solid fa-users fs-5"></i>
+                        </div>
+                        <div>
+                            <h1 class="h5 mb-1 fw-bold text-dark-blue">Controle de Usuários</h1>
+                            <p class="text-muted small mb-0">Gerencie permissões, dados cadastrais e o status dos colaboradores do ecossistema.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Meu Perfil</h1>
-                        <p class="text-muted small mb-0">Gerencie suas informações pessoais e credenciais de acesso.</p>
+                    <button type="button" class="btn btn-purple px-4 py-2 fw-semibold rounded-3" data-bs-toggle="modal" data-bs-target="#modalNovoUsuario" onclick="LimparFormulario()">
+                        <i class="fa-solid fa-plus me-2"></i>Novo Usuário
+                    </button>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-12 col-sm-4">
+                        <div class="p-3 bg-light border rounded-3 text-start">
+                            <span class="text-muted text-uppercase fw-semibold d-block" style="font-size: 11px;">Total de Usuários</span>
+                            <span class="h4 fw-bold text-dark-blue mb-0 mt-1 d-block" id="usuariosTotal">0</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="p-3 bg-light border rounded-3 text-start">
+                            <span class="text-muted text-uppercase fw-semibold d-block" style="font-size: 11px;">Contas Ativas</span>
+                            <span class="h4 fw-bold text-success mb-0 mt-1 d-block" id="usuarioAtivos">0</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="p-3 bg-light border rounded-3 text-start">
+                            <span class="text-muted text-uppercase fw-semibold d-block" style="font-size: 11px;">Administradores</span>
+                            <span class="h4 fw-bold text-primary mb-0 mt-1 d-block" style="color: var(--primary-color) !important;" id="usuarioADMINISTRADORES">0</span>
+                        </div>
                     </div>
                 </div>
 
                 <hr class="text-muted opacity-25 mb-4">
 
-                <form id="formPerfil">
-                    <div class="row g-4">
-                        
-                        <div class="col-12">
-                            <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-solid fa-id-card me-2 text-secondary"></i>Informações Profissionais</h6>
+                <div class="mb-4">
+                    <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-solid fa-magnifying-glass me-2 text-secondary"></i>Filtrar Colaboradores</h6>
+                    <form class="row g-3 align-items-end p-3 bg-light rounded-3 border border-light-subtle">
+                        <div class="col-md-9">
+                            <label for="buscarNome" class="form-label text-muted small fw-semibold">Nome ou E-mail</label>
+                            <input type="text" class="form-control bg-white" id="buscarNome" placeholder="Busque por nome, e-mail ou cargo...">
                         </div>
-
-                        <div class="col-md-6">
-                            <label for="nome" class="form-label text-muted small fw-semibold">Nome Completo</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Seu nome" required>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-purple w-100 py-2.5 fw-semibold" onclick="filtrarUsuarios()">
+                                <i class="fa-solid fa-filter me-2"></i>Filtrar
+                            </button>
                         </div>
+                    </form>
+                </div>
 
-                        <div class="col-md-6">
-                            <label for="telefone" class="form-label text-muted small fw-semibold">Telefone / Ramal</label>
-                            <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000">
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="cargo" class="form-label text-muted small fw-semibold">Cargo</label>
-                            <input type="text" class="form-control" id="cargo" placeholder="Ex: Analista de Suporte">
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="nivelHierarquico" class="form-label text-muted small fw-semibold">Nível Hierárquico</label>
-                            <select class="form-select" id="nivelHierarquico">
-                                <option value="Junior">Júnior</option>
-                                <option value="Pleno">Pleno</option>
-                                <option value="Senior">Sênior</option>
-                                <option value="Especialista">Especialista/Gestor</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="dataCadastro" class="form-label text-muted small fw-semibold">Data de Cadastro</label>
-                            <input type="date" class="form-control bg-light text-muted" id="dataCadastro" readonly>
-                        </div>
-
-
-                        <div class="col-12 mt-5">
-                            <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-solid fa-shield-halved me-2 text-secondary"></i>Segurança e Acesso</h6>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="email" class="form-label text-muted small fw-semibold">E-mail Corporativo</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-white text-muted"><i class="fa-regular fa-envelope"></i></span>
-                                <input type="email" class="form-control" id="email" placeholder="nome@empresa.com" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="senha" class="form-label text-muted small fw-semibold">Nova Senha</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-white text-muted"><i class="fa-solid fa-lock"></i></span>
-                                <input type="password" class="form-control" id="senha" placeholder="Digite a nova senha">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="confirmarSenha" class="form-label text-muted small fw-semibold">Confirmar Nova Senha</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-white text-muted"><i class="fa-solid fa-check-double"></i></span>
-                                <input type="password" class="form-control" id="confirmarSenha" placeholder="Repita a nova senha">
-                            </div>
-                        </div>
-
+                <div class="mt-4">
+                    <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-solid fa-list me-2 text-secondary"></i>Usuários Cadastrados</h6>
+                    <div class="table-responsive border rounded-3">
+                        <table class="table table-hover align-middle mb-0" style="font-size: 14px;">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3 ps-3 text-muted fw-semibold">Colaborador</th>
+                                    <th class="py-3 text-muted fw-semibold">Cargo</th>
+                                    <th class="py-3 text-center text-muted fw-semibold">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaUsuariosBody">
+                                <tr>
+                                    <td class="ps-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="https://ui-avatars.com/api/?name=Ana+Beatriz&background=random&color=fff" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover;" alt="Ana">
+                                            <div>
+                                                <div class="fw-semibold text-dark-blue">Ana Beatriz</div>
+                                                <div class="text-muted small" style="font-size: 12px;">ana.beatriz@empresa.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="text-secondary fw-medium">Analista de TI</span></td>
+                                    <td><span class="badge rounded-pill bg-light text-dark px-3 py-2 border">Pleno</span></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-link text-primary p-1 me-2" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <button class="btn btn-link text-danger p-1" title="Excluir"><i class="fa-regular fa-trash-can"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <div class="d-flex justify-content-end align-items-center gap-3 mt-5 pt-4 border-top">
-                        <button type="button" class="btn btn-outline-secondary px-4 py-2 fw-semibold rounded-3">
-                            Cancelar
-                        </button>
-                        <button type="submit" class="btn btn-purple px-4 py-2 fw-semibold rounded-3">
-                            <i class="fa-solid fa-floppy-disk me-2"></i>Salvar Alterações
-                        </button>
-                    </div>
-                </form>
+                </div>
 
             </div>
         </main>
+    </div>
+
+    <div class="modal fade" id="modalNovoUsuario" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header p-4 border-bottom border-light">
+                    <h5 class="modal-title fw-bold text-dark-blue"><i class="fa-solid fa-user-plus me-2 text-primary" style="color: var(--primary-color);"></i>Adicionar Novo Usuário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="formNovoUsuario">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small fw-semibold">Nome Completo</label>
+                                <input type="text" class="form-control" required placeholder="Nome do colaborador" id="nomeCompleto">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small fw-semibold">E-mail Corporativo</label>
+                                <input type="email" class="form-control" required placeholder="nome@empresa.com" id="email">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small fw-semibold">Cargo</label>
+                                <input type="text" class="form-control" placeholder="Ex: Desenvolvedor" id="cargo">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small fw-semibold">Telefone</label>
+                                <input type="tel" class="form-control" placeholder="Ex: (31) 12345-6789" id="telefone">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end gap-3 mt-4 pt-3 border-top">
+                            <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-purple px-4 py-2 fw-semibold" onclick="salvarUsuario()" id="buttonSalvar">Salvar Usuário</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

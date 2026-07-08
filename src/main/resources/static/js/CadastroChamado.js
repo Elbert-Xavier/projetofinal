@@ -2,7 +2,8 @@ const API_EQUIPAMENTOS_LISTAR = 'http://localhost:8000/equipamentos/listarTodos'
 const API_CHAMADOS_SALVAR = 'http://localhost:8000/chamados/salvar';
 
 document.addEventListener('DOMContentLoaded', function() {
-    carregarEquipamentosCliente();
+	usuarioEstaLogado();
+	 carregarEquipamentosCliente();
     configurarContadorCaracteres();
 
     const btnCancel = document.querySelector('.btn-cancel');
@@ -19,6 +20,23 @@ document.addEventListener('DOMContentLoaded', function() {
         btnSave.addEventListener('click', salvarChamado);
     }
 });
+
+function usuarioEstaLogado(){
+	const usuarioLogado = localStorage.getItem('usuarioLogado');
+		console.log(usuarioLogado)
+	const usuario = JSON.parse(usuarioLogado);
+	console.log(usuario)
+	
+	if (!usuarioLogado) {
+	    window.location.href = 'http://localhost:8000/login.html';
+	}else{
+		if(usuario.admin == false) {
+			document.getElementById('CadastrarUsuario').hidden = true;
+		}else{
+			document.getElementById('CadastrarUsuario').hidden = false;
+		}
+	}
+}
 
 function carregarEquipamentosCliente() {
     const select = document.getElementById('selectEquipment');

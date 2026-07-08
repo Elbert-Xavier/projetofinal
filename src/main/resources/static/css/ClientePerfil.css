@@ -105,3 +105,33 @@ body {
     border-color: var(--input-border);
     color: var(--text-dark-gray);
 }
+/* ==========================================================================
+   Ajustes de Suporte para a Listagem de Usuários 
+   ========================================================================== */
+.table th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.btn-link {
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.1s ease;
+}
+
+.btn-link:hover {
+    transform: scale(1.1);
+}
+
+.modal-content {
+    font-family: var(--font-main);
+}

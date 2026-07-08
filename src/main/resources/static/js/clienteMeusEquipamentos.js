@@ -8,11 +8,29 @@ const API_BUSCAR_NOME = 'http://localhost:8000/equipamentos/listarnome';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarEquipamentos();
+	usuarioEstaLogado();
    
     document.getElementById('filtroBusca').addEventListener('input', (e) => {
         filtro(e.target.value);
     });
 });
+
+function usuarioEstaLogado(){
+	const usuarioLogado = localStorage.getItem('usuarioLogado');
+		console.log(usuarioLogado)
+	const usuario = JSON.parse(usuarioLogado);
+	console.log(usuario)
+	
+	if (!usuarioLogado) {
+	    window.location.href = 'http://localhost:8000/login.html';
+	}else{
+		if(usuario.admin == false) {
+			document.getElementById('CadastrarUsuario').hidden = true;
+		}else{
+			document.getElementById('CadastrarUsuario').hidden = false;
+		}
+	}
+}
 
 function obterIconeEquipamento(tipo) {
     const t = (tipo || '').toLowerCase();
@@ -23,6 +41,7 @@ function obterIconeEquipamento(tipo) {
 }
 
 async function listarEquipamentos() {
+	
     const response = await fetch(API_BUSCAR_TODOS);
     
     if (!response.ok) {

@@ -42,16 +42,14 @@ async function logar() {
         
         localStorage.setItem("usuarioLogado", JSON.stringify(dadosUsuario));
         localStorage.setItem("usuario", "logado");
-        
-        const tipoFormatado = dadosUsuario.tipoUsuario ? dadosUsuario.tipoUsuario.toLowerCase() : "";
 
         if (dadosUsuario.primeiroLogin === true || dadosUsuario.primeiroLogin === 1) {
             window.location.href = `http://localhost:8000/html/concluirCadastro.html?id=${dadosUsuario.id}`;
-        } else if (tipoFormatado === "GESTOR") {
+        } else if (dadosUsuario.tipoUsuario === "GESTOR") {
             window.location.href = "http://localhost:8000/html/GestorDashboard.html";
-        } else if (tipoFormatado === "TECNICO") {
+        } else if (dadosUsuario.tipoUsuario === "TECNICO") {
             window.location.href = "http://localhost:8000/html/tecnicoDashboard.html";
-        } else if (tipoFormatado === "CLIENTE") {
+        } else if (dadosUsuario.tipoUsuario === "CLIENTE") {
             window.location.href = "http://localhost:8000/html/clienteMeusChamados.html";
         } else {
             alert("Perfil de usuário não reconhecido ou sem permissões.");

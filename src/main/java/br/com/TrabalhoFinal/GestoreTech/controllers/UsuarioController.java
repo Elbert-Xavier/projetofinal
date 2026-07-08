@@ -3,11 +3,9 @@ package br.com.TrabalhoFinal.GestoreTech.controllers;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -92,10 +90,13 @@ public class UsuarioController {
 		senha = senha.substring(0, 7);
 		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
 		usuario.setTipoUsuario("CLIENTE");
-		usuario.setCpf("null");
-		usuario.setCargo("indefinido");
+		usuario.setCpf("955.386.120-23");
+		if (usuario.getCargo() == null) {
+			usuario.setCargo("indefinido");
+		}else {
+			usuario.setCargo(usuario.getCargo());
+		}
 		usuario.setPrimeiroLogin(true);
-		usuario.setAdmin(true);
 		usuario.setDataCadastro(LocalDate.now());
 		usuario.setSenha(encoder.encode(senha));
 		return usuarioRepository.save(usuario);
@@ -109,6 +110,15 @@ public class UsuarioController {
 			usuario.setDataCadastro(LocalDate.now());
 			usuario.setSenha(encoder.encode(usuario.getSenha()));
 			return usuarioRepository.save(usuario);
+		}return null;
+	}
+	@PutMapping("/atualizar/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public UsuarioEntity AtualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioEntity Usuario) {
+		if (usuarioRepository.existsById(id)) {
+			usuarioRepository.deleteById(id);
+			Usuario.setId(id);
+			usuarioRepository.save(Usuario);
 		}return null;
 	}
 	

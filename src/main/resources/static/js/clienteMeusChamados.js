@@ -1,11 +1,30 @@
-const API_BUSCAR_CHAMADO = 'http://localhost:8000/chamados/listarTodos';
+const API_BUSCAR_CHAMADO = 'http://localhost:8000/chamados/listartodos';
 const API_BUSCAR_CHAMADO_ID = 'http://localhost:8000/chamados/listarPorID';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarChamados();
+	usuarioEstaLogado();
 });
 
+function usuarioEstaLogado(){
+	const usuarioLogado = localStorage.getItem('usuarioLogado');
+		console.log(usuarioLogado)
+	const usuario = JSON.parse(usuarioLogado);
+	console.log(usuario)
+	
+	if (!usuarioLogado) {
+	    window.location.href = 'http://localhost:8000/login.html';
+	}else{
+		if(usuario.admin == false) {
+			document.getElementById('CadastrarUsuario').hidden = true;
+		}else{
+			document.getElementById('CadastrarUsuario').hidden = false;
+		}
+	}
+}
+
 async function listarChamados() {
+	
     const response = await fetch(API_BUSCAR_CHAMADO);
     const listaChamados = await response.json();
 
