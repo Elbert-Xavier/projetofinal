@@ -1,179 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor&Tech - Novo Chamado</title>
-
+    <title>Gestoretech - Novo Chamado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="../css/CadastroChamado.css">
     <script type="text/javascript" src="../js/CadastroChamado.js"></script>
 </head>
-
 <body>
- 
-    <aside class="sidebar">
-        <div class="logo-area">
-            <div class="logo-box">
-                <i class="fa-solid fa-chart-line"></i>
+
+    <div class="d-flex h-100 vh-100 overflow-hidden">
+        
+        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
+            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
+                <span class="logo-box">G</span>
+                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
             </div>
+            
+            <nav class="nav flex-column gap-2 h-100">
+                <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-link text-secondary rounded-3 px-3 py-2.5" id="CadastrarUsuario" hidden=true><i class="fa-regular fa-user me-3"></i> Usuários</a>
+                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
+                <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
+                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
+                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            </nav>
+        </aside>
 
-            <div class="logo-title-group">
-                <span class="logo-text">Gestor&Tech</span>
-                <span class="logo-subtext">Área do Cliente</span>
-            </div>
-        </div>
-
-        <nav class="sidebar-nav">
-            <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-item" id="CadastrarUsuario">
-                <i class="fa-regular fa-user"></i> Perfil
-            </a>
-
-            <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-item active">
-                <i class="fa-solid fa-plus"></i> Novo Chamado
-            </a>
-
-            <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-item">
-                <i class="fa-regular fa-file-lines"></i> Meus Chamados
-            </a>
-
-            <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-item">
-                <i class="fa-solid fa-desktop"></i> Meus Equipamentos
-            </a>
-
-            <div class="sidebar-footer">
-                <a href="http://localhost:8000/login.html" class="nav-item logout">
-                    <i class="fa-solid fa-right-from-bracket"></i> Sair
-                </a>
-            </div>
-        </nav>
-    </aside>
-
-    <div class="main-content">
-
-        <main class="content-wrapper">
-
-            <div class="card">
-
-                <div class="card-header">
-                    <div class="header-icon-user">
-                        <i class="fa-solid fa-pen-to-square"></i>
+        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+            
+            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
+                
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
+                        <i class="fa-solid fa-pen-to-square fs-5"></i>
                     </div>
-
                     <div>
-                        <h1>Cadastrar Chamado</h1>
-                        <p>Preencha as informações abaixo para relatar o problema.</p>
+                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Cadastrar Chamado</h1>
+                        <p class="text-muted small mb-0">Preencha as informações abaixo para relatar o problema ao suporte.</p>
                     </div>
                 </div>
 
                 <form>
-
-                    <div class="section-title">
-                        <i class="fa-solid fa-desktop"></i>
-                        Equipamento
-                    </div>
-
-                    <div class="input-group">
-                        <label for="selectEquipment">
-                            Meus Equipamentos *
-                        </label>
-
-                        <select class="form-select" id="selectEquipment" required>
-                            <option disabled selected hidden>
-                                Selecione um equipamento
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="section-title">
-                        <i class="fa-solid fa-circle-info"></i>
-                        Informações do Chamado
-                    </div>
-
-                    <div class="input-group">
-                        <label for="ticketTitle">
-                            Título do Chamado *
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="ticketTitle"
-                            placeholder="Ex: Tela piscando, Notebook não liga..."
-                            required>
-                    </div>
-
-                    <br>
-
-                    <div class="input-group">
-                        <label for="ticketDescription">
-                            Descreva o problema *
-                        </label>
-
-                        <textarea
-                            class="form-control"
-                            id="ticketDescription"
-                            rows="4"
-                            maxlength="200"
-                            placeholder="Descreva detalhadamente o que está acontecendo..."
-                            required></textarea>
-
-                        <div class="contador">
-                            0/200 caracteres
+                    
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark-blue mb-3">
+                            <i class="fa-solid fa-desktop me-2 text-secondary"></i> Equipamento
+                        </h6>
+                        <div class="bg-white p-3 rounded-3 border">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="selectEquipment" class="form-label text-muted small fw-semibold">Meus Equipamentos *</label>
+                                    <select class="form-select" id="selectEquipment" required>
+                                        <option disabled selected hidden>Selecione um equipamento</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-title">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        Evidências
-                    </div>
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark-blue mb-3">
+                            <i class="fa-solid fa-circle-info me-2 text-secondary"></i> Informações do Chamado
+                        </h6>
+                        <div class="bg-white p-3 rounded-3 border d-flex flex-column gap-3">
+                            <div>
+                                <label for="ticketTitle" class="form-label text-muted small fw-semibold">Título do Chamado *</label>
+                                <input type="text" class="form-control" id="ticketTitle" placeholder="Ex: Tela piscando, Notebook não liga..." required>
+                            </div>
 
-                    <div class="upload-container">
-
-                        <input
-                            type="file"
-                            class="file-input-overlay"
-                            id="fileUpload"
-                            accept="image/*,video/*"
-                            required>
-
-                        <div class="upload-icon-circle">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <div>
+                                <label for="ticketDescription" class="form-label text-muted small fw-semibold">Descreva o problema *</label>
+                                <textarea class="form-control" id="ticketDescription" rows="4" maxlength="200" placeholder="Descreva detalhadamente o que está acontecendo..." required></textarea>
+                                <div class="text-end text-muted small mt-1 font-xs" id="contador">
+                                    0/200 caracteres
+                                </div>
+                            </div>
                         </div>
-
-                        <p class="upload-title">
-                            Arraste e solte arquivos aqui
-                        </p>
-
-                        <p class="upload-subtitle">
-                            ou clique para selecionar
-                        </p>
-
-                        <span class="upload-info">
-                            Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)
-                        </span>
-
                     </div>
 
-                    <div class="form-actions">
-                        <button type="button" class="btn-cancel">
-                            Cancelar
-                        </button>
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark-blue mb-3">
+                            <i class="fa-solid fa-cloud-arrow-up me-2 text-secondary"></i> Evidências
+                        </h6>
+                        
+                        <div class="upload-container border rounded-3 p-4 bg-white text-center position-relative" style="border-style: dashed !important; border-color: var(--border-color) !important;">
+                            <input type="file" class="position-absolute top-0 start-0 w-100 h-100 opacity-0" id="fileUpload" accept="image/*,video/*" required style="cursor: pointer; z-index: 2;">
+                            
+                            <div class="header-icon d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 54px; height: 54px;">
+                                <i class="fa-solid fa-cloud-arrow-up fs-5"></i>
+                            </div>
+                            
+                            <p class="fw-semibold text-dark-blue mb-1">Arraste e solte arquivos aqui</p>
+                            <p class="text-muted small mb-2">ou clique para selecionar</p>
+                            <span class="text-muted font-xs d-block">Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)</span>
+                        </div>
+                    </div>
 
-                        <button
-                            type="button"
-                            class="btn-save"
-                            >
+                    <div class="d-flex justify-content-end gap-2 pt-3 border-top mt-4">
+                        <button type="button" class="btn btn-light-gray rounded-3 fw-semibold">Cancelar</button>
+                        <button type="button" class="btn text-white rounded-3 fw-semibold px-4 shadow-sm" style="background-color: var(--primary-color); border: none;">
                             Salvar Chamado
                         </button>
                     </div>
 
                 </form>
-
             </div>
-
         </main>
-
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
