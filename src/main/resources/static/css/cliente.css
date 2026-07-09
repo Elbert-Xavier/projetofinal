@@ -1,47 +1,277 @@
 /* ==========================================================================
-   clienteMeusEquipamentos.css — Refatorado
-   Mantém estilos que são compartilhados com outras telas do painel do cliente/técnico
+   CSS UNIFICADO: ÁREA DO CLIENTE
+   Compatível com: Meus Equipamentos, Meus Chamados, Novo Chamado e Meu Perfil
    ========================================================================== */
 
-/* Efeito de hover suave para cards clicáveis */
-.card-hover-effect {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+:root {
+    --sidebar-width: 260px;
+    --dark-blue: var(--cor-principal, #0056b3); /* Conectado diretamente ao seu CSS Base */
 }
 
-.card-hover-effect:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.08) !important;
+/* Modificação Global de Tipografia e Fundo */
+body {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    background-color: #f8f9fa !important; /* Fundo cinza-claro para destacar os painéis brancos */
 }
 
-/* Efeito de hover para itens de lista de equipamentos */
-.list-group-item-action {
+/* ==========================================================================
+   1. GRID E ESTRUTURA DO DASHBOARD (Layout Split)
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Barra Lateral Fixa do Cliente */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: #ffffff;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    transition: transform 0.3s ease;
+}
+
+/* Painel de Conteúdo Principal */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+/* ==========================================================================
+   2. COMPONENTES INTERNOS DA SIDEBAR (Logo e Navegação)
+   ========================================================================== */
+.logo-area {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo-box {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.logo-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.logo-subtext {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Links de Navegação da Sidebar */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 1.5rem;
+    color: #212529;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
     transition: all 0.2s ease;
 }
 
-.list-group-item-action:hover {
-    background-color: var(--bs-light);
-    border-color: var(--bs-primary) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(1, 31, 252, 0.08);
+.nav-item i {
+    width: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #6c757d;
 }
 
-/* Container de Imagens (Upload ou visualização) */
-.img-container {
-    border: 2px dashed var(--bs-border-color);
-    background-color: var(--bs-light);
+/* Efeito Hover nos Links */
+.nav-item:hover {
+    color: var(--dark-blue);
+    background-color: rgba(0, 86, 179, 0.05);
+    text-decoration: none;
 }
 
-/* Botão Secundário Customizado (Se ainda for necessário nas outras páginas) */
-.btn-light-gray {
-    background-color: var(--bs-secondary-bg);
-    color: var(--bs-secondary-color);
-    border: none;
-    padding: 8px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.2s;
+.nav-item:hover i {
+    color: var(--dark-blue);
 }
 
-.btn-light-gray:hover {
-    background-color: #e2e8f0;
+/* Aba Ativa (Página Atual do Cliente) */
+.nav-item.active {
+    color: var(--dark-blue);
+    background-color: rgba(0, 86, 179, 0.08);
+    font-weight: 600;
+    border-left: 4px solid var(--dark-blue);
+}
+
+.nav-item.active i {
+    color: var(--dark-blue);
+}
+
+/* Rodapé e Botão Sair */
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.5rem;
+}
+
+.nav-item.logout {
+    color: #dc3545;
+}
+
+.nav-item.logout i {
+    color: #dc3545;
+}
+
+.nav-item.logout:hover {
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* ==========================================================================
+   3. ESTILOS DE ELEMENTOS INTERNOS (Cards, Listas e Inputs)
+   ========================================================================== */
+
+/* Padronização dos Painéis Brancos */
+.card {
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+}
+
+/* Elementos de listagem injetados por JavaScript (.list-group-item) */
+.list-group-item {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 0.6rem;
+    border-radius: 8px !important;
+    transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(0, 86, 179, 0.01) !important;
+    border-color: var(--dark-blue) !important;
+}
+
+/* Ajuste específico para imagens em Modais (Ex: Visualização de Evidências) */
+.preview-img {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.preview-img:hover {
+    transform: scale(1.02);
+}
+
+/* Estilização para o estado "Carregando..." com efeito tracejado */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+}
+
+/* Botões Customizados Auxiliares (Ex: CadastrarUsuario.html usa btn-purple se necessário, */
+/* mas vamos unificar para o azul da marca para manter o padrão pedido) */
+.btn-purple {
+    background-color: var(--dark-blue) !important;
+    border-color: var(--dark-blue) !important;
+    color: #ffffff !important;
+}
+
+.btn-purple:hover {
+    background-color: #004085 !important;
+    border-color: #004085 !important;
+}
+
+/* Customização fina de tabelas e cabeçalhos de dados */
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.modal-content {
+    border-radius: 14px !important;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   4. SISTEMA REATIVO MOBILE (Responsividade)
+   ========================================================================== */
+
+/* Fundo Escuro do Menu Mobile Ativo */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1025;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Controla a ocultação/exibição em tablets e telemóveis */
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    /* Injetado via JS dinamicamente no clique do botão */
+    .sidebar.show-mobile {
+        transform: translateX(0);
+    }
+}
+
+/* Ajustes de espaçamento em Smartphones */
+@media (max-width: 575.98px) {
+    .content-wrapper {
+        padding: 1.5rem 0.75rem !important;
+    }
+    
+    .card {
+        padding: 1.5rem 1rem !important;
+    }
 }

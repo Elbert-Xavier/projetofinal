@@ -1,60 +1,262 @@
 /* ==========================================================================
-   GestorDashboard.css — Refatorado com Bootstrap 5
-   Grids e Cards agora usam utilitários nativos (row, col, card)
+   CSS UNIFICADO: ÁREA DO GESTOR
+   Compatível com: Dashboard Gestor, Chamados, Clientes e Técnicos
+   ========================================================================= */
+
+:root {
+    --sidebar-width: 260px;
+    --dark-blue: var(--cor-principal, #0056b3); /* Conectado ao seu CSS Base */
+}
+
+/* Modificação Global e Fundo */
+body {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    background-color: #f8f9fa !important; /* Fundo cinza-claro para destacar os painéis brancos */
+}
+
+/* ==========================================================================
+   1. GRID E ESTRUTURA DO DASHBOARD (Layout Split)
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Barra Lateral Fixa */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: #ffffff;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    transition: transform 0.3s ease;
+}
+
+/* Painel de Conteúdo Principal */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+/* ==========================================================================
+   2. COMPONENTES INTERNOS DA SIDEBAR (Logo e Navegação)
+   ========================================================================== */
+.logo-area {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo-box {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.logo-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.logo-subtext {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Links de Navegação da Sidebar */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 1.5rem;
+    color: #212529;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-item i {
+    width: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Efeito Hover nos Links */
+.nav-item:hover {
+    color: var(--dark-blue);
+    background-color: rgba(0, 86, 179, 0.05);
+    text-decoration: none;
+}
+
+.nav-item:hover i {
+    color: var(--dark-blue);
+}
+
+/* Link Selecionado (Active) */
+.nav-item.active {
+    color: var(--dark-blue);
+    background-color: rgba(0, 86, 179, 0.08);
+    font-weight: 600;
+    border-left: 4px solid var(--dark-blue);
+}
+
+.nav-item.active i {
+    color: var(--dark-blue);
+}
+
+/* Rodapé e Botão Sair */
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.5rem;
+}
+
+.nav-item.logout {
+    color: #dc3545;
+}
+
+.nav-item.logout i {
+    color: #dc3545;
+}
+
+.nav-item.logout:hover {
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* ==========================================================================
+   3. ELEMENTOS INTERNOS (Cards, Efeitos e Tabelas)
    ========================================================================== */
 
-/* Espaçamento de letras para os títulos dos KPIs */
-.tracking-wider {
+/* Padronização dos Painéis e Cards */
+.card {
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+}
+
+/* Efeito de elevação nos Cards de Métricas do Dashboard */
+.card-hover-effect {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent !important;
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
+    border-color: rgba(0, 86, 179, 0.15) !important;
+}
+
+/* Itens de lista interativos (Ex: Últimos Chamados e Feed do Dashboard) */
+.list-group-item-action {
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item-action:hover {
+    background-color: rgba(0, 86, 179, 0.02) !important;
+}
+
+/* Formatação de Tabelas Administrativas */
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
     letter-spacing: 0.5px;
 }
 
+/* Ajustes para Modais e Formulários de Cadastro */
+.modal-content {
+    border-radius: 14px !important;
+    overflow: hidden;
+}
+
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+}
+
+/* Ajustes de Fontes pequenas auxiliares */
+.fs-xs {
+    font-size: 0.75rem;
+}
+
 /* ==========================================================================
-   DISPONIBILIDADE DA EQUIPE (Mantido caso você adicione a coluna lateral)
+   4. SISTEMA MOBILE RESPONSIVO
    ========================================================================== */
-.team-avatar-box {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: var(--bs-light);
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
 
-.status-dot-indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.status-dot-indicator.busy { background-color: var(--bs-danger); }
-.status-dot-indicator.free { background-color: var(--bs-success); }
-.status-dot-indicator.route { background-color: var(--bs-warning); }
-/* ==========================================================================
-   LISTA DE CHAMADOS - DESIGN SUAVE
-   ========================================================================== */
-.chamado-item {
-    position: relative;
-    border: none;
-    border-bottom: 1px solid var(--bs-border-color);
-}
-
-.chamado-item:last-child {
-    border-bottom: none;
-}
-
-/* A linha fina na lateral */
-.chamado-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
+/* Fundo Escuro do Menu Mobile Ativo */
+.sidebar-overlay {
+    position: fixed;
     top: 0;
-    bottom: 0;
-    width: 4px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1025;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.chamado-item.urgencia-alta::before { background-color: var(--danger-color); }
-.chamado-item.urgencia-media::before { background-color: var(--warning-color); }
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Ocultar / Exibir a Sidebar responsivamente */
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    /* Classe ativada via clique no botão hamburguer pelo JS */
+    .sidebar.show-mobile {
+        transform: translateX(0);
+    }
+}
+
+/* Ajustes para telas muito pequenas de Smartphones */
+@media (max-width: 575.98px) {
+    .content-wrapper {
+        padding: 1.5rem 0.75rem !important;
+    }
+    
+    .card {
+        padding: 1.5rem 1rem !important;
+    }
+}

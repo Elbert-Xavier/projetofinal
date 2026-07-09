@@ -1,0 +1,276 @@
+/* ==========================================================================
+   CSS UNIFICADO: clienteMeusEquipamentos.css
+   Compatível com: Dashboard, Consultar Chamados e Histórico de Equipamentos
+   ========================================================================== */
+
+:root {
+    /* Mapeando o Grid e Heranças do CSS Base */
+    --sidebar-width: 260px;
+    --dark-blue: var(--cor-principal, #0056b3);
+}
+
+/* Modificação Global de Tipografia e Fundo */
+body {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    background-color: #f8f9fa !important; /* Aplica o tom cinza-claro para destacar os cards brancos */
+}
+
+/* ==========================================================================
+   1. GRID E ESTRUTURA DO DASHBOARD (Layout Split)
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Barra Lateral Fixa */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: #ffffff;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    transition: transform 0.3s ease;
+}
+
+/* Painel de Conteúdo Principal */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+/* ==========================================================================
+   2. COMPONENTES INTERNOS DA SIDEBAR
+   ========================================================================== */
+.logo-area {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo-box {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.logo-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.logo-subtext {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Navegação da Sidebar */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 1.5rem;
+    color: #212529;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-item i {
+    width: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Hover nos Links */
+.nav-item:hover {
+    color: var(--dark-blue);
+    background-color: rgba(0, 86, 179, 0.05);
+    text-decoration: none;
+}
+
+.nav-item:hover i {
+    color: var(--dark-blue);
+}
+
+/* Aba Selecionada (Active) */
+.nav-item.active {
+    color: var(--dark-blue);
+    background-color: rgba(0, 86, 179, 0.08);
+    font-weight: 600;
+    border-left: 4px solid var(--dark-blue);
+}
+
+.nav-item.active i {
+    color: var(--dark-blue);
+}
+
+/* Rodapé e Botão Sair */
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.5rem;
+}
+
+.nav-item.logout {
+    color: #dc3545;
+}
+
+.nav-item.logout i {
+    color: #dc3545;
+}
+
+.nav-item.logout:hover {
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* ==========================================================================
+   3. ESTILIZAÇÃO COMPARTILHADA (Cards, Listas e Tabelas)
+   ========================================================================== */
+
+/* Padronização dos Cards principais das 3 páginas */
+.card {
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+}
+
+/* Efeito de Destaque nos 3 cards superiores (Página: Dashboard) */
+.card-hover-effect {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent !important;
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
+    border-color: rgba(0, 86, 179, 0.15) !important;
+}
+
+/* Bordas tracejadas para os states de "Carregando..." do JS */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+}
+
+/* Ajustes finos para mini ícones e subtextos */
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+/* Utilitários sutilmente azulados do Bootstrap herdando o CSS Base */
+.bg-primary-subtle {
+    background-color: rgba(0, 86, 179, 0.08) !important;
+}
+.text-primary {
+    color: var(--dark-blue) !important;
+}
+
+/* Tabelas e Modais (Visualização de OS / Histórico) */
+.modal-content {
+    border-radius: 14px !important;
+    overflow: hidden;
+}
+
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+/* Elementos de lista gerados via JS (.list-group-item) */
+.list-group-item {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 0.6rem;
+    border-radius: 8px !important;
+    transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(0, 86, 179, 0.01) !important;
+    border-color: var(--dark-blue) !important;
+}
+
+/* ==========================================================================
+   4. SISTEMA MOBILE REATIVO (Responsividade)
+   ========================================================================== */
+
+/* Fundo Escuro do Menu Mobile Ativo */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1025;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Comportamento em Telas Menores (Esconder / Mostrar Sidebar) */
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    /* Classe injetada via JS quando clica no botão hambúrguer */
+    .sidebar.show-mobile {
+        transform: translateX(0);
+    }
+}
+
+/* Detalhes para Smartphone */
+@media (max-width: 575.98px) {
+    .content-wrapper {
+        padding: 1.5rem 0.75rem !important;
+    }
+    
+    .card {
+        padding: 1.5rem 1rem !important;
+    }
+}

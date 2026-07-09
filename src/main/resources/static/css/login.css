@@ -1,220 +1,268 @@
 /* ==========================================================================
-   login.css — usa tokens definidos em base.css.
-   Forçando a padronização da fonte Poppins para as telas externas.
+   CSS UNIFICADO: FLUXO DE ACESSO & CADASTRO
+   Compatível com: Login, Esqueceu Senha, Redefinir Senha e Concluir Cadastro
    ========================================================================== */
 
-/* Força TODOS os elementos das páginas que usam login.css a adotarem a Poppins */
-body, h1, h2, p, input, button, a {
-    font-family: 'Poppins', sans-serif !important;
+:root {
+    --azul-gestor: var(--cor-principal, #0056b3);
+    --azul-claro-bg: rgba(0, 86, 179, 0.05);
+    --fonte-acesso: 'IBM Plex Sans', 'Poppins', sans-serif;
 }
 
-body {
-    background-color: var(--primary-subtle);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+/* Reset Geral para Telas de Fluxo */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: var(--fonte-acesso);
+    background-color: #f8f9fa !important; /* Fundo cinza-claro padrão do Bootstrap */
 }
 
-/* CONTAINER CENTRAL ACCESSIBLE */
+/* Se for a estrutura de Login / Redefinir (Split) */
 .main-container {
     display: flex;
-    width: 100%;
-    max-width: 900px;
-    min-height: 500px;
-    background: #ffffff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(30, 27, 75, 0.1);
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
 }
 
 /* ==========================================================================
-   3. PAINEL ILUSTRATIVO (LADO ESQUERDO)
+   1. LADO ESQUERDO: APRESENTAÇÃO INSTITUCIONAL (Fundo Azul)
    ========================================================================== */
 .left-side {
-    flex: 1.2;
-    background: linear-gradient(135deg, #818cf8, var(--primary-hover));
-    padding: 40px;
-    color: #ffffff;
+    flex: 1;
+    background-color: var(--azul-gestor);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 30px;
-    position: relative;
-    border-top-right-radius: 80px 50%;
-    border-bottom-right-radius: 80px 50%;
-    z-index: 1;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10% 8%;
+    color: #ffffff;
 }
 
-.brand {
+.left-side .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
+    margin-bottom: 1.5rem;
 }
 
-.brand h2 {
-    font-size: 22px;
-    font-weight: 600;
+.left-side .brand h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
     margin: 0;
+    letter-spacing: -0.5px;
 }
 
-.logo-box {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
+/* Caixa com a Logo ou Letra 'G' */
+.left-side .logo-box, 
+.card-logo-box {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
     background-color: #ffffff;
-    color: #818cf8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--azul-gestor);
 }
 
-.content p {
-    font-size: 14px;
+.left-side .content p {
+    font-size: 1.15rem;
     line-height: 1.6;
     opacity: 0.9;
+    max-width: 460px;
 }
 
 /* ==========================================================================
-   4. PAINEL DE FORMULÁRIO (LADO DIREITO)
+   2. LADO DIREITO: FORMULÁRIO DE ENTRADA E ALTERAÇÃO (Fundo Branco)
    ========================================================================== */
 .right-side {
     flex: 1;
+    background-color: #ffffff;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 30px;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .form-wrapper {
     width: 100%;
-    max-width: 360px;
-    text-align: center;
+    max-width: 400px;
 }
 
-h1 {
-    color: var(--dark-blue);
-    font-size: 28px;
-    margin-bottom: 8px;
-    font-weight: 600;
+.form-wrapper h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
 }
 
-.subtitle {
-    color: var(--text-muted);
-    font-size: 13px;
-    margin-bottom: 25px;
-    line-height: 1.4;
+.form-wrapper .subtitle {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
 }
 
-/* CONTROLES DE INPUT */
+/* Inputs Padronizados para o Fluxo Base (Login/Esqueceu/Redefinir) */
 .input-container {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
-.input-container i:not(.eye-toggle) {
+.input-container i:first-child {
     position: absolute;
-    left: 15px;
+    left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--bs-primary, #818cf8);
+    color: #a0aec0;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
 }
 
 .input-container input {
     width: 100%;
-    padding: 12px 40px 12px 45px;
-    border: 1px solid var(--bs-border-color, #e2e8f0);
-    background-color: var(--bs-light, #f8fafc);
-    border-radius: 10px;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: #2d3748;
     outline: none;
-    font-size: 14px;
-    color: var(--dark-blue);
     transition: all 0.2s ease;
 }
 
 .input-container input:focus {
-    border-color: var(--bs-primary, #818cf8);
+    border-color: var(--azul-gestor);
     background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15);
 }
 
-/* Posicionamento do ícone de mostrar/esconder senha */
+.input-container input:focus ~ i:first-child {
+    color: var(--azul-gestor);
+}
+
+/* Botão de Revelar Senha (Olho) */
 .eye-toggle {
     position: absolute;
-    right: 15px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: var(--text-muted, #94a3b8);
-    z-index: 2;
+    color: #718096;
+    padding: 5px;
 }
 
-/* ==========================================================================
-   5. LINKS INTERATIVOS E AÇÕES
-   ========================================================================== */
+.eye-toggle:hover {
+    color: #2d3748;
+}
+
+/* Links auxiliares */
 .forgot-password {
     text-align: right;
-    margin-top: -10px;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 
-.forgot-password a {
-    color: var(--bs-primary, #818cf8);
-    font-size: 13px;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.forgot-password a:hover {
-    text-decoration: underline;
-}
-
-.btn-entrar {
-    width: 100%;
-    padding: 14px;
-    background: var(--bs-primary, #818cf8);
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: filter 0.2s ease;
-}
-
-.btn-entrar:hover {
-    filter: brightness(0.9);
-}
-
-/* Link inferior de retorno */
-.register-link {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 13.5px;
-    color: var(--text-muted);
-}
-
+.forgot-password a,
 .register-link a {
-    color: var(--bs-primary, #818cf8);
-    text-decoration: none;
+    color: var(--azul-gestor);
     font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
 
+.forgot-password a:hover,
 .register-link a:hover {
     text-decoration: underline;
 }
 
+.register-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+/* Botões de Ação Unificados (Foco no Azul Base) */
+.btn-entrar,
+.btn-purple {
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+    background-color: var(--azul-gestor) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-entrar:hover,
+.btn-purple:hover {
+    background-color: #004085 !important;
+}
+
+.btn-entrar:active,
+.btn-purple:active {
+    transform: scale(0.99);
+}
+
 /* ==========================================================================
-   6. REGRAS DE RESPONSIVIDADE (MEDIA QUERIES)
+   3. ADAPTAÇÃO EXCLUSIVA PARA: CONCLUIR CADASTRO (Card Layout)
    ========================================================================== */
-@media (max-width: 768px) {
+
+/* Limita a largura máxima do Card centralizado para ficar elegante no Desktop */
+body.min-vh-100 .card {
+    max-width: 800px;
+    background-color: #ffffff;
+}
+
+/* Estilização refinada para os Inputs com Grid do Bootstrap (Concluir Cadastro) */
+.form-control:focus, 
+.form-select:focus {
+    border-color: var(--azul-gestor) !important;
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15) !important;
+}
+
+.input-group-text {
+    border-right: none !important;
+    background-color: #f8fafc !important;
+}
+
+.input-group .form-control {
+    border-left: none !important;
+    background-color: #f8fafc !important;
+}
+
+.input-group .form-control:focus {
+    background-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   4. RESPONSIVIDADE (Garante o visual em Tablets e Smartphones)
+   ========================================================================== */
+@media (max-width: 991.98px) {
     .left-side {
-        display: none !important;
+        padding: 5% 4%;
     }
-    
-    .main-container {
-        min-height: auto;
-        box-shadow: 0 10px 25px rgba(30, 27, 75, 0.05);
+}
+
+@media (max-width: 767.98px) {
+    .left-side {
+        display: none;
     }
     
     .right-side {
-        padding: 40px 20px;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .main-container {
+        height: auto;
     }
 }
