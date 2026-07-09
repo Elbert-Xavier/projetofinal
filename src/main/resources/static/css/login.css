@@ -1,53 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 /* ==========================================================================
-   1. VARIÁVEIS GLOBAIS (ÂNCORA DE PADRONIZAÇÃO)
+   login.css — usa tokens definidos em base.css.
+   Forçando a padronização da fonte Poppins para as telas externas.
    ========================================================================== */
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    --bg-card-hover: #fcfdfe;
-    
-    --border-color: #e2e8f0;
-    
-    --btn-gray: #f1f5f9;
-    --btn-gray-hover: #e2e8f0;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-    
-    /* Estados e Inputs */
-    --input-bg: #f9fafb;
-    --input-border: #cbd5e1;
-}
 
-/* ==========================================================================
-   2. CONFIGURAÇÕES GERAIS
-   ========================================================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-main);
+/* Força TODOS os elementos das páginas que usam login.css a adotarem a Poppins */
+body, h1, h2, p, input, button, a {
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body {
     background-color: var(--primary-subtle);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-/* CONTAINER CENTRAL */
+/* CONTAINER CENTRAL ACCESSIBLE */
 .main-container {
     display: flex;
-    width: 900px;
-    height: 550px;
+    width: 100%;
+    max-width: 900px;
+    min-height: 500px;
     background: #ffffff;
     border-radius: 20px;
     overflow: hidden;
@@ -64,7 +39,8 @@ body {
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 30px;
     position: relative;
     border-top-right-radius: 80px 50%;
     border-bottom-right-radius: 80px 50%;
@@ -74,54 +50,28 @@ body {
 .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+}
+
+.brand h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .logo-box {
-    background: #ffffff;
-    color: var(--primary-hover);
-    padding: 5px 12px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #ffffff;
+    color: #818cf8;
 }
 
 .content p {
     font-size: 14px;
     line-height: 1.6;
-    margin-bottom: 30px;
     opacity: 0.9;
 }
-
-.illustration-box img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(30, 27, 75, 0.2);
-}
-
-/* GRÁFICO EM CSS VETORIAL */
-.css-illustration {
-    width: 100%;
-    height: 120px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    padding: 20px;
-    backdrop-filter: blur(5px);
-}
-
-.chart-bar {
-    width: 20%;
-    background: #ffffff;
-    border-radius: 5px 5px 0 0;
-    transition: height 0.5s ease;
-}
-
-.bar-1 { height: 40%; }
-.bar-2 { height: 80%; }
-.bar-3 { height: 60%; }
 
 /* ==========================================================================
    4. PAINEL DE FORMULÁRIO (LADO DIREITO)
@@ -131,64 +81,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 30px;
 }
 
 .form-wrapper {
     width: 100%;
+    max-width: 360px;
     text-align: center;
 }
 
 h1 {
     color: var(--dark-blue);
-    font-size: 32px;
-    margin-bottom: 5px;
-    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
 .subtitle {
     color: var(--text-muted);
     font-size: 13px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    line-height: 1.4;
 }
 
-/* CONTAINER DE ROLAGEM INTERNA */
-.form-scroll-container {
-    max-height: 340px;
-    overflow-y: auto;
-    padding-right: 8px;
-    margin-bottom: 15px;
-}
-
-.form-scroll-container::-webkit-scrollbar {
-    width: 4px;
-}
-
-.form-scroll-container::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 4px;
-}
-
-/* CONTROLES DE INPUT, SELECT E ÍCONES */
+/* CONTROLES DE INPUT */
 .input-container {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.input-container i {
+.input-container i:not(.eye-toggle) {
     position: absolute;
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--primary-color);
+    color: var(--bs-primary, #818cf8);
 }
 
-.input-container input,
-.input-container select {
+.input-container input {
     width: 100%;
-    padding: 12px 15px 12px 45px;
-    border: 1px solid var(--border-color);
-    background-color: var(--input-bg);
+    padding: 12px 40px 12px 45px;
+    border: 1px solid var(--bs-border-color, #e2e8f0);
+    background-color: var(--bs-light, #f8fafc);
     border-radius: 10px;
     outline: none;
     font-size: 14px;
@@ -196,44 +130,24 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.input-container select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-}
-
-.input-container input:focus,
-.input-container select:focus {
-    border-color: var(--primary-color);
+.input-container input:focus {
+    border-color: var(--bs-primary, #818cf8);
     background-color: #ffffff;
 }
 
+/* Posicionamento do ícone de mostrar/esconder senha */
 .eye-toggle {
-    left: auto !important;
-    right: 15px;
-    cursor: pointer;
-}
-
-/* SETA CUSTOMIZADA PARA SELECTS VIA PSEUDO-ELEMENTO */
-.input-container::after {
-    content: '\f107';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
     position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--primary-color);
-    pointer-events: none;
-}
-
-.input-container:not(:has(select))::after {
-    display: none;
+    cursor: pointer;
+    color: var(--text-muted, #94a3b8);
+    z-index: 2;
 }
 
 /* ==========================================================================
-   5. LINKS INTERATIVOS E AÇÕES (BOTONARIA)
+   5. LINKS INTERATIVOS E AÇÕES
    ========================================================================== */
 .forgot-password {
     text-align: right;
@@ -242,7 +156,7 @@ h1 {
 }
 
 .forgot-password a {
-    color: var(--primary-color);
+    color: var(--bs-primary, #818cf8);
     font-size: 13px;
     text-decoration: none;
     font-weight: 600;
@@ -255,33 +169,52 @@ h1 {
 .btn-entrar {
     width: 100%;
     padding: 14px;
-    background: var(--primary-color);
+    background: var(--bs-primary, #818cf8);
     color: #ffffff;
     border: none;
     border-radius: 10px;
     font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
-    transition: background-color 0.2s ease;
+    transition: filter 0.2s ease;
 }
 
 .btn-entrar:hover {
-    background: var(--primary-hover);
+    filter: brightness(0.9);
 }
 
+/* Link inferior de retorno */
 .register-link {
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
+    margin-top: 25px;
+    font-size: 13.5px;
     color: var(--text-muted);
 }
 
 .register-link a {
-    color: var(--primary-color);
+    color: var(--bs-primary, #818cf8);
     text-decoration: none;
     font-weight: 600;
 }
 
 .register-link a:hover {
     text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. REGRAS DE RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .left-side {
+        display: none !important;
+    }
+    
+    .main-container {
+        min-height: auto;
+        box-shadow: 0 10px 25px rgba(30, 27, 75, 0.05);
+    }
+    
+    .right-side {
+        padding: 40px 20px;
+    }
 }

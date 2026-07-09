@@ -1,51 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   HistoricoChamados.css — usa tokens definidos em base.css (cores, fonte, espaçamento).
+   Importar SEMPRE depois de base.css.
+   ========================================================================== */
 
 /* ==========================================================================
    1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS (ÂNCORA DE PADRONIZAÇÃO)
    ========================================================================== */
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    --bg-card-hover: #fcfdfe;
-    
-    --border-color: #e2e8f0;
-    
-    --btn-gray: #f1f5f9;
-    --btn-gray-hover: #e2e8f0;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-    
-    /* Estados e Alertas */
-    --danger-color: #ef4444;
-    --danger-bg: #fef2f2;
-    --success-text: #10b981;
-    --success-bg: #e6f7f0;
-    --warning-text: #ffa012;
-    --warning-bg: #fff4e5;
-    --info-bg: #f0edff;
-    
-    /* Cores Específicas Herdadas */
-    --atribuido-text: #4b0082;
-    --atribuido-bg: #ccace3;
-    --esperando-text: #919121;
-    --esperando-bg: #ffffab;
-    --finalizado-text: #33e80e;
-    --finalizado-bg: #e1ffdb;
-    
-    --input-border: #cbd5e1;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-main);
-}
 
 body {
     background-color: var(--bg-main);
@@ -97,17 +57,12 @@ body {
 }
 
 .logo-g {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 20px;
     width: 36px;
     height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
     margin-right: 12px;
+    flex-shrink: 0;
 }
 
 .logo-text {

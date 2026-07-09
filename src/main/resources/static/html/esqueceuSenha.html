@@ -3,47 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Senha - Gestor&Tech</title>
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Nova Senha - Gestor&amp;Tech</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="../js/esqueceuSenha.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
+    
+    <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 
     <div class="main-container">
         <div class="left-side">
             <div class="brand">
-                <div class="logo-box">G</div>
-                <h2>Gestor&Tech</h2>
+                <div class="logo-box d-flex align-items-center justify-content-center bg-white text-primary fw-bold rounded">G</div>
+                <h2>Gestor&amp;Tech</h2>
             </div>
             <div class="content">
-                <p>Sistema completo para gestão técnica e administrativa da sua empresa.</p>
-                <div class="illustration-box">
-                    <div class="css-illustration">
-   						<div class="chart-bar bar-1"></div>
-    					<div class="chart-bar bar-2"></div>
-    					<div class="chart-bar bar-3"></div>
-					</div>
-                </div>
+                <p class="mb-0">Sistema completo para gestão técnica e administrativa da sua empresa.</p>
             </div>
         </div>
 
         <div class="right-side">
             <div class="form-wrapper">
-                <h1>Recuperar Senha</h1>
-                <p class="subtitle">Insira o seu e-mail cadastrado para receber as instruções de recuperação.</p>
+                <h1>Nova Senha</h1>
+                <p class="subtitle">Escolha uma senha forte de acesso para a sua conta.</p>
 
                 <form onsubmit="return false;"> 
                     <div class="input-container">
-                        <i class="fa-regular fa-envelope"></i>
-                        <input type="email" placeholder="E-mail cadastrado" id="emailRecuperacao">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Nova Senha" id="senha" required>
+                        <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
                     </div>
 
-                    <button type="button" class="btn-entrar" onclick="enviarCodigo();" id="buttonRecuperacao">ENVIAR LINK</button>
+                    <div class="input-container">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <input type="password" placeholder="Confirme a Nova Senha" id="confirmarSenha" required>
+                        <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelarConfirmacao();"></i>
+                    </div>
+
+                    <button type="submit" class="btn-entrar text-uppercase" onclick="salvarSenha();">Salvar Nova Senha</button>
                     
                     <div class="register-link">
-                        <p>Lembrou a senha? <a href="http://localhost:8000/login.html"><i class="fa-solid fa-arrow-left" style="font-size: 0.8rem; margin-right: 4px;"></i> Voltar para o Login</a></p>
+                        <p class="mb-0">
+                            Lembrou a senha antiga? 
+                            <a href="login.html" class="ms-1">Fazer Login</a>
+                        </p>
                     </div>
                 </form>
             </div>

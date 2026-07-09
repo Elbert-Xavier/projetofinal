@@ -3,113 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestoretech - Novo Chamado</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gestor&amp;Tech - Novo Chamado</title>
+    
+    <!-- 1. Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 2. Ícones e Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <!-- 3. Nossos Estilos -->
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/CadastroChamado.css">
-    <script type="text/javascript" src="../js/CadastroChamado.js"></script>
 </head>
 <body>
 
-    <div class="d-flex h-100 vh-100 overflow-hidden">
+    <div class="dashboard-container" id="pageContainer">
         
-        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
-            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
-                <span class="logo-box">G</span>
-                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+        <!-- Sidebar Padronizada (Base.css) -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box">
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&amp;Tech</span>
+                    <span class="logo-subtext">Área do Cliente</span>
+                </div>
             </div>
             
-            <nav class="nav flex-column gap-2 h-100">
-                <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-link text-secondary rounded-3 px-3 py-2.5" id="CadastrarUsuario" hidden=true><i class="fa-regular fa-user me-3"></i> Usuários</a>
-                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
-                <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
-                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
-                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            <nav class="sidebar-nav">
+                <a href="ClientePerfil.html" class="nav-item"><i class="fa-regular fa-user"></i> Perfil</a>
+                <a href="CadastroChamado.html" class="nav-item active"><i class="fa-solid fa-plus"></i> Novo Chamado</a>
+                <a href="clienteMeusChamados.html" class="nav-item"><i class="fa-regular fa-file-lines"></i> Meus Chamados</a>
+                <a href="clienteMeusEquipamentos.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Meus Equipamentos</a>
+                
+                <div class="sidebar-footer">
+                    <a href="../login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
             </nav>
         </aside>
 
-        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
             
-            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
-                
-                <div class="d-flex align-items-center gap-3 mb-4">
-                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
-                        <i class="fa-solid fa-pen-to-square fs-5"></i>
-                    </div>
-                    <div>
-                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Cadastrar Chamado</h1>
-                        <p class="text-muted small mb-0">Preencha as informações abaixo para relatar o problema ao suporte.</p>
-                    </div>
+            <!-- CABEÇALHO MOBILE -->
+            <div class="d-flex d-lg-none align-items-center justify-content-between bg-white border-bottom p-3 w-100 shadow-sm">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="../assets/logo-icon.png" alt="Logo" style="width: 32px; height: 32px;">
+                    <span class="fw-bold" style="color: var(--dark-blue);">Gestor&amp;Tech</span>
                 </div>
+                <button class="btn btn-light border-0" id="btnMenuMobile">
+                    <i class="fa-solid fa-bars fs-4" style="color: var(--dark-blue);"></i>
+                </button>
+            </div>
 
-                <form>
+            <!-- OVERLAY MOBILE -->
+            <div class="sidebar-overlay" id="overlayMenuMobile"></div>
+
+            <div class="content-wrapper p-4 p-md-5">
+                <div class="card w-100 border-0 p-4 p-md-5 rounded-4 shadow-sm mx-auto" style="max-width: 900px;">
                     
-                    <div class="mb-4">
-                        <h6 class="fw-bold text-dark-blue mb-3">
-                            <i class="fa-solid fa-desktop me-2 text-secondary"></i> Equipamento
-                        </h6>
-                        <div class="bg-white p-3 rounded-3 border">
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="selectEquipment" class="form-label text-muted small fw-semibold">Meus Equipamentos *</label>
-                                    <select class="form-select" id="selectEquipment" required>
-                                        <option disabled selected hidden>Selecione um equipamento</option>
-                                    </select>
-                                </div>
-                            </div>
+                    <!-- Cabeçalho do Card -->
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 46px; height: 46px; background-color: var(--bs-primary-bg-subtle, #eaedfe); color: var(--bs-primary);">
+                            <i class="fa-solid fa-pen-to-square fs-5"></i>
+                        </div>
+                        <div>
+                            <h1 class="h4 mb-1 fw-bold" style="color: var(--dark-blue);">Cadastrar Chamado</h1>
+                            <p class="text-muted small mb-0">Preencha as informações abaixo para relatar o problema técnico.</p>
                         </div>
                     </div>
 
-                    <div class="mb-4">
-                        <h6 class="fw-bold text-dark-blue mb-3">
-                            <i class="fa-solid fa-circle-info me-2 text-secondary"></i> Informações do Chamado
-                        </h6>
-                        <div class="bg-white p-3 rounded-3 border d-flex flex-column gap-3">
-                            <div>
-                                <label for="ticketTitle" class="form-label text-muted small fw-semibold">Título do Chamado *</label>
-                                <input type="text" class="form-control" id="ticketTitle" placeholder="Ex: Tela piscando, Notebook não liga..." required>
-                            </div>
+                    <hr class="text-muted opacity-25 mb-4">
 
-                            <div>
-                                <label for="ticketDescription" class="form-label text-muted small fw-semibold">Descreva o problema *</label>
-                                <textarea class="form-control" id="ticketDescription" rows="4" maxlength="200" placeholder="Descreva detalhadamente o que está acontecendo..." required></textarea>
-                                <div class="text-end text-muted small mt-1 font-xs" id="contador">
-                                    0/200 caracteres
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <h6 class="fw-bold text-dark-blue mb-3">
-                            <i class="fa-solid fa-cloud-arrow-up me-2 text-secondary"></i> Evidências
-                        </h6>
+                    <!-- Formulário -->
+                    <form id="formCadastroChamado">
                         
-                        <div class="upload-container border rounded-3 p-4 bg-white text-center position-relative" style="border-style: dashed !important; border-color: var(--border-color) !important;">
-                            <input type="file" class="position-absolute top-0 start-0 w-100 h-100 opacity-0" id="fileUpload" accept="image/*,video/*" required style="cursor: pointer; z-index: 2;">
-                            
-                            <div class="header-icon d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 54px; height: 54px;">
-                                <i class="fa-solid fa-cloud-arrow-up fs-5"></i>
-                            </div>
-                            
-                            <p class="fw-semibold text-dark-blue mb-1">Arraste e solte arquivos aqui</p>
-                            <p class="text-muted small mb-2">ou clique para selecionar</p>
-                            <span class="text-muted font-xs d-block">Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)</span>
+                        <!-- Seção: Equipamento -->
+                        <div class="section-title">
+                            <i class="fa-solid fa-desktop"></i>
+                            <span>Equipamento</span>
                         </div>
-                    </div>
 
-                    <div class="d-flex justify-content-end gap-2 pt-3 border-top mt-4">
-                        <button type="button" class="btn btn-light-gray rounded-3 fw-semibold">Cancelar</button>
-                        <button type="button" class="btn text-white rounded-3 fw-semibold px-4 shadow-sm" style="background-color: var(--primary-color); border: none;">
-                            Salvar Chamado
-                        </button>
-                    </div>
+                        <div class="mb-4">
+                            <label for="selectEquipment" class="form-label text-dark-blue small fw-semibold mb-1">
+                                Meus Equipamentos *
+                            </label>
+                            <select class="form-select py-2.5" id="selectEquipment" required>
+                                <option disabled selected hidden value="">
+                                    Selecione um equipamento...
+                                </option>
+                            </select>
+                        </div>
 
-                </form>
+                        <!-- Seção: Informações -->
+                        <div class="section-title">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Informações do Chamado</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="ticketTitle" class="form-label text-dark-blue small fw-semibold mb-1">
+                                Título do Chamado *
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control py-2.5"
+                                id="ticketTitle"
+                                placeholder="Ex: Tela piscando, Notebook não liga..."
+                                required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="ticketDescription" class="form-label text-dark-blue small fw-semibold mb-1">
+                                Descreva o problema *
+                            </label>
+                            <textarea
+                                class="form-control"
+                                id="ticketDescription"
+                                rows="4"
+                                maxlength="200"
+                                placeholder="Descreva detalhadamente o que está acontecendo com o dispositivo..."
+                                required></textarea>
+                            <div class="text-end text-muted small mt-1" id="charCounter">
+                                0/200 caracteres
+                            </div>
+                        </div>
+
+                        <!-- Seção: Evidências -->
+                        <div class="section-title">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Evidências</span>
+                        </div>
+
+                        <div class="upload-container mb-5">
+                            <input
+                                type="file"
+                                class="file-input-overlay"
+                                id="fileUpload"
+                                accept="image/*,video/*">
+
+                            <div class="upload-icon-circle">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+
+                            <p class="upload-title mt-2">Arraste e solte arquivos aqui</p>
+                            <p class="upload-subtitle">ou clique para explorar os arquivos</p>
+                            <span class="upload-info">Formatos aceitos: JPG, PNG, MP4, MOV (Máx. 25MB)</span>
+                        </div>
+
+                        <!-- Ações do Formulário -->
+                        <div class="d-flex flex-column-reverse flex-sm-row justify-content-end align-items-center gap-3 pt-4 border-top">
+                            <button type="button" class="btn btn-outline-secondary px-4 py-2.5 fw-semibold rounded-3 w-100 w-sm-auto">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary px-4 py-2.5 fw-semibold rounded-3 w-100 w-sm-auto">
+                                <i class="fa-solid fa-floppy-disk me-2"></i>Salvar Chamado
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SCRIPT MOBILE INTERNO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnMenuMobile = document.getElementById('btnMenuMobile');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('overlayMenuMobile');
+
+            if (btnMenuMobile && sidebar && overlay) {
+                function toggleMenu() {
+                    sidebar.classList.toggle('show-mobile');
+                    overlay.classList.toggle('active');
+                }
+                btnMenuMobile.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+
+            // Atualização em tempo real do contador de caracteres nativo do HTML
+            const textarea = document.getElementById('ticketDescription');
+            const counter = document.getElementById('charCounter');
+            if (textarea && counter) {
+                textarea.addEventListener('input', () => {
+                    counter.textContent = `${textarea.value.length}/200 caracteres`;
+                });
+            }
+        });
+    </script>
+    
+    <script type="text/javascript" src="../js/CadastroChamado.js"></script>
 </body>
 </html>

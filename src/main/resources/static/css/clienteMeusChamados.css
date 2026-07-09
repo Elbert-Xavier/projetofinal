@@ -1,136 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   clienteMeusChamados.css — Refatorado
+   Mantém estilos de histórico/chat e efeitos específicos desta tela
+   ========================================================================== */
 
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    --bg-card-hover: #fcfdfe;
-    
-    --border-color: #e2e8f0;
-    
-    --btn-gray: #f1f5f9;
-    --btn-gray-hover: #e2e8f0;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-    
-    --success-bg: #dcfce7;
-    --success-text: #15803d;
-    --indigo-chat: #f5f3ff;
-    --chat-dark: #334155;
-}
-
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-main);
-}
-
-.text-dark-blue {
-    color: var(--dark-blue);
-}
-
-.sidebar {
-    width: 260px;
-}
-
-.logo-box {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-}
-
-.sidebar .nav-link {
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.sidebar .nav-link.active {
-    background-color: var(--primary-subtle) !important;
-    color: var(--primary-color) !important;
-    font-weight: 600;
-}
-
-.header-icon {
-    background-color: var(--primary-subtle);
-    color: var(--primary-color);
-    width: 48px;
-    height: 48px;
-}
-
+/* Efeito de hover para os itens da lista de chamados */
 .list-group-item-action {
-    border-color: var(--border-color) !important;
     transition: all 0.2s ease;
-    background-color: #ffffff;
+    border: 1px solid var(--bs-border-color);
 }
 
 .list-group-item-action:hover {
-    border-color: var(--primary-color) !important;
+    border-color: var(--bs-primary) !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
+    box-shadow: 0 4px 12px rgba(1, 31, 252, 0.08);
+    background-color: var(--bs-light);
 }
 
-.border-top-dashed {
-    border-top: 1px dashed var(--border-color);
-}
-
-.bg-primary-subtle {
-    background-color: #eff6ff !important;
-    color: #1d4ed8 !important;
-}
-
-.bg-success-subtle {
-    background-color: var(--success-bg) !important;
-    color: var(--success-text) !important;
-}
-
+/* Chat e Histórico (balões de mensagem) */
 .bg-indigo-light {
-    background-color: var(--indigo-chat);
-    border: 1px solid var(--primary-subtle);
+    background-color: var(--primary-subtle);
+    border: 1px solid var(--border-color);
 }
 
 .border-start-purple {
-    border-left: 3px solid var(--primary-color) !important;
+    border-left: 3px solid var(--bs-primary) !important;
 }
 
-.text-secondary-dark {
-    color: var(--chat-dark);
-}
-
-.btn-light-gray {
-    background-color: var(--btn-gray);
-    color: var(--text-muted);
-    border: none;
-    padding: 8px 20px;
-    font-size: 14px;
-}
-
-.btn-light-gray:hover {
-    background-color: var(--btn-gray-hover);
-}
-
-label {
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
-}
-
+/* Preview de Imagem (Thumbnail do chamado) */
 .ticket-image-container {
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    border: 1px solid var(--bs-border-color);
+    box-shadow: var(--shadow-sm);
     transition: border-color 0.2s ease;
+    background-color: #fff;
 }
 
 .ticket-image-container:hover {
-    border-color: var(--primary-color);
+    border-color: var(--bs-primary);
 }
 
 .ticket-preview-img {
@@ -138,8 +43,4 @@ label {
     width: 100%;
     object-fit: cover;
     cursor: pointer;
-}
-
-.font-xs {
-    font-size: 11px;
 }

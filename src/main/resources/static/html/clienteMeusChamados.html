@@ -3,95 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestoretech - Meus Chamados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gestor&amp;Tech - Meus Chamados</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/clienteMeusChamados.css">
-    <script type="text/javascript" src="../js/clienteMeusChamados.js"></script>
 </head>
 <body>
 
-    <div class="d-flex h-100 vh-100 overflow-hidden">
+    <div class="dashboard-container" id="pageContainer">
         
-        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
-            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
-                <span class="logo-box">G</span>
-                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+        <aside class="sidebar">
+            <div class="logo-area">
+                <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box">
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&amp;Tech</span>
+                    <span class="logo-subtext">Área do Cliente</span>
+                </div>
             </div>
             
-            <nav class="nav flex-column gap-2 h-100">
-                <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-link text-secondary rounded-3 px-3 py-2.5" id="CadastrarUsuario" hidden=true><i class="fa-regular fa-user me-3"></i> Usuários</a>
-                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
-                <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
-                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
-                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            <nav class="sidebar-nav">
+                <a href="ClientePerfil.html" class="nav-item"><i class="fa-regular fa-user"></i> Perfil</a>
+                <a href="CadastroChamado.html" class="nav-item"><i class="fa-solid fa-plus"></i> Novo Chamado</a>
+                <a href="clienteMeusChamados.html" class="nav-item active"><i class="fa-regular fa-file-lines"></i> Meus Chamados</a>
+                <a href="clienteMeusEquipamentos.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Meus Equipamentos</a>
+                
+                <div class="sidebar-footer">
+                    <a href="../login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
             </nav>
         </aside>
 
-        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+        <main class="main-content">
             
-            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
-                
-                <div class="d-flex align-items-center gap-3 mb-4">
-                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
-                        <i class="fa-regular fa-file-lines fs-5"></i>
-                    </div>
-                    <div>
-                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Meus Chamados</h1>
-                        <p class="text-muted small mb-0">Acompanhe o andamento dos seus chamados e o suporte dos técnicos.</p>
-                    </div>
+            <div class="d-flex d-lg-none align-items-center justify-content-between bg-white border-bottom p-3 w-100 shadow-sm">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="../assets/logo-icon.png" alt="Logo" style="width: 32px; height: 32px;">
+                    <span class="fw-bold" style="color: var(--dark-blue);">Gestor&amp;Tech</span>
                 </div>
+                <button class="btn btn-light border-0" id="btnMenuMobile">
+                    <i class="fa-solid fa-bars fs-4" style="color: var(--dark-blue);"></i>
+                </button>
+            </div>
 
-                <div class="bg-white p-3 rounded-3 border mb-4">
-                    <div class="row g-2">
-                        <div class="col-md-5">
-                            <div class="input-group">
-                                <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                <input type="text" class="form-control border-start-0 ps-1" id="buscaTexto" placeholder="Buscar por título ou modelo...">
-                            </div>
+            <div class="sidebar-overlay" id="overlayMenuMobile"></div>
+
+            <div class="content-wrapper p-4 p-md-5">
+                <div class="card w-100 border-0 p-4 p-md-5 rounded-4 shadow-sm mx-auto" style="max-width: 900px;">
+                    
+                    <div class="d-flex align-items-center gap-3 mb-5">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 46px; height: 46px; background-color: var(--bs-primary-bg-subtle, #eaedfe); color: var(--bs-primary);">
+                            <i class="fa-regular fa-file-lines fs-5"></i>
                         </div>
-
-                        <div class="col-md-4">
-                            <select class="form-select" id="filtroStatus">
-                                <option value="todos">Todos os Status</option>
-                                <option value="atendimento">Em Atendimento</option>
-                                <option value="resolvido">Resolvido</option>
-                                <option value="aberto">Aberto</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-3">
-                            <button class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosAvancados" aria-expanded="false">
-                                <i class="fa-solid fa-sliders"></i> Avançado
-                            </button>
+                        <div>
+                            <h1 class="h4 mb-1 fw-bold" style="color: var(--dark-blue);">Meus Chamados</h1>
+                            <p class="text-muted small mb-0">Acompanhe o andamento dos seus chamados e o suporte dos técnicos.</p>
                         </div>
                     </div>
 
-                    <div class="collapse mt-3 pt-3 border-top" id="filtrosAvancados">
-                        <div class="row g-3">
-                            <div class="col-sm-6 col-md-3">
-                                <label class="form-label text-muted small fw-semibold">Tipo Equipamento</label>
-                                <input type="text" class="form-control form-control-sm" id="filtroTipo" placeholder="Ex: Notebook">
+                    <div class="bg-light p-3 rounded-3 border mb-5">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-5">
+                                <label class="form-label small fw-semibold text-muted mb-1"><i class="fa-solid fa-magnifying-glass me-1"></i> Buscar</label>
+                                <input type="text" class="form-control" id="buscaTexto" placeholder="Título ou modelo...">
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="form-label text-muted small fw-semibold">Fabricante</label>
-                                <input type="text" class="form-control form-control-sm" id="filtroFabricante" placeholder="Ex: Dell">
+
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold text-muted mb-1">Status</label>
+                                <select class="form-select" id="filtroStatus">
+                                    <option value="todos">Todos</option>
+                                    <option value="atendimento">Em Atendimento</option>
+                                    <option value="resolvido">Resolvido</option>
+                                    <option value="aberto">Aberto</option>
+                                </select>
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="form-label text-muted small fw-semibold">Data Inicial</label>
-                                <input type="date" class="form-control form-control-sm" id="filtroDataInicial">
+
+                            <div class="col-md-3">
+                                <button class="btn btn-outline-secondary w-100 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosAvancados" aria-expanded="false">
+                                    <i class="fa-solid fa-sliders me-1"></i> Avançado
+                                </button>
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="form-label text-muted small fw-semibold">Data Final</label>
-                                <input type="date" class="form-control form-control-sm" id="filtroDataFinal">
+                        </div>
+
+                        <div class="collapse mt-3 pt-3 border-top" id="filtrosAvancados">
+                            <div class="row g-3">
+                                <div class="col-sm-6 col-md-3">
+                                    <label class="form-label text-muted small fw-semibold">Tipo de Equip.</label>
+                                    <input type="text" class="form-control form-control-sm" id="filtroTipo" placeholder="Ex: Notebook">
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <label class="form-label text-muted small fw-semibold">Fabricante</label>
+                                    <input type="text" class="form-control form-control-sm" id="filtroFabricante" placeholder="Ex: Dell">
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <label class="form-label text-muted small fw-semibold">Data Inicial</label>
+                                    <input type="date" class="form-control form-control-sm" id="filtroDataInicial">
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <label class="form-label text-muted small fw-semibold">Data Final</label>
+                                    <input type="date" class="form-control form-control-sm" id="filtroDataFinal">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="list-group d-flex flex-column gap-3 border-0" id="listaChamadosContainer">
-                    <div class="text-center text-muted p-4">
-                        <i class="fa-solid fa-circle-notch fa-spin me-2"></i> Carregando seus chamados...
+
+                    <div class="list-group list-group-flush border-0" id="listaChamadosContainer">
+                        <div class="text-center text-muted p-5 bg-light rounded border border-dashed">
+                            <i class="fa-solid fa-circle-notch fa-spin me-2 fs-4 mb-3"></i> 
+                            <p class="mb-0 fw-medium">Carregando seus chamados...</p>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </main>
@@ -99,41 +127,45 @@
 
     <div class="modal fade" id="ticketModal1" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 rounded-4 shadow">
-                <div class="modal-header border-0 px-4 pt-4 d-flex align-items-start justify-content-between">
+            <div class="modal-content border-0 shadow">
+                
+                <div class="modal-header border-bottom">
                     <div>
-                        <span class="badge text-bg-light border text-secondary mb-1">#CH-8842</span>
-                        <h5 class="modal-title fw-bold text-dark-blue">Notebook não liga após atualização</h5>
+                        <span class="badge text-bg-secondary rounded-pill px-3 py-1 mb-2">#CH-8842</span>
+                        <h5 class="modal-title fw-bold" style="color: var(--dark-blue);">Notebook não liga após atualização</h5>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 
                 <div class="modal-body p-4">
-                    <div class="row g-3 bg-light p-3 rounded-3 mb-4">
+                    
+                    <div class="row g-3 bg-light p-3 rounded border mb-4">
                         <div class="col-sm-4">
-                            <label class="text-muted small d-block">Equipamento</label>
-                            <span class="fw-semibold text-dark-blue" id="equipamento">Notebook Dell Inspiron 15</span>
+                            <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Equipamento</label>
+                            <span class="fw-bold" id="equipamento" style="color: var(--dark-blue);">Notebook Dell Inspiron 15</span>
                         </div>
                         <div class="col-sm-4">
-                            <label class="text-muted small d-block">Técnico Responsável</label>
-                            <span class="fw-semibold text-dark-blue"id="Tecnico">Carlos Silva</span>
+                            <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Técnico Responsável</label>
+                            <span class="fw-semibold text-secondary" id="Tecnico">Carlos Silva</span>
                         </div>
                         <div class="col-sm-4">
-                            <label class="text-muted small d-block">Status Atual</label>
-                            <span class="badge bg-primary-subtle text-primary rounded-pill px-2.5 py-1.5 mt-1"id="Status">Em Atendimento</span>
+                            <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Status Atual</label>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1" id="Status">Em Atendimento</span>
                         </div>
                     </div>
 
                     <div class="row g-4">
                         <div class="col-md-7">
-                            <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-regular fa-comments me-2"></i>Histórico</h6>
+                            <h6 class="fw-bold mb-3 text-uppercase small" style="color: var(--dark-blue); letter-spacing: 0.5px;">
+                                <i class="fa-regular fa-comments me-1"></i> Histórico
+                            </h6>
                             <div class="timeline">
                                 <div class="timeline-item user-msg mb-3">
-                                    <div class="d-flex justify-content-between small text-muted mb-1">
-                                        <strong >Você</strong>
+                                    <div class="d-flex justify-content-between small text-muted mb-2 px-1">
+                                        <strong style="color: var(--dark-blue);">Você</strong>
                                         <span id="data">24/06/2026</span>
                                     </div>
-                                    <div class="p-3 bg-indigo-light rounded-3 text-dark-blue small" id="descricao">
+                                    <div class="p-3 bg-indigo-light rounded text-secondary small shadow-sm" id="descricao">
                                         O notebook realizou uma atualização. Hoje de manhã a tela fica completamente preta e não inicia o sistema. Anexei a foto de como ele fica travado.
                                     </div>
                                 </div>
@@ -141,26 +173,46 @@
                         </div>
 
                         <div class="col-md-5">
-                            <h6 class="fw-bold text-dark-blue mb-3"><i class="fa-regular fa-image me-2"></i>Foto Anexada</h6>
-                            <div class="ticket-image-container border rounded-3 p-2 bg-white text-center">
+                            <h6 class="fw-bold mb-3 text-uppercase small" style="color: var(--dark-blue); letter-spacing: 0.5px;">
+                                <i class="fa-regular fa-image me-1"></i> Foto Anexada
+                            </h6>
+                            <div class="ticket-image-container rounded p-2 text-center">
                                 <a href="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=600" target="_blank">
-                                    <img src="" alt="Tela do erro anexada" class="img-fluid rounded-2 ticket-preview-img" id="Imagem">
+                                    <img src="" alt="Tela do erro anexada" class="img-fluid rounded ticket-preview-img" id="Imagem">
                                 </a>
-                                <div class="mt-2 text-muted font-xs">
-                                    <i class="fa-solid fa-magnifying-glass-plus me-1"></i> Clique para ampliar imagem.png
+                                <div class="mt-2 text-muted small">
+                                    <i class="fa-solid fa-magnifying-glass-plus me-1"></i> Ampliar imagem
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-light-gray rounded-3 fw-semibold" data-bs-dismiss="modal">Fechar</button>
+                <div class="modal-footer bg-light border-top">
+                    <button type="button" class="btn btn-outline-secondary fw-semibold w-100" data-bs-dismiss="modal">Fechar Visualização</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnMenuMobile = document.getElementById('btnMenuMobile');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('overlayMenuMobile');
+
+            if (btnMenuMobile && sidebar && overlay) {
+                function toggleMenu() {
+                    sidebar.classList.toggle('show-mobile');
+                    overlay.classList.toggle('active');
+                }
+                btnMenuMobile.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/clienteMeusChamados.js"></script>
 </body>
 </html>

@@ -1,73 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    
-    --border-color: #cbd5e1;
-    --btn-gray: #f1f5f9;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-}
-
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-main);
-}
-
-.text-dark-blue {
-    color: var(--dark-blue);
-}
+/* ==========================================================================
+   concluirCadastro.css — Refatorado
+   Ajustes específicos para o formulário de onboarding externo
+   ========================================================================== */
 
 .logo-box {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    font-size: 20px;
-    font-weight: 700;
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
 }
 
 .form-control, .input-group-text {
-    border-color: var(--border-color);
+    border-color: var(--bs-border-color);
     padding: 10px 14px;
     font-size: 14px;
-    color: var(--dark-blue);
 }
 
 .form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 4px rgba(1, 31, 252, 0.1);
 }
 
 .form-control[readonly] {
     cursor: not-allowed;
-    background-color: var(--btn-gray) !important;
+    background-color: var(--bs-secondary-bg) !important;
 }
 
 .btn-purple {
-    background-color: var(--primary-color);
+    background-color: var(--bs-primary);
     color: #ffffff;
     border: none;
     font-size: 15px;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, filter 0.2s ease;
 }
 
 .btn-purple:hover {
-    background-color: var(--primary-hover);
+    filter: brightness(0.9);
     color: #ffffff;
 }
 
 .font-xs {
     font-size: 12px;
-    color: var(--text-muted);
 }

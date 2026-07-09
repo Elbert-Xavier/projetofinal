@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Gestor&Tech</title>
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Login Gestor&amp;Tech</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
     <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
@@ -14,12 +19,11 @@
     <div class="main-container">
         <div class="left-side">
             <div class="brand">
-                <div class="logo-box">G</div>
-                <h2>Gestor&Tech</h2>
+                <div class="logo-box d-flex align-items-center justify-content-center bg-white text-primary fw-bold rounded">G</div>
+                <h2>Gestor&amp;Tech</h2>
             </div>
             <div class="content">
-                <p>Sistema completo para gestão técnica e administrativa da sua empresa.</p>
-              
+                <p class="mb-0">Sistema completo para gestão técnica e administrativa da sua empresa.</p>
             </div>
         </div>
 
@@ -28,14 +32,15 @@
                 <h1>Login</h1>
                 <p class="subtitle">Acesse sua conta para continuar</p>
 
-                <form onsubmit="return false;"> <div class="input-container">
+                <form onsubmit="return false;"> 
+                    <div class="input-container">
                         <i class="fa-regular fa-envelope"></i>
-                        <input type="email" placeholder="E-mail" id="email">
+                        <input type="email" placeholder="E-mail" id="email" required>
                     </div>
 
                     <div class="input-container">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Senha" id="senha">
+                        <input type="password" placeholder="Senha" id="senha" required>
                         <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
                     </div>
 

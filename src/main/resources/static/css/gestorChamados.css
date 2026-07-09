@@ -1,52 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    --bg-card-hover: #fcfdfe;
-    
-    --border-color: #e2e8f0;
-    
-    --btn-gray: #f1f5f9;
-    --btn-gray-hover: #e2e8f0;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-    
-    --danger-color: #ef4444;
-    --danger-subtle: #fee2e2;
-    --danger-hover: #fef2f2;
-    
-    --warning-text: #b45309;
-    --success-text: #15803d;
-    --success-bg: #d1fae5;
-    --success-dark: #065f46;
-    --input-border: #cbd5e1;
-}
-
 /* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E ESTRUTURA DO CARD
+   gestorChamados.css — Refatorado com Bootstrap 5
+   A maior parte da estrutura agora usa utilitários do Bootstrap
    ========================================================================== */
-#cardChamados {
-    font-family: var(--font-main);
-    color: var(--text-muted);
-    background: #ffffff;
-}
 
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-}
-
+/* Ícone de destaque no cabeçalho */
 .header-icon-circle {
-    background: var(--btn-gray); 
-    color: var(--primary-color);     
+    background: var(--bs-primary-bg-subtle, #eaedfe); 
+    color: var(--bs-primary);     
     width: 46px;
     height: 46px;
     border-radius: 50%; 
@@ -56,297 +16,27 @@
     font-size: 18px;
 }
 
-.card-header h1 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--dark-blue);
-    margin: 0;
+/* Utilitário para bordas tracejadas (Upload) */
+.border-dashed {
+    border-style: dashed !important;
 }
 
-.card-header p {
-    font-size: 13.5px;
-    color: var(--text-muted);
-    margin: 4px 0 0 0;
-}
-
-.section-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--dark-blue);
-    text-transform: uppercase; 
-    letter-spacing: 0.5px;
-    margin-top: 24px;
-    margin-bottom: 16px;
-}
-
-.divider-line {
-    border: 0; 
-    border-top: 1px solid var(--border-color); 
-    margin: 40px 0;
-}
-
-/* ==========================================================================
-   2. BARRA DE FILTROS INTELIGENTE
-   ========================================================================== */
-.filter-bar {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr) auto;
-    gap: 12px;
-    background-color: var(--bg-main); 
-    padding: 16px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 20px;
-    align-items: flex-end;
-}
-
-.filter-group {
+/* Quadrado de preview de upload de foto no Modal */
+.photo-preview-placeholder {
+    width: 100%;
+    height: 140px;
+    border: 2px dashed var(--bs-border-color);
     display: flex;
     flex-direction: column;
-    gap: 6px;
-}
-
-.filter-group label {
-    font-size: 11px;
-    font-weight: 600;
+    align-items: center;
+    justify-content: center;
     color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-}
-
-.filter-group input,
-.filter-group select {
-    padding: 8px 12px;
-    border: 1px solid var(--input-border);
-    border-radius: 6px;
-    font-family: var(--font-main);
-    font-size: 13px;
-    color: var(--dark-blue);
-    background-color: #ffffff;
-    outline: none;
-    transition: border-color 0.15s ease;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.filter-group input:focus,
-.filter-group select:focus {
-    border-color: var(--primary-color);
-}
-
-.btn-filter-submit {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 6px;
+    background-color: var(--bs-light);
     cursor: pointer;
-    font-size: 14px;
     transition: background-color 0.2s;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.btn-filter-submit:hover {
-    background-color: var(--primary-hover);
+.photo-preview-placeholder:hover {
+    background-color: #e2e8f0;
 }
 
-/* ==========================================================================
-   3. ESTILIZAÇÃO COMPLETA DAS TABELAS
-   ========================================================================== */
-.table-container {
-    overflow-x: auto; 
-    background: #ffffff;
-}
-
-.chamados-table {
-    width: 100%; 
-    border-collapse: collapse; 
-    text-align: left; 
-    font-size: 13.5px;
-}
-
-.chamados-table th {
-    padding: 14px 12px;
-    color: var(--text-muted); 
-    font-weight: 600;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.chamados-table tbody tr {
-    border-bottom: 1px solid var(--bg-main);
-    color: var(--text-muted);
-    transition: background-color 0.15s ease;
-}
-
-.chamados-table tbody tr:hover {
-    background-color: var(--bg-main);
-}
-
-.chamados-table td {
-    padding: 16px 12px;
-    vertical-align: middle;
-}
-
-.chamados-table .font-code {
-    font-family: monospace;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-muted);
-}
-
-.chamados-table .font-medium {
-    font-weight: 500;
-    color: var(--dark-blue);
-}
-
-.chamados-table .text-muted {
-    color: var(--text-muted);
-    font-size: 13px;
-}
-
-.chamados-table .text-truncate {
-    max-width: 280px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text-muted);
-}
-
-.chamados-table .text-center {
-    text-align: center;
-}
-
-/* ==========================================================================
-   4. BOTÕES DE AÇÃO E ELEMENTOS INTERATIVOS
-   ========================================================================== */
-.btn-action-despach {
-    display: inline-block;
-    color: var(--primary-color);
-    font-size: 16px;
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.btn-action-despach:hover {
-    background-color: var(--primary-subtle);
-    transform: translateY(-1px);
-}
-
-.btn-action-view {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--primary-color); 
-    color: #ffffff;
-    font-size: 12.5px;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.btn-action-view:hover {
-    background-color: var(--primary-hover);
-    color: #ffffff;
-    transform: translateY(-1px);
-}
-
-.btn-action-history-view {
-    display: inline-block;
-    color: var(--text-muted);
-    font-size: 16px;
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.btn-action-history-view:hover {
-    background-color: var(--btn-gray);
-    color: var(--primary-color);
-    transform: translateX(2px);
-}
-
-/* ==========================================================================
-   5. MODAL DE DESPACHO PADRÃO (SISTEMA DE ANCHORING VIA :TARGET)
-   ========================================================================== */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(30, 27, 75, 0.6); 
-    display: none; 
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    backdrop-filter: blur(4px);
-}
-
-.modal-overlay:target {
-    display: flex;
-}
-
-.modal-card {
-    background: #ffffff;
-    width: 100%;
-    max-width: 650px;
-    border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.modal-header {
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-subtitle {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.modal-header h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--dark-blue);
-    margin: 2px 0 0 0;
-}
-
-.btn-close-modal {
-    font-size: 28px;
-    color: #94a3b8;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.btn-close-modal:hover { color: var(--dark-blue); }
-
-.modal-body {
-    padding: 24px;
-}
-
-.details-section {
-    background-color: var(--bg-main);
-    padding: 16px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}

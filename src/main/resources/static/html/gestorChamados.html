@@ -3,172 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor&Tech - Gerenciar Chamados</title>
+    <title>Gestor&amp;Tech - Gerenciar Chamados</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/gestorChamados.css">
-    <script type="text/javascript" src="../js/gestorChamados.js"></script>
 </head>
 <body>
 
     <div class="dashboard-container" id="pageContainer">
         
-       <aside class="sidebar">
+        <aside class="sidebar">
             <div class="logo-area">
-                <div class="logo-box">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
+                <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box">
                 <div class="logo-title-group">
-                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-text">Gestor&amp;Tech</span>
                     <span class="logo-subtext">Área do Gestor</span>
                 </div>
             </div>
             
             <nav class="sidebar-nav">
-                <a href="http://localhost:8000/html/GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
-                <a href="http://localhost:8000/html/gestorChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
-                <a href="http://localhost:8000/html/cliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
-                <a href="http://localhost:8000/html/tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
+                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="gestorChamados.html" class="nav-item active"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="cliente.html" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
                 
                 <div class="sidebar-footer">
-                    <a href="http://localhost:8000/login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                    <a href="../login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
                 </div>
             </nav>
         </aside>
 
         <main class="main-content">
-           
+            
+            <div class="d-flex d-lg-none align-items-center justify-content-between bg-white border-bottom p-3 w-100 shadow-sm">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="../assets/logo-icon.png" alt="Logo" style="width: 32px; height: 32px;">
+                    <span class="fw-bold" style="color: var(--dark-blue);">Gestor&amp;Tech</span>
+                </div>
+                <button class="btn btn-light border-0" id="btnMenuMobile">
+                    <i class="fa-solid fa-bars fs-4" style="color: var(--dark-blue);"></i>
+                </button>
+            </div>
 
-            <div class="content-wrapper">
-                <div class="card" id="cardChamados">
+            <div class="sidebar-overlay" id="overlayMenuMobile"></div>
+
+            <div class="content-wrapper p-3 p-sm-4 p-md-5">
+                <div class="card p-3 p-sm-4 p-md-5 border-0 shadow-sm mx-auto" style="max-width: 1200px;" id="cardChamados">
                     
-                    <div class="card-header">
-                        <div class="header-icon-circle"><i class="fa-solid fa-headset"></i></div>
+                    <div class="d-flex align-items-center gap-3 mb-5 mt-2 mt-lg-0">
+                        <div class="header-icon-circle flex-shrink-0" style="width: 46px; height: 46px; background-color: var(--bs-primary-bg-subtle, #eaedfe); color: var(--bs-primary); display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                            <i class="fa-solid fa-headset fs-5"></i>
+                        </div>
                         <div>
-                            <h1>Mesa de Chamados e Triagem</h1>
-                            <p>Visualize as solicitações recebidas, filtre o histórico por período e realize a triagem da equipe.</p>
+                            <h1 class="h4 mb-0 fw-bold" style="color: var(--dark-blue);">Mesa de Chamados e Triagem</h1>
+                            <p class="text-muted small mb-0">Visualize as solicitações recebidas, filtre o histórico e realize a triagem da equipe.</p>
                         </div>
                     </div>
 
-                    <div class="section-title">🕒 Chamados Aguardando Triagem (Aberto)</div>
+                    <h6 class="text-uppercase fw-bold mb-3" style="color: var(--dark-blue); font-size: 13px; letter-spacing: 0.5px;">
+                        <i class="fa-regular fa-clock text-muted me-2"></i> Chamados Aguardando Triagem (Aberto)
+                    </h6>
                     
-                    <div class="table-container" style="margin-bottom: 40px;">
-                        <table class="chamados-table">
-                            <thead>
+                    <div class="table-responsive border rounded mb-5">
+                        <table class="table table-hover align-middle mb-0" style="min-width: 800px;">
+                            <thead class="table-light text-secondary small text-uppercase">
                                 <tr>
-                                    <th>Código</th>
-                                    <th>Cliente / Empresa</th>
-                                    <th>Equipamento</th>
-                                    <th>Problema Relatado</th>
-                                    <th class="text-center">Ação Operacional</th>
+                                    <th class="ps-3 py-3">Código</th>
+                                    <th class="py-3">Cliente / Empresa</th>
+                                    <th class="py-3">Equipamento</th>
+                                    <th class="py-3">Problema Relatado</th>
+                                    <th class="text-center pe-3 py-3">Ação Operacional</th>
                                 </tr>
                             </thead>
                             <tbody id="tabelaChamadosAbertos">
                                 <tr>
-                                    <td class="font-code">#CH-2026-0490</td>
-                                    <td class="font-medium">Oficina do Zé Ltda</td>
-                                    <td>Servidor Dell Optiplex</td>
-                                    <td class="text-truncate">Servidor local parou após queda de energia.</td>
-                                    <td class="text-center">
-                                        <a href="#modalDetalhesChamado" class="btn-action-view" title="Analisar Detalhes e Atribuir Técnico">
-                                            <i class="fa-solid fa-clipboard-check"></i> Triar e Atribuir
-                                        </a>
+                                    <td class="ps-3"><span class="font-monospace fw-semibold text-secondary">#CH-2026-0490</span></td>
+                                    <td class="fw-semibold" style="color: var(--dark-blue);">Oficina do Zé Ltda</td>
+                                    <td class="small text-muted">Servidor Dell Optiplex</td>
+                                    <td>
+                                        <div class="text-truncate small text-muted" style="max-width: 250px;">Servidor local parou após queda de energia.</div>
+                                    </td>
+                                    <td class="text-center pe-3">
+                                        <button class="btn btn-outline-primary btn-sm fw-semibold w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalDetalhesChamado" title="Analisar Detalhes e Atribuir Técnico">
+                                            <i class="fa-solid fa-clipboard-check me-1"></i> Triar
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <hr class="divider-line">
+                    <hr class="text-muted opacity-25 my-5">
 
-                    <div class="section-title">📊 Histórico e Monitoramento de Chamados</div>
+                    <h6 class="text-uppercase fw-bold mb-3" style="color: var(--dark-blue); font-size: 13px; letter-spacing: 0.5px;">
+                        <i class="fa-solid fa-chart-simple text-muted me-2"></i> Histórico e Monitoramento
+                    </h6>
                     
-                    <form class="filter-bar">
-                        <div class="filter-group">
-                            <label for="filterCliente">Cliente / Empresa</label>
-                            <select id="filterCliente">
-                                <option value="">Todos os Clientes</option>
+                    <form class="row g-2 mb-4 align-items-end bg-light p-3 rounded border mx-0">
+                        <div class="col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterCliente" class="form-label small fw-semibold text-muted mb-1">Cliente / Empresa</label>
+                            <select id="filterCliente" class="form-select form-select-sm">
+                                <option value="">Todos</option>
                                 <option value="1">Oficina do Zé Ltda</option>
                                 <option value="2">Padaria Pão Quente</option>
                             </select>
                         </div>
-
-                        <div class="filter-group">
-                            <label for="filterStatus">Status</label>
-                            <select id="filterStatus">
-                                <option value="">Todos os Status</option>
+                        <div class="col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterStatus" class="form-label small fw-semibold text-muted mb-1">Status</label>
+                            <select id="filterStatus" class="form-select form-select-sm">
+                                <option value="">Todos</option>
                                 <option value="ABERTO">Aberto</option>
                                 <option value="ATRIBUIDO">Atribuído</option>
                                 <option value="FINALIZADO">Finalizado</option>
                             </select>
                         </div>
-
-                        <div class="filter-group">
-                            <label for="filterEquipamento">Equipamento / Tipo</label>
-                            <input type="text" id="filterEquipamento" placeholder="Ex: Servidor, Balança">
+                        <div class="col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterEquipamento" class="form-label small fw-semibold text-muted mb-1">Equipamento</label>
+                            <input type="text" id="filterEquipamento" class="form-control form-control-sm" placeholder="Ex: Servidor">
                         </div>
-
-                        <div class="filter-group">
-                            <label for="filterFabricante">Fabricante</label>
-                            <input type="text" id="filterFabricante" placeholder="Ex: Dell, HP, Toledo">
+                        <div class="col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterFabricante" class="form-label small fw-semibold text-muted mb-1">Fabricante</label>
+                            <input type="text" id="filterFabricante" class="form-control form-control-sm" placeholder="Ex: Dell">
                         </div>
-
-                        <div class="filter-group">
-                            <label for="filterDataInicio">Data Inicial</label>
-                            <input type="date" id="filterDataInicio">
+                        <div class="col-sm-6 col-md-4 col-xl-1">
+                            <label for="filterDataInicio" class="form-label small fw-semibold text-muted mb-1">Início</label>
+                            <input type="date" id="filterDataInicio" class="form-control form-control-sm">
                         </div>
-
-                        <div class="filter-group">
-                            <label for="filterDataFim">Data Final</label>
-                            <input type="date" id="filterDataFim">
+                        <div class="col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterDataFim" class="form-label small fw-semibold text-muted mb-1">Fim</label>
+                            <input type="date" id="filterDataFim" class="form-control form-control-sm">
                         </div>
-
-                        <div class="filter-actions-btn">
-                            <button type="submit" class="btn-filter-submit" title="Filtrar"><i class="fa-solid fa-filter"></i></button>
+                        <div class="col-12 col-xl-1">
+                            <button type="submit" class="btn btn-primary btn-sm w-100" title="Filtrar">
+                                <i class="fa-solid fa-filter me-1 d-xl-none"></i>Filtrar
+                            </button>
                         </div>
                     </form>
 
-                    <div class="table-container">
-                        <table class="chamados-table">
-                            <thead>
+                    <div class="table-responsive border rounded">
+                        <table class="table table-hover align-middle mb-0" style="min-width: 850px;">
+                            <thead class="table-light text-secondary small text-uppercase">
                                 <tr>
-                                    <th>Abertura</th>
-                                    <th>Código</th>
-                                    <th>Cliente / Empresa</th>
-                                    <th>Técnico Responsável</th>
-                                    <th>Urgência</th>
-                                    <th>Status</th>
-                                    <th class="text-center">Detalhes</th>
+                                    <th class="ps-3 py-3">Abertura</th>
+                                    <th class="py-3">Código</th>
+                                    <th class="py-3">Cliente / Empresa</th>
+                                    <th class="py-3">Técnico Resp.</th>
+                                    <th class="py-3">Urgência</th>
+                                    <th class="py-3">Status</th>
+                                    <th class="text-center pe-3 py-3">Detalhes</th>
                                 </tr>
                             </thead>
                             <tbody id="corpoTabela">
                                 <tr>
-                                    <td class="text-muted">23/06/2026 14:30</td>
-                                    <td class="font-code">#CH-2026-0475</td>
-                                    <td class="font-medium">Padaria Pão Quente</td>
-                                    <td>Fernanda Lima</td>
-                                    <td><span class="badge-urgencia media">MÉDIA</span></td>
-                                    <td><span class="badge-status atribuido">ATRIBUÍDO</span></td>
-                                    <td class="text-center">
-                                        <a href="#modalHistoricoAtribuido" class="btn-action-history-view" title="Revisar Chamado Atribuído">
+                                    <td class="ps-3 small text-muted">23/06/2026 14:30</td>
+                                    <td><span class="font-monospace fw-semibold text-secondary">#CH-2026-0475</span></td>
+                                    <td class="fw-semibold" style="color: var(--dark-blue);">Padaria Pão Quente</td>
+                                    <td class="small text-muted">Fernanda Lima</td>
+                                    <td><span class="badge text-bg-warning">MÉDIA</span></td>
+                                    <td><span class="badge text-bg-info text-white">ATRIBUÍDO</span></td>
+                                    <td class="text-center pe-3">
+                                        <button class="btn btn-light btn-sm border text-secondary" data-bs-toggle="modal" data-bs-target="#modalHistoricoAtribuido" title="Revisar Chamado">
                                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted">18/06/2026 11:00</td>
-                                    <td class="font-code">#CH-2026-0460</td>
-                                    <td class="font-medium">Borracharia São Cristóvão</td>
-                                    <td>Marcos Souza</td>
-                                    <td><span class="badge-urgencia baixa">BAIXA</span></td>
-                                    <td><span class="badge-status finalizado">FINALIZADO</span></td>
-                                    <td class="text-center">
-                                        <a href="#modalHistoricoFinalizado" class="btn-action-history-view" title="Auditar Chamado Finalizado">
-                                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -177,245 +181,25 @@
                 </div>
             </div>
         </main>
-
-        <div id="modalDetalhesChamado" class="modal-overlay">
-            <div class="modal-card">
-                <div class="modal-header">
-                    <div>
-                        <span class="modal-subtitle">Dossiê e Triagem Coesa</span>
-                        <h2 id="chamadoID">Chamado #CH-2026-0490</h2>
-                    </div>
-                    <a href="#" class="btn-close-modal">&times;</a>
-                </div>
-                <div class="modal-body">
-                    
-                    <div class="details-section">
-                        <div class="form-row-2-col">
-                            <div class="detail-group">
-                                <label>Cliente / Empresa</label>
-                                <p class="detail-value-text" id="nomeCliente">Oficina do Zé Ltda</p>
-                            </div>
-                            <div class="detail-group">
-                                <label>Horário de Abertura</label>
-                                <p class="detail-value-text" id="dataChamado"><i class="fa-regular fa-clock"></i> 25/06/2026 às 19:10</p>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-group">
-                            <label>Equipamento / Modelo</label>
-                            <p class="detail-value-text" id="equipamento">Servidor Dell Optiplex</p>
-                        </div>
-
-                        <div class="detail-group">
-                            <label>Título do Problema</label>
-                            <p class="detail-value-text" style="color: #0f172a;" id="observacao">Servidor Local Inoperante - Checkout Paralisado</p>
-                        </div>
-
-                        <div class="detail-group">
-                            <label>Descrição Detalhada</label>
-                            <p class="detail-description-box" id="DescricaoProblema">Após uma forte queda de energia na região, o servidor Dell deu um estalo e não liga mais. Estamos com a oficina parada sem conseguir emitir ordens de serviço.</p>
-                        </div>
-
-                        <div class="detail-group">
-                            <label>Evidências Anexadas</label>
-                            <div class="modal-gallery-row">
-                                <div class="image-preview-container">
-                                    <img id="" alt="Evidência do Problema" id="imagem">
-                                    <span class="image-zoom-hint">Painel_Traseiro.jpg</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="modal-form">
-                        <div class="section-title-modal">Ações de Distribuição</div>
-                        
-                        <div class="input-group-modal">
-                            <label for="modalDetalhePrioridade">Nível de Prioridade *</label>
-                            <select id="modalDetalhePrioridade" required>
-                                <option value="" disabled selected>Defina a criticidade do chamado</option>
-                                <option value="BAIXA">Baixa</option>
-                                <option value="MEDIA">Média</option>
-                                <option value="ALTA">Alta</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group-modal">
-                            <label for="modalDetalheTecnico">Técnicos de Campo *</label>
-                            <select id="modalDetalheTecnico" required>
-                            </select>
-                        </div>
-
-                        <div class="input-group-modal">
-                            <label for="modalObs">Orientações de Rota / Internas</label>
-                            <textarea id="modalObs" rows="3" placeholder="Insira aqui observações sobre peças, prazos ou rotas..."></textarea>
-                        </div>
-						<span hidden=true id="idChamadoAtualizar"></span>
-                        <div class="modal-footer-actions">
-                            <a href="#" class="btn-modal-cancel">Cancelar</a>
-                            <button type="button" class="btn-modal-save" onclick="AtualizarChamado()">Confirmar e Salvar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div id="modalHistoricoAtribuido" class="modal-overlay">
-            <div class="modal-card">
-                <div class="modal-header">
-                    <div>
-                        <span class="modal-subtitle">Acompanhamento de OS</span>
-                        <h2 id="chamadoIDHistorico">Chamado #CH-2026-0475</h2>
-                    </div>
-                    <a href="#" class="btn-close-modal">&times;</a>
-                </div>
-                <div class="modal-body">
-                    <div class="details-section">
-                        <div class="form-row-2-col">
-                            <div class="detail-group">
-                                <label>Cliente / Empresa</label>
-                                <p class="detail-value-text" id="nomeClienteHistorico">Padaria Pão Quente</p>
-                            </div>
-                            <div class="detail-group">
-                                <label>Prioridade Definida</label>
-                                <p class="detail-value-text"><span class="badge-urgencia media" id="prioridadeHistorico">MÉDIA</span></p>
-                            </div>
-                        </div>
-                        <div class="form-row-2-col">
-                            <div class="detail-group">
-                                <label>Técnico em Rota</label>
-                                <p class="detail-value-text" id="tecnicoHistorico">Fernanda Lima</p>
-                            </div>
-                            <div class="detail-group">
-                                <label>Data/Hora Despacho</label>
-                                <p class="detail-value-text" id="dataHistorico">23/06/2026 às 14:45</p>
-                            </div>
-                        </div>
-                        <div class="detail-group">
-                            <label>Problema Relatado</label>
-                            <p class="detail-description-box" id="DescricaoHistorico">Balança de checkout modelo Toledo não está transmitindo o peso para o sistema de caixa PDV.</p>
-                        </div>
-
-                        <div class="detail-group" style="margin-bottom: 15px;">
-                            <label>📸 Evidências Anexadas pelo Cliente</label>
-                            <div class="modal-gallery-row" style="margin-top: 6px;">
-                                <div class="image-preview-container" style="max-width: 100%;">
-                                    <img id="" alt="Balança com erro" id="imagemHistorico">
-                                    <span class="image-zoom-hint">visor_balanca_erro.jpg</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="detail-group">
-                            <label>Orientações de Rota Enviadas</label>
-                            <p class="detail-description-box" style="background-color: #fff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px; font-style: italic;">
-                                "Fernanda, levar cabo serial reserva. Falar com o gerente Alberto no setor de panificação."
-                            </p>
-                        </div>
-                    </div>
-                    <div class="modal-footer-actions">
-                        <a href="#" class="btn-modal-cancel" style="width: 100%;">Fechar Visualização</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="modalHistoricoFinalizado" class="modal-overlay">
-            <div class="modal-card modal-card-large">
-                <div class="modal-header">
-                    <div>
-                        <span class="modal-subtitle">Auditoria de Encerramento e Histórico</span>
-                        <h2 id="historicoChamadoID">Chamado #CH-2026-0460</h2>
-                    </div>
-                    <a href="#" class="btn-close-modal">&times;</a>
-                </div>
-                <div class="modal-body">
-                    
-                    <div class="details-section-grid" style="margin-bottom: 20px;">
-                        <div class="detail-group">
-                            <label>Cliente / Empresa</label>
-                            <p class="detail-value-text">Borracharia São Cristóvão</p>
-                        </div>
-                        <div class="detail-group">
-                            <label>Técnico Executor</label>
-                            <p class="detail-value-text">Marcos Souza</p>
-                        </div>
-                        <div class="detail-group">
-                            <label>Data de Fechamento</label>
-                            <p class="detail-value-text"><i class="fa-regular fa-calendar-check"></i> 18/06/2026 às 13:10</p>
-                        </div>
-                    </div>
-
-                    <div class="form-row-2-col" style="margin-bottom: 20px; gap: 20px;">
-                        
-                        <div class="detail-group">
-                            <label style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> 1. Diagnóstico de Abertura (Cliente)</label>
-                            <div style="background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 12px; border-radius: 0 6px 6px 0; margin-top: 6px; height: 100%; box-sizing: border-box;">
-                                <strong class="font-medium" style="font-size: 13.5px; display: block; margin-bottom: 4px; color: #991b1b;">
-                                    Equipamento: Compressor de Ar Trifásico (Schulz)
-                                </strong>
-                                <p class="detail-description-box" style="color: #991b1b; margin: 0; background: none; border: none; padding: 0;">
-                                    "O compressor parou de funcionar de repente no meio do expediente. Quando tentamos ligar na chave, ele faz um barulho estranho e derruba o disjuntor geral da borracharia. Estamos com duas rampas paradas."
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="detail-group">
-                            <label style="color: #0284c7;"><i class="fa-solid fa-circle-check"></i> 2. Parecer Técnico de Conclusão (Equipe)</label>
-                            <div style="background-color: #f0f9ff; border-left: 4px solid #0284c7; padding: 12px; border-radius: 0 6px 6px 0; margin-top: 6px; height: 100%; box-sizing: border-box;">
-                                <strong class="font-medium" style="font-size: 13.5px; display: block; margin-bottom: 4px; color: #0369a1;">
-                                    Resolução: Manutenção Elétrica Corretiva
-                                </strong>
-                                <p class="detail-description-box" style="color: #0369a1; margin: 0; background: none; border: none; padding: 0;">
-                                    "Identificado mau contato nos fios de alimentação da chave magnética que causava sobrecarga e desarmava o disjuntor. Feita a substituição dos terminais danificados e reaperto geral. Equipamento testado e operando em 120 PSI normalmente."
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-row-2-col" style="margin-bottom: 24px;">
-                        <div class="detail-group">
-                            <label>📸 Evidência de Abertura (Antes)</label>
-                            <div class="image-preview-container" style="max-width: 100%;">
-                                <img id="" alt="Fiação Danificada do Cliente">
-                                <span class="image-zoom-hint">fios_queimados_cliente.jpg</span>
-                            </div>
-                        </div>
-                        <div class="detail-group">
-                            <label>📸 Evidência de Reparo (Depois)</label>
-                            <div class="image-preview-container" style="max-width: 100%;">
-                                <img id="" alt="Terminal Consertado pelo Técnico">
-                                <span class="image-zoom-hint">terminais_novos_tecnico.jpg</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="section-title-modal" style="border-bottom-color: #16a34a; color: #16a34a; margin-bottom: 12px;">🔐 Assinatura e Validação do Cliente</div>
-                    <div class="details-section" style="background-color: #f0fdf4; border: 1px solid #bbf7d0;">
-                        <div class="form-row-2-col">
-                            <div class="detail-group">
-                                <label>Responsável pelo Aceite</label>
-                                <p class="detail-value-text" style="color: #14532d;">Manoel São Cristóvão Filho</p>
-                            </div>
-                            <div class="detail-group">
-                                <label>Documento de Identificação (CPF/Matrícula)</label>
-                                <p class="detail-value-text" style="color: #14532d; font-family: monospace;">024.***.***-99</p>
-                            </div>
-                        </div>
-                        <p style="font-size: 11px; color: #16a34a; margin: 8px 0 0 0; font-weight: 500;">
-                            <i class="fa-solid fa-circle-check"></i> Termo assinado digitalmente via dispositivo móvel do técnico no local da prestação de serviço.
-                        </p>
-                    </div>
-
-                    <div class="modal-footer-actions">
-                        <a href="#" class="btn-modal-cancel" style="width: 100%;">Concluir Auditoria</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnMenuMobile = document.getElementById('btnMenuMobile');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('overlayMenuMobile');
+
+            if (btnMenuMobile && sidebar && overlay) {
+                function toggleMenu() {
+                    sidebar.classList.toggle('show-mobile');
+                    overlay.classList.toggle('active');
+                }
+                btnMenuMobile.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+    
+    <script type="text/javascript" src="../js/gestorChamados.js"></script>
 </body>
 </html>

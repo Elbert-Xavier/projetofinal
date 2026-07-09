@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor&Tech - Gerenciar Clientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gestor&amp;Tech - Gerenciar Clientes</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/dashboard-base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/gestorChamados.css">
 </head>
 <body>
@@ -16,71 +21,78 @@
         
         <aside class="sidebar">
             <div class="logo-area">
-                <div class="logo-box">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
+                <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box">
                 <div class="logo-title-group">
-                    <span class="logo-text">Gestor&Tech</span>
+                    <span class="logo-text">Gestor&amp;Tech</span>
                     <span class="logo-subtext">Área do Gestor</span>
                 </div>
             </div>
             
             <nav class="sidebar-nav">
-                <a href="http://localhost:8000/html/GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
-                <a href="http://localhost:8000/html/gestorChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
-                <a href="http://localhost:8000/html/cliente.html" class="nav-item active"><i class="fa-solid fa-users"></i> Clientes</a>
-                <a href="http://localhost:8000/html/tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
+                <a href="GestorDashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="gestorChamados.html" class="nav-item"><i class="fa-solid fa-headset"></i> Gerenciar Chamados</a>
+                <a href="cliente.html" class="nav-item active"><i class="fa-solid fa-users"></i> Clientes</a>
+                <a href="tecnicos.html" class="nav-item"><i class="fa-solid fa-user-gear"></i> Técnicos</a>
                 
                 <div class="sidebar-footer">
-                    <a href="http://localhost:8000/login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                    <a href="../login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
                 </div>
             </nav>
         </aside>
 
         <main class="main-content">
-            <div class="content-wrapper">
-                <div class="card p-4 border-0 rounded-4 shadow-sm">
+            
+            <div class="d-flex d-lg-none align-items-center justify-content-between bg-white border-bottom p-3 w-100 shadow-sm">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="../assets/logo-icon.png" alt="Logo" style="width: 32px; height: 32px;">
+                    <span class="fw-bold" style="color: var(--dark-blue);">Gestor&amp;Tech</span>
+                </div>
+                <button class="btn btn-light border-0" id="btnMenuMobile">
+                    <i class="fa-solid fa-bars fs-4" style="color: var(--dark-blue);"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-overlay" id="overlayMenuMobile"></div>
+
+            <div class="content-wrapper p-4 p-md-5">
+                
+                <div class="card p-4 p-md-5 border-0 shadow-sm mx-auto" style="max-width: 1200px;">
                     
-                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4" style="border-bottom: none; background: transparent; padding: 0;">
-                        <div class="d-flex gap-3 align-items-center">
-                            <div class="header-icon-circle"><i class="fa-solid fa-users"></i></div>
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 46px; height: 46px; background-color: var(--bs-primary-bg-subtle, #eaedfe); color: var(--bs-primary);">
+                                <i class="fa-solid fa-users fs-5"></i>
+                            </div>
                             <div>
-                                <h1 class="h5 mb-1 fw-bold text-dark">Controle de Clientes e Contratos</h1>
-                                <p class="text-muted small mb-0">Gerencie os dados cadastrais, parque de equipamentos instalados e histórico de suporte por empresa.</p>
+                                <h1 class="h4 mb-0 fw-bold" style="color: var(--dark-blue);">Controle de Clientes</h1>
+                                <p class="text-muted small mb-0">Gerencie os dados cadastrais, parque de equipamentos e histórico.</p>
                             </div>
                         </div>
-                        <a href="cadastrarCliente.html" class="btn text-white d-flex align-items-center gap-2 fw-medium" style="background-color: #5334ea; border-radius: 8px; padding: 10px 18px; font-size: 14px;">
+                        <a href="cadastrarCliente.html" class="btn btn-primary d-flex align-items-center gap-2 fw-semibold px-3 py-2 w-100 w-sm-auto justify-content-center">
                             <i class="fa-solid fa-plus"></i> Novo Cliente
                         </a>
                     </div>
 
-                    <div class="gt-filter-card mb-4">
-                        <div class="row g-2 align-items-center">
-                            <div class="col-md-10">
-                                <input type="text" class="gt-form-input w-100" id="searchCliente" placeholder="Buscar por Razão Social, Fantasia ou CNPJ do cliente...">
-                            </div>
-
-                            <div class="col-md-2">
-                                <button class="btn text-white w-100 fw-medium" type="button" id="btnBuscarCliente" style="background-color: #5334ea; border-radius: 8px; padding: 10px 12px; height: 46px; font-size: 14px;">
-                                    <i class="fa-solid fa-magnifying-glass me-1"></i> Filtrar
-                                </button>
-                            </div>
-                        </div>
+                    <div class="d-flex flex-column flex-md-row gap-2 mb-4">
+                        <input type="text" class="form-control" id="searchCliente" placeholder="Buscar por Razão Social, Fantasia ou CNPJ do cliente...">
+                        <button class="btn btn-primary px-4 fw-semibold text-nowrap" type="button" id="btnBuscarCliente">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i> Filtrar
+                        </button>
                     </div>
 
-                    <div class="table-container">
-                        <table class="chamados-table w-100">
-                            <thead>
+                    <div class="table-responsive border rounded bg-white">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light text-secondary small text-uppercase">
                                 <tr>
-                                    <th>Razão Social / Fantasia</th>
-                                    <th>CNPJ</th>
-                                    <th>Contato / Telefone</th>
-                                    <th class="text-center">Equipamentos</th>
-                                    <th class="text-center">Chamados Abertos</th>
-                                    <th class="text-center">Gerenciar</th>
+                                    <th class="ps-3 py-3 text-nowrap">Razão Social / Fantasia</th>
+                                    <th class="py-3 text-nowrap">CNPJ</th>
+                                    <th class="py-3 text-nowrap">Contato / Telefone</th>
+                                    <th class="text-center py-3 text-nowrap">Equipamentos</th>
+                                    <th class="text-center py-3 text-nowrap">Chamados Abertos</th>
+                                    <th class="text-center pe-3 py-3 text-nowrap">Gerenciar</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="listaClientesBody">
                                 </tbody>
                         </table>
                     </div>
@@ -93,63 +105,75 @@
             <input type="hidden" id="dossieClienteId">
             
             <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
-                <div class="modal-content border-0 rounded-4 p-2" style="background-color: #ffffff;">
-                    <div class="modal-header border-bottom-0 pb-0 d-flex justify-content-between align-items-start">
+                <div class="modal-content border-0 shadow">
+                    
+                    <div class="modal-header border-bottom-0 pb-0">
                         <div>
-                            <span class="text-muted small text-transform-uppercase tracking-wider d-block mb-1">Dossiê do Cliente</span>
-                            <h2 class="h4 fw-bold text-dark m-0" id="dossieNomeCliente">Carregando...</h2>
+                            <span class="text-muted small fw-semibold text-uppercase">Dossiê do Cliente</span>
+                            <h2 class="h4 fw-bold m-0" id="dossieNomeCliente" style="color: var(--dark-blue);">Carregando...</h2>
                         </div>
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body pt-3">
+                    
+                    <div class="modal-body p-4">
                         
-                        <div class="row g-3 mb-4 bg-light p-3 rounded-3 mx-0">
+                        <div class="row g-3 mb-4 bg-light p-3 rounded mx-0 border">
                             <div class="col-md-7">
-                                <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Endereço Operacional</label>
-                                <p class="m-0 text-secondary" style="font-size: 13.5px;" id="dossieEnderecoCliente"><i class="fa-solid fa-location-dot me-2 text-muted"></i>-</p>
+                                <label class="text-muted small fw-bold text-uppercase d-block mb-1">Endereço Operacional</label>
+                                <p class="m-0 text-secondary small" id="dossieEnderecoCliente">
+                                    <i class="fa-solid fa-location-dot me-2 text-muted"></i>-
+                                </p>
                             </div>
                             <div class="col-md-5">
-                                <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Contato Principal</label>
-                                <p class="m-0 text-secondary" style="font-size: 13.5px;" id="dossieContatoCliente"><i class="fa-solid fa-user me-2 text-muted"></i>-</p>
+                                <label class="text-muted small fw-bold text-uppercase d-block mb-1">Contato Principal</label>
+                                <p class="m-0 text-secondary small" id="dossieContatoCliente">
+                                    <i class="fa-solid fa-user me-2 text-muted"></i>-
+                                </p>
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="fw-bold text-dark fs-6"><i class="fa-solid fa-server me-2 text-primary"></i> Equipamentos Vinculados</div>
-                            <button type="button" class="btn btn-sm btn-light border" data-bs-toggle="modal" data-bs-target="#modalVincularEquipamento" style="font-size: 11.5px; padding: 6px 12px; border-radius: 6px;">
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 mb-3">
+                            <div class="fw-bold fs-6" style="color: var(--dark-blue);">
+                                <i class="fa-solid fa-server me-2 text-primary"></i> Equipamentos Vinculados
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm fw-semibold w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalVincularEquipamento">
                                 <i class="fa-solid fa-plus me-1"></i> Vincular Equipamento
                             </button>
                         </div>
 
-                        <div class="bg-light p-2 rounded-3 mb-3 border d-flex gap-2 flex-wrap align-items-end">
-                            <div style="flex: 1.5; min-width: 140px;">
-                                <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Nº de Série / Tag</label>
-                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipSerie" placeholder="Buscar Série..." style="border-radius: 6px;">
+                        <div class="row g-2 mb-4 align-items-end bg-light p-3 rounded mx-0 border">
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label small fw-semibold text-muted mb-1">Nº de Série / Tag</label>
+                                <input type="text" class="form-control form-control-sm" id="buscarEquipSerie" placeholder="Buscar Série...">
                             </div>
-                            <div style="flex: 1; min-width: 120px;">
-                                <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Nome / Modelo</label>
-                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipModelo" placeholder="Ex: Servidor..." style="border-radius: 6px;">
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label small fw-semibold text-muted mb-1">Nome / Modelo</label>
+                                <input type="text" class="form-control form-control-sm" id="buscarEquipModelo" placeholder="Ex: Servidor...">
                             </div>
-                            <div style="flex: 1; min-width: 120px;">
-                                <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Fabricante</label>
-                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipFabricante" placeholder="Ex: Dell..." style="border-radius: 6px;">
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label small fw-semibold text-muted mb-1">Fabricante</label>
+                                <input type="text" class="form-control form-control-sm" id="buscarEquipFabricante" placeholder="Ex: Dell...">
                             </div>
-                            <div style="flex: 1; min-width: 120px;">
-                                <label class="text-muted mb-1 d-block" style="font-size: 11px; font-weight: 500;">Localização</label>
-                                <input type="text" class="form-control form-control-sm bg-white" id="buscarEquipLocalizacao" placeholder="Ex: CPD..." style="border-radius: 6px;">
+                            <div class="col-sm-6 col-md-2">
+                                <label class="form-label small fw-semibold text-muted mb-1">Localização</label>
+                                <input type="text" class="form-control form-control-sm" id="buscarEquipLocalizacao" placeholder="Ex: CPD...">
                             </div>
-                            <button type="button" class="btn btn-sm btn-secondary px-3" style="height: 31px; border-radius: 6px;" id="btnFiltrarEquipamentos" title="Filtrar Equipamentos"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <div class="col-12 col-md-1">
+                                <button type="button" class="btn btn-secondary btn-sm w-100 py-1.5 py-md-1" id="btnFiltrarEquipamentos" title="Filtrar Equipamentos">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="table-responsive rounded-3 border" style="box-shadow: none;">
-                            <table class="table table-sm table-hover m-0 align-middle" style="font-size: 12.5px;" id="tabelaEquipamentos">
-                                <thead class="table-light text-secondary" style="background-color: #f1f5f9;">
+                        <div class="table-responsive border rounded bg-white">
+                            <table class="table table-hover align-middle mb-0 small" id="tabelaEquipamentos">
+                                <thead class="table-light text-secondary">
                                     <tr>
-                                        <th class="ps-3 py-2">Nº de Série / Tag</th>
-                                        <th>Equipamento / Modelo</th>
-                                        <th>Fabricante</th>
-                                        <th>Setor / Localização</th>
-                                        <th class="pe-3">Data de Cadastro</th>
+                                        <th class="ps-3 py-2 text-nowrap">Nº de Série / Tag</th>
+                                        <th class="text-nowrap">Equipamento / Modelo</th>
+                                        <th class="text-nowrap">Fabricante</th>
+                                        <th class="text-nowrap">Setor / Localização</th>
+                                        <th class="pe-3 text-nowrap">Data de Cadastro</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,8 +182,8 @@
                         </div>
 
                     </div>
-                    <div class="modal-footer border-top-0 pt-0">
-                        <button type="button" class="btn btn-secondary w-100 py-2 rounded-3" data-bs-dismiss="modal" style="font-size: 14px;">Fechar Dossiê</button>
+                    <div class="modal-footer border-top bg-light">
+                        <button type="button" class="btn btn-secondary px-4 fw-semibold w-100 w-sm-auto" data-bs-dismiss="modal">Fechar Dossiê</button>
                     </div>
                 </div>
             </div>
@@ -167,108 +191,59 @@
 
         <div id="modalVincularEquipamento" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 rounded-4 shadow">
-                    <div class="modal-header border-bottom-0 pb-0 d-flex justify-content-between align-items-center">
-                        <h3 class="h5 fw-bold text-dark m-0"><i class="fa-solid fa-cube text-primary me-2"></i> Vincular Novo Equipamento</h3>
-                        <button type="button" class="btn-close shadow-none" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" aria-label="Close"></button>
+                <div class="modal-content border-0 shadow">
+                    
+                    <div class="modal-header border-bottom">
+                        <div>
+                            <span class="text-muted small fw-semibold text-uppercase">Equipamento</span>
+                            <h3 class="modal-title h5 fw-bold m-0" style="color: var(--dark-blue);">
+                                <i class="fa-solid fa-cube text-primary me-2"></i> Vincular Novo Equipamento
+                            </h3>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" aria-label="Close"></button>
                     </div>
                     
-                    <form class="modal-form m-0" id="formVincularEquipamento">
-                        <div class="modal-body pt-3">
+                    <form id="formVincularEquipamento">
+                        <div class="modal-body p-4">
                             
-                            <div class="photo-upload-container mb-3 d-flex justify-content-center">
-                                <label class="photo-upload-label" for="equipFotoInput" style="cursor: pointer;">
-                                    <div class="photo-preview-placeholder d-flex flex-column align-items-center justify-content-center border border-dashed rounded-3 p-4 bg-light text-muted" style="width: 140px; height: 140px; border-color: #cbd5e1 !important;">
-                                        <i class="fa-solid fa-camera mb-1 fs-4"></i>
-                                        <span style="font-size: 11px;">Adicionar Foto</span>
+                            <div class="d-flex justify-content-center mb-4">
+                                <label for="equipFotoInput" class="rounded border border-dashed text-center p-3 bg-light cursor-pointer w-50" style="border-style: dashed !important;">
+                                    <div class="text-muted">
+                                        <i class="fa-solid fa-camera mb-1 fs-4 d-block"></i>
+                                        <span class="small fw-semibold">Adicionar Foto</span>
                                     </div>
                                 </label>
-                                <input type="file" id="equipFotoInput" accept="image/*" style="display: none;">
+                                <input type="file" id="equipFotoInput" accept="image/*" class="d-none">
                             </div>
 
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-column">
-                                    <label for="equipTipo" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Tipo de Equipamento *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipTipo" placeholder="Ex: Computador" style="border-radius: 6px;" required>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipFabricante" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Fabricante *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipFabricante" placeholder="Ex: Dell" style="border-radius: 6px;" required>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipModelo" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Modelo *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipModelo" placeholder="Ex: Optiplex 3080" style="border-radius: 6px;" required>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipNumSerie" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Nº de Série / Tag *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipNumSerie" placeholder="Ex: BR12345" style="border-radius: 6px;" required>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipObs" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Localização / Observações</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipObs" placeholder="Ex: No balcão" style="border-radius: 6px;">
-                                </div>
+                            <div class="mb-3">
+                                <label for="equipTipo" class="form-label small fw-semibold">Tipo de Equipamento <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="equipTipo" placeholder="Ex: Computador" required>
                             </div>
-
-                        </div>
-
-                        <div class="modal-footer border-top-0 pt-0 d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-light border flex-grow-1 py-2" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" style="border-radius: 6px; font-size: 13px;">Cancelar</button>
-                            <button type="submit" class="btn btn-sm text-white flex-grow-1 py-2 fw-medium" style="background-color: #5334ea; border-radius: 6px; font-size: 13px;">Salvar Equipamento</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div id="modalVincularEquipamento" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 rounded-4 shadow">
-                    <div class="modal-header border-bottom-0 pb-0 d-flex justify-content-between align-items-center">
-                        <h3 class="h5 fw-bold text-dark m-0"><i class="fa-solid fa-cube text-primary me-2"></i> Vincular Novo Equipamento</h3>
-                        <button type="button" class="btn-close shadow-none" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" aria-label="Close"></button>
-                    </div>
-                    
-                    <form class="modal-form m-0">
-                        <div class="modal-body pt-3">
-                            
-                            <div class="photo-upload-container mb-3 d-flex justify-content-center">
-                                <label class="photo-upload-label" for="equipFotoInput" style="cursor: pointer;">
-                                    <div class="photo-preview-placeholder d-flex flex-column align-items-center justify-content-center border border-dashed rounded-3 p-4 bg-light text-muted" style="width: 140px; height: 140px; border-color: #cbd5e1 !important;">
-                                        <i class="fa-solid fa-camera mb-1 fs-4"></i>
-                                        <span style="font-size: 11px;">Adicionar Foto</span>
-                                    </div>
-                                </label>
-                                <input type="file" id="equipFotoInput" accept="image/*" style="display: none;">
+                            <div class="mb-3">
+                                <label for="equipFabricante" class="form-label small fw-semibold">Fabricante <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="equipFabricante" placeholder="Ex: Dell" required>
                             </div>
-
-                            <div class="d-flex flex-column gap-2">
-                                <div class="d-flex flex-column">
-                                    <label for="equipTipo" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Tipo de Equipamento *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipTipo" placeholder="Ex: Computador" style="border-radius: 6px;" required>
+                            <div class="mb-3">
+                                <label for="equipModelo" class="form-label small fw-semibold">Modelo <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="equipModelo" placeholder="Ex: Optiplex 3080" required>
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label for="equipNumSerie" class="form-label small fw-semibold">Nº de Série / Tag <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="equipNumSerie" placeholder="Ex: BR12345" required>
                                 </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipFabricante" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Fabricante *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipFabricante" placeholder="Ex: Dell" style="border-radius: 6px;" required>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipModelo" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Modelo *</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipModelo" placeholder="Ex: Optiplex 3080" style="border-radius: 6px;" required>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipNumSerie" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Nº de Série / Tag</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipNumSerie" placeholder="Ex: BR12345" style="border-radius: 6px;">
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label for="equipObs" class="text-muted small fw-semibold mb-1" style="font-size: 11px;">Localização / Observações</label>
-                                    <input type="text" class="form-control form-control-sm" id="equipObs" placeholder="Ex: No balcão" style="border-radius: 6px;">
+                                <div class="col-sm-6">
+                                    <label for="equipObs" class="form-label small fw-semibold">Localização</label>
+                                    <input type="text" class="form-control" id="equipObs" placeholder="Ex: CPD / Recepção">
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="modal-footer border-top-0 pt-0 d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-light border flex-grow-1 py-2" data-bs-toggle="modal" data-bs-target="#modalDossieCliente" style="border-radius: 6px; font-size: 13px;">Cancelar</button>
-                            <button type="submit" class="btn btn-sm text-white flex-grow-1 py-2 fw-medium" style="background-color: #5334ea; border-radius: 6px; font-size: 13px;">Salvar Equipamento</button>
+                        <div class="modal-footer border-top bg-light d-flex">
+                            <button type="button" class="btn btn-outline-secondary flex-grow-1 fw-semibold" data-bs-toggle="modal" data-bs-target="#modalDossieCliente">Cancelar</button>
+                            <button type="submit" class="btn btn-primary flex-grow-1 fw-semibold">Salvar Equipamento</button>
                         </div>
                     </form>
                 </div>
@@ -277,7 +252,24 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnMenuMobile = document.getElementById('btnMenuMobile');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('overlayMenuMobile');
+
+            if (btnMenuMobile && sidebar && overlay) {
+                function toggleMenu() {
+                    sidebar.classList.toggle('show-mobile');
+                    overlay.classList.toggle('active');
+                }
+                btnMenuMobile.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../js/listarCliente.js"></script>
 </body>
 </html>

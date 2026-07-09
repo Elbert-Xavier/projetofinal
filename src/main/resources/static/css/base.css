@@ -1,0 +1,266 @@
+/* ==========================================================================
+   GESTOR&TECH — DESIGN SYSTEM BASE (V2 - Integrado com Bootstrap 5)
+   Este arquivo é a fonte principal de layout e variáveis.
+   Deve ser importado LOGO APÓS o CSS do Bootstrap.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   1. TOKENS DE DESIGN (Variáveis Globais)
+   ========================================================================== */
+:root {
+    /* --- Cor primária --- */
+    --primary-color: #011ffc;
+    --primary-hover: #0017bd;
+    --primary-subtle: #eaedfe;
+
+    /* --- Neutros / texto --- */
+    --dark-blue: #0f172a;      
+    --text-muted: #475569;     
+    --text-dark-gray: #334155; 
+
+    /* --- Fundos e Bordas --- */
+    --bg-main: #f8fafc;
+    --bg-card-hover: #fcfdfe;
+    --border-color: #e2e8f0;
+    --border-color-strong: #cbd5e1;
+
+    /* --- Estados (Cores Semânticas) --- */
+    --danger-color: #ef4444;
+    --danger-bg: #fef2f2;
+    --success-color: #10b981;
+    --success-text: #15803d;
+    --success-bg: #dcfce7;
+    --warning-color: #ffa012;
+    --warning-bg: #fff4e5;
+    --warning-text: #b45309;
+    --info-bg: #e0f2fe;
+    --info-text: #0369a1;
+
+    /* --- Tipografia --- */
+    --font-main: 'IBM Plex Sans', sans-serif;
+
+    /* --- Escala de raio de borda --- */
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-pill: 50rem;
+}
+
+/* ==========================================================================
+   2. SOBRESCRITA DO BOOTSTRAP (O "Hack")
+   Forçamos o Bootstrap a usar as nossas variáveis do Design System.
+   ========================================================================== */
+:root {
+    --bs-primary: var(--primary-color);
+    --bs-primary-rgb: 1, 31, 252; 
+    --bs-success: var(--success-color);
+    --bs-danger: var(--danger-color);
+    --bs-warning: var(--warning-color);
+    --bs-info: var(--info-text);
+    
+    --bs-body-bg: var(--bg-main);
+    --bs-body-color: var(--dark-blue);
+    
+    --bs-font-sans-serif: var(--font-main);
+    --bs-body-font-family: var(--font-main);
+    
+    --bs-border-color: var(--border-color);
+    --bs-border-radius: var(--radius-md);
+    --bs-border-radius-lg: var(--radius-lg);
+    --bs-border-radius-sm: var(--radius-sm);
+}
+
+/* ==========================================================================
+   3. RESET BÁSICO E AJUSTES DE FONTES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--dark-blue);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Garante que os ícones do Font Awesome não percam a renderização */
+.fa, .fas, .far, .fal, .fad, .fa-solid, .fa-regular {
+    font-family: "Font Awesome 6 Free" !important;
+}
+.fab, .fa-brands {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+
+/* ==========================================================================
+   4. ESTRUTURA DE LAYOUT PRINCIPAL (Desktop First)
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    padding-left: 260px; /* A mágica acontece aqui: reserva o espaço da sidebar */
+    transition: padding-left 0.3s ease; /* Animação suave ao redimensionar */
+}
+
+/* --- Menu Lateral (Sidebar) --- */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 20px 0;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 1040;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    margin-bottom: 35px;
+    gap: 12px;
+}
+
+.logo-box, .logo-g {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+.logo-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.2;
+}
+
+.logo-subtext {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: var(--dark-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    gap: 15px;
+    transition: all 0.2s ease;
+}
+
+.nav-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    background-color: var(--primary-subtle);
+    color: var(--primary-color);
+    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+    margin-right: 15px;
+}
+
+.nav-item:hover:not(.active) {
+    background-color: var(--bg-main);
+    color: var(--primary-color);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.nav-item.logout,
+.nav-item.logout i {
+    color: var(--text-muted);
+}
+
+.nav-item.logout:hover,
+.nav-item.logout:hover i {
+    color: var(--danger-color);
+}
+
+/* --- Área Central de Conteúdo --- */
+.main-content {
+    flex: 1;
+    width: 100%; 
+    min-width: 0; /* Impede que componentes largos quebrem a tela */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   5. RESPONSIVIDADE (Tablets e Celulares)
+   ========================================================================== */
+@media (max-width: 992px) {
+    /* 1. Remove o espaço reservado no container (pois a barra vai sumir) */
+    .dashboard-container {
+        padding-left: 0;
+    }
+
+    /* 2. Esconde a barra lateral */
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* 3. Ajuste de espaçamento interno da tela */
+    .content-wrapper {
+        padding: 24px 16px !important;
+    }
+
+    /* Classe auxiliar para Javascript (Menu Hamburguer futuro) */
+    .sidebar.show-mobile {
+        transform: translateX(0);
+    }
+}
+/* ==========================================================================
+   OVERLAY DO MENU MOBILE
+   ========================================================================== */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.4); /* Fundo escuro semitransparente */
+    backdrop-filter: blur(2px);
+    z-index: 1030; /* Fica logo abaixo da sidebar (1040) */
+    display: none; /* Escondido por padrão */
+}
+
+.sidebar-overlay.active {
+    display: block;
+}

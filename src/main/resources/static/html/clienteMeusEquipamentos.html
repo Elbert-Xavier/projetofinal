@@ -3,123 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestoretech - Meus Equipamentos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gestor&amp;Tech - Meus Equipamentos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/clienteMeusEquipamentos.css">
-    <script type="text/javascript" src="../js/clienteMeusEquipamentos.js"></script>
 </head>
 <body>
 
-    <div class="d-flex h-100 vh-100 overflow-hidden">
+    <div class="dashboard-container" id="pageContainer">
         
-        <aside class="sidebar bg-white d-flex flex-column p-4 border-end">
-            <div class="logo d-flex align-items-center gap-3 mb-4 ps-2">
-                <span class="logo-box">G</span>
-                <h2 class="h6 mb-0 fw-bold">Gestoretech</h2>
+        <aside class="sidebar">
+            <div class="logo-area">
+                <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box">
+                <div class="logo-title-group">
+                    <span class="logo-text">Gestor&amp;Tech</span>
+                    <span class="logo-subtext">Área do Cliente</span>
+                </div>
             </div>
             
-            <nav class="nav flex-column gap-2 h-100">
-                <a href="http://localhost:8000/html/ClientePerfil.html" class="nav-link text-secondary rounded-3 px-3 py-2.5" id="CadastrarUsuario" hidden=true><i class="fa-regular fa-user me-3"></i> Usuários</a>
-                <a href="http://localhost:8000/html/CadastroChamado.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-solid fa-plus me-3"></i> Novo Chamado</a>
-                <a href="http://localhost:8000/html/clienteMeusChamados.html" class="nav-link text-secondary rounded-3 px-3 py-2.5"><i class="fa-regular fa-file-lines me-3"></i> Meus Chamados</a>
-                <a href="http://localhost:8000/html/clienteMeusEquipamentos.html" class="nav-link active rounded-3 px-3 py-2.5"><i class="fa-solid fa-desktop me-3"></i> Meus Equipamentos</a>
-                <a href="http://localhost:8000/login.html" class="nav-link text-secondary rounded-3 px-3 py-2.5 mt-auto"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair</a>
+            <nav class="sidebar-nav">
+                <a href="ClientePerfil.html" class="nav-item"><i class="fa-regular fa-user"></i> Perfil</a>
+                <a href="CadastroChamado.html" class="nav-item"><i class="fa-solid fa-plus"></i> Novo Chamado</a>
+                <a href="clienteMeusChamados.html" class="nav-item"><i class="fa-regular fa-file-lines"></i> Meus Chamados</a>
+                <a href="clienteMeusEquipamentos.html" class="nav-item active"><i class="fa-solid fa-desktop"></i> Meus Equipamentos</a>
+                
+                <div class="sidebar-footer">
+                    <a href="../login.html" class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
             </nav>
         </aside>
 
-        <main class="flex-grow-1 p-5 overflow-auto bg-light d-flex justify-content-center align-items-start">
+        <main class="main-content">
             
-            <div class="card w-100 border-0 p-4 rounded-4 shadow-sm" style="max-width: 900px;">
-                
-                <div class="d-flex align-items-center gap-3 mb-4">
-                    <div class="header-icon d-flex align-items-center justify-content-center rounded-3">
-                        <i class="fa-solid fa-desktop fs-5"></i>
-                    </div>
-                    <div>
-                        <h1 class="h5 mb-1 fw-bold text-dark-blue">Meus Equipamentos</h1>
-                        <p class="text-muted small mb-0">Clique em um equipamento para ver os detalhes completos.</p>
-                    </div>
+            <div class="d-flex d-lg-none align-items-center justify-content-between bg-white border-bottom p-3 w-100 shadow-sm">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="../assets/logo-icon.png" alt="Logo" style="width: 32px; height: 32px;">
+                    <span class="fw-bold" style="color: var(--dark-blue);">Gestor&amp;Tech</span>
                 </div>
+                <button class="btn btn-light border-0" id="btnMenuMobile">
+                    <i class="fa-solid fa-bars fs-4" style="color: var(--dark-blue);"></i>
+                </button>
+            </div>
 
-                <div class="row g-2 mb-4">
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-filter"></i></span>
-                            <select class="form-select border-start-0 ps-1 py-2" id="filtroCriterio">
-                                <option value="modelo" selected>Modelo</option>
-                                <option value="nome">Nome</option>
-                                <option value="serie">Número de Série</option>
-                                <option value="fabricante">Fabricante</option>
-                                <option value="tipo">Tipo do Equipamento</option>
-                            </select>
+            <div class="sidebar-overlay" id="overlayMenuMobile"></div>
+
+            <div class="content-wrapper p-4 p-md-5">
+                <div class="card w-100 border-0 p-4 p-md-5 rounded-4 shadow-sm mx-auto" style="max-width: 900px;">
+                    
+                    <div class="d-flex align-items-center gap-3 mb-5">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 46px; height: 46px; background-color: var(--bs-primary-bg-subtle, #eaedfe); color: var(--bs-primary);">
+                            <i class="fa-solid fa-desktop fs-5"></i>
+                        </div>
+                        <div>
+                            <h1 class="h4 mb-1 fw-bold" style="color: var(--dark-blue);">Meus Equipamentos</h1>
+                            <p class="text-muted small mb-0">Clique em um equipamento para ver os detalhes completos.</p>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white text-muted border-end-0 font-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control border-start-0 ps-1 py-2" id="filtroBusca" placeholder="Digite aqui para buscar...">
+
+                    <div class="bg-light p-3 rounded-3 border mb-5">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white text-muted border-end-0"><i class="fa-solid fa-filter"></i></span>
+                                    <select class="form-select border-start-0 ps-1" id="filtroCriterio">
+                                        <option value="modelo" selected>Modelo</option>
+                                        <option value="nome">Nome</option>
+                                        <option value="serie">Número de Série</option>
+                                        <option value="fabricante">Fabricante</option>
+                                        <option value="tipo">Tipo do Equipamento</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white text-muted border-end-0"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <input type="text" class="form-control border-start-0 ps-1" id="filtroBusca" placeholder="Digite aqui para buscar...">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="list-group d-flex flex-column gap-3 border-0" id="tabelaEquipamento">
-                    <div class="text-center text-muted p-4">
-                        <i class="fa-solid fa-circle-notch fa-spin me-2"></i> Carregando seus equipamentos...
+                    <div class="list-group d-flex flex-column gap-3 border-0" id="tabelaEquipamento">
+                        <div class="text-center text-muted p-5 bg-light rounded border border-dashed">
+                            <i class="fa-solid fa-circle-notch fa-spin me-2 fs-4 mb-3"></i>
+                            <p class="mb-0 fw-medium">Carregando seus equipamentos...</p>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </main>
     </div>
 
     <div class="modal fade" id="equipmentModal" tabindex="-1" aria-labelledby="equipmentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 rounded-4 shadow">
-                <div class="modal-header border-0 px-4 pt-4">
-                    <h5 class="modal-title fw-bold text-dark-blue" id="equipmentModalLabel">Detalhes do Equipamento</h5>
+            <div class="modal-content border-0 shadow">
+                
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold" id="equipmentModalLabel" style="color: var(--dark-blue);">Detalhes do Equipamento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                
                 <div class="modal-body p-4">
-                    <div class="row g-4">
+                    <div class="row g-4 align-items-center">
                         <div class="col-md-5">
-                            <div class="img-container bg-light rounded-3 d-flex align-items-center justify-content-center p-3 h-100" style="min-height: 200px;">
-                                <img id="imagemEquipamento" alt="Foto do Equipamento" class="img-fluid rounded-2" src="">
+                            <div class="img-container rounded-3 d-flex align-items-center justify-content-center p-3" style="min-height: 220px;">
+                                <img id="imagemEquipamento" alt="Foto do Equipamento" class="img-fluid rounded shadow-sm" src="">
                             </div>
                         </div>
+                        
                         <div class="col-md-7">
-                            <div class="row gy-3">
+                            <div class="row g-3">
                                 <div class="col-6">
-                                    <label class="text-muted small d-block">Tipo Equipamento</label>
-                                    <span class="fw-semibold text-dark-blue" id="tipoEquipamento">---</span>
+                                    <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Tipo Equipamento</label>
+                                    <span class="fw-bold text-secondary" id="tipoEquipamento">---</span>
                                 </div>
                                 <div class="col-6">
-                                    <label class="text-muted small d-block">Fabricante</label>
-                                    <span class="fw-semibold text-dark-blue" id="fabricante">---</span>
+                                    <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Fabricante</label>
+                                    <span class="fw-bold text-secondary" id="fabricante">---</span>
                                 </div>
                                 <div class="col-12">
-                                    <label class="text-muted small d-block">Modelo</label>
-                                    <span class="fw-semibold text-dark-blue" id="modelo">---</span>
+                                    <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Modelo</label>
+                                    <span class="fw-bold" id="modelo" style="color: var(--dark-blue);">---</span>
                                 </div>
                                 <div class="col-6">
-                                    <label class="text-muted small d-block">Número de Série</label>
-                                    <span class="fw-semibold text-dark-blue text-uppercase" id="numeroSerie">---</span>
+                                    <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Número de Série</label>
+                                    <span class="fw-semibold text-danger text-uppercase font-monospace" id="numeroSerie">---</span>
                                 </div>
                                 <div class="col-6">
-                                    <label class="text-muted small d-block">Data de Cadastro</label>
-                                    <span class="fw-semibold text-dark-blue" id="dataCadastro">---</span>
+                                    <label class="text-muted small fw-semibold text-uppercase d-block mb-1">Data de Cadastro</label>
+                                    <span class="fw-semibold text-secondary" id="dataCadastro">---</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-light-gray rounded-3 fw-semibold" data-bs-dismiss="modal">Fechar</button>
+                
+                <div class="modal-footer bg-light border-top">
+                    <button type="button" class="btn btn-outline-secondary fw-semibold w-100" data-bs-dismiss="modal">Fechar Detalhes</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnMenuMobile = document.getElementById('btnMenuMobile');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('overlayMenuMobile');
+
+            if (btnMenuMobile && sidebar && overlay) {
+                function toggleMenu() {
+                    sidebar.classList.toggle('show-mobile');
+                    overlay.classList.toggle('active');
+                }
+                btnMenuMobile.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/clienteMeusEquipamentos.js"></script>
 </body>
 </html>

@@ -1,29 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    --bg-card-hover: #fcfdfe;
-    
-    --border-color: #e2e8f0;
-    
-    --btn-gray: #f1f5f9;
-    --btn-gray-hover: #e2e8f0;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-    
-    --danger-color: #ef4444;
-    --danger-subtle: #fee2e2;
-    --danger-hover: #fef2f2;
-    
-    --tech-bg: #e0f2fe;
-    --tech-text: #0369a1;
-}
+/* ==========================================================================
+   cadastrarUsuario.css — usa tokens definidos em base.css (cores, fonte, espaçamento).
+   Importar SEMPRE depois de base.css.
+   ========================================================================== */
 
 #cardFormUsuario {
     font-family: var(--font-main);
@@ -114,7 +92,7 @@
 .input-group input:focus,
 .input-group select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+    box-shadow: 0 0 0 3px rgba(1, 31, 252, 0.08);
 }
 
 .grid-logradouro {

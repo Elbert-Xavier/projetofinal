@@ -1,87 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-subtle: #e0e7ff;
-    
-    --dark-blue: #1e1b4b;
-    --bg-main: #f8fafc;
-    --bg-card-hover: #fcfdfe;
-    
-    --border-color: #e2e8f0;
-    
-    --btn-gray: #f1f5f9;
-    --btn-gray-hover: #e2e8f0;
-    --text-muted: #475569;
-    
-    --font-main: 'Inter', sans-serif;
-    
-    --input-border: #cbd5e1;
-    --text-dark-gray: #334155;
-}
-
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-main);
-}
-
-.text-dark-blue {
-    color: var(--dark-blue);
-}
-
-.sidebar {
-    width: 260px;
-}
-
-.logo-box {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-}
-
-.sidebar .nav-link {
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.sidebar .nav-link.active {
-    background-color: var(--primary-subtle) !important;
-    color: var(--primary-color) !important;
-    font-weight: 600;
-}
-
-.header-icon {
-    background-color: var(--primary-subtle);
-    color: var(--primary-color);
-    width: 48px;
-    height: 48px;
-}
+/* ==========================================================================
+   ClientePerfil.css — Refatorado
+   Focado estritamente em ajustes finos do formulário de perfil
+   ========================================================================== */
 
 .form-control, .form-select, .input-group-text {
-    border-color: var(--input-border);
+    border-color: var(--bs-border-color);
     padding: 10px 14px;
     font-size: 14px;
-    color: var(--dark-blue);
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 4px rgba(1, 31, 252, 0.1);
 }
 
 .form-control[readonly] {
     cursor: not-allowed;
-    background-color: var(--btn-gray);
+    background-color: var(--bs-secondary-bg) !important;
 }
 
+/* Customização complementar do botão primário se necessário fora do padrão utilitário */
 .btn-purple {
-    background-color: var(--primary-color);
+    background-color: var(--bs-primary);
     color: #ffffff;
     border: none;
     font-size: 14px;
@@ -89,49 +29,6 @@ body {
 }
 
 .btn-purple:hover {
-    background-color: var(--primary-hover);
+    filter: brightness(0.9);
     color: #ffffff;
-}
-
-.btn-outline-secondary {
-    font-size: 14px;
-    border-color: var(--input-border);
-    color: var(--text-muted);
-    transition: all 0.2s ease;
-}
-
-.btn-outline-secondary:hover {
-    background-color: var(--btn-gray);
-    border-color: var(--input-border);
-    color: var(--text-dark-gray);
-}
-/* ==========================================================================
-   Ajustes de Suporte para a Listagem de Usuários 
-   ========================================================================== */
-.table th {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.table tbody tr {
-    transition: background-color 0.15s ease;
-}
-
-.table tbody tr:hover {
-    background-color: #f8fafc;
-}
-
-.btn-link {
-    font-size: 16px;
-    text-decoration: none;
-    transition: transform 0.1s ease;
-}
-
-.btn-link:hover {
-    transform: scale(1.1);
-}
-
-.modal-content {
-    font-family: var(--font-main);
 }
