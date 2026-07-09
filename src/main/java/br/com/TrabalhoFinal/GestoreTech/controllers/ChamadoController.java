@@ -82,13 +82,6 @@ public class ChamadoController {
 		return chamadoRepository.findByPrioridade(prioridade);
 	}
 	*/
-	@DeleteMapping("/deletar/{id}")
-	public String encerrarChamado(@PathVariable int id) {
-		if(chamadoRepository.existsById(id)) {
-			chamadoRepository.deleteById(id);
-			return "Chamado encerrado";
-		}return "Chamado não encontrado";
-	}
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ChamadoEntity salvarChamado(@RequestParam String titulo,
@@ -109,6 +102,7 @@ public class ChamadoController {
         ChamadoEntity chamado = new ChamadoEntity();
         chamado.setDataAbertura(LocalDate.now());
         chamado.setPrioridade("em analise");
+        chamado.setOrientacao("nao Definido");
         chamado.setTitulo(titulo);
         chamado.setDescricao(descricao);
         chamado.setUrlImagem(nomeArquivo);
@@ -120,8 +114,8 @@ public class ChamadoController {
 	}
 	@PostMapping("/salvarNormal")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ChamadoEntity SalvarNormal(@RequestBody ChamadoEntity chamado) {
-		return chamadoRepository.save(chamado);
+	public ChamadoEntity SalvarNormal(@RequestBody ChamadoEntity chamados) {
+		return chamadoRepository.save(chamados);
 	}
 	
 	@PutMapping("/atualizar/{id}")
@@ -164,4 +158,12 @@ public class ChamadoController {
 			return chamadoRepository.save(chamado);
 		}).orElse(null);
 	}
+	@DeleteMapping("/deletar/{id}")
+	public String encerrarChamado(@PathVariable int id) {
+		if(chamadoRepository.existsById(id)) {
+			chamadoRepository.deleteById(id);
+			return "Chamado encerrado";
+		}return "Chamado não encontrado";
+	}
 }
+

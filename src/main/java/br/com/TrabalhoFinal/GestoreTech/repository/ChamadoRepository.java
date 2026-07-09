@@ -38,4 +38,7 @@ public interface ChamadoRepository extends JpaRepository<ChamadoEntity, Integer>
 	long contarChamadosFinalizados();
 	
 	List<ChamadoEntity> findByStatus(String status);
+	
+	@Query("UPDATE ChamadoEntity c SET c.tecnico = null WHERE c.tecnico.id = ?1")
+	void setTecnicoNullParaChamadosDoUsuario(int idUsuario);
 }

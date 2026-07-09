@@ -19,16 +19,16 @@ async function listarTecnico() {
 		const tr = document.createElement("tr")
 		
 		tr.innerHTML = `		
-		<td>
-		    <div class="user-table-profile">
-				<img src="https://ui-avatars.com/api/?name=${tecnico.nome}&background=random&color=fff" class="avatar-table" alt="${tecnico.nome}">
+		<td class="ps-3 py-3">
+		    <div class="d-flex align-items-center gap-3">
+		        <img src="https://ui-avatars.com/api/?name=${tecnico.nome}&background=random&color=fff" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" alt="${tecnico.nome}>
 		        <div>
-		            <strong class="font-medium">${tecnico.nome}</strong>
-		            <span class="subtext-table">${tecnico.email}</span>
+		            <div class="fw-bold" style="color: var(--dark-blue);">${tecnico.nome}</div>
+		            <div class="text-muted small">${tecnico.email}</div>
 		        </div>
 		    </div>
 		</td>
-		<td class="text-center font-bold-count" style="font-size: 16px;">0</td>
+		<td class="text-center fw-bold fs-5" style="color: var(--dark-blue);">2</td>
 		`;
 		
 		tbody.appendChild(tr);
@@ -56,16 +56,16 @@ async function buscarTecnico() {
 				const tr = document.createElement("tr")
 				
 				tr.innerHTML = `		
-				        <td>
-				            <div class="user-table-profile">
-				                <img src="https://ui-avatars.com/api/?name=${dado.nome}&background=0369a1&color=fff" class="avatar-table" alt="${dado.nome}">
-				                <div>
-				                    <strong class="font-medium">${dado.nome}</strong>
-				                    <span class="subtext-table">${dado.email}</span>
-				                </div>
-				            </div>
-				        </td>
-				        <td class="text-center font-bold-count" style="font-size: 16px;">0</td>
+								<td class="ps-3 py-3">
+								    <div class="d-flex align-items-center gap-3">
+								        <img src="https://ui-avatars.com/api/?name=${dado.nome}&background=random&color=fff" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" alt="${dado.nome}>
+								        <div>
+								            <div class="fw-bold" style="color: var(--dark-blue);">${dado.nome}</div>
+								            <div class="text-muted small">${dado.email}</div>
+								        </div>
+								    </div>
+								</td>
+								<td class="text-center fw-bold fs-5" style="color: var(--dark-blue);">2</td>
 				        `;
 				tbody.appendChild(tr);
 				

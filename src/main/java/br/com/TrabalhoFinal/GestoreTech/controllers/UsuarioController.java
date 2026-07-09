@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
 import br.com.TrabalhoFinal.GestoreTech.entity.UsuarioEntity;
+import br.com.TrabalhoFinal.GestoreTech.repository.ChamadoRepository;
 import br.com.TrabalhoFinal.GestoreTech.repository.UsuarioRepository;
 
 @RestController
@@ -30,6 +32,8 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private ChamadoRepository chamadoRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -113,10 +117,9 @@ public class UsuarioController {
 		}return null;
 	}
 	@PutMapping("/atualizar/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.OK)
 	public UsuarioEntity AtualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioEntity Usuario) {
 		if (usuarioRepository.existsById(id)) {
-			usuarioRepository.deleteById(id);
 			Usuario.setId(id);
 			usuarioRepository.save(Usuario);
 		}return null;
@@ -166,6 +169,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public String DeletarUsuario(@PathVariable Integer id) {
 		if (usuarioRepository.existsById(id)) {
+			chamadoRepository.setTecnicoNullParaChamadosDoUsuario(id);
 			usuarioRepository.deleteById(id);
 			return"Usuario Deletado";
 		}

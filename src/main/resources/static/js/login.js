@@ -42,6 +42,7 @@ async function logar() {
         
         localStorage.setItem("usuarioLogado", JSON.stringify(dadosUsuario));
         localStorage.setItem("usuario", "logado");
+		localStorage.setItem("tema", "Claro");
 
         if (dadosUsuario.primeiroLogin === true || dadosUsuario.primeiroLogin === 1) {
             window.location.href = `http://localhost:8000/html/concluirCadastro.html?id=${dadosUsuario.id}`;

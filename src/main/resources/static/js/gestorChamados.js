@@ -34,18 +34,19 @@ async function listarChamadosAbertos() {
 
 		        listaChamados.forEach(Chamados => {
 					
+					
 					let opcao = null;
 					let Cliente = null;
-					let Tecnico = null;
+					let Equipamento = null;
 					if(Chamados.cliente == null){
-						Cliente = "Nao Definido"
+						Cliente = "Não Definido"
 					}else{
 						Cliente = Chamados.cliente.nome;
 					}
-					if(Chamados.tecnico == null){
-						Tecnico = "Nao Definido"
+					if(Chamados.equipamento == undefined){
+						Equipamento = "Não Definido"
 					}else{
-						Tecnico = Chamados.tecnico.nome;
+						Equipamento = Chamados.equipamento.modelo;
 					}
 					
 					if(Chamados.prioridade == "ALTA"){
@@ -60,17 +61,18 @@ async function listarChamadosAbertos() {
 					
 		            corpoTabela.innerHTML += `	
 					<tr>
-					<td class="font-code">#${Chamados.id}</td>
-					<td class="font-medium">${Cliente}</td>
-					<td>${Tecnico}</td>
-					<td class="text-truncate">${Chamados.descricao}</td>
-					<td class="text-center">
-					    <a href="#modalDetalhesChamado" class="btn-action-view" title="Analisar Detalhes e Atribuir Técnico" onclick="detalhesChamados(this)">
-					        <i class="fa-solid fa-clipboard-check"></i> Triar e Atribuir
-							<span id="idChamados" hidden=true>${Chamados.id}</span>
-					    </a>
-					</td>
+					    <td class="ps-3"><span class="font-monospace fw-semibold text-secondary">#${Chamados.id}</span></td>
+					    <td class="fw-semibold" style="color: var(--dark-blue);">${Cliente}</td>
+					    <td class="small text-muted">${Equipamento}</td>
+					    <td>
+					        <div class="text-truncate small text-muted" style="max-width: 250px;">${Chamados.descricao}</div>
 					    </td>
+					    <td class="text-center pe-3">
+					        <button class="btn btn-outline-primary btn-sm fw-semibold w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalDetalhesChamado" title="Analisar Detalhes e Atribuir Técnico">
+					            <i class="fa-solid fa-clipboard-check me-1"></i> Triar
+					        </button>
+					    </td>
+					</tr>
 		        	`
 					});
 				console.log(corpoTabela)
@@ -90,6 +92,8 @@ async function listarChamados() {
 		        corpoTabela.innerHTML = ''; 
 
 		        listaChamados.forEach(Chamados => {
+	
+				
 					
 					let opcao = null;
 					let Cliente = null;
@@ -116,18 +120,18 @@ async function listarChamados() {
 					
 		            corpoTabela.innerHTML += `	
 					<tr>
-					    <td class="text-muted">${Chamados.dataAbertura}</td>
-					    <td class="font-code">#${Chamados.id}</td>
-					    <td class="font-medium">${Cliente}</td>
-					    <td>${Tecnico}</td>
-					    ${opcao}
-					    <td><span class="badge-status atribuido">${Chamados.status}</span></td>
-					    <td class="text-center">
-					        <a href="#modalHistoricoAtribuido" class="btn-action-history-view" title="Revisar Chamado Atribuído" onclick="historicoChamados(this)">
+					    <td class="ps-3 small text-muted">23/06/2026 14:30</td>
+					    <td><span class="font-monospace fw-semibold text-secondary">#CH-2026-0475</span></td>
+					    <td class="fw-semibold" style="color: var(--dark-blue);">Padaria Pão Quente</td>
+					    <td class="small text-muted">Fernanda Lima</td>
+					    <td><span class="badge text-bg-warning">MÉDIA</span></td>
+					    <td><span class="badge text-bg-info text-white">ATRIBUÍDO</span></td>
+					    <td class="text-center pe-3">
+					        <button class="btn btn-light btn-sm border text-secondary" data-bs-toggle="modal" data-bs-target="#modalHistoricoAtribuido" title="Revisar Chamado">
 					            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-								<span id="idChamadosHistorico" hidden=true>${Chamados.id}</span>
-					        </a>
+					        </button>
 					    </td>
+					</tr>
 		        	`
 					});
 				console.log(corpoTabela)

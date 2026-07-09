@@ -100,13 +100,6 @@ function LimparFormulario() {
 	document.getElementById('cargo').value = "";
 	document.getElementById('telefone').value = "";
 }
-async function deletar(id) {
-	if(!confirm("deseja realmente excluir!")) return;
-	await fetch(`${API_DELETAR_USUARIO}/${id}`, {
-		method: "DELETE"
-	});
-	ListarUsuario();
-}
 async function editar(id) {
 	
 	
