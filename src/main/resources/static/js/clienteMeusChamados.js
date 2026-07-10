@@ -1,5 +1,5 @@
-const API_BUSCAR_CHAMADO = 'http://192.168.10.22/chamados/listartodos';
-const API_BUSCAR_CHAMADO_ID = 'http://192.168.10.22/chamados/listarPorID';
+const API_BUSCAR_CHAMADO = 'http://192.168.10.22:8010/chamados/listartodos';
+const API_BUSCAR_CHAMADO_ID = 'http://192.168.10.22:8010/chamados/listarPorID';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarChamados();

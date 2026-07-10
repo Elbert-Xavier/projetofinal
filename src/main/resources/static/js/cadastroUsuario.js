@@ -1,5 +1,5 @@
-const API_SALVAR = 'http://192.168.10.22/usuarios/salvar';
-const API_BUSCAR_GMAIL ='http://192.168.10.22/usuarios/BuscarPorEmail';
+const API_SALVAR = 'http://192.168.10.22:8010/usuarios/salvar';
+const API_BUSCAR_GMAIL ='http://192.168.10.22:8010/usuarios/BuscarPorEmail';
 
 async function Salvar() {
 	

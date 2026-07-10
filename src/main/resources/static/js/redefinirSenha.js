@@ -1,5 +1,5 @@
-const API_BUSCAR_GMAIL ='http://192.168.10.22/usuarios/BuscarPorEmail';
-const API_NOVA_SENHA = 'http://192.168.10.22/usuarios/novaSenha';
+const API_BUSCAR_GMAIL ='http://192.168.10.22:8010/usuarios/BuscarPorEmail';
+const API_NOVA_SENHA = 'http://192.168.10.22:8010/usuarios/novaSenha';
 
 function revelarSenha(inputId, iconId) {
     

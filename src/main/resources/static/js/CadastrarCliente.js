@@ -1,5 +1,5 @@
-const API_SALVAR_CLIENTE = 'http://192.168.10.22/clientes/salvarCliente';
-const API_SALVAR_EQUIPAMENTO = 'http://192.168.10.22/equipamentos/salvar';
+const API_SALVAR_CLIENTE = 'http://192.168.10.22:8010/clientes/salvarCliente';
+const API_SALVAR_EQUIPAMENTO = 'http://192.168.10.22:8010/equipamentos/salvar';
 const API_BUSCAR_CEP = 'https://viacep.com.br/ws';
 
 let listaEquipamentos = [];
