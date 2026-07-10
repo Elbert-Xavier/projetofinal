@@ -1,10 +1,10 @@
-const API_BUSCAR_TODOS = 'http://localhost:8000/equipamentos/listarTodos'; 
-const API_BUSCAR_ID = 'http://localhost:8000/equipamentos/listaPorID';
-const API_BUSCAR_POR_MODELO = 'http://localhost:8000/equipamentos/listarmodelo';
-const API_BUSCAR_POR_FABRICANTE = 'http://localhost:8000/equipamentos/listarmarca';
-const API_BUSCAR_POR_SERIE = 'http://localhost:8000/equipamentos/listarserie';
-const API_BUSCAR_POR_TIPO = 'http://localhost:8000/equipamentos/listartipo';
-const API_BUSCAR_NOME = 'http://localhost:8000/equipamentos/listarnome';
+const API_BUSCAR_TODOS = 'http://192.168.10.22/equipamentos/listarTodos'; 
+const API_BUSCAR_ID = 'http://192.168.10.22/equipamentos/listaPorID';
+const API_BUSCAR_POR_MODELO = 'http://192.168.10.22/equipamentos/listarmodelo';
+const API_BUSCAR_POR_FABRICANTE = 'http://192.168.10.22/equipamentos/listarmarca';
+const API_BUSCAR_POR_SERIE = 'http://192.168.10.22/equipamentos/listarserie';
+const API_BUSCAR_POR_TIPO = 'http://192.168.10.22/equipamentos/listartipo';
+const API_BUSCAR_NOME = 'http://192.168.10.22/equipamentos/listarnome';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarEquipamentos();

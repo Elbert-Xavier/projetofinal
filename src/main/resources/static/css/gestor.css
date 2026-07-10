@@ -5,13 +5,13 @@
 
 :root {
     --sidebar-width: 260px;
-    --dark-blue: var(--cor-principal, #0056b3); /* Conectado ao seu CSS Base */
+    --dark-blue: var(--cor-principal); /* Conectado diretamente ao seu CSS Base */
 }
 
 /* Modificação Global e Fundo */
 body {
     font-family: 'IBM Plex Sans', sans-serif !important;
-    background-color: #f8f9fa !important; /* Fundo cinza-claro para destacar os painéis brancos */
+    background-color: var(--cor-fundo-alt) !important; /* Atualizado para a variável de fundo alternativa */
 }
 
 /* ==========================================================================
@@ -26,8 +26,8 @@ body {
 /* Barra Lateral Fixa */
 .sidebar {
     width: var(--sidebar-width);
-    background-color: #ffffff;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
+    border-right: 1px solid var(--border-media); /* Atualizado para variável de borda da barra */
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -42,7 +42,7 @@ body {
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
-    background-color: #f8f9fa;
+    background-color: var(--cor-fundo-alt); /* Atualizado para a variável de fundo alternativa */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--border-suave); /* Atualizado para variável de divisor suave */
 }
 
 .logo-box {
@@ -83,7 +83,7 @@ body {
 
 .logo-subtext {
     font-size: 0.75rem;
-    color: #6c757d;
+    color: var(--cor-texto-suave); /* Atualizado para a variável de texto secundário */
     font-weight: 500;
 }
 
@@ -100,7 +100,7 @@ body {
     align-items: center;
     gap: 12px;
     padding: 0.85rem 1.5rem;
-    color: #212529;
+    color: var(--cor-texto); /* Atualizado para variável de texto padrão */
     font-weight: 500;
     font-size: 0.95rem;
     text-decoration: none;
@@ -111,13 +111,13 @@ body {
     width: 20px;
     font-size: 1.1rem;
     text-align: center;
-    color: #6c757d;
+    color: var(--cor-texto-suave); /* Atualizado para a variável de texto secundário */
 }
 
 /* Efeito Hover nos Links */
 .nav-item:hover {
     color: var(--dark-blue);
-    background-color: rgba(0, 86, 179, 0.05);
+    background-color: var(--bg-azul-claro); /* Atualizado para variável de fundo azul claro */
     text-decoration: none;
 }
 
@@ -128,7 +128,7 @@ body {
 /* Link Selecionado (Active) */
 .nav-item.active {
     color: var(--dark-blue);
-    background-color: rgba(0, 86, 179, 0.08);
+    background-color: var(--bg-azul-subtle); /* Atualizado para variável de fundo sutil ativo */
     font-weight: 600;
     border-left: 4px solid var(--dark-blue);
 }
@@ -140,20 +140,20 @@ body {
 /* Rodapé e Botão Sair */
 .sidebar-footer {
     margin-top: auto;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid var(--border-suave); /* Atualizado para variável de divisor suave */
     padding-top: 0.5rem;
 }
 
 .nav-item.logout {
-    color: #dc3545;
+    color: var(--feedback-perigo); /* Atualizado para variável de feedback de perigo */
 }
 
 .nav-item.logout i {
-    color: #dc3545;
+    color: var(--feedback-perigo); /* Atualizado para variável de feedback de perigo */
 }
 
 .nav-item.logout:hover {
-    background-color: rgba(220, 53, 69, 0.05);
+    background-color: var(--bg-perigo-suave); /* Atualizado para a variável de hover de logout */
 }
 
 /* ==========================================================================
@@ -162,7 +162,7 @@ body {
 
 /* Padronização dos Painéis e Cards */
 .card {
-    background-color: #ffffff !important;
+    background-color: var(--cor-fundo) !important; /* Atualizado para variável de fundo branco */
     border-radius: 12px !important;
 }
 
@@ -174,8 +174,8 @@ body {
 
 .card-hover-effect:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
-    border-color: rgba(0, 86, 179, 0.15) !important;
+    box-shadow: 0 8px 20px var(--shadow-card-hover) !important; /* Atualizado para variável de sombra de elevação */
+    border-color: var(--border-card-hover) !important; /* Atualizado para variável de destaque de borda */
 }
 
 /* Itens de lista interativos (Ex: Últimos Chamados e Feed do Dashboard) */
@@ -184,7 +184,7 @@ body {
 }
 
 .list-group-item-action:hover {
-    background-color: rgba(0, 86, 179, 0.02) !important;
+    background-color: var(--bg-azul-minimal) !important; /* Atualizado para variável de fundo azul mínimo */
 }
 
 /* Formatação de Tabelas Administrativas */
@@ -222,7 +222,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--overlay-mobile); /* Atualizado para variável de overlay */
     z-index: 1025;
     display: none;
     opacity: 0;

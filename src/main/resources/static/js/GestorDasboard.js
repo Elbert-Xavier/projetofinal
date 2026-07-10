@@ -1,5 +1,5 @@
-const API_CONTAR_CHAMADO = 'http://localhost:8000/chamados/contarChamados';
-const API_CONTAR_CHAMADO_FINALIZADO = 'http://localhost:8000/chamados/contarChamadosFinalizados';
+const API_CONTAR_CHAMADO = 'http://192.168.10.22/chamados/contarChamados';
+const API_CONTAR_CHAMADO_FINALIZADO = 'http://192.168.10.22/chamados/contarChamadosFinalizados';
 
 
 

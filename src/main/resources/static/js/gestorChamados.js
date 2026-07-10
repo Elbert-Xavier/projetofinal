@@ -1,10 +1,10 @@
-const API_BUSCAR_CHAMADO = 'http://localhost:8000/chamados/listartodos';
-const API_BUSCAR_CHAMADO_ID = 'http://localhost:8000/chamados/listarPorID';
-const API_BUSCAR_CHAMADOS_ABERTOS = 'http://localhost:8000/chamados/ListarChamadoStatus';
-const API_BUSCAR_TECNICOS = 'http://localhost:8000/usuarios/listarTecnicos';
-const API_ATUALIZAR_CHAMADO = 'http://localhost:8000/chamados/atualizar';
+const API_BUSCAR_CHAMADO = 'http://192.168.10.22/chamados/listartodos';
+const API_BUSCAR_CHAMADO_ID = 'http://192.168.10.22/chamados/listarPorID';
+const API_BUSCAR_CHAMADOS_ABERTOS = 'http://192.168.10.22/chamados/ListarChamadoStatus';
+const API_BUSCAR_TECNICOS = 'http://192.168.10.22/usuarios/listarTecnicos';
+const API_ATUALIZAR_CHAMADO = 'http://192.168.10.22/chamados/atualizar';
 
-async function selectAlunos() {
+async function selectTecnico() {
 		
 		const response = await fetch(API_BUSCAR_TECNICOS);
 		const areas = await response.json();
@@ -68,8 +68,9 @@ async function listarChamadosAbertos() {
 					        <div class="text-truncate small text-muted" style="max-width: 250px;">${Chamados.descricao}</div>
 					    </td>
 					    <td class="text-center pe-3">
-					        <button class="btn btn-outline-primary btn-sm fw-semibold w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalDetalhesChamado" title="Analisar Detalhes e Atribuir Técnico">
+					        <button class="btn btn-outline-primary btn-sm fw-semibold w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalDetalhesChamado" title="Analisar Detalhes e Atribuir Técnico" onclick="detalhesChamados(this)">
 					            <i class="fa-solid fa-clipboard-check me-1"></i> Triar
+								<span id="idChamados" hidden=true>${Chamados.id}</span>
 					        </button>
 					    </td>
 					</tr>
@@ -101,7 +102,7 @@ async function listarChamados() {
 					if(Chamados.cliente == null){
 						Cliente = "Nao Definido"
 					}else{
-						Cliente = Chamados.cliente.nome;
+						Cliente = Chamados.cliente.cliente.nomeFantasia;
 					}
 					if(Chamados.tecnico == null){
 						Tecnico = "Nao Definido"
@@ -109,26 +110,27 @@ async function listarChamados() {
 						Tecnico = Chamados.tecnico.nome;
 					}
 					if(Chamados.prioridade == "ALTA"){
-						opcao = `<td><span class="badge-urgencia alta">${Chamados.prioridade}</span></td>`
+						opcao = `<td><span class="badge text-bg-danger">${Chamados.prioridade}</span></td>`
 					}else if(Chamados.prioridade == "MEDIA"){
-						opcao = `<td><span class="badge-urgencia media">${Chamados.prioridade}</span></td>`
+						opcao = `<td><span class="badge text-bg-warning">${Chamados.prioridade}</span></td>`
 					}else if(Chamados.prioridade == "BAIXA"){
-						opcao = `<td><span class="badge-urgencia baixa">${Chamados.prioridade}</span></td>`
+						opcao = `<td><span class="badge text-bg-secondary">${Chamados.prioridade}</span></td>`
 					}else{
-						opcao = `<td><span class="badge-urgencia indefinido">${Chamados.prioridade}</span></td>`
+						opcao = `<td><span class="badge text-bg-primary">${Chamados.prioridade}</span></td>`
 					}
 					
 		            corpoTabela.innerHTML += `	
 					<tr>
-					    <td class="ps-3 small text-muted">23/06/2026 14:30</td>
-					    <td><span class="font-monospace fw-semibold text-secondary">#CH-2026-0475</span></td>
-					    <td class="fw-semibold" style="color: var(--dark-blue);">Padaria Pão Quente</td>
-					    <td class="small text-muted">Fernanda Lima</td>
-					    <td><span class="badge text-bg-warning">MÉDIA</span></td>
-					    <td><span class="badge text-bg-info text-white">ATRIBUÍDO</span></td>
+					    <td class="ps-3 small text-muted">${Chamados.dataAbertura}</td>
+					    <td><span class="font-monospace fw-semibold text-secondary">#${Chamados.id}</span></td>
+					    <td class="fw-semibold" style="color: var(--dark-blue);">${Cliente}</td>
+					    <td class="small text-muted">${Tecnico}</td>
+					    ${opcao}
+					    <td><span class="badge text-bg-info text-white">${Chamados.status}</span></td>
 					    <td class="text-center pe-3">
-					        <button class="btn btn-light btn-sm border text-secondary" data-bs-toggle="modal" data-bs-target="#modalHistoricoAtribuido" title="Revisar Chamado">
+					        <button class="btn btn-light btn-sm border text-secondary" data-bs-toggle="modal" data-bs-target="#modalHistoricoAtribuido" title="Revisar Chamado" onclick="historicoChamados(this)">
 					            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+								<span id="idChamadosHistorico" hidden=true>${Chamados.id}</span>
 					        </button>
 					    </td>
 					</tr>
@@ -139,7 +141,7 @@ async function listarChamados() {
 document.addEventListener("DOMContentLoaded",() =>{
 	listarChamados();
 	listarChamadosAbertos();
-	selectAlunos();
+	selectTecnico();
 })
 async function detalhesChamados(button) {
 		
@@ -151,14 +153,32 @@ async function detalhesChamados(button) {
 		
 		console.log(dados);
 		
-		document.getElementById('chamadoID').innerText = "#"+dados.id;
+		let imagem = null;
+		let Cliente = null;
+		let equipamento = null;
+		if(dados.urlImagem == null){
+			imagem = "Nao Definido"
+		}else{
+			imagem = dados.urlImagem;
+		}
+		if(dados.cliente == null){
+			Cliente = "Nao Definido"
+		}else{
+			Cliente = dados.cliente.cliente.nomeFantasia;
+		}
+		if(dados.equipamento == null){
+			equipamento = "Nao Definido"
+		}else{
+			equipamento = dados.equipamento.modelo;
+		}
+		
+		document.getElementById('modalCodigo').innerText = "#"+dados.id;
 		document.getElementById('idChamadoAtualizar').innerText = dados.id;
-		document.getElementById('nomeCliente').innerText = dados.cliente.nome;
-		document.getElementById('dataChamado').innerText = dados.dataAbertura;
-		document.getElementById('equipamento').innerText = dados.equipamento.modelo;
-		document.getElementById('observacao').innerText = dados.equipamento.observacoes;
-		document.getElementById('DescricaoProblema').innerText = dados.descricao;
-		document.getElementById('imagem').src = `/img/+${dados.urlImagem}`;
+		document.getElementById('modalCliente').innerText = Cliente;
+		document.getElementById('modalEquipamento').innerText = equipamento;
+		document.getElementById('modalTitulo').innerText = dados.titulo;
+		document.getElementById('modalDescricao').innerText = dados.descricao;
+		document.getElementById('modalFoto').src = `/img/+${dados.urlImagem}`;
 }
 async function historicoChamados(button) {
 		
@@ -169,9 +189,6 @@ async function historicoChamados(button) {
 		const dados = await response.json();
 		
 		console.log(dados);
-		
-		document.getElementById('chamadoIDHistorico').innerText = "Chamado #"+dados.id;
-		document.getElementById('nomeClienteHistorico').innerText
 		
 		let imagem = null;
 		let Cliente = null;
@@ -184,31 +201,38 @@ async function historicoChamados(button) {
 		if(dados.cliente == null){
 			Cliente = "Nao Definido"
 		}else{
-			Cliente = dados.cliente.nome;
+			Cliente = dados.cliente.cliente.nomeFantasia;
 		}
 		if(dados.tecnico == null){
 			Tecnico = "Nao Definido"
 		}else{
 			Tecnico = dados.tecnico.nome;
 		}
+		
+		document.getElementById('modalHistCodigo').innerText = "#"+dados.id;
+		document.getElementById('modalHistCliente').innerText = Cliente;
+		
+
 			if(dados.prioridade == "ALTA"){
-				document.getElementById('prioridadeHistorico').className = "badge-urgencia alta";
-				document.getElementById('prioridadeHistorico').innerText = dados.prioridade;
+				document.getElementById('modalHistUrgencia').className = "badge text-bg-danger";
+				document.getElementById('modalHistUrgencia').innerText = dados.prioridade;
 			}else if(dados.prioridade == "MEDIA"){
-				document.getElementById('prioridadeHistorico').className = "badge-urgencia media";
-				document.getElementById('prioridadeHistorico').innerText = dados.prioridade;
+				document.getElementById('modalHistUrgencia').className = "badge text-bg-warning";
+				document.getElementById('modalHistUrgencia').innerText = dados.prioridade;
 			}else if(dados.prioridade == "BAIXA"){
-				document.getElementById('prioridadeHistorico').className = "badge-urgencia baixa";
-				document.getElementById('prioridadeHistorico').innerText = dados.prioridade;
+				document.getElementById('modalHistUrgencia').className = "badge text-bg-secondary";
+				document.getElementById('modalHistUrgencia').innerText = dados.prioridade;
 			}else{
-				document.getElementById('prioridadeHistorico').className = "badge-urgencia indefinido";
-				document.getElementById('prioridadeHistorico').innerText = dados.prioridade;
+				document.getElementById('modalHistUrgencia').className = "badge text-bg-primary";
+				document.getElementById('modalHistUrgencia').innerText = dados.prioridade;
 			}
 		
-		document.getElementById('tecnicoHistorico').innerText = Tecnico;
-		document.getElementById('dataHistorico').innerText = dados.dataAbertura
-		document.getElementById('DescricaoHistorico').innerText = dados.descricao
-		document.getElementById('imagemHistorico').src = "/img/"+imagem;
+		document.getElementById('modalHistTecnico').innerText = Tecnico;
+		document.getElementById('modalHistStatus').innerText = dados.status
+		document.getElementById('modalHistTitulo').innerText = dados.titulo
+		document.getElementById('modalHistDescricao').innerText = dados.descricao
+		document.getElementById('modalHistFoto').src = "/img/"+imagem;
+		document.getElementById('modalHistOrientaçoes').innerText = dados.orientacao
 }
 async function AtualizarChamado(){
 	
@@ -223,8 +247,8 @@ async function AtualizarChamado(){
 	const ChamadoAtualizar = {
 		titulo: dados.titulo,
 		descricao: dados.descricao,
-	    orientacao: document.getElementById('modalObs').value,
-	    prioridade: document.getElementById('modalDetalhePrioridade').value,
+	    orientacao: document.getElementById('txtOrientaçoesTriagem').value,
+	    prioridade: document.getElementById('selectUrgenciaTriagem').value,
 	    status: "EM_ANDAMENTO",
 	    tecnico: { 
 	        id: Number(document.getElementById('modalDetalheTecnico').value)

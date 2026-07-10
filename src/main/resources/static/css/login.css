@@ -4,8 +4,8 @@
    ========================================================================== */
 
 :root {
-    --azul-gestor: var(--cor-principal, #0056b3);
-    --azul-claro-bg: rgba(0, 86, 179, 0.05);
+    --azul-gestor: var(--cor-principal); /* Conectado diretamente ao seu CSS Base */
+    --azul-claro-bg: var(--bg-azul-claro); /* Conectado à variável de fundo azul claro */
     --fonte-acesso: 'IBM Plex Sans', 'Poppins', sans-serif;
 }
 
@@ -15,7 +15,7 @@ html, body {
     padding: 0;
     width: 100%;
     font-family: var(--fonte-acesso);
-    background-color: #f8f9fa !important; /* Fundo cinza-claro padrão do Bootstrap */
+    background-color: var(--cor-fundo-alt) !important; /* Atualizado para a variável de fundo alternativa */
 }
 
 /* Se for a estrutura de Login / Redefinir (Split) */
@@ -23,7 +23,7 @@ html, body {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
 }
 
 /* ==========================================================================
@@ -37,7 +37,7 @@ html, body {
     justify-content: center;
     align-items: flex-start;
     padding: 10% 8%;
-    color: #ffffff;
+    color: var(--cor-fundo); /* Atualizado para variável de cor contrastante branca */
 }
 
 .left-side .brand {
@@ -60,7 +60,7 @@ html, body {
     width: 54px;
     height: 54px;
     object-fit: contain;
-    background-color: #ffffff;
+    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -82,7 +82,7 @@ html, body {
    ========================================================================== */
 .right-side {
     flex: 1;
-    background-color: #ffffff;
+    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,12 +97,12 @@ html, body {
 .form-wrapper h1 {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--texto-escuro-titulo); /* Atualizado para variável de texto escuro */
     margin-bottom: 0.5rem;
 }
 
 .form-wrapper .subtitle {
-    color: #6c757d;
+    color: var(--cor-texto-suave); /* Atualizado para variável de texto secundário */
     font-size: 0.95rem;
     margin-bottom: 2.5rem;
 }
@@ -118,7 +118,7 @@ html, body {
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: #a0aec0;
+    color: var(--texto-placeholder-icone); /* Atualizado para variável de ícone neutro */
     font-size: 1.1rem;
     transition: color 0.2s ease;
 }
@@ -127,18 +127,18 @@ html, body {
     width: 100%;
     padding: 1rem 1rem 1rem 3rem;
     font-size: 1rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-input); /* Atualizado para variável de borda de input */
     border-radius: 8px;
-    background-color: #f8fafc;
-    color: #2d3748;
+    background-color: var(--bg-input-padrao); /* Atualizado para variável de background do input */
+    color: var(--texto-input); /* Atualizado para variável de texto digitado */
     outline: none;
     transition: all 0.2s ease;
 }
 
 .input-container input:focus {
     border-color: var(--azul-gestor);
-    background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15);
+    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
+    box-shadow: 0 0 0 4px var(--border-input-foco); /* Atualizado para variável de sombra de foco */
 }
 
 .input-container input:focus ~ i:first-child {
@@ -152,12 +152,12 @@ html, body {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #718096;
+    color: var(--texto-mutated); /* Atualizado para a variável de links secundários e apoio */
     padding: 5px;
 }
 
 .eye-toggle:hover {
-    color: #2d3748;
+    color: var(--texto-input); /* Atualizado para a variável de texto escuro do input ativo */
 }
 
 /* Links auxiliares */
@@ -182,7 +182,7 @@ html, body {
 .register-link {
     text-align: center;
     margin-top: 1.5rem;
-    color: #718096;
+    color: var(--texto-mutated); /* Atualizado para a variável de texto de apoio */
     font-size: 0.95rem;
 }
 
@@ -192,7 +192,7 @@ html, body {
     width: 100%;
     padding: 0.85rem 1.5rem;
     background-color: var(--azul-gestor) !important;
-    color: #ffffff !important;
+    color: var(--cor-fundo) !important; /* Atualizado para variável de texto branco */
     border: none !important;
     border-radius: 8px !important;
     font-size: 1rem;
@@ -204,7 +204,7 @@ html, body {
 
 .btn-entrar:hover,
 .btn-purple:hover {
-    background-color: #004085 !important;
+    background-color: var(--cor-principal-hover) !important; /* Atualizado para a variável de hover da marca */
 }
 
 .btn-entrar:active,
@@ -219,28 +219,28 @@ html, body {
 /* Limita a largura máxima do Card centralizado para ficar elegante no Desktop */
 body.min-vh-100 .card {
     max-width: 800px;
-    background-color: #ffffff;
+    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
 }
 
 /* Estilização refinada para os Inputs com Grid do Bootstrap (Concluir Cadastro) */
 .form-control:focus, 
 .form-select:focus {
     border-color: var(--azul-gestor) !important;
-    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15) !important;
+    box-shadow: 0 0 0 4px var(--border-input-foco) !important; /* Atualizado para variável de sombra de foco */
 }
 
 .input-group-text {
     border-right: none !important;
-    background-color: #f8fafc !important;
+    background-color: var(--bg-input-padrao) !important; /* Atualizado para variável de background do input */
 }
 
 .input-group .form-control {
     border-left: none !important;
-    background-color: #f8fafc !important;
+    background-color: var(--bg-input-padrao) !important; /* Atualizado para variável de background do input */
 }
 
 .input-group .form-control:focus {
-    background-color: #ffffff !important;
+    background-color: var(--cor-fundo) !important; /* Atualizado para variável de fundo branco */
 }
 
 /* ==========================================================================

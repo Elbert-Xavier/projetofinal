@@ -2,7 +2,7 @@
    1. VARIÁVEIS DE DESIGN (Configuração de Cores e Fontes)
    ========================================================================== */
 :root {
-    /* Paleta de Cores */
+    /* Paleta de Cores Originais da Base */
     --cor-principal: #0213f7;       /* Azul institucional/destaque */
     --cor-principal-hover: #004085; /* Azul um pouco mais escuro para links/botões ao passar o mouse */
     --cor-fundo: #ffffff;           /* Fundo branco solicitado */
@@ -13,6 +13,34 @@
     /* Fontes e Espaçamento */
     --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --borda-raio: 6px;              /* Arredondamento padrão para botões e inputs */
+
+    /* ==========================================================================
+       CORES EXTRAÍDAS DOS ARQUIVOS (Mapeadas do Login, Gestor, Cliente e Técnico)
+       ========================================================================== */
+    /* Cores de Fundo e Containers */
+    --bg-azul-claro: rgba(0, 86, 179, 0.05);   /* .azul-claro-bg e hover de nav-items */
+    --bg-azul-subtle: rgba(0, 86, 179, 0.08);  /* .bg-primary-subtle e nav-item active */
+    --bg-azul-minimal: rgba(0, 86, 179, 0.02); /* Hover de itens de lista interativos */
+    --bg-input-padrao: #f8fafc;                /* Background de inputs desfocados */
+    --overlay-mobile: rgba(0, 0, 0, 0.4);      /* Sombra de fundo do menu mobile ativo */
+
+    /* Tons de Cinza para Bordas e Linhas de Separação */
+    --border-suave: rgba(0, 0, 0, 0.05);       /* Divisores de logo e rodapé da sidebar */
+    --border-media: rgba(0, 0, 0, 0.08);       /* Borda lateral da barra fixa */
+    --border-input: #e2e8f0;                   /* Borda padrão de inputs do login */
+    --border-input-foco: rgba(0, 86, 179, 0.15);/* Sombra de foco (box-shadow) dos inputs */
+    --border-card-hover: rgba(0, 86, 179, 0.15);/* Borda de destaque ao passar o mouse nos cards */
+    --shadow-card-hover: rgba(0, 0, 0, 0.06);  /* Sombra de elevação dos cards */
+
+    /* Cores de Texto Específicas */
+    --texto-escuro-titulo: #1a1a1a;            /* Títulos principais de formulários */
+    --texto-input: #2d3748;                    /* Cor do texto digitado e ícones ativos */
+    --texto-placeholder-icone: #a0aec0;        /* Ícones e placeholders neutros */
+    --texto-mutado: #718096;                   /* Links secundários e textos de apoio */
+
+    /* Cores de Feedback (Erros / Alertas / Sair) */
+    --feedback-perigo: #dc3545;                 /* Vermelho para logout/ações críticas */
+    --bg-perigo-suave: rgba(220, 53, 69, 0.05); /* Fundo hover do botão de logout */
 }
 
 /* ==========================================================================
@@ -29,7 +57,7 @@
    ========================================================================== */
 body {
     font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo);
+    background-color: var(--cor-fundo-alt); /* Atualizado para o cinza-claro padrão das áreas logadas */
     color: var(--cor-texto);
     line-height: 1.6;
 }
@@ -95,20 +123,21 @@ textarea,
 select {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-input);
     border-radius: var(--borda-raio);
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
+    background-color: var(--bg-input-padrao);
+    color: var(--texto-input);
     font-size: 1rem;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus, 
 textarea:focus, 
 select:focus {
     border-color: var(--cor-principal);
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2); /* Sombra suave em azul */
+    background-color: var(--cor-fundo);
+    box-shadow: 0 0 0 4px var(--border-input-foco); /* Atualizado com o padrão do fluxo de login e painéis */
 }
 
 /* Container de Conteúdo */

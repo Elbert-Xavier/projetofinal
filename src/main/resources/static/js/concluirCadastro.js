@@ -1,5 +1,5 @@
-const API_BUSCAR_POR_ID ='http://localhost:8000/usuarios/listarPorID';
-const API_ATUALIZAR = 'http://localhost:8000/usuarios/atualizarPrimeiroLogin';
+const API_BUSCAR_POR_ID ='http://192.168.10.22/usuarios/listarPorID';
+const API_ATUALIZAR = 'http://192.168.10.22/usuarios/atualizarPrimeiroLogin';
 let Conta = null;
 
 async function concluirCadastro() {

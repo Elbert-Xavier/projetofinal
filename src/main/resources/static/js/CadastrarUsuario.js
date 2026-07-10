@@ -1,8 +1,8 @@
-const API_SALVAR_USUARIO = 'http://localhost:8000/usuarios/salvarCliente';
-const API_LISTAR_USUARIO = 'http://localhost:8000/usuarios/listarTodos';
-const API_ATUALIZAR_USUARIO = 'http://localhost:8000/usuarios/atualizar';
-const API_BUSCAR_USUARIO_POR_ID = 'http://localhost:8000/usuarios/listarPorID';
-const API_DELETAR_USUARIO = 'http://localhost:8000/usuarios/deletar';
+const API_SALVAR_USUARIO = 'http://192.168.10.22/usuarios/salvarCliente';
+const API_LISTAR_USUARIO = 'http://192.168.10.22/usuarios/listarTodos';
+const API_ATUALIZAR_USUARIO = 'http://192.168.10.22/usuarios/atualizar';
+const API_BUSCAR_USUARIO_POR_ID = 'http://192.168.10.22/usuarios/listarPorID';
+const API_DELETAR_USUARIO = 'http://192.168.10.22/usuarios/deletar';
 let EeditandoId = null
 
 

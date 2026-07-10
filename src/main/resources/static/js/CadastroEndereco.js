@@ -1,4 +1,4 @@
-const API_SALVA = 'http://localhost:8000/enderecos/gravar';
+const API_SALVA = 'http://192.168.10.22/enderecos/gravar';
 
 async function buscarCep(cep) {
 	

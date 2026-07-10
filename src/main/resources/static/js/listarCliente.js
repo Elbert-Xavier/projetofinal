@@ -1,7 +1,7 @@
-const API_LISTAR_CLIENTES = 'http://localhost:8000/clientes/listarTodos';
-const API_PESQUISAR_CLIENTES = 'http://localhost:8000/clientes/pesquisar';
-const API_PESQUISAR_EQUIPAMENTOS = 'http://localhost:8000/equipamentos/pesquisar';
-const API_SALVAR_EQUIPAMENTO = 'http://localhost:8000/equipamentos/salvar';
+const API_LISTAR_CLIENTES = 'http://192.168.10.22/clientes/listarTodos';
+const API_PESQUISAR_CLIENTES = 'http://192.168.10.22/clientes/pesquisar';
+const API_PESQUISAR_EQUIPAMENTOS = 'http://192.168.10.22/equipamentos/pesquisar';
+const API_SALVAR_EQUIPAMENTO = 'http://192.168.10.22/equipamentos/salvar';
 
 document.addEventListener('DOMContentLoaded', async function() {
     await carregarTodosOsClientes();

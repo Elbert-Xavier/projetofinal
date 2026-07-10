@@ -48,22 +48,22 @@
                     <img src="../assets/logo-icon.png" alt="Logo" style="width: 32px; height: 32px;">
                     <span class="fw-bold" style="color: var(--dark-blue);">Gestor&amp;Tech</span>
                 </div>
-                <button class="btn btn-light border-0" id="btnMenuMobile">
+                <button class="btn btn-light border-0" id="btnMenuMobile" aria-label="Abrir Menu">
                     <i class="fa-solid fa-bars fs-4" style="color: var(--dark-blue);"></i>
                 </button>
             </div>
 
             <div class="sidebar-overlay" id="overlayMenuMobile"></div>
 
-            <div class="content-wrapper p-3 p-sm-4 p-md-5">
-                <div class="card p-3 p-sm-4 p-md-5 border-0 shadow-sm mx-auto" style="max-width: 1200px;" id="cardChamados">
+            <div class="content-wrapper p-2 p-sm-3 p-md-4 p-lg-5">
+                <div class="card p-3 p-sm-4 border-0 shadow-sm mx-auto" style="max-width: 1200px;" id="cardChamados">
                     
-                    <div class="d-flex align-items-center gap-3 mb-5 mt-2 mt-lg-0">
+                    <div class="d-flex flex-column flex-sm-row align-items-start gap-3 mb-4 mb-md-5 mt-2 mt-lg-0">
                         <div class="header-icon-circle flex-shrink-0" style="width: 46px; height: 46px; background-color: var(--bs-primary-bg-subtle, #eaedfe); color: var(--bs-primary); display: flex; align-items: center; justify-content: center; border-radius: 50%;">
                             <i class="fa-solid fa-headset fs-5"></i>
                         </div>
                         <div>
-                            <h1 class="h4 mb-0 fw-bold" style="color: var(--dark-blue);">Mesa de Chamados e Triagem</h1>
+                            <h1 class="h4 mb-1 fw-bold" style="color: var(--dark-blue);">Mesa de Chamados e Triagem</h1>
                             <p class="text-muted small mb-0">Visualize as solicitações recebidas, filtre o histórico e realize a triagem da equipe.</p>
                         </div>
                     </div>
@@ -72,15 +72,15 @@
                         <i class="fa-regular fa-clock text-muted me-2"></i> Chamados Aguardando Triagem (Aberto)
                     </h6>
                     
-                    <div class="table-responsive border rounded mb-5">
+                    <div class="table-responsive border rounded mb-5 bg-white">
                         <table class="table table-hover align-middle mb-0" style="min-width: 800px;">
                             <thead class="table-light text-secondary small text-uppercase">
                                 <tr>
-                                    <th class="ps-3 py-3">Código</th>
-                                    <th class="py-3">Cliente / Empresa</th>
-                                    <th class="py-3">Equipamento</th>
-                                    <th class="py-3">Problema Relatado</th>
-                                    <th class="text-center pe-3 py-3">Ação Operacional</th>
+                                    <th class="ps-3 py-3" style="width: 15%">Código</th>
+                                    <th class="py-3" style="width: 25%">Cliente / Empresa</th>
+                                    <th class="py-3" style="width: 20%">Equipamento</th>
+                                    <th class="py-3" style="width: 25%">Problema Relatado</th>
+                                    <th class="text-center pe-3 py-3" style="width: 15%">Ação Operacional</th>
                                 </tr>
                             </thead>
                             <tbody id="tabelaChamadosAbertos">
@@ -89,10 +89,10 @@
                                     <td class="fw-semibold" style="color: var(--dark-blue);">Oficina do Zé Ltda</td>
                                     <td class="small text-muted">Servidor Dell Optiplex</td>
                                     <td>
-                                        <div class="text-truncate small text-muted" style="max-width: 250px;">Servidor local parou após queda de energia.</div>
+                                        <div class="text-truncate small text-muted" style="max-width: 250px;" title="Servidor local parou após queda de energia.">Servidor local parou após queda de energia.</div>
                                     </td>
                                     <td class="text-center pe-3">
-                                        <button class="btn btn-outline-primary btn-sm fw-semibold w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalDetalhesChamado" title="Analisar Detalhes e Atribuir Técnico">
+                                        <button class="btn btn-outline-primary btn-sm fw-semibold w-100" data-bs-toggle="modal" data-bs-target="#modalDetalhesChamado" title="Analisar Detalhes e Atribuir Técnico">
                                             <i class="fa-solid fa-clipboard-check me-1"></i> Triar
                                         </button>
                                     </td>
@@ -101,64 +101,64 @@
                         </table>
                     </div>
 
-                    <hr class="text-muted opacity-25 my-5">
+                    <hr class="text-muted opacity-25 my-4 my-md-5">
 
                     <h6 class="text-uppercase fw-bold mb-3" style="color: var(--dark-blue); font-size: 13px; letter-spacing: 0.5px;">
                         <i class="fa-solid fa-chart-simple text-muted me-2"></i> Histórico e Monitoramento
                     </h6>
                     
                     <form class="row g-2 mb-4 align-items-end bg-light p-3 rounded border mx-0">
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <label for="filterCliente" class="form-label small fw-semibold text-muted mb-1">Cliente / Empresa</label>
-                            <select id="filterCliente" class="form-select form-select-sm">
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterCliente" class="form-label small fw-semibold text-muted mb-1 text-truncate d-block">Cliente / Empresa</label>
+                            <select id="filterCliente" class="form-select form-select-sm" style="height: 31px;">
                                 <option value="">Todos</option>
                                 <option value="1">Oficina do Zé Ltda</option>
                                 <option value="2">Padaria Pão Quente</option>
                             </select>
                         </div>
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <label for="filterStatus" class="form-label small fw-semibold text-muted mb-1">Status</label>
-                            <select id="filterStatus" class="form-select form-select-sm">
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-1.5" style="min-width: 120px;">
+                            <label for="filterStatus" class="form-label small fw-semibold text-muted mb-1 text-truncate d-block">Status</label>
+                            <select id="filterStatus" class="form-select form-select-sm" style="height: 31px;">
                                 <option value="">Todos</option>
                                 <option value="ABERTO">Aberto</option>
                                 <option value="ATRIBUIDO">Atribuído</option>
                                 <option value="FINALIZADO">Finalizado</option>
                             </select>
                         </div>
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <label for="filterEquipamento" class="form-label small fw-semibold text-muted mb-1">Equipamento</label>
-                            <input type="text" id="filterEquipamento" class="form-control form-control-sm" placeholder="Ex: Servidor">
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterEquipamento" class="form-label small fw-semibold text-muted mb-1 text-truncate d-block">Equipamento</label>
+                            <input type="text" id="filterEquipamento" class="form-control form-control-sm" placeholder="Ex: Servidor" style="height: 31px;">
                         </div>
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <label for="filterFabricante" class="form-label small fw-semibold text-muted mb-1">Fabricante</label>
-                            <input type="text" id="filterFabricante" class="form-control form-control-sm" placeholder="Ex: Dell">
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                            <label for="filterFabricante" class="form-label small fw-semibold text-muted mb-1 text-truncate d-block">Fabricante</label>
+                            <input type="text" id="filterFabricante" class="form-control form-control-sm" placeholder="Ex: Dell" style="height: 31px;">
                         </div>
-                        <div class="col-sm-6 col-md-4 col-xl-1">
-                            <label for="filterDataInicio" class="form-label small fw-semibold text-muted mb-1">Início</label>
-                            <input type="date" id="filterDataInicio" class="form-control form-control-sm">
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-1.5" style="min-width: 130px;">
+                            <label for="filterDataInicio" class="form-label small fw-semibold text-muted mb-1 text-truncate d-block">Início</label>
+                            <input type="date" id="filterDataInicio" class="form-control form-control-sm" style="height: 31px;">
                         </div>
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <label for="filterDataFim" class="form-label small fw-semibold text-muted mb-1">Fim</label>
-                            <input type="date" id="filterDataFim" class="form-control form-control-sm">
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-1.5" style="min-width: 130px;">
+                            <label for="filterDataFim" class="form-label small fw-semibold text-muted mb-1 text-truncate d-block">Fim</label>
+                            <input type="date" id="filterDataFim" class="form-control form-control-sm" style="height: 31px;">
                         </div>
-                        <div class="col-12 col-xl-1">
-                            <button type="submit" class="btn btn-primary btn-sm w-100" title="Filtrar">
-                                <i class="fa-solid fa-filter me-1 d-xl-none"></i>Filtrar
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-1.5 flex-grow-1 text-end">
+                            <button type="submit" class="btn btn-primary btn-sm w-100 fw-semibold d-flex align-items-center justify-content-center gap-1" title="Filtrar" style="height: 31px;">
+                                <i class="fa-solid fa-filter"></i> Filtrar
                             </button>
                         </div>
                     </form>
 
-                    <div class="table-responsive border rounded">
+                    <div class="table-responsive border rounded bg-white">
                         <table class="table table-hover align-middle mb-0" style="min-width: 850px;">
                             <thead class="table-light text-secondary small text-uppercase">
                                 <tr>
-                                    <th class="ps-3 py-3">Abertura</th>
-                                    <th class="py-3">Código</th>
-                                    <th class="py-3">Cliente / Empresa</th>
-                                    <th class="py-3">Técnico Resp.</th>
-                                    <th class="py-3">Urgência</th>
-                                    <th class="py-3">Status</th>
-                                    <th class="text-center pe-3 py-3">Detalhes</th>
+                                    <th class="ps-3 py-3" style="width: 18%">Abertura</th>
+                                    <th class="py-3" style="width: 15%">Código</th>
+                                    <th class="py-3" style="width: 22%">Cliente / Empresa</th>
+                                    <th class="py-3" style="width: 18%">Técnico Resp.</th>
+                                    <th class="py-3" style="width: 12%">Urgência</th>
+                                    <th class="py-3" style="width: 10%">Status</th>
+                                    <th class="text-center pe-3 py-3" style="width: 5%">Detalhes</th>
                                 </tr>
                             </thead>
                             <tbody id="corpoTabela">
@@ -178,11 +178,160 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </main>
     </div>
 
+    <!-- Modal 1: Triagem de Chamado -->
+    <div class="modal fade" id="modalDetalhesChamado" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modalDetalhesChamadoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-light border-bottom py-3">
+                    <h5 class="modal-title fw-bold" id="modalDetalhesChamadoLabel" style="color: var(--dark-blue);">
+                        <i class="fa-solid fa-clipboard-check text-primary me-2"></i>Triagem do Chamado
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Código do Chamado</label>
+                            <span class="font-monospace fw-bold text-secondary" id="modalCodigo">#CH-2026-0490</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Cliente / Empresa</label>
+                            <span class="fw-semibold text-dark" id="modalCliente">Oficina do Zé Ltda</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Equipamento</label>
+                            <span class="text-dark" id="modalEquipamento">Servidor Dell Optiplex</span>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Título do Problema</label>
+                            <h6 class="fw-bold text-dark mb-0" id="modalTitulo">Servidor desliga sozinho após oscilação de energia</h6>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Descrição Detalhada</label>
+                            <div class="p-3 bg-light rounded border small text-muted" id="modalDescricao">
+                                O servidor local parou de funcionar logo após um pico na rede elétrica. A máquina tenta iniciar, emite três bipes consecutivos na placa-mãe e corta a energia completamente. Nenhum sinal de vídeo é enviado ao monitor.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-2">Evidência / Foto do Problema</label>
+                            <div class="border rounded p-2 bg-light text-center" style="max-width: 280px;">
+                                <img src="../assets/evidencia-placeholder.jpg" alt="Foto da evidência" class="img-fluid rounded border shadow-sm" id="modalFoto" style="max-height: 180px; object-fit: cover;">
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4 opacity-25">
+                        
+                        <div class="col-md-6">
+                            <label for="selectTecnicoTriagem" class="form-label small fw-semibold text-dark">Atribuir Técnico Resp.</label>
+                            <select id="modalDetalheTecnico" class="form-select">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="selectUrgenciaTriagem" class="form-label small fw-semibold text-dark">Definir Nível de Urgência</label>
+                            <select id="selectUrgenciaTriagem" class="form-select">
+                                <option value="BAIXA">Baixa</option>
+                                <option value="MEDIA" selected>Média</option>
+                                <option value="ALTA">Alta</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="txtOrientaçoesTriagem" class="form-label small fw-semibold text-dark">Orientações para o Técnico</label>
+                            <textarea id="txtOrientaçoesTriagem" class="form-control" rows="3" placeholder="Digite aqui recomendações ou procedimentos que o técnico deve adotar no local..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light border-top">
+                    <button type="button" class="btn btn-outline-secondary fw-semibold" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary fw-semibold" id="btnSalvarTriagem" onclick="AtualizarChamado()">
+                        <i class="fa-solid fa-check me-1"></i> Confirmar Triagem
+                        <span hidden=true id="idChamadoAtualizar"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Histórico e Monitoramento -->
+    <div class="modal fade" id="modalHistoricoAtribuido" tabindex="-1" aria-labelledby="modalHistoricoAtribuidoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-light border-bottom py-3">
+                    <h5 class="modal-title fw-bold" id="modalHistoricoAtribuidoLabel" style="color: var(--dark-blue);">
+                        <i class="fa-solid fa-circle-info text-info me-2"></i>Informações do Chamado
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Código único</label>
+                            <span class="font-monospace fw-bold text-secondary" id="modalHistCodigo">#CH-2026-0475</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Cliente corporativo</label>
+                            <span class="fw-semibold text-dark" id="modalHistCliente">Padaria Pão Quente</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Técnico Alocado</label>
+                            <span class="text-dark" id="modalHistTecnico">Fernanda Lima</span>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Urgência</label>
+                            <div><span class="badge text-bg-warning" id="modalHistUrgencia">MÉDIA</span></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Status Atual</label>
+                            <div><span class="badge text-bg-info text-white" id="modalHistStatus">ATRIBUÍDO</span></div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Título do Problema</label>
+                            <h6 class="fw-bold text-dark mb-0" id="modalHistTitulo">Falha de conexão com a impressora térmica fiscal</h6>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Descrição Detalhada</label>
+                            <div class="p-3 bg-light rounded border small text-muted" id="modalHistDescricao">
+                                A impressora de cupom fiscal não emite nenhum sinal de resposta pelo terminal do caixa central. Cabos lógicos de comunicação parecem firmes, mas o ledger de erro pisca em padrão intermitente de cor vermelha.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-2">Evidência / Foto do Problema</label>
+                            <div class="border rounded p-2 bg-light text-center" style="max-width: 280px;">
+                                <img src="../assets/evidencia-placeholder.jpg" alt="Foto da evidência histórica" class="img-fluid rounded border shadow-sm" id="modalHistFoto" style="max-height: 180px; object-fit: cover;">
+                            </div>
+                        </div>
+
+                        <hr class="my-4 opacity-25">
+
+                        <div class="col-12">
+                            <label class="text-uppercase text-muted fw-semibold small d-block mb-1">Orientações passadas ao Técnico</label>
+                            <div class="p-3 bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded small fw-medium" id="modalHistOrientaçoes">
+                                <i class="fa-solid fa-comment-dots me-2"></i>Levar cabo de comunicação serial extra e uma fonte estabilizada reserva. Realizar a validação diretamente com o responsável técnico do PDV local.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light border-top">
+                    <button type="button" class="btn btn-secondary fw-semibold w-100" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const btnMenuMobile = document.getElementById('btnMenuMobile');
