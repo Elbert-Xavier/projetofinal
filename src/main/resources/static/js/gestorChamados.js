@@ -1,8 +1,9 @@
-const API_BUSCAR_CHAMADO = 'http://192.168.10.22:8010/chamados/listartodos';
-const API_BUSCAR_CHAMADO_ID = 'http://192.168.10.22:8010/chamados/listarPorID';
-const API_BUSCAR_CHAMADOS_ABERTOS = 'http://192.168.10.22:8010/chamados/ListarChamadoStatus';
-const API_BUSCAR_TECNICOS = 'http://192.168.10.22:8010/usuarios/listarTecnicos';
-const API_ATUALIZAR_CHAMADO = 'http://192.168.10.22:8010/chamados/atualizar';
+const API_BUSCAR_CHAMADO = 'http://localhost:8010/chamados/listartodos';
+const API_BUSCAR_CHAMADO_ID = 'http://localhost:8010/chamados/listarPorID';
+const API_BUSCAR_CHAMADOS_ABERTOS = 'http://localhost:8010/chamados/ListarChamadoStatus';
+const API_BUSCAR_TECNICOS = 'http://localhost:8010/usuarios/listarTecnicos';
+const API_ATUALIZAR_CHAMADO = 'http://localhost:8010/chamados/atualizar';
+const API_BUSCAR_CHAMADO_MENOS_ABERTO = 'http://localhost:8010/chamados/ListarChamadoMenosAberto'
 
 async function selectTecnico() {
 		
@@ -80,7 +81,7 @@ async function listarChamadosAbertos() {
 }
 
 async function listarChamados() {
-	const response = await fetch(API_BUSCAR_CHAMADO);
+	const response = await fetch(API_BUSCAR_CHAMADO_MENOS_ABERTO);
 	const listaChamados = await response.json();
 
 	console.log('RESPOSTA')
@@ -178,7 +179,7 @@ async function detalhesChamados(button) {
 		document.getElementById('modalEquipamento').innerText = equipamento;
 		document.getElementById('modalTitulo').innerText = dados.titulo;
 		document.getElementById('modalDescricao').innerText = dados.descricao;
-		document.getElementById('modalFoto').src = `/img/+${dados.urlImagem}`;
+		document.getElementById('modalFoto').src = `/img/${dados.urlImagem}`;
 }
 async function historicoChamados(button) {
 		
@@ -245,6 +246,7 @@ async function AtualizarChamado(){
 	
 	const id = dados.id
 	const ChamadoAtualizar = {
+		urlImagem: dados.urlImagem,
 		titulo: dados.titulo,
 		descricao: dados.descricao,
 	    orientacao: document.getElementById('txtOrientaçoesTriagem').value,
@@ -252,7 +254,13 @@ async function AtualizarChamado(){
 	    status: "EM_ANDAMENTO",
 	    tecnico: { 
 	        id: Number(document.getElementById('modalDetalheTecnico').value)
-	    }
+	    },
+		cliente: {
+			id: dados.cliente.id
+		},
+		equipamento: {
+			id: dados.equipamento.id
+		}
 	}
 	
 	await fetch(`${API_ATUALIZAR_CHAMADO}/${id}`,{

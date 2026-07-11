@@ -1,10 +1,10 @@
-const API_BUSCAR_TODOS = 'http://192.168.10.22:8010/equipamentos/listarTodos'; 
-const API_BUSCAR_ID = 'http://192.168.10.22:8010/equipamentos/listaPorID';
-const API_BUSCAR_POR_MODELO = 'http://192.168.10.22:8010/equipamentos/listarmodelo';
-const API_BUSCAR_POR_FABRICANTE = 'http://192.168.10.22:8010/equipamentos/listarmarca';
-const API_BUSCAR_POR_SERIE = 'http://192.168.10.22:8010/equipamentos/listarserie';
-const API_BUSCAR_POR_TIPO = 'http://192.168.10.22:8010/equipamentos/listartipo';
-const API_BUSCAR_NOME = 'http://192.168.10.22:8010/equipamentos/listarnome';
+const API_BUSCAR_TODOS = 'http://localhost:8010/equipamentos/listarTodos'; 
+const API_BUSCAR_ID = 'http://localhost:8010/equipamentos/listaPorID';
+const API_BUSCAR_POR_MODELO = 'http://localhost:8010/equipamentos/listarmodelo';
+const API_BUSCAR_POR_FABRICANTE = 'http://localhost:8010/equipamentos/listarmarca';
+const API_BUSCAR_POR_SERIE = 'http://localhost:8010/equipamentos/listarserie';
+const API_BUSCAR_POR_TIPO = 'http://localhost:8010/equipamentos/listartipo';
+const API_BUSCAR_NOME = 'http://localhost:8010/equipamentos/listarnome';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarEquipamentos();
@@ -23,12 +23,6 @@ function usuarioEstaLogado(){
 	
 	if (!usuarioLogado) {
 	    window.location.href = 'http://localhost:8000/login.html';
-	}else{
-		if(usuario.admin == false) {
-			document.getElementById('CadastrarUsuario').hidden = true;
-		}else{
-			document.getElementById('CadastrarUsuario').hidden = false;
-		}
 	}
 }
 
@@ -89,6 +83,8 @@ async function exibirModelProduto(button) {
     const response = await fetch(`${API_BUSCAR_ID}/${id}`);
     const tabela = await response.json();
     
+	console.log(tabela);
+	
     const dataFmt = tabela.dataCadastro ? tabela.dataCadastro.split('-').reverse().join('/') : 'Não Informada';
     
     document.getElementById('tipoEquipamento').innerText = tabela.tipo || 'N/A';
@@ -99,7 +95,7 @@ async function exibirModelProduto(button) {
     
     const imgElement = document.getElementById('imagemEquipamento');
     if (tabela.imagem) {
-        imgElement.src = `http://localhost:8000/img/${tabela.imagem}`;
+        imgElement.src = `/img/${tabela.imagem}`;
         imgElement.style.display = 'block';
     } else {
         imgElement.src = 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=300';

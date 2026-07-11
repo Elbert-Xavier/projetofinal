@@ -1,5 +1,5 @@
-const API_BUSCAR_CHAMADO = 'http://192.168.10.22:8010/chamados/listartodos';
-const API_BUSCAR_CHAMADO_ID = 'http://192.168.10.22:8010/chamados/listarPorID';
+const API_BUSCAR_CHAMADO = 'http://localhost:8010/chamados/listartodos';
+const API_BUSCAR_CHAMADO_ID = 'http://localhost:8010/chamados/listarPorID';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarChamados();
@@ -14,12 +14,6 @@ function usuarioEstaLogado(){
 	
 	if (!usuarioLogado) {
 	    window.location.href = 'http://localhost:8000/login.html';
-	}else{
-		if(usuario.admin == false) {
-			document.getElementById('CadastrarUsuario').hidden = true;
-		}else{
-			document.getElementById('CadastrarUsuario').hidden = false;
-		}
 	}
 }
 
@@ -81,13 +75,16 @@ async function exibirModelChamado(button) {
     document.getElementById('Status').innerText = tabela.status ? tabela.status.toUpperCase() : 'EM ANÁLISE';
     document.getElementById('data').innerText = dataFmt;
 
-    const imgElement = document.getElementById('Imagem');
-    if (tabela.urlImagem) {
-        imgElement.src = `http://localhost:8000/img/${tabela.urlImagem}`;
-        imgElement.style.display = 'block';
-    } else {
-        imgElement.style.display = 'none';
-    }
+	const imgElement = document.getElementById('Imagem');
+	const imgElementAmpliar = document.getElementById('ImagemAmpliar');
+	if (tabela.urlImagem) {
+	    imgElement.src = `/img/${tabela.urlImagem}`;
+		imgElementAmpliar.href = `/img/${tabela.urlImagem}`;
+	    imgElement.style.display = 'block';
+	} else {
+	    imgElement.style.display = 'none';
+	}
+
 
     abrirModal();
 }

@@ -1,5 +1,5 @@
-const API_EQUIPAMENTOS_LISTAR = 'http://192.168.10.22:8010/equipamentos/listarTodos';
-const API_CHAMADOS_SALVAR = 'http://192.168.10.22:8010/chamados/salvar';
+const API_EQUIPAMENTOS_LISTAR = 'http://localhost:8010/equipamentos/listarTodos';
+const API_CHAMADOS_SALVAR = 'http://localhost:8010/chamados/salvar';
 
 document.addEventListener('DOMContentLoaded', function() {
 	usuarioEstaLogado();
@@ -29,12 +29,6 @@ function usuarioEstaLogado(){
 	
 	if (!usuarioLogado) {
 	    window.location.href = 'http://localhost:8000/login.html';
-	}else{
-		if(usuario.admin == false) {
-			document.getElementById('CadastrarUsuario').hidden = true;
-		}else{
-			document.getElementById('CadastrarUsuario').hidden = false;
-		}
 	}
 }
 
@@ -78,11 +72,23 @@ function configurarContadorCaracteres() {
 }
 
 function salvarChamado() {
+	
+	const dados = localStorage.getItem("usuarioLogado")
+	const dadosJson = JSON.parse(dados);
+	console.log(dadosJson.id)
+	
+	const Cliente =  dadosJson.id;
     const selectEquipment = document.getElementById('selectEquipment');
     const inputTitle = document.getElementById('ticketTitle');
     const textareaDescription = document.getElementById('ticketDescription');
     const fileInput = document.getElementById('fileUpload'); // Campo de arquivo do seu HTML
 
+	console.log(Cliente)
+	console.log(selectEquipment.value)
+	console.log(inputTitle.value)
+	console.log(textareaDescription.value)
+	console.log(fileInput.value)
+	
     if (!selectEquipment.value || selectEquipment.selectedIndex === 0) {
         alert("Por favor, selecione um equipamento da lista.");
         selectEquipment.focus();
@@ -107,27 +113,29 @@ function salvarChamado() {
     }
 
     const formData = new FormData();
+	formData.append('cliente', dadosJson.id);
     formData.append('titulo', inputTitle.value.trim());
     formData.append('descricao', textareaDescription.value.trim());
     formData.append('equipamento', selectEquipment.value); 
     formData.append('urlImagem', fileInput.files[0]);
 
-
-    fetch(API_CHAMADOS_SALVAR, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok || response.status === 21) { 
-            alert("Chamado registrado com sucesso! Ele foi encaminhado para a mesa de triagem.");
-            window.location.href = "clienteMeusChamados.html";
-        } else {
-            response.text().then(text => console.error("Rejeição da API:", text));
-            alert("Não foi possível salvar o chamado. Verifique o console do navegador para detalhes.");
-        }
-    })
-    .catch(error => {
-        console.error("Erro na comunicação:", error);
-        alert("Erro de conexão com o servidor.");
-    });
+	console.log(formData)
+	
+	fetch(API_CHAMADOS_SALVAR, {
+	       method: 'POST',
+	       body: formData
+	   })
+	   .then(response => {
+	       if (response.ok || response.status === 21) { 
+	           alert("Chamado registrado com sucesso! Ele foi encaminhado para a mesa de triagem.");
+	           window.location.href = "clienteMeusChamados.html";
+	       } else {
+	           response.text().then(text => console.error("Rejeição da API:", text));
+	           alert("Não foi possível salvar o chamado. Verifique o console do navegador para detalhes.");
+	       }
+	   })
+	   .catch(error => {
+	       console.error("Erro na comunicação:", error);
+	       alert("Erro de conexão com o servidor.");
+	   });
 }

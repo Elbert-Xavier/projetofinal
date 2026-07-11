@@ -1,4 +1,4 @@
-const API_CHAMADOS = 'http://192.168.10.22:8010/chamados';
+const API_CHAMADOS = 'http://localhost:8010/chamados/listarTecnicoPorID';
 
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +30,7 @@ async function listarChamados() {
         return;
     }
 
-    const response = await fetch(`${API_CHAMADOS}/tecnico/${usuarioLogado.id}`);
+    const response = await fetch(`${API_CHAMADOS}/${usuarioLogado.id}`);
     
     if (!response.ok) {
         container.innerHTML = '<div class="text-center text-muted p-4">Nenhum chamado encontrado para você.</div>';
@@ -83,7 +83,7 @@ function filtrarLista() {
         item.innerHTML = `
             <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
                 <div>
-                    <span class="badge text-bg-light border text-secondary mb-1">#CH-${chamado.id}</span>
+                    <span class="badge text-bg-light border text-secondary mb-1">#${chamado.id}</span>
                     <h3 class="h6 mb-1 fw-semibold text-dark-blue">${chamado.titulo}</h3>
                 </div>
                 <div class="d-flex gap-1">
@@ -104,7 +104,7 @@ let chamadoSelecionadoId = null;
 function exibirModalChamado(chamado) {
     chamadoSelecionadoId = chamado.id;
     
-    document.getElementById('modalIdChamado').innerText = `#CH-${chamado.id}`;
+    document.getElementById('modalIdChamado').innerText = `#${chamado.id}`;
     document.getElementById('modalTitulo').innerText = chamado.titulo || '---';
     document.getElementById('modalDescricao').innerText = chamado.descricao || '---';
     document.getElementById('modalCliente').innerText = chamado.cliente ? chamado.cliente.nome : 'Não informado';

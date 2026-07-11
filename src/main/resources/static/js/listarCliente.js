@@ -1,7 +1,7 @@
-const API_LISTAR_CLIENTES = 'http://192.168.10.22:8010/clientes/listarTodos';
-const API_PESQUISAR_CLIENTES = 'http://192.168.10.22:8010/clientes/pesquisar';
-const API_PESQUISAR_EQUIPAMENTOS = 'http://192.168.10.22:8010/equipamentos/pesquisar';
-const API_SALVAR_EQUIPAMENTO = 'http://192.168.10.22:8010/equipamentos/salvar';
+const API_LISTAR_CLIENTES = 'http://localhost:8010/clientes/listarTodos';
+const API_PESQUISAR_CLIENTES = 'http://localhost:8010/clientes/pesquisar';
+const API_PESQUISAR_EQUIPAMENTOS = 'http://localhost:8010/equipamentos/pesquisar';
+const API_SALVAR_EQUIPAMENTO = 'http://localhost:8010/equipamentos/salvar';
 
 document.addEventListener('DOMContentLoaded', async function() {
     await carregarTodosOsClientes();

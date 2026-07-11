@@ -1,0 +1,149 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE DESIGN - MODO ESCURO (Configuração de Cores e Fontes)
+   ========================================================================== */
+:root {
+    /* Paleta de Cores Adaptada para Modo Escuro */
+    --cor-principal: #3b52ff;       /* Azul levemente mais vivo/claro para contrastar no escuro */
+    --cor-principal-hover: #5d71ff; /* Azul mais claro para o estado hover no modo escuro */
+    --cor-fundo: #1e1e24;           /* Cinza grafite escuro (antigo fundo branco dos cards/sidebar) */
+    --cor-fundo-alt: #121214;       /* Preto/Cinza profundo para o fundo geral da aplicação */
+    --cor-texto: #e2e8f0;           /* Branco acinzentado suave para leitura confortável */
+    --cor-texto-suave: #94a3b8;     /* Cinza claro para textos secundários ou rodapés */
+    
+    /* Fontes e Espaçamento */
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --borda-raio: 6px;              /* Arredondamento padrão para botões e inputs */
+
+    /* ==========================================================================
+       CORES EXTRAÍDAS E ADAPTADAS PARA DARK MODE
+       ========================================================================== */
+    /* Cores de Fundo e Containers */
+    --bg-azul-claro: rgba(59, 82, 255, 0.12);   /* Hover de nav-items adaptado */
+    --bg-azul-subtle: rgba(59, 82, 255, 0.20);  /* Nav-item active destacado */
+    --bg-azul-minimal: rgba(59, 82, 255, 0.05); /* Hover de itens de lista interativos */
+    --bg-input-padrao: #2a2a32;                /* Background de inputs escuros desfocados */
+    --overlay-mobile: rgba(0, 0, 0, 0.7);      /* Sombra de fundo do menu mobile (mais densa) */
+
+    /* Tons para Bordas e Linhas de Separação (Utilizando Branco Transparente) */
+    --border-suave: rgba(255, 255, 255, 0.06);       /* Divisores de logo e rodapé da sidebar */
+    --border-media: rgba(255, 255, 255, 0.10);       /* Borda lateral da barra fixa */
+    --border-input: #3a3a44;                         /* Borda padrão de inputs */
+    --border-input-foco: rgba(59, 82, 255, 0.4);     /* Sombra de foco (box-shadow) dos inputs */
+    --border-card-hover: rgba(59, 82, 255, 0.3);     /* Borda de destaque ao passar o mouse nos cards */
+    --shadow-card-hover: rgba(0, 0, 0, 0.3);         /* Sombra mais escura para destacar a elevação */
+
+    /* Cores de Texto Específicas */
+    --texto-escuro-titulo: #ffffff;            /* Títulos principais em branco puro */
+    --texto-input: #f8fafc;                    /* Cor do texto digitado */
+    --texto-placeholder-icone: #64748b;        /* Ícones e placeholders neutros */
+    --texto-mutado: #94a3b8;                   /* Links secundários e textos de apoio */
+
+    /* Cores de Feedback (Erros / Alertas / Sair) */
+    --feedback-perigo: #ff4a5a;                 /* Vermelho ligeiramente mais claro para brilhar no escuro */
+    --bg-perigo-suave: rgba(255, 74, 90, 0.12); /* Fundo hover do botão de logout */
+}
+
+/* ==========================================================================
+   2. RESET DEPURAÇÃO (Garante comportamento igual em todos os navegadores)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. ESTILOS GERAIS DA PÁGINA
+   ========================================================================== */
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo-alt);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: var(--cor-principal);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--cor-principal-hover);
+    text-decoration: underline;
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--texto-escuro-titulo);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* Cabeçalho do site */
+header {
+    background-color: var(--cor-fundo);
+    border-bottom: 2px solid var(--cor-principal);
+    padding: 1.5rem;
+}
+
+/* ==========================================================================
+   4. COMPONENTES PADRONIZADOS (Botões e Inputs)
+   ========================================================================== */
+
+/* Botão Padrão */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--cor-principal);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--borda-raio);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-principal-hover);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Inputs de Formulário */
+input[type="text"], 
+input[type="email"], 
+textarea, 
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-input);
+    border-radius: var(--borda-raio);
+    background-color: var(--bg-input-padrao);
+    color: var(--texto-input);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, 
+textarea:focus, 
+select:focus {
+    border-color: var(--cor-principal);
+    background-color: var(--cor-fundo);
+    box-shadow: 0 0 0 4px var(--border-input-foco);
+}
+
+/* Container de Conteúdo */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}

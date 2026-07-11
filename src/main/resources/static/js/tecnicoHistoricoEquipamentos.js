@@ -1,5 +1,5 @@
-const API_EQUIPAMENTOS = 'http://192.168.10.22:8010/equipamentos';
-const API_CHAMADOS = 'http://192.168.10.22:8010/chamados';
+const API_EQUIPAMENTOS = 'http://localhost:8010/equipamentos';
+const API_CHAMADOS = 'http://localhost:8010/chamados';
 
 document.addEventListener("DOMContentLoaded", () => {
     carregarEquipamentos();

@@ -1,4 +1,4 @@
-const API_LOGIN = 'http://192.168.10.22:8010/usuarios/login';
+const API_LOGIN = 'http://localhost:8010/usuarios/login';
 
 let revelarValor = 1;
 
@@ -45,13 +45,13 @@ async function logar() {
 		localStorage.setItem("tema", "Claro");
 
         if (dadosUsuario.primeiroLogin === true || dadosUsuario.primeiroLogin === 1) {
-            window.location.href = `http://192.168.10.22:8010/html/concluirCadastro.html?id=${dadosUsuario.id}`;
+            window.location.href = `html/concluirCadastro.html?id=${dadosUsuario.id}`;
         } else if (dadosUsuario.tipoUsuario === "GESTOR") {
-            window.location.href = "http://192.168.10.22:8010/html/GestorDashboard.html";
+            window.location.href = "html/GestorDashboard.html";
         } else if (dadosUsuario.tipoUsuario === "TECNICO") {
-            window.location.href = "http://192.168.10.22:8010/html/tecnicoDashboard.html";
+            window.location.href = "html/tecnicoDashboard.html";
         } else if (dadosUsuario.tipoUsuario === "CLIENTE") {
-            window.location.href = "http://192.168.10.22:8010/html/clienteMeusChamados.html";
+            window.location.href = "html/clienteMeusChamados.html";
         } else {
             alert("Perfil de usuário não reconhecido ou sem permissões.");
         }

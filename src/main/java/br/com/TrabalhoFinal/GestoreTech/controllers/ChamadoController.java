@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
 import br.com.TrabalhoFinal.GestoreTech.entity.EquipamentoEntity;
+import br.com.TrabalhoFinal.GestoreTech.entity.UsuarioEntity;
 import br.com.TrabalhoFinal.GestoreTech.repository.ChamadoRepository;
 
 @RestController
@@ -55,10 +56,20 @@ public class ChamadoController {
 	public List<ChamadoEntity> listarChamadosAbertos() {
 	    return chamadoRepository.findByStatus("ABERTO");
 	}
+	@GetMapping("/ListarChamadoMenosAberto")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarChamadosMenosAbertos() {
+	    return chamadoRepository.findByStatusNot("ABERTO");
+	}
 	@GetMapping("/listarPorID/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<ChamadoEntity> listarTodosChamadosPorID(@PathVariable int id){
 		return chamadoRepository.findById(id);
+	}
+	@GetMapping("/listarTecnicoPorID/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarTodosTecnicoPorID(@PathVariable int id){
+		return chamadoRepository.findByTecnicoId(id);
 	}
 	
 	/*@GetMapping("/listarporestabelecimento/{idEstabelecimento)")
@@ -84,7 +95,8 @@ public class ChamadoController {
 	*/
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ChamadoEntity salvarChamado(@RequestParam String titulo,
+	public ChamadoEntity salvarChamado(@RequestParam UsuarioEntity cliente,
+									   @RequestParam String titulo,
 									   @RequestParam String descricao,
 									   @RequestParam EquipamentoEntity equipamento,
 									   @RequestParam MultipartFile urlImagem) throws IOException {
@@ -106,8 +118,9 @@ public class ChamadoController {
         chamado.setTitulo(titulo);
         chamado.setDescricao(descricao);
         chamado.setUrlImagem(nomeArquivo);
-        chamado.setStatus("em analise");
+        chamado.setStatus("ABERTO");
         chamado.setEquipamento(equipamento);
+        chamado.setCliente(cliente);
 		
 
 		return chamadoRepository.save(chamado);
@@ -126,15 +139,6 @@ public class ChamadoController {
 			return chamadoRepository.save(chamado);
 		}return null;
 	}
-	@PutMapping("/atualizarnormal/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public ChamadoEntity atualizarChamadonormal(@RequestBody ChamadoEntity chamado, @PathVariable int id) {
-		if(chamadoRepository.existsById(id)) {
-			chamado.setId(id);
-			return chamadoRepository.save(chamado);
-		}return null;
-	}
-	
 	@PutMapping("/atribuir/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ChamadoEntity atribuirTecnicoEPrioridade(
