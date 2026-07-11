@@ -1,5 +1,5 @@
-const API_EQUIPAMENTOS = 'http://localhost:8010/equipamentos';
-const API_CHAMADOS = 'http://localhost:8010/chamados';
+const API_EQUIPAMENTOS = 'http://192.168.10.22:8010/equipamentos';
+const API_CHAMADOS = 'http://192.168.10.22:8010/chamados';
 
 document.addEventListener("DOMContentLoaded", () => {
     carregarEquipamentos();
@@ -76,7 +76,7 @@ async function buscarHistoricoEquipamento(equipamento) {
     const modal = new bootstrap.Modal(document.getElementById('historicoModal'));
     modal.show();
 
-    const response = await fetch(`${API_CHAMADOS}/equipamento/${equipamento.id}`);
+    const response = await fetch(`${API_CHAMADOS}/listarTodos/${equipamento.id}`);
     if (!response.ok) {
         tabelaCorpo.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-3">Nenhum histórico registrado.</td></tr>';
         return;

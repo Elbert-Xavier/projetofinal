@@ -1,6 +1,6 @@
-const API_LISTAR_TECNICO = 'http://localhost:8010/usuarios/listarTecnicos';
-const API_LISTAR_TECNICO_POR_NOME = 'http://localhost:8010/usuarios/listarTecnicosNome';
-const API_SALVAR_TECNICO = 'http://localhost:8010/usuarios/salvarTecnico';
+const API_LISTAR_TECNICO = 'http://192.168.10.22:8010/usuarios/listarTecnicos';
+const API_LISTAR_TECNICO_POR_NOME = 'http://192.168.10.22:8010/usuarios/listarTecnicosNome';
+const API_SALVAR_TECNICO = 'http://192.168.10.22:8010/usuarios/salvarTecnico';
 
 async function listarTecnico() {
 	const response = await fetch(API_LISTAR_TECNICO);

@@ -2,9 +2,9 @@ const API_BUSCAR_TODOS = 'http://localhost:8010/equipamentos/listarTodos';
 const API_BUSCAR_ID = 'http://localhost:8010/equipamentos/listaPorID';
 const API_BUSCAR_POR_MODELO = 'http://localhost:8010/equipamentos/listarmodelo';
 const API_BUSCAR_POR_FABRICANTE = 'http://localhost:8010/equipamentos/listarmarca';
-const API_BUSCAR_POR_SERIE = 'http://localhost:8010/equipamentos/listarserie';
-const API_BUSCAR_POR_TIPO = 'http://localhost:8010/equipamentos/listartipo';
-const API_BUSCAR_NOME = 'http://localhost:8010/equipamentos/listarnome';
+const API_BUSCAR_POR_SERIE = 'http://192.168.10.22:8010/equipamentos/listarserie';
+const API_BUSCAR_POR_TIPO = 'http://192.168.10.22:8010/equipamentos/listartipo';
+const API_BUSCAR_NOME = 'http://192.168.10.22:8010/equipamentos/listarnome';
 
 document.addEventListener("DOMContentLoaded", () => {
     listarEquipamentos();

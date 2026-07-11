@@ -1,9 +1,9 @@
-const API_BUSCAR_CHAMADO = 'http://localhost:8010/chamados/listartodos';
-const API_BUSCAR_CHAMADO_ID = 'http://localhost:8010/chamados/listarPorID';
-const API_BUSCAR_CHAMADOS_ABERTOS = 'http://localhost:8010/chamados/ListarChamadoStatus';
-const API_BUSCAR_TECNICOS = 'http://localhost:8010/usuarios/listarTecnicos';
-const API_ATUALIZAR_CHAMADO = 'http://localhost:8010/chamados/atualizar';
-const API_BUSCAR_CHAMADO_MENOS_ABERTO = 'http://localhost:8010/chamados/ListarChamadoMenosAberto'
+const API_BUSCAR_CHAMADO = 'http://192.168.10.22:8010/chamados/listartodos';
+const API_BUSCAR_CHAMADO_ID = 'http://192.168.10.22:8010/chamados/listarPorID';
+const API_BUSCAR_CHAMADOS_ABERTOS = 'http://192.168.10.22:8010/chamados/ListarChamadoStatus';
+const API_BUSCAR_TECNICOS = 'http://192.168.10.22:8010/usuarios/listarTecnicos';
+const API_ATUALIZAR_CHAMADO = 'http://192.168.10.22:8010/chamados/atualizar';
+const API_BUSCAR_CHAMADO_MENOS_ABERTO = 'http://192.168.10.22:8010/chamados/ListarChamadoMenosAberto'
 
 async function selectTecnico() {
 		

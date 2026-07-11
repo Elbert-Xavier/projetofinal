@@ -1,4 +1,4 @@
-const API_LOGIN = 'http://localhost:8010/usuarios/login';
+const API_LOGIN = 'http://192.168.10.22:8010/usuarios/login';
 
 let revelarValor = 1;
 

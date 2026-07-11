@@ -1,5 +1,5 @@
-const API_EQUIPAMENTOS_LISTAR = 'http://localhost:8010/equipamentos/listarTodos';
-const API_CHAMADOS_SALVAR = 'http://localhost:8010/chamados/salvar';
+const API_EQUIPAMENTOS_LISTAR = 'http://192.168.10.22:8010/equipamentos/listarTodos';
+const API_CHAMADOS_SALVAR = 'http://192.168.10.22:8010/chamados/salvar';
 
 document.addEventListener('DOMContentLoaded', function() {
 	usuarioEstaLogado();

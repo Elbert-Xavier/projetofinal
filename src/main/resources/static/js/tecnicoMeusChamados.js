@@ -1,4 +1,6 @@
-const API_CHAMADOS = 'http://localhost:8010/chamados/listarTecnicoPorID';
+const API_CHAMADOS_LISTAR_TECNICO_POR_ID = 'http://192.168.10.22:8010/chamados/listarTecnicoPorID';
+const API_ATUALIZAR_CHAMADO = 'http://192.168.10.22:8010/chamados/atualizar';
+const API_BUSCAR_CHAMADO = 'http://192.168.10.22:8010/chamados/listarPorID';
 
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +32,7 @@ async function listarChamados() {
         return;
     }
 
-    const response = await fetch(`${API_CHAMADOS}/${usuarioLogado.id}`);
+    const response = await fetch(`${API_CHAMADOS_LISTAR_TECNICO_POR_ID}/${usuarioLogado.id}`);
     
     if (!response.ok) {
         container.innerHTML = '<div class="text-center text-muted p-4">Nenhum chamado encontrado para você.</div>';
@@ -109,7 +111,10 @@ function exibirModalChamado(chamado) {
     document.getElementById('modalDescricao').innerText = chamado.descricao || '---';
     document.getElementById('modalCliente').innerText = chamado.cliente ? chamado.cliente.nome : 'Não informado';
     document.getElementById('modalEquipamento').innerText = chamado.equipamento ? `${chamado.equipamento.fabricante} ${chamado.equipamento.modelo}` : 'Não informado';
-    
+	document.getElementById('modalOrientacaoGestor').innerText = chamado.orientacao;
+	document.getElementById('modalImagemGestor').src = `/img/${chamado.urlImagem}`
+	document.getElementById('idChamadoAtualizar').innerText = chamado.id
+	
     const prioridadeElement = document.getElementById('modalPrioridade');
     prioridadeElement.innerText = chamado.prioridade;
     prioridadeElement.className = chamado.prioridade === 'ALTA' || chamado.prioridade === 'HIGH' ? 'badge bg-danger' : 'badge bg-secondary';
@@ -125,26 +130,44 @@ function exibirModalChamado(chamado) {
 }
 
 async function atualizarChamado() {
-    if (!chamadoSelecionadoId) return;
+    
+	const id = document.getElementById('idChamadoAtualizar').innerText;
+	const novoStatus = document.getElementById('atualizarStatus').value;
+	
+	const response = await fetch(`${API_BUSCAR_CHAMADO}/${id}`)
+	const dados = await response.json();
+	console.log(dados)
 
-    const novoStatus = document.getElementById('atualizarStatus').value;
+	const chamadoAtualizado = {
+	    id: dados.id,
+	    dataAbertura: dados.dataAbertura,
+	    prioridade: dados.prioridade,
+	    titulo: dados.titulo,
+	    descricao: dados.descricao,
+	    orientacao: dados.orientacao,
+	    urlImagem: dados.urlImagem,
+	    status: novoStatus,
+	    equipamento: {
+	        id: dados.equipamento.id
+	    },
+	    cliente: {
+	        id: dados.cliente.id
+	    },
+	    tecnico: {
+	        id: dados.tecnico.id
+	    }
+	};
+	
+    
 
-    const response = await fetch(`${API_CHAMADOS}/atualizarStatus/${chamadoSelecionadoId}`, {
+    const responseAtualizar = await fetch(`${API_ATUALIZAR_CHAMADO}/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ status: novoStatus })
+        body: JSON.stringify(chamadoAtualizado)
     });
-
-    if (response.ok) {
-        const modalElement = document.getElementById('chamadoModal');
-        const modalInstance = bootstrap.Modal.getInstance(modalElement);
-        if (modalInstance) {
-            modalInstance.hide();
-        }
-        listarChamados();
-    } else {
-        alert('Erro ao atualizar o status do chamado.');
-    }
+	
+	alert("Salvo Com Sucesso")
+	listarChamados()
 }
