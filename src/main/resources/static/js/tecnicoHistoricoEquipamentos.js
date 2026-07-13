@@ -1,5 +1,5 @@
-const API_EQUIPAMENTOS = 'http://192.168.10.22:8010/equipamentos';
-const API_CHAMADOS = 'http://192.168.10.22:8010/chamados';
+const API_EQUIPAMENTOS_LISTAR_TODOS = 'http://192.168.10.22:8010/equipamentos/listarTodos';
+const API_CHAMADOS_LISTAR = 'http://192.168.10.22:8010/chamados/listarPorID';
 
 document.addEventListener("DOMContentLoaded", () => {
     carregarEquipamentos();
@@ -11,13 +11,14 @@ let listaEquipamentosLocal = [];
 async function carregarEquipamentos() {
     const container = document.getElementById('listaEquipamentosContainer');
     
-    const response = await fetch(API_EQUIPAMENTOS);
+    const response = await fetch(API_EQUIPAMENTOS_LISTAR_TODOS);
     if (!response.ok) {
         container.innerHTML = '<div class="text-center text-muted p-4">Nenhum equipamento cadastrado no sistema.</div>';
         return;
     }
 
     listaEquipamentosLocal = await response.json();
+	console.log(listaEquipamentosLocal)
     filtrarEquipamentos();
 }
 
@@ -44,7 +45,7 @@ function filtrarEquipamentos() {
 
     container.innerHTML = '';
     filtrados.forEach(eq => {
-        const clienteNome = eq.cliente ? eq.cliente.nome : 'Não informado';
+        const clienteNome = eq.cliente.nomeResponsavel ? eq.cliente.nomeFantasia : 'Não informado';
         const item = document.createElement('button');
         item.type = 'button';
         item.className = 'list-group-item list-group-item-action border rounded-3 p-3 text-start mb-2';
@@ -76,13 +77,14 @@ async function buscarHistoricoEquipamento(equipamento) {
     const modal = new bootstrap.Modal(document.getElementById('historicoModal'));
     modal.show();
 
-    const response = await fetch(`${API_CHAMADOS}/listarTodos/${equipamento.id}`);
-    if (!response.ok) {
+    const response = await fetch(`${API_CHAMADOS_LISTAR}/${equipamento.id}`);
+    if (!response.ok || response == null) {
         tabelaCorpo.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-3">Nenhum histórico registrado.</td></tr>';
         return;
     }
 
     const todosChamados = await response.json();
+	console.log(todosChamados)
     const finalizados = todosChamados.filter(c => c.status === 'FINALIZADO');
 
     if (finalizados.length === 0) {

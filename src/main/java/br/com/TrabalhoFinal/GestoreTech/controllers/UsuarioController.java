@@ -87,9 +87,9 @@ public class UsuarioController {
 		usuario.setSenha(encoder.encode(senha));
 		return usuarioRepository.save(usuario);
 	}
-	@PostMapping("/salvarCliente")
+	@PostMapping("/salvarCliente/{clienteID}")
 	@ResponseStatus(HttpStatus.OK)
-	public UsuarioEntity salvarClientePrimeiroLogin(@RequestBody UsuarioEntity usuario) {	
+	public UsuarioEntity salvarClientePrimeiroLogin(@RequestBody UsuarioEntity usuario, @PathVariable Integer clienteID) {	
 		String senha = UUID.randomUUID().toString();
 		senha = senha.substring(0, 7);
 		emailService.enviarEmailConta(usuario.getEmail(), senha.substring(0, 7));
@@ -102,6 +102,8 @@ public class UsuarioController {
 		}
 		usuario.setPrimeiroLogin(true);
 		usuario.setDataCadastro(LocalDate.now());
+		usuario.setAdmin(false);
+		
 		usuario.setSenha(encoder.encode(senha));
 		return usuarioRepository.save(usuario);
 	}
