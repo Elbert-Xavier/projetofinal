@@ -1,11 +1,11 @@
 /* ==========================================================================
-   CSS UNIFICADO: FLUXO DE ACESSO & CADASTRO
+   CSS UNIFICADO: FLUXO DE ACESSO & CADASTRO (Versão Card Centralizado)
    Compatível com: Login, Esqueceu Senha, Redefinir Senha e Concluir Cadastro
    ========================================================================== */
 
 :root {
-    --azul-gestor: var(--cor-principal); /* Conectado diretamente ao seu CSS Base */
-    --azul-claro-bg: var(--bg-azul-claro); /* Conectado à variável de fundo azul claro */
+    --azul-gestor: var(--cor-principal, #0052ff); 
+    --azul-claro-bg: var(--bg-azul-claro, #f4f7ff); 
     --fonte-acesso: 'IBM Plex Sans', 'Poppins', sans-serif;
 }
 
@@ -15,99 +15,62 @@ html, body {
     padding: 0;
     width: 100%;
     font-family: var(--fonte-acesso);
-    background-color: var(--cor-fundo-alt) !important; /* Atualizado para a variável de fundo alternativa */
+    background-color: var(--cor-fundo-alt, #f8f9fa) !important; 
 }
 
-/* Se for a estrutura de Login / Redefinir (Split) */
+/* Força o alinhamento central absoluto na tela para as páginas estruturadas com main-container */
+body {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh;
+}
+
+/* Transforma o container geral em um invólucro flexível centralizado */
 .main-container {
     display: flex;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.5rem;
+    box-sizing: border-box;
 }
 
-/* ==========================================================================
-   1. LADO ESQUERDO: APRESENTAÇÃO INSTITUCIONAL (Fundo Azul)
-   ========================================================================== */
+/* Desativa a metade azul antiga. Elemento mantido apenas para compatibilidade de tags */
 .left-side {
-    flex: 1;
-    background-color: var(--azul-gestor);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 10% 8%;
-    color: var(--cor-fundo); /* Atualizado para variável de cor contrastante branca */
+    display: none !important;
 }
 
-.left-side .brand {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 1.5rem;
-}
-
-.left-side .brand h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: -0.5px;
-}
-
-/* Caixa com a Logo ou Letra 'G' */
-.left-side .logo-box, 
-.card-logo-box {
-    width: 54px;
-    height: 54px;
-    object-fit: contain;
-    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--azul-gestor);
-}
-
-.left-side .content p {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    max-width: 460px;
-}
-
-/* ==========================================================================
-   2. LADO DIREITO: FORMULÁRIO DE ENTRADA E ALTERAÇÃO (Fundo Branco)
-   ========================================================================== */
+/* Transforma o lado direito no Card Branco unificado do sistema */
 .right-side {
-    flex: 1;
-    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--cor-fundo, #ffffff); 
+    border-radius: 16px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    padding: 3rem 2.5rem;
+    box-sizing: border-box;
 }
 
 .form-wrapper {
     width: 100%;
-    max-width: 400px;
 }
 
 .form-wrapper h1 {
-    font-size: 2.2rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    color: var(--texto-escuro-titulo); /* Atualizado para variável de texto escuro */
-    margin-bottom: 0.5rem;
+    color: var(--texto-escuro-titulo, #0f172a); 
+    margin-bottom: 0.35rem;
 }
 
 .form-wrapper .subtitle {
-    color: var(--cor-texto-suave); /* Atualizado para variável de texto secundário */
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
+    color: var(--cor-texto-suave, #6c757d); 
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
 }
 
-/* Inputs Padronizados para o Fluxo Base (Login/Esqueceu/Redefinir) */
+/* Inputs Padronizados com Ícones em Linha */
 .input-container {
     position: relative;
     margin-bottom: 1.25rem;
@@ -118,27 +81,29 @@ html, body {
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--texto-placeholder-icone); /* Atualizado para variável de ícone neutro */
+    color: var(--texto-placeholder-icone, #94a3b8); 
     font-size: 1.1rem;
     transition: color 0.2s ease;
+    z-index: 5;
 }
 
 .input-container input {
     width: 100%;
-    padding: 1rem 1rem 1rem 3rem;
-    font-size: 1rem;
-    border: 1px solid var(--border-input); /* Atualizado para variável de borda de input */
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--border-input, #cbd5e1); 
     border-radius: 8px;
-    background-color: var(--bg-input-padrao); /* Atualizado para variável de background do input */
-    color: var(--texto-input); /* Atualizado para variável de texto digitado */
+    background-color: var(--bg-input-padrao, #ffffff); 
+    color: var(--texto-input, #334155); 
     outline: none;
+    box-sizing: border-box;
     transition: all 0.2s ease;
 }
 
 .input-container input:focus {
     border-color: var(--azul-gestor);
-    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
-    box-shadow: 0 0 0 4px var(--border-input-foco); /* Atualizado para variável de sombra de foco */
+    background-color: var(--cor-fundo, #ffffff); 
+    box-shadow: 0 0 0 4px var(--border-input-foco, rgba(0, 82, 255, 0.15)); 
 }
 
 .input-container input:focus ~ i:first-child {
@@ -152,12 +117,13 @@ html, body {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: var(--texto-mutated); /* Atualizado para a variável de links secundários e apoio */
+    color: var(--texto-mutated, #64748b); 
     padding: 5px;
+    z-index: 5;
 }
 
 .eye-toggle:hover {
-    color: var(--texto-input); /* Atualizado para a variável de texto escuro do input ativo */
+    color: var(--texto-input, #1e293b); 
 }
 
 /* Links auxiliares */
@@ -182,20 +148,20 @@ html, body {
 .register-link {
     text-align: center;
     margin-top: 1.5rem;
-    color: var(--texto-mutated); /* Atualizado para a variável de texto de apoio */
-    font-size: 0.95rem;
+    color: var(--texto-mutated, #64748b); 
+    font-size: 0.9rem;
 }
 
-/* Botões de Ação Unificados (Foco no Azul Base) */
+/* Botões de Ação Unificados */
 .btn-entrar,
 .btn-purple {
     width: 100%;
     padding: 0.85rem 1.5rem;
     background-color: var(--azul-gestor) !important;
-    color: var(--cor-fundo) !important; /* Atualizado para variável de texto branco */
+    color: var(--cor-fundo, #ffffff) !important; 
     border: none !important;
     border-radius: 8px !important;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     cursor: pointer;
@@ -204,7 +170,7 @@ html, body {
 
 .btn-entrar:hover,
 .btn-purple:hover {
-    background-color: var(--cor-principal-hover) !important; /* Atualizado para a variável de hover da marca */
+    background-color: var(--cor-principal-hover, #0044d4) !important; 
 }
 
 .btn-entrar:active,
@@ -213,56 +179,29 @@ html, body {
 }
 
 /* ==========================================================================
-   3. ADAPTAÇÃO EXCLUSIVA PARA: CONCLUIR CADASTRO (Card Layout)
+   3. ADAPTAÇÃO ADICIONAL PARA: CONCLUIR CADASTRO (Card Layout Amplo)
    ========================================================================== */
-
-/* Limita a largura máxima do Card centralizado para ficar elegante no Desktop */
 body.min-vh-100 .card {
     max-width: 800px;
-    background-color: var(--cor-fundo); /* Atualizado para variável de fundo branco */
+    background-color: var(--cor-fundo, #ffffff); 
 }
 
-/* Estilização refinada para os Inputs com Grid do Bootstrap (Concluir Cadastro) */
 .form-control:focus, 
 .form-select:focus {
     border-color: var(--azul-gestor) !important;
-    box-shadow: 0 0 0 4px var(--border-input-foco) !important; /* Atualizado para variável de sombra de foco */
+    box-shadow: 0 0 0 4px var(--border-input-foco, rgba(0, 82, 255, 0.15)) !important; 
 }
 
 .input-group-text {
     border-right: none !important;
-    background-color: var(--bg-input-padrao) !important; /* Atualizado para variável de background do input */
+    background-color: var(--bg-input-padrao, #ffffff) !important; 
 }
 
 .input-group .form-control {
     border-left: none !important;
-    background-color: var(--bg-input-padrao) !important; /* Atualizado para variável de background do input */
+    background-color: var(--bg-input-padrao, #ffffff) !important; 
 }
 
 .input-group .form-control:focus {
-    background-color: var(--cor-fundo) !important; /* Atualizado para variável de fundo branco */
-}
-
-/* ==========================================================================
-   4. RESPONSIVIDADE (Garante o visual em Tablets e Smartphones)
-   ========================================================================== */
-@media (max-width: 991.98px) {
-    .left-side {
-        padding: 5% 4%;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .left-side {
-        display: none;
-    }
-    
-    .right-side {
-        width: 100%;
-        height: 100vh;
-    }
-    
-    .main-container {
-        height: auto;
-    }
+    background-color: var(--cor-fundo, #ffffff) !important; 
 }

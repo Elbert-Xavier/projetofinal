@@ -56,35 +56,30 @@ body {
    2. COMPONENTES INTERNOS DA SIDEBAR (Logo e Navegação)
    ========================================================================== */
 .logo-area {
-    padding: 1.5rem;
+    padding: 20px 16px;
     display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border-suave); /* Atualizado para variável de divisor suave */
+    flex-direction: column;  /* Coloca a logo em cima e o subtexto embaixo */
+    align-items: flex-start; /* Alinha tudo perfeitamente à esquerda */
+    gap: 8px;                /* Espaço elegante entre a logo e o subtexto */
+    border-bottom: 1px solid var(--border-suave);
+    width: 100%;
 }
 
+/* REGRA DEFENSIVA DA LOGO: Evita quebras no desktop e no mobile */
 .logo-box {
-    width: 38px;
-    height: 38px;
-    object-fit: contain;
-}
-
-.logo-title-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-text {
-    font-weight: 700;
-    color: var(--dark-blue);
-    font-size: 1.1rem;
-    line-height: 1.2;
+    display: block !important;
+    width: 100% !important;     /* Força a imagem a encolher se a sidebar apertar */
+    max-width: 180px !important;/* Define o tamanho máximo ideal na tela cheia */
+    height: auto !important;    /* Mantém a proporção correta para nunca achatar */
+    max-height: 45px !important;/* Limita a altura para ficar elegante na barra */
+    object-fit: contain !important; 
 }
 
 .logo-subtext {
     font-size: 0.75rem;
-    color: var(--cor-texto-suave); /* Atualizado para a variável de texto secundário */
+    color: var(--cor-texto-suave); 
     font-weight: 500;
+    display: block !important;  /* Garante que o texto quebre para a linha de baixo */
 }
 
 /* Links de Navegação da Sidebar */
@@ -100,7 +95,7 @@ body {
     align-items: center;
     gap: 12px;
     padding: 0.85rem 1.5rem;
-    color: var(--cor-texto); /* Atualizado para variável de texto padrão */
+    color: var(--cor-texto); 
     font-weight: 500;
     font-size: 0.95rem;
     text-decoration: none;
@@ -111,13 +106,13 @@ body {
     width: 20px;
     font-size: 1.1rem;
     text-align: center;
-    color: var(--cor-texto-suave); /* Atualizado para a variável de texto secundário */
+    color: var(--cor-texto-suave); 
 }
 
 /* Efeito Hover nos Links */
 .nav-item:hover {
     color: var(--dark-blue);
-    background-color: var(--bg-azul-claro); /* Atualizado para variável de fundo azul claro */
+    background-color: var(--bg-azul-claro); 
     text-decoration: none;
 }
 
@@ -128,7 +123,7 @@ body {
 /* Link Selecionado (Active) */
 .nav-item.active {
     color: var(--dark-blue);
-    background-color: var(--bg-azul-subtle); /* Atualizado para variável de fundo sutil ativo */
+    background-color: var(--bg-azul-subtle); 
     font-weight: 600;
     border-left: 4px solid var(--dark-blue);
 }
@@ -140,20 +135,20 @@ body {
 /* Rodapé e Botão Sair */
 .sidebar-footer {
     margin-top: auto;
-    border-top: 1px solid var(--border-suave); /* Atualizado para variável de divisor suave */
+    border-top: 1px solid var(--border-suave); 
     padding-top: 0.5rem;
 }
 
 .nav-item.logout {
-    color: var(--feedback-perigo); /* Atualizado para variável de feedback de perigo */
+    color: var(--feedback-perigo); 
 }
 
 .nav-item.logout i {
-    color: var(--feedback-perigo); /* Atualizado para variável de feedback de perigo */
+    color: var(--feedback-perigo); 
 }
 
 .nav-item.logout:hover {
-    background-color: var(--bg-perigo-suave); /* Atualizado para a variável de hover de logout */
+    background-color: var(--bg-perigo-suave); 
 }
 
 /* ==========================================================================
@@ -174,8 +169,8 @@ body {
 
 .card-hover-effect:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px var(--shadow-card-hover) !important; /* Atualizado para variável de sombra de elevação */
-    border-color: var(--border-card-hover) !important; /* Atualizado para variável de destaque de borda */
+    box-shadow: 0 8px 20px var(--shadow-card-hover) !important; /* Sombra de elevação */
+    border-color: var(--border-card-hover) !important; /* Destaque de borda */
 }
 
 /* Itens de lista interativos (Ex: Últimos Chamados e Feed do Dashboard) */
@@ -184,7 +179,7 @@ body {
 }
 
 .list-group-item-action:hover {
-    background-color: var(--bg-azul-minimal) !important; /* Atualizado para variável de fundo azul mínimo */
+    background-color: var(--bg-azul-minimal) !important; 
 }
 
 /* Formatação de Tabelas Administrativas */
@@ -222,7 +217,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--overlay-mobile); /* Atualizado para variável de overlay */
+    background-color: var(--overlay-mobile); 
     z-index: 1025;
     display: none;
     opacity: 0;
@@ -244,9 +239,17 @@ body {
         margin-left: 0;
     }
 
-    /* Classe ativada via clique no botão hamburguer pelo JS */
+    /* Classe ativada via clique no botão hambúrguer pelo JS */
     .sidebar.show-mobile {
         transform: translateX(0);
+    }
+    
+    /* Ajustes refinados para a logo se comportar dentro da sidebar aberta no mobile */
+    .sidebar.show-mobile .logo-area {
+        padding: 16px;       
+    }
+    .sidebar.show-mobile .logo-box {
+        max-width: 150px !important;    
     }
 }
 
@@ -259,4 +262,12 @@ body {
     .card {
         padding: 1.5rem 1rem !important;
     }
+}
+
+/* Garante alinhamento perfeito do bloco da logo no topo mobile */
+.d-flex.d-lg-none .d-flex.align-items-center.gap-2 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: auto;
 }

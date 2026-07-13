@@ -1,55 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Gestor&amp;Tech</title>
     
+    <!-- 1. Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- 2. Ícones Externos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 3. Nossos Estilos Integrados (Com quebra de cache para carregar o novo visual de Card) -->
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login.css?v=1.1">
     <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 
     <div class="main-container">
-        <div class="left-side">
-            <div class="brand">
-                <div class="logo-box d-flex align-items-center justify-content-center bg-white text-primary fw-bold rounded">G</div>
-                <h2>Gestor&amp;Tech</h2>
-            </div>
-            <div class="content">
-                <p class="mb-0">Sistema completo para gestão técnica e administrativa da sua empresa.</p>
-            </div>
-        </div>
+        <!-- O bloco .left-side antigo é ocultado automaticamente pelo novo CSS -->
 
         <div class="right-side">
             <div class="form-wrapper">
-                <h1>Login</h1>
-                <p class="subtitle">Acesse sua conta para continuar</p>
+                
+                <!-- Área Superior do Card: Logo Oficial Centralizada no Topo -->
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <!-- Ajustado o caminho da imagem de acordo com a raiz da página de login -->
+                    <img th:src="@{/img/logo-icon.png}" src="img/logo-icon.png" alt="Gestor&amp;Tech" style="height: 42px; width: auto; object-fit: contain; display: block; margin: 0 auto 1.25rem auto;">
+                    <h1>Login</h1>
+                    <p class="subtitle" style="margin-bottom: 0;">Acesse sua conta para continuar</p>
+                </div>
 
+                <!-- Formulário com Inputs padronizados -->
                 <form onsubmit="return false;"> 
+                    
+                    <!-- Input: E-mail -->
                     <div class="input-container">
                         <i class="fa-regular fa-envelope"></i>
                         <input type="email" placeholder="E-mail" id="email" required>
                     </div>
 
+                    <!-- Input: Senha -->
                     <div class="input-container">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" placeholder="Senha" id="senha" required>
                         <i class="fa-regular fa-eye-slash eye-toggle" onclick="revelar();"></i>
                     </div>
 
+                    <!-- Link: Esqueceu a Senha -->
                     <div class="forgot-password">
                         <a href="html/esqueceuSenha.html">Esqueceu a senha?</a>
                     </div>
 
+                    <!-- Botão de submissão -->
                     <button type="submit" class="btn-entrar" onclick="logar();">ENTRAR</button>
                 </form>
+                
             </div>
         </div>
     </div>

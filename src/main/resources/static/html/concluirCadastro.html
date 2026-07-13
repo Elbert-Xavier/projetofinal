@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +22,10 @@
 
     <div class="card w-100 border-0 p-4 p-sm-5 rounded-4 shadow-sm mx-3" style="max-width: 750px;">
         
-        <!-- Topo da Boas-vindas -->
+        <!-- Topo da Boas-vindas com a Logo Padronizada -->
         <div class="text-center mb-4">
-            <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box mx-auto mb-3">
+            <!-- th:src e estilos atualizados para a logo oficial unificada -->
+            <img th:src="@{/img/logo-icon.png}" src="../img/logo-icon.png" alt="Gestor&amp;Tech" style="height: 35px; width: auto; object-fit: contain; display: block; margin: 0 auto 1rem auto;">
             <h1 class="h4 fw-bold mb-1" style="color: var(--dark-blue);">Seja bem-vindo ao Gestor&amp;Tech</h1>
             <p class="text-muted small mb-0">Confirme suas informações e altere sua senha temporária para finalizar o seu cadastro.</p>
         </div>

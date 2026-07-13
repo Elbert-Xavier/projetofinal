@@ -1,41 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redefinir Senha - Gestor&amp;Tech</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <script type="text/javascript" src="../js/redefinirSenha.js"></script>
+    
+    <link rel="stylesheet" th:href="@{/css/base.css}" href="../css/base.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../css/login.css?v=1.6">
+    <script type="text/javascript" th:src="@{/js/redefinirSenha.js}" src="../js/redefinirSenha.js"></script>
 </head>
 <body>
 
     <div class="main-container">
-        <div class="left-side">
-            <div class="brand">
-                <img src="../assets/logo-icon.png" alt="Gestor&amp;Tech" class="logo-box">
-                <h2>Gestor&amp;Tech</h2>
-            </div>
-            <div class="content">
-                <p>Sistema completo para gestão técnica e administrativa da sua empresa.</p>
-                <div class="illustration-box">
-                    <div class="css-illustration">
-   						<div class="chart-bar bar-1"></div>
-    					<div class="chart-bar bar-2"></div>
-    					<div class="chart-bar bar-3"></div>
-					</div>
-                </div>
-            </div>
-        </div>
-
         <div class="right-side">
             <div class="form-wrapper">
-                <h1>Nova Senha</h1>
-                <p class="subtitle">Escolha uma senha forte de acesso para a sua conta.</p>
+                
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="width: 52px; height: 52px; background-color: #0052ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);">
+                        <span style="color: #ffffff; font-family: 'IBM Plex Sans', sans-serif; font-size: 1.8rem; font-weight: 700; line-height: 1;">G</span>
+                    </div>
+                    <h1 style="font-size: 1.8rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; letter-spacing: -0.5px;">Gestor&amp;Tech</h1>
+                    <p class="subtitle" style="margin-bottom: 0; font-size: 0.9rem;">Escolha uma senha forte de acesso para a sua conta.</p>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 1.75rem;">
 
                 <form onsubmit="return false;"> 
                     
@@ -54,9 +48,10 @@
                     <button type="button" class="btn-entrar" onclick="novasenha()" style="margin-top: 10px;">SALVAR NOVA SENHA</button>
                     
                     <div class="register-link">
-                        <p>Lembrou a senha antiga? <a href="../login.html">Fazer Login</a></p>
+                        <p>Lembrou a senha antiga? <a th:href="@{/login}" href="../login.html">Fazer Login</a></p>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
