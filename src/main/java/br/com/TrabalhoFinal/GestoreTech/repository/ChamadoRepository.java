@@ -11,6 +11,7 @@ import br.com.TrabalhoFinal.GestoreTech.entity.ChamadoEntity;
 @Repository
 public interface ChamadoRepository extends JpaRepository<ChamadoEntity, Integer> {
 
+	List<ChamadoEntity> findByEquipamentoId(Integer equipamentoId);
 	List<ChamadoEntity> findAllByOrderByDataAberturaDesc();
 
 	@Query("SELECT c FROM ChamadoEntity c WHERE " +

@@ -41,6 +41,13 @@ public class ChamadoController {
 	public List<ChamadoEntity> listarTodosChamados(){
 		return chamadoRepository.findAll();
 	}
+	
+	@GetMapping("/listarTodos/{equipamentoId}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<ChamadoEntity> listarPorEquipamento(@PathVariable int equipamentoId) {
+	    return chamadoRepository.findByEquipamentoId(equipamentoId);
+	}
+	
 	@GetMapping("/contarChamados")
 	@ResponseStatus(HttpStatus.OK)
 	public long contarChamados() {
