@@ -33,7 +33,7 @@ async function concluirCadastro() {
 				body : JSON.stringify(UsuarioAtualizado)
 			})
 			alert("salvo Com Sucesso")
-			window.location.href = 'http://localhost:8000/login.html'
+			window.location.href = 'http://192.168.10.22:8010/login.html'
 
 		}else{
 			alert("numero de celular nao valido")
